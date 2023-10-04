@@ -1,0 +1,124 @@
+\documentclass[%
+	a4paper, % Papierformat
+	12pt, % Standard-Schriftgröße
+	DIV=14, % Seitenspiegel angepasst (bei DIV=calc wird DIV nach der Schriftdefinition berechnet mit \typearea[current]{calc}
+	twoside, % gespiegelte Seitenränder
+%	open=right, % Kapitel immer auf der rechten Seite beginnen
+	BCOR=8mm, % Bindekorrektur
+	headsepline, % Linie unterhalb von Kopfzeile
+	footsepline, % Linie überhalb der Fußzeile
+%	headinclude, % Kofpzeile und...
+%	footinclude, % Fußzeile bei Berechnung von Satzspiegel berücksichtigt (führt zu größerem Rand)
+	parskip=full, % Absätze sind deutlicher
+%	numbers=noendperiod, % kein automatischer Punkt nach Gliederungsnummer
+	headings=small,
+	toc=chapterentrydotfill, % Punkte bis zur Seitennummer bei Kapiteln
+	toc=listofnumbered,
+	toc = bibliographynumbered,
+	listof=entryprefix, % Präfix für Einträge in Abbildungs- und Tabellenverzeichnis
+	listof=nochaptergap % Abstand für Kapiteleinträge in extra Verzeichnissen
+	numbers=noendperiod, % kein automatischer Punkt nach Gliederungsnummer
+%	appendixprefix = true
+]{scrreprt} % Dokumentenart
+
+
+
+%%%% PACKAGES %%%%%
+\usepackage[T1]{fontenc} % Europäische Zeichensätze und Silbentrennung
+\usepackage[utf8]{inputenc} % deutsche Sonderzeichen
+\usepackage[ngerman, english]{babel} % dito
+
+% Schriftart
+%\usepackage{lmodern} % Schriftart Latin Modern
+\usepackage{mathptmx} % Schriftart Helvetica
+\usepackage[scaled=0.9]{helvet}
+%\usepackage[scaled=0.78]{luximono} % Typewriter-Schriftart
+\usepackage{courier} % Typewriter-Schriftart
+
+%\typearea[current]{calc} % berechne nun Satzspiegel aufgrund der gewählten Schriftart, falls DIV=calc gewählt in \documentclass[options]
+
+\usepackage{amsmath}  % MACHT
+\usepackage{amsfonts} %		MATHE
+\usepackage{amssymb}  %			MÄCHTIGER
+\usepackage{stmaryrd} % ...und noch eine Menge nützlicher Symbole
+\usepackage{mathtools}
+
+\usepackage{blindtext} % Kann Blindtext einfügen (macht Formatierungen besser sichtbar)
+\usepackage[table]{xcolor} % mehr Optionen für Tabellenumgebungen (zB für Tabellen, aber auch für Pakete wie listings oder pgfplotstable)
+
+\usepackage{listings} % Code-Umgebung. Ermöglicht einbinden von Code-Dateien
+\AtBeginDocument{\DeclareCaptionSubType{lstlisting}}
+
+\usepackage{graphicx} % Ermöglicht Einbinden von Grafiken
+\usepackage{array} % Verbesserte Array und Tabellen Umgebung
+
+%\usepackage[%
+%		showframe,
+%	]{geometry}
+% Seiteneinrichtung, [showframe] zeigt Seitenspiegel. Auskommentieren, falls Seite über options in \documentclass definiert wird.
+
+\usepackage[chapter]{algorithm} % Definiere Umgebung für...
+\usepackage{algpseudocode}      % ...Pseudo-Code
+\usepackage{siunitx} % SI-Einheiten und Zahlen in einheitlichem System
+\usepackage{pdfpages} % Einbinden von pdfs möglich
+\usepackage{booktabs} % Optionen für formale Tabellen in wiss. Arbeiten
+\usepackage{tabularx} % Ermöglicht individuellere Tabellen (v.a. Spaltengröße)
+\usepackage{pgfplots} % Erstellen von Diagrammen und Plots
+\usepackage{pgfplotstable} % Einlesen von Daten (csv, txt) für Plots
+\usepackage{tocbasic} %mehr Kontrolle über gleitende Umgebungen, besser als float
+\usepackage{scrhack} % Kompatibilität für float bzw. tocbasic für ältere Schnittstellen, zB in listings zu finden. Dieses Paket unterbindet eine entsprechende Warnung.
+
+\usepackage[%
+babel, % deutsche Sonderzeichen
+%german=quotes, % deutsche Anführungszeichen
+]{csquotes} % Bilbliographiestil
+
+\usepackage[%
+	style=authoryear-icomp, % Zitierstil
+	dashed=false, % kein Gruppieren der Autoren im Verzeichnis
+	doi=true,  % DOI soll angegeben werden oder nicht
+	maxcitenames=2, % Zeige max. 2 Autoren im Zitat
+	mincitenames=1, % Zeige mind. 1 Autor im Zitat
+	maxbibnames=8, % Zeige bis zu acht Autoren im Verzeichnis
+	minbibnames=8, % Zeige bis zu acht Autoren im Verzeichnis
+	uniquelist=false, % Erstellt auch gleich aussehende Einträge zu verschiedenen Werken
+	isbn=false, % ISBN soll nicht angegeben werden
+	giveninits=true, % Vornamen sollen abgekürzt werden (falls in Datei noch nicht abgekürzt)
+	backend=biber, % ausführender Compiler (falls biber muss in der Editorkonfiguration auch biber als Erzeuger ausgewählt werden)
+%	backref=true, % Literaturverzeichnis verweist auf die referenzierten Textstellen in DIESER Arbeit
+	backrefstyle=all+, % Kompaktere Darstellung für backref
+]{biblatex} % Bibliographiepaket
+
+
+\usepackage[%
+autooneside=false,	% ???
+]{scrlayer-scrpage} % ermöglicht individuelles Anpassen von Kopf- und Fußzeile
+
+\usepackage{caption,subcaption} % Mehr Einstellungen für Beschriftungen
+\usepackage{tikz} % Zeichenprogramm
+\usepackage{eurosym} % Eurozeichen
+\usepackage{enumitem} % verbesserte Nummerierungs- und Aufzählungsumgebung
+\usepackage{multicol} % ermögliche mehrere Spalten
+\usepackage{letltxmacro} % Verbesserte Funktionalität, um interne Macros umdefinieren zu können
+\usepackage{xparse} % Mehr Funktionalität für Macros und eigene Kommandos
+\usepackage[absolute]{textpos} % Positionierung von Textblöcken unabhängig von Seitenrändern
+\usepackage{calc} % Berechnungen
+\usepackage{tabto} % Tabulatoren
+\usepackage[%
+	page,
+	toc,
+	titletoc,
+	title,
+]{appendix} % Mehr Befehle für den Anhang
+\usepackage{etoolbox}
+\usepackage[htt]{hyphenat} % konsequentere Silbentrennung für alle Fonts
+
+\usepackage{hyperref} % Nutz- und Sichtbare Hyperlinks, META-Datendes PDFs
+\usepackage[ngerman, english]{cleveref} % Mehr Optionen für Querverweise
+
+\usepackage{microtype} % Kleinere Layout Optimierungen
+
+% Debugging:
+%\usepackage{showframe} % Layout-Boxen anzeigen
+%\usepackage{layout} % Layout-Informationen
+%\usepackage{printlen} % Längenwerte ausgeben

@@ -1,0 +1,224 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PACKAGE SETUP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%% Erstellt pdf 1.6 statt 1.5 und verhindert damit Warnungen, falls pdfs v1.6 eingebunden werden
+\pdfminorversion=6
+
+
+
+% Speichert plots und tikz-Diagramme in externe pdf's in den gewählten Unterordner. Bbenötigt den '--enable-write18'-Befehl in pdfLaTeX, so zB kann die Befehlsstruktur aussehen:
+% "pdflatex.exe -synctex=1 -interaction=nonstopmode --enable-write18 %.tex"
+\usepgfplotslibrary[external, fillbetween, colormaps]
+\usetikzlibrary{%
+	external,
+	shapes.geometric,
+	arrows.meta,
+	shapes.arrows,
+	fit,
+	matrix,
+	positioning,
+	shapes.misc,
+	shadows,
+}
+\tikzexternalize[prefix=04_TikZ_Externalized/]
+
+
+
+%% pgfplots: 
+\pgfplotsset{%
+	compat=1.15, % Kompatibilität
+}
+
+
+%% siunitx
+\sisetup{%
+	locale=DE, % Deutsche Einheitenschreibweise: m s^-1 statt m/s
+	output-decimal-marker = {.} %  Punkt statt Komma als Dezimaltrenner (Geschmackssache)
+}
+
+
+%%	hyperref Einstellungen - Links und PDF-Meta-Daten
+% Solange die Arbeit noch nicht fertig ist am Besten auskommentieren, da in den Voreinstellungen die Verweise am deutlichsten sind.
+\hypersetup{%
+	pdfborder=0 0 .6, % Rahmendicke der Links. Adobe stellt <.6 nicht ordnungsgemäß dar
+	%	colorlinks=true,
+	%	citecolor=black,
+	%	urlcolor=black,
+	%	linkcolor=black,
+	%	pdffitwindow=true,
+	%	plainpages=false,
+}
+
+
+%% Anpassung der Literaturverzeichnisse
+\DefineBibliographyStrings{ngerman}{%
+	bibliography = {Literaturverzeichnis}, % Name
+	techreport = {Datenblatt},
+	mathesis = {Masterarbeit},
+	phdthesis = {Dissertation},
+	andothers = {{et\,al\adddot}}, % schreibe et al. statt u.a.
+}
+
+
+%% listings	
+\lstset{%
+%	language=Matlab, % Standardsprache zur Interpretation
+	breaklines=true, % Zeilenumbruch automatisch einfügen
+	tabsize=4, % Anzahl Leerzeichen pro Tabulator
+	inputencoding=latin1, % bindet Umlaute im Code korrekt ein
+	basicstyle=\ttfamily, % nutzt Typewriter-Schriftart (falls def. zB. Luximono)
+	fontadjust=true,
+	columns=flexible, % Anpassung der Zeichenabstände auf Zeilenbreite
+	numbers=left, % Zeilennummern links
+	numberstyle=\tiny, % Schriftgröße Zeilennummern
+	stepnumber=1, % Schrittgröße der dargestellten Zeilennummern
+	numbersep=5pt, % Abstand der Zeilennummern vom Code
+	firstnumber=1,
+	%	firstnumber=last, % fortlaufende Nummerierung
+	backgroundcolor=\color[gray]{.98}, % Hintegrund Rahmen
+	frame=single,  % Rahmenart
+	framerule=0.1pt, % Rahmendicke
+	showstringspaces=false, % Hervorhebung von Leerzeichen in strings abschalten
+	commentstyle=\color{gray},%\textit, % definiere Aussehen von Kommentaren
+	stringstyle=\color{black!20!green}, % Definiere Aussehen von Strings
+	morekeywords={rng, realsqrt, ones, zeros}, % Definiere weitere Schlüsselwüörter zur Hervorhebung im Code
+}
+%\renewcommand{\lstlistingname}{Algorithmus} % Listing heißt nun Algorithmus (German only)
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT SETUP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Verhindert Schusterjungen und Hurenkinder
+\clubpenalty10000
+\widowpenalty10000
+\displaywidowpenalty10000
+
+
+%% Erstellt Kapitelnamen in Kopf bzw. Seitenzahlen in Fußzeile
+\pagestyle{scrheadings}
+\ofoot[\pagemark]{\pagemark} % Erstellt Seitenzahlen jeweils außen
+\renewcommand*{\headfont}{\normalfont} % Kopfzeilen sind nicht kursiv dargestellt.
+\renewcommand{\chapterpagestyle}{scrheadings}
+
+
+% Inhaltsverzeichnis
+\makeatletter
+\renewcommand{\@dotsep}{.3} % Abstand der Füllpunkte
+
+
+% Überschrift chapter
+\setkomafont{chapter}{\sffamily\bfseries\fontsize{16pt}{19pt}\selectfont}
+\RedeclareSectionCommand[%
+beforeskip=15pt,
+afterskip=15pt
+]{chapter}
+
+
+% Überschrift section
+\setkomafont{section}{\sffamily\bfseries\fontsize{14pt}{16pt}\selectfont}
+\RedeclareSectionCommand[%
+beforeskip=25pt,
+afterskip=15pt
+]{section}
+
+
+% Überschrift subsection
+\setkomafont{subsection}{\sffamily\bfseries\fontsize{12pt}{13pt}\selectfont}
+\RedeclareSectionCommand[%
+beforeskip=25pt,
+afterskip=5pt
+]{subsection}
+
+
+% Tabellen Beschriftung
+\captionsetup[table]{%
+	format=hang,
+	labelfont = it,
+	labelsep=colon,
+	textfont = it,
+	singlelinecheck=off,
+	skip=3pt,
+}
+
+
+% Abbildungsbeschriftung
+\captionsetup[figure]{%
+	format=hang,
+	labelfont = it,
+	labelsep=colon,
+	textfont = it,
+	singlelinecheck=off,
+	skip=6.6mm,
+}
+
+
+% Algorithmusbeschriftung (Quellcode)
+\captionsetup[lstlisting]{%
+	format=hang,
+	labelfont = it,
+	labelsep=colon,
+	textfont = it,
+	singlelinecheck=off,
+	skip=3pt,
+}
+
+
+% Algorithmusbeschriftung (Pseudo-Code)
+% remove upper rule
+\makeatletter
+\newcommand\fs@ruled@notop{\def\@fs@cfont{\bfseries}\let\@fs@capt\floatc@ruled
+	\def\@fs@pre{}%
+	\def\@fs@post{\kern2pt\hrule\relax}%
+	\def\@fs@mid{\kern2pt\hrule\kern2pt}%
+	\let\@fs@iftopcapt\iftrue}
+\renewcommand\fst@algorithm{\fs@ruled@notop}
+\makeatother
+
+% Rename caption for ngerman
+%\floatname{algorithm}{Algorithmus}
+
+\captionsetup[algorithm]{%
+	format=hang,
+	labelfont = it,
+	labelsep=colon,
+	textfont = it,
+	singlelinecheck=off,
+	skip=3pt,
+}
+
+% Literatur
+\setlength\bibitemsep{\itemsep}
+
+
+% Anhang formatieren
+\renewcommand{\autodot}{}%
+\newcommand{\appendixTocString}{\appendixname\space\thechapter\autodot}%
+\newlength{\appendixTocStringLength}%
+\settowidth{\appendixTocStringLength}{\appendixTocString}%
+\addtolength{\appendixTocStringLength}{1.5em}%
+\makeatletter%
+\gappto{\appendix}{%Doing everything in the appendix%
+	\patchcmd{\@@makechapterhead}{\endgraf\nobreak\vskip.5\baselineskip}{}{}{}%
+	\renewcommand{\autodot}{:}%
+	\addtocontents{toc}{%
+		\protect\patchcmd{\protect\l@chapter}%
+		{1.5em}%
+		{\protect\appendixTocStringLength}%
+		{}{}}%
+	\patchcmd{\@chapter}{\addchaptertocentry{\thechapter}{\scr@ds@tocentry}%
+	}{%
+		\addchaptertocentry{\appendixTocString}{\scr@ds@tocentry}}{}{}%
+}%
+\makeatother%
+
+\renewcommand{\appendixpagename}{\appendixname}
+\renewcommand{\appendixtocname}{\appendixname}

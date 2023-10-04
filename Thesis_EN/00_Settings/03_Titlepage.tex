@@ -1,0 +1,90 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deckblatt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\phantom{Hi mom!} % Phantom text so that this page will be created
+\textblockorigin{\SeitenrandLinks}{\SeitenrandOben} % Ursprung für Positionierung
+
+{\sffamily
+
+\begin{textblock*}{\UniversitaetLogoBreite}[1,0](\textwidth-1mm, 2cm-\SeitenrandOben)%
+    \raggedleft\includegraphics{./00_Settings/TUM_Logo_RGB.pdf}%
+\end{textblock*}
+
+
+
+\begin{textblock*}{\textwidth}[0,0](0cm, 0cm)%
+{\fontsize{24pt}{26pt}\selectfont\textbf{\thema}}
+
+%\vspace*{14pt}
+%{\fontsize{24pt}{26pt}\selectfont\textbf{\themainen}}
+
+\vspace*{14pt}
+{\fontsize{18pt}{27pt}\selectfont\textbf{\artderarbeit \, Nr. \, \arbeitnr}}
+\end{textblock*}
+
+
+
+\begin{textblock*}{1\textwidth}(0cm, 120mm)
+	\fontsize{15pt}{17.5pt}\selectfont%
+	Scientific \ifthenelse{\equal{\artderarbeit}{Semester Thesis}}{Semester Thesis}{Thesis for Acquiring the }%
+	\ifthenelse{\equal{\artderarbeit}{Semester Thesis}}{}{\ifthenelse{\equal{\artderarbeit}{Bachelor's Thesis}}{Bachelor of Science Degree\\}{Master of Science Degree\\}}%
+	\ifthenelse{\equal{\studiengang}{}}{}{in the study program \studiengang{}}
+	at the \fakultaet{} \ifthenelse{\equal{\studiengang}{}}{\\}{}%
+	of the Technical University of Munich.
+	
+	\renewcommand{\baselinestretch}{1}
+	\normalsize\selectfont
+	\vspace*{12mm}
+	\textbf{Thesis Advisor}\tab\hspace{-3cm}
+	\begin{minipage}[t]{\textwidth-\CurrentLineWidth}
+		\themenstellerlehrstuhl\\
+		\themensteller
+		\ifthenelse{\equal{\themenstellerlehrstuhl}{\betreutvonlehrstuhl}}
+		{%
+			\ifthenelse{\equal{\themensteller}{\betreutvonperson}}{%
+				\ifthenelse{\equal{\betreutvonzweitkorrektor}{}}{\strut}{
+				\\\betreutvonzweitkorrektor{} (Second corrector)\strut
+			}
+			}
+			{\strut}}{\strut}
+	\end{minipage}
+	
+	%%%%%%%%%%%%%%%%%%%%
+	
+	% Angabe über Betreuer löschen, falls identisch mit Themensteller
+	\ifthenelse{\equal{\themenstellerlehrstuhl}{\betreutvonlehrstuhl}}
+	{%
+		\ifthenelse{\equal{\themensteller}{\betreutvonperson}}{}
+		{%
+	\vspace*{2mm}
+	\textbf{Supervisor}\tab\hspace{-3cm}
+	\begin{minipage}[t]{\textwidth-\CurrentLineWidth}
+		\betreutvonlehrstuhl\\
+		\betreutvonperson
+		\ifthenelse{\equal{\betreutvonzweitkorrektor}{}}{\strut}{
+			\\\betreutvonzweitkorrektor{} (Second corrector)\strut
+		}
+	\end{minipage}
+	%%%%%%%%%%%%%%%%%%%%
+	}}{}
+	
+	\vspace*{2mm}
+	\textbf{Submitted by}\tab\hspace{-3cm}
+	\begin{minipage}[t]{\textwidth-\CurrentLineWidth}
+		\derauthor\\
+		\adresse\\
+		Matriculation number: \matrikelnr\\
+		\emailadresse\strut
+	\end{minipage}
+	
+	\vspace*{2mm}
+	\textbf{Submitted on}\tab\hspace{-3cm}
+	\begin{minipage}[t]{\textwidth-\CurrentLineWidth}
+		\eingereichtamort, \eingereichtamdatum\strut
+	\end{minipage}
+\end{textblock*}
+
+}
+
+\cleardoubleemptypage

@@ -1,0 +1,155 @@
+\chapter{How to use this template}
+This \LaTeX{} template is adapted from the Word template for student theses at LPL. If you are not sure regarding
+the formatting, please refer to the Word template or ask your supervisor.
+
+\section{Setup your editor}
+This template was created and tested with the TexStudio editor in combination with MikTex, but in general you should be able to use other editors as well.
+
+
+You should check the following settings and adapt them accordingly if neccessary:
+\begin{itemize}
+	\item Standard Compiler: Pdf\LaTeX
+	\item Standard Bibliography: biber
+\end{itemize}
+You can change these default programs in TexStudio by choosing \texttt{Options} $\rightarrow$ \texttt{Configure TexStudio} $\rightarrow$ \texttt{Build}.
+
+Also, by default, this template places all graphics and diagrams created with \texttt{TikZ} or \texttt{pgfplots}
+in external pdf files. This significantly reduces the compilation effort, especially for
+extensive theses, but you will need to specify the compiling command as follows:
+
+
+In Texstudio, choose \texttt{Options} $\rightarrow$ \texttt{Configure TexStudio} $\rightarrow$ \texttt{Commands} and add\\ \verb|--enable-write18|\footnote{Alternatively, you can use \texttt{--shell-escape} instead.}, so that the command for  Pdf\LaTeX{} reads 
+
+\begin{lstlisting}[numbers=none]
+	pdflatex.exe -synctex=1 -interaction=nonstopmode --enable-write18 %.tex
+\end{lstlisting}
+
+
+\section{Working with \LaTeX}
+
+If you are somewhat familiar with \LaTeX{} and are just looking for solutions to specific questions and problems, forums like
+\url{https://tex.stackexchange.com/} have proven to be very reliable.
+
+If, on the other hand, this thesis is your introduction to \LaTeX{}, a didactic approach is recommended.
+There is a lot of literature that will help you to get started, and will remain a helpful tool in your further
+\LaTeX-"career". Representative for many other works \autocite{Schlosser2014} should be mentioned here.
+
+
+\section{Working with this template}
+
+\emph{As a basic rule:} This template has been created to the best of our knowledge and belief, nevertheless minor (and probably major) errors may still be included. If something seems strange or illogical to you, do not hesitate and adapt the template to your needs -- preferably in consultation with your supervisor, of course.
+
+You can get an impression of the structure of this template from \cref{fig:template_structure}. The main folder contains only the \texttt{Thesis.tex} file, which combines all your individual files to the thesis. Here you define the meta data, like supervisor, title etc.. Also you include your chapters here -- or comment them out using the \verb|\includeonly| command if you want to compile only single chapters at an advanced stage to save time.
+
+The \texttt{Settings} folder contains all document definitions. Here you only need to add your task description, otherwise you do not need to change anything. If you feel confident in using \LaTeX{}, you may of course include additional packages or adapt the template to your needs.
+
+In the folder \texttt{Chapters} you create a separate .tex file for each chapter and include them -- analogous to the two example chapters -- in \texttt{Thesis.tex}. If you want the main chapters of your thesis to always start on the right-hand side, add the command \verb*|\cleardoubleemptypage| to the end of each chapter.
+
+In \texttt{Resources} you put all the resources you need to create the thesis with \LaTeX{}. The structure of this folder in detail is up to you.
+
+The folder \texttt{Literature} contains at least the .bib file with all entries. If you have this file created externally, for example via Citavi or JabRef, you can of course store this data here as well as all your literature.
+
+It is best not to add anything to the folder \texttt{TikZ\_External}. All graphics created by \texttt{TikZ} are stored here temporarily, so that they can be included during compilation in a time-saving way, unless you have changed them.
+
+
+\begin{figure}[tb]
+	\centering
+	\begin{tikzpicture}[node distance=1.5cm]
+		
+		% define some styles
+		\tikzstyle{arrow} = [thick,->,>=stealth]
+		
+		\tikzstyle{folder} = [rectangle,  text width=2cm, rounded corners, minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=black!80, thick, text=white, font=\small]
+		
+		\tikzstyle{folderImage} = [anchor=north, inner sep=0pt, xshift=.1cm]
+		
+		\tikzstyle{txt} = [rectangle,  text width=2.75cm, rounded corners, minimum width=2.75cm, minimum height=5cm, text depth=4.8cm, align=left, draw=black, fill=white, thick, fill opacity=.9, font=\footnotesize, xshift=-.3cm, yshift=-1.6cm, inner sep=2pt]
+		
+		
+		% define folder nodes
+		\node[folder] (case) {Main};
+		\node[folder, below of=case] (res) {Ressources};
+		\node[folder, left of=res, xshift=-5cm] (set) {Settings};
+		\node[folder, left of=res, xshift=-1.75cm] (chap) {Chapters};
+		\node[folder, right of=res, xshift=1.75cm] (lit) {Literature};
+		\node[folder, right of=res, xshift=5cm] (tikz) {TikZ\_External};
+		\node[below of=case, yshift=.75cm, inner sep=0pt] (midpoint) {};
+		
+		% define Text Box Nodes
+		\node[txt, below of=set] {%
+			\begin{itemize}[noitemsep]
+				\item \textbf{Packages}
+				\item \textbf{Package- / document settings}
+				\item Individual definitions
+				\item \textbf{Title page}
+				\item \textbf{Declaration}
+				\item Task description
+			\end{itemize}
+		};
+		
+		\node[txt, below of=chap] {%
+			\begin{itemize}[noitemsep]
+				\item Example chapters
+				\item \emph{All chapters you add}
+				\item Appendix if needed
+			\end{itemize}
+		};
+	
+		\node[txt, below of=res] {%
+			\begin{itemize}[noitemsep]
+				\item Examples
+				\item \emph{Pictures}
+				\item \emph{Code}
+				\item \emph{Data}
+				\item \emph{Results}
+				\item etc.
+			\end{itemize}
+		};
+	
+		\node[txt, below of=lit] {%
+			\begin{itemize}[noitemsep]
+				\item .bib-File
+				\item \emph{Citavi-File or other external bibliography software}
+				\item \emph{Your literature}
+			\end{itemize}
+		};
+	
+		\node[txt, below of=tikz] {%
+			\begin{itemize}[noitemsep]
+				\item \textbf{\texttt{TikZ} generated figures are saved here}
+			\end{itemize}
+		};
+
+		% draw arrows and include folder images
+		\foreach \nodename in {case, set, chap, res, lit, tikz}{%
+			\draw[arrow] (midpoint) -| (\nodename);
+			\node[left of=\nodename,folderImage] {\includegraphics[width=.9cm]{02_Ressources/00_Examples/FolderImage}};			
+		}
+
+	\end{tikzpicture}
+	\caption{Folder and file structure of this \LaTeX{} template. \textbf{Bold typed} are elements which are already defined and do not need to be changed by you, \emph{italic font} on the other hand represents elements which you can or should add yourself.}
+	\label{fig:template_structure}	
+\end{figure}
+
+And of course, you can customize this structure to your liking.
+
+\section{Citation}
+In general, we at the Laboratory of Product Development and Lightweight Design cite according to the guidelines of the TUM citation guide; the author-year nomenclature (APA) suggested there is already integrated in this template.
+
+\emph{Additionally at LPL:} Both direct and indirect citations should always be accompanied by page references! Only in the exceptional case of a reference to a work as a whole, a page reference can be omitted. Furthermore, if a work is written by three or more authors, only the first one is to be indicated in the text, all others are replaced by \emph{et\ al.}.
+
+With the implemented style you can, for example, refer to one work \autocite[2\psq]{zimmermann2013vehicle} elegantly multiple times \autocite[17]{zimmermann2013vehicle}, or cite several sources at once \autocites[42--69]{zimmermann2013computing}[15\psqq]{zimmermann2017design}.
+
+And you can directly cite \textcite{zimmermann2013vehicle} or multiple authors, e.g., \textcites{zimmermann2017design}{Schlosser2014} like this in the body text. Please check the source code for the used commands. 
+
+
+\section{Printing}
+This section lists the LPL printing guide:
+
+\begin{itemize}
+	\item Printing is done at LPL. Three copies in total, one for you and two for the lab and supervisor. Any additional copies, such as for industry partners, are possible by arrangement. 
+	\item The cost of binding the lab's copies will be borne by the LPL. Payment is made via a collection list on file at Printy at the main campus. Do not forget your supervisor's business card for submission to Printy.
+	\item You cover the cost of binding your own copy.
+\end{itemize}
+
+\cleardoubleemptypage

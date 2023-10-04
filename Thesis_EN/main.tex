@@ -1,0 +1,128 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LPL-Vorlage: Wissenschaftliche Arbeit. angepasst auf Basis der TUM-Vorlage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+% BASIC SETUP
+% DO NOT ALTER UNLESS YOU KNOW WHAT YOU DO!
+% (In that case, feel free to fiddle around and adapt to your needs)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{00_Settings/00_Packages} 	
+\input{00_Settings/01_Package_Setup} 
+\input{00_Settings/02_Definitions}  % add your own definitions and commands
+\bibliography{03_Literature/00_Bibliography} % bibliography file
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+% DEFINE META DATA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\Thema{Reinforcement learning based control of an underactuated double pendulum system} % Thesis title in english
+
+% Type of thesis. Use one of the predefined suggestions (Case Sensitivity!)
+\ArtDerArbeit{%
+%	Semester Thesis%
+%	Bachelor's Thesis%
+	Master's Thesis%
+}
+
+\Arbeitnr{xxx} % ask your supervisor for the number
+\Fakultaet{School of Engineering and Design} % Usually School of Engineering and Design
+
+\Studiengang{} % Your study program, leave empty if study program shouldn't be shown on the title page
+
+\Themensteller{Prof. Dr. Markus Zimmermann} % Usually Markus Zimmermann
+\ThemenstellerLehrstuhl{Laboratory for Product Development and Lightweight Design} % usually LPL
+
+\BetreutVonPerson{Akhil Sathuluri} % your supervisor
+\BetreutVonZweitkorrektor{Hans Zweitkorrektor} % ask your supervisor for the second corrector, leave empty if not applicable
+\BetreutVonLehrstuhl{Laboratory for Product Development and Lightweight Design} % usually LPL
+
+% How often do you meet your supervisor? Use one of the predefined suggestions
+\Turnus{%
+%	weekly%
+% 	biweekly%
+	monthly%
+} 
+
+\Author{Chi Zhang} % your name
+\Adresse{Karl Köglsperger Straße 9, 80939, München} % your address
+\Matrikelnr{03735807} % your matriculation number
+\Emailadresse{chi97.zhang@mytum.de} % your mail address, preferably a TUM-address
+
+\StartDatum{Starting Date} % official starting date
+\EingereichtAmDatum{15.11.2023} % official end date
+\EingereichtAmOrt{Garching} % Place of the Thesis, usually Garching
+
+\IndustriePartner{DFKI GmbH, Robotics Innovation Center } % leave empty if you don't have an industry partner
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% Use the \includeonly command if you want to work only on certain chapters. Although you could get the same effect by commenting out the appropriate chapters. However, the \includeonly command has the advantage that it can take bookmarks from the uncompiled chapters. This preserves references and directory entries from these chapters, for example.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\includeonly{%
+%	01_Chapters/01_Explanations,
+%	01_Chapters/02_Examples,
+%	% ...,
+%	01_Chapters/99_Anhang,
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% BEGIN DOCUMENT 
+\begin{document}
+
+
+
+% DEFINE FIRST PAGES AND LISTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{roman} % Page numbering i, ii, iii, ... for the first pages
+\input{00_Settings/03_Titlepage} % DO NOT ALTER
+\input{00_Settings/04_Declaration} % DO NOT ALTER
+\input{00_Settings/05_Project_Brief} % ADAPT YOUR PROJECT / TASK DESCRIPTION HERE (comment out if not wanted in document)
+\input{00_Settings/06_Project_Declaration} % DO NOT ALTER
+
+\tableofcontents
+
+% Add list of formulas, list of abbrevations etc. here if desired.
+% Usually, a list of tables and list of figures is UNNECESSARY. 
+
+\cleardoubleemptypage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+% MAIN PART
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\automark[section]{chapter} % Define references at page margin
+\pagenumbering{arabic} % "normal" page numbering 1, 2, 3, ... from here on
+
+% include your chapters HERE
+\include{01_Chapters/01_Explanations}
+\include{01_Chapters/02_Examples}
+% \include{01_Chapters/03_...}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+% BIBLIOGRAPHY AND APPENDIX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printbibliography[heading=bibintoc] % Literature
+
+% Appendix (optional, comment out if not needed)
+\cleardoubleemptypage
+\begin{appendices}
+	\include{01_Chapters/99_Anhang}
+\end{appendices}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
