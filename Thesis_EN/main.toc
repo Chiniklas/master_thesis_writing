@@ -1,13 +1,26 @@
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {1}How to use this template}{1}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Setup your editor}{1}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Working with \LaTeX }{2}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Working with this template}{2}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Citation}{3}{section.1.4}%
-\contentsline {section}{\numberline {1.5}Printing}{4}{section.1.5}%
-\contentsline {chapter}{\numberline {2}A few example codes}{5}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Formulas}{5}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Tables, figures and plots}{5}{section.2.2}%
-\contentsline {chapter}{Appendix}{13}{section*.9}%
-\contentsline {chapter}{Appendix \numberline {A}An appendix}{14}{appendix.a.A}%
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Contribution}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Content}{1}{section.1.3}%
+\contentsline {chapter}{\numberline {2}State of the art}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Theory}{3}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Related work}{3}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Methodology}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Soft actor critic}{5}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Linear quadratic regulator}{5}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Combining SAC and LQR with region of attraction}{5}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Reward shaping}{5}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Experiment: hardware system}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Hardware setup}{7}{section.4.1}%
+\contentsline {section}{\numberline {4.2}system identification}{7}{section.4.2}%
+\contentsline {section}{\numberline {4.3}sim2real problem}{7}{section.4.3}%
+\contentsline {section}{\numberline {4.4}real hardware results}{7}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Discussion}{9}{chapter.5}%
+\contentsline {section}{\numberline {5.1}introduction to leaderboard results}{9}{section.5.1}%
+\contentsline {section}{\numberline {5.2}interpretation of simulation results}{9}{section.5.2}%
+\contentsline {section}{\numberline {5.3}interpretation of hardware results}{9}{section.5.3}%
+\contentsline {section}{\numberline {5.4}future work}{9}{section.5.4}%
+\contentsline {chapter}{Appendix}{11}{section*.2}%
+\contentsline {chapter}{Appendix \numberline {A}An appendix}{12}{appendix.a.A}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
