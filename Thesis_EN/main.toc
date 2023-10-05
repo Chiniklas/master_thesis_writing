@@ -1,26 +1,33 @@
 \babel@toc {english}{}\relax 
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Contribution}{1}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Content}{1}{section.1.3}%
-\contentsline {chapter}{\numberline {2}State of the art}{3}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Theory}{3}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Related work}{3}{section.2.2}%
-\contentsline {chapter}{\numberline {3}Methodology}{5}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Soft actor critic}{5}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Linear quadratic regulator}{5}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Combining SAC and LQR with region of attraction}{5}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Reward shaping}{5}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Experiment: hardware system}{7}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Hardware setup}{7}{section.4.1}%
-\contentsline {section}{\numberline {4.2}system identification}{7}{section.4.2}%
-\contentsline {section}{\numberline {4.3}sim2real problem}{7}{section.4.3}%
-\contentsline {section}{\numberline {4.4}real hardware results}{7}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Discussion}{9}{chapter.5}%
-\contentsline {section}{\numberline {5.1}introduction to leaderboard results}{9}{section.5.1}%
-\contentsline {section}{\numberline {5.2}interpretation of simulation results}{9}{section.5.2}%
-\contentsline {section}{\numberline {5.3}interpretation of hardware results}{9}{section.5.3}%
-\contentsline {section}{\numberline {5.4}future work}{9}{section.5.4}%
-\contentsline {chapter}{Appendix}{11}{section*.2}%
-\contentsline {chapter}{Appendix \numberline {A}An appendix}{12}{appendix.a.A}%
+\contentsline {subsection}{\numberline {1.1.1}Trajectory planning and tracking}{2}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Reinforcement learning based control}{4}{subsection.1.1.2}%
+\contentsline {section}{\numberline {1.2}Problem setup}{5}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Contribution}{6}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Content}{6}{section.1.4}%
+\contentsline {chapter}{\numberline {2}State of the art}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Theory}{9}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Related work}{9}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Methodology}{11}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Soft actor critic}{11}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Linear quadratic regulator}{11}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Combining SAC and LQR with region of attraction}{11}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Reward shaping}{11}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Experiment: training and simulation}{13}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Training setup}{13}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Training process}{13}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Simulation results}{13}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Experiment: hardware system}{15}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Hardware setup}{15}{section.5.1}%
+\contentsline {section}{\numberline {5.2}system identification}{15}{section.5.2}%
+\contentsline {section}{\numberline {5.3}sim2real problem}{15}{section.5.3}%
+\contentsline {section}{\numberline {5.4}real hardware results}{15}{section.5.4}%
+\contentsline {chapter}{\numberline {6}Discussion}{17}{chapter.6}%
+\contentsline {section}{\numberline {6.1}introduction to leaderboard results}{17}{section.6.1}%
+\contentsline {section}{\numberline {6.2}interpretation of simulation results}{17}{section.6.2}%
+\contentsline {section}{\numberline {6.3}interpretation of hardware results}{17}{section.6.3}%
+\contentsline {section}{\numberline {6.4}future work}{17}{section.6.4}%
+\contentsline {chapter}{Appendix}{19}{section*.4}%
+\contentsline {chapter}{Appendix \numberline {A}An appendix}{20}{appendix.a.A}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
