@@ -51,6 +51,7 @@ Trajectory planning involves computing a smooth and feasible path that a robot s
 
 Once the trajectory is successfully planned, trajectory tracking involves implementing control algorithms to guide the robot along the planned trajectory. Typically, a feedback control approach is utilized, continuously monitoring the robot's position and adjusting control inputs. However, in real-world systems, even with a well-planned trajectory, external disturbances, uncertainties, or system limitations may cause significant deviations. Hence, accurate state estimation and robust control are crucial in the realm of feedback control.
 
+[maybe there a better example is to explain how atlas works]
 In the domain of industrial robot control, it's typical to separate the process into distinct planning and execution phases. This division arises from the fact that real-time responsiveness is not a stringent necessity in this context. When a task is defined, the planning phase kicks in, utilizing algorithms like linear interpolation and A* for trajectory generation. Following this, a steady and reliable control policy is implemented to ensure precise tracking of the generated trajectory during the execution phase.
 
 Yet, in dynamic domains like automotive and flight control, the demand for real-time responsiveness takes center stage. Model Predictive Control (MPC) stands as a prime illustration of this critical requirement. MPC seamlessly integrates trajectory planning and execution into a unified framework. The process commences by projecting a sequence of control actions into the future as part of the planning stage. Subsequently, the calculated control inputs are meticulously fine-tuned to minimize the deviation between the actual system state and the planned trajectory. This strategic implementation effectively guides the system to closely track the intended trajectory.
@@ -121,7 +122,7 @@ To tackle the swing-up task, we utilized a well-known model-free reinforcement l
 The paper is structured as follows:
 
 \begin{itemize}
-  \item \textbf{Chapter 2: Introduction to State-of-the-Art}
+  \item \textbf{Chapter 2: State-of-the-Art}
   \begin{itemize}
     \item This chapter provides an overview of current advancements in the field, summarizing essential theories, including those related to nonlinear and underactuated control.
   \end{itemize}
