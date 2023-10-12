@@ -4,13 +4,122 @@ This chapter is about the discussion of results.
 ad;falknv.xzfvhlsakjdgfnmdflk asdjgfmndfgb;lkjesf;mngfbl;kjfx.,mszedk.jfal;j
 
 \section{introduction to leaderboard results}
-This section is about hardware setup and its features.
+This section is about simulation and real system leaderboard
+
+\begin{itemize}
+  \item \textbf{Swingup Success} \(c_{\text{success}}\):
+  Whether the swingup was successful, i.e. if the end-effector is above the threshold line at the end of the simulation.
+  
+  \item \textbf{Swingup time} \(c_{\text{time}}\):
+  The time it takes for the pendubot to reach the goal region above the threshold line and stay there. If the end-effector enters the goal region but falls below the line before the simulation time is over, the swingup is not considered successful! The swingup time is the time when the end-effector enters the goal region and does not leave the region until the end.
+  
+  \item \textbf{Energy} \(c_{\text{energy}}\):
+  The mechanical energy used during the execution.
+  
+  \item \textbf{Max Torque} \(c_{\tau, \text{max}}\):
+  The peak torque that was used during the execution.
+  
+  \item \textbf{Integrated Torque} \(c_{\tau, \text{integ}}\):
+  The time integral over the used torque over the execution duration.
+  
+  \item \textbf{Torque Cost} \(c_{\tau, \text{cost}}\):
+  A quadratic cost on the used torques (\(c_{\tau, \text{cost}} = \sum u^TRu\)), with \(R = 1\).
+  
+  \item \textbf{Torque Smoothness} \(c_{\tau, \text{smooth}}\):
+  The standard deviation of the changes in the torque signal.
+  
+  \item \textbf{Velocity Cost} \(c_{\text{vel, cost}}\):
+  A quadratic cost on the joint velocities that were reached during the execution (\(c_{\text{vel}} = \dot{q}^T Q \dot{q}\)), with \(Q = \text{identity}\).
+\end{itemize}
+
+
+\begin{equation}
+\begin{aligned}
+S = c_{\text{success}} \Bigg(& w_{\text{time}}\frac{c_{\text{time}}}{n_{\text{time}}} + \\
+& w_{\text{energy}}\frac{c_{\text{energy}}}{n_{\text{energy}}} +
+w_{\tau, \text{max}}\frac{c_{\tau, \text{max}}}{n_{\tau, \text{max}}} +
+w_{\tau, \text{integ}}\frac{c_{\tau, \text{integ}}}{n_{\tau, \text{integ}}} + \\
+& w_{\tau, \text{cost}}\frac{c_{\tau, \text{cost}}}{n_{\tau, \text{cost}}} +
+w_{\tau, \text{smooth}}\frac{c_{\tau, \text{smooth}}}{n_{\tau, \text{smooth}}} +
+w_{\text{vel, cost}}\frac{c_{\text{vel, cost}}}{n_{\text{vel, cost}}} \Bigg)
+\end{aligned}
+\end{equation}
+
+
 
 \section{interpretation of simulation results}
 This section is about explaining the simulation results.
 
+\begin{table}
+ % \begin{tabularx}{0.55\textwidth} {
+ %  | >{\raggedright\arraybackslash}X
+ %  | >{\centering\arraybackslash}X
+ %  | >{\raggedleft\arraybackslash}X| }
+  \centering
+ \begin{tabular}{lcc}
+ %\hline
+  Criteria& Pendubot  & Acrobot \\
+ \hline
+ Swingup Success& success  & success\\
+ %\hline
+ Swingup time [s]& 0.65   & 2.06\\
+ %\hline
+ Energy [J]& 9.4  & 29.24 \\
+ %\hline
+ Max. Torque [Nm]& 5.0   & 5.0 \\
+ %\hline
+ Integrated Torque [Nm]& 2.21  & 4.57 \\
+ %\hline
+ Torque Cost [N²m²] & 8.58  & 12.32 \\
+ %\hline
+ Torque Smoothness [Nm]& 0.172 & 0.954 \\
+ %\hline
+ Velocity Cost [m²/s²]& 44.98 & 193.78  \\
+ %\hline
+ RealAI Score & 0.801 & 0.722  \\
+ %\hline
+% \end{tabularx}
+ \end{tabular}
+ \caption{Performance scores of our controller for pendubot and acrobot.}
+ \label{tab:performance}
+\end{table}
+
 \section{interpretation of hardware results}
 This section is about explaining the hardware results.
+
+\begin{table}
+ % \begin{tabularx}{0.55\textwidth} {
+ %  | >{\raggedright\arraybackslash}X
+ %  | >{\centering\arraybackslash}X
+ %  | >{\raggedleft\arraybackslash}X| }
+  \centering
+ \begin{tabular}{lcc}
+ %\hline
+  Criteria& Pendubot  & Acrobot \\
+ \hline
+ Swingup Success& success  & insuccess\\
+ %\hline
+ Swingup time [s]& 0.67   & -\\
+ %\hline
+ Energy [J]& 37.12  & - \\
+ %\hline
+ Max. Torque [Nm]& 5.0   & - \\
+ %\hline
+ Integrated Torque [Nm]& 24.87  & - \\
+ %\hline
+ Torque Cost [N²m²] & 78.7  & - \\
+ %\hline
+ Torque Smoothness [Nm]& 0.774 & - \\
+ %\hline
+ Velocity Cost [m²/s²]& 114.04 & -  \\
+ %\hline
+ RealAI Score & 0.298 & -  \\
+ %\hline
+% \end{tabularx}
+ \end{tabular}
+ \caption{Real hardware performance scores of our controller for pendubot and acrobot.}
+ \label{tab:performance}
+\end{table}
 
 \section{future work}
 This section is to talk about things to be done.

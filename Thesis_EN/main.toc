@@ -17,23 +17,25 @@
 \contentsline {subsection}{\numberline {2.2.4}Reinforcement-Learning based control}{14}{subsection.2.2.4}%
 \contentsline {chapter}{\numberline {3}Methodology}{15}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Soft actor critic}{15}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Linear quadratic regulator}{15}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Combining SAC and LQR with region of attraction}{15}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Reward shaping}{15}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Experiment: training and simulation}{17}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Training setup}{17}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Training process}{17}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Simulation results}{17}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Experiment: hardware system}{19}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Hardware setup}{19}{section.5.1}%
-\contentsline {section}{\numberline {5.2}system identification}{19}{section.5.2}%
-\contentsline {section}{\numberline {5.3}sim2real problem}{19}{section.5.3}%
-\contentsline {section}{\numberline {5.4}real hardware results}{19}{section.5.4}%
-\contentsline {chapter}{\numberline {6}Discussion}{21}{chapter.6}%
-\contentsline {section}{\numberline {6.1}introduction to leaderboard results}{21}{section.6.1}%
-\contentsline {section}{\numberline {6.2}interpretation of simulation results}{21}{section.6.2}%
-\contentsline {section}{\numberline {6.3}interpretation of hardware results}{21}{section.6.3}%
-\contentsline {section}{\numberline {6.4}future work}{21}{section.6.4}%
-\contentsline {chapter}{Appendix}{23}{section*.5}%
-\contentsline {chapter}{Appendix \numberline {A}An appendix}{24}{appendix.a.A}%
+\contentsline {section}{\numberline {3.2}Linear quadratic regulator}{17}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Combining SAC and LQR with region of attraction}{18}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Reward shaping}{18}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Experiment: training and simulation}{21}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Training setup}{21}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Training process}{21}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Simulation results}{23}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}pendubot}{23}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}acrobot}{23}{subsection.4.3.2}%
+\contentsline {chapter}{\numberline {5}Experiment: hardware system}{25}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Hardware setup}{25}{section.5.1}%
+\contentsline {section}{\numberline {5.2}system identification}{26}{section.5.2}%
+\contentsline {section}{\numberline {5.3}sim2real problem}{26}{section.5.3}%
+\contentsline {section}{\numberline {5.4}real hardware results}{26}{section.5.4}%
+\contentsline {chapter}{\numberline {6}Discussion}{29}{chapter.6}%
+\contentsline {section}{\numberline {6.1}introduction to leaderboard results}{29}{section.6.1}%
+\contentsline {section}{\numberline {6.2}interpretation of simulation results}{30}{section.6.2}%
+\contentsline {section}{\numberline {6.3}interpretation of hardware results}{30}{section.6.3}%
+\contentsline {section}{\numberline {6.4}future work}{31}{section.6.4}%
+\contentsline {chapter}{Appendix}{33}{section*.17}%
+\contentsline {chapter}{Appendix \numberline {A}An appendix}{34}{appendix.a.A}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
