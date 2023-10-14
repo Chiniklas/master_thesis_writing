@@ -1,40 +1,22 @@
 \chapter{Methodology}
-To achieve the swing up task, we employ the classical model-free reinforcement learning algorithm known as Soft actor critic to train a policy which is able to reach the region of attraction(RoA) of a continuous time linear quadratic regulator(LQR) controller. As soon as the system enters the RoA, we transition to the LQR controller to stabilize the entire system.
+To accomplish the swing-up task, we utilize the Soft Actor-Critic, a classic model-free reinforcement learning algorithm. This trains a policy that can guide the system to the region of attraction (RoA) of a continuous-time linear quadratic regulator (LQR) controller. Once the system is within the RoA, we switch to the LQR controller to achieve full stabilization.
 
 \section{Soft actor critic}
-Soft Actor Critic (SAC) is a popular algorithm
-used in the field of reinforcement learning. It is originally
-designed for continuous action spaces, where the agent has
-an infinite choice of actions to take. In our problem scenario,
-the actuators of the double pendulum can be set to any
-value within the torque limit range. The position and velocity
-measurements obtained from the motors are also represented
-as continuous real numbers. Therefore, we choose the SAC algorithm to train the agent.
+Within the landscape of reinforcement learning, the Soft Actor Critic (SAC) stands out as an algorithm specifically designed for environments with continuous action spaces. Such environments, exemplified by our double pendulum system where actuators can be adjusted to any value within the torque limit range, influenced our decision to adopt SAC.
 
-SAC optimizes a policy by maximizing the expected cumulative reward obtained by
-the agent over time. This is achieved through an actor and critic
-structure.
+Like many other deep reinforcement learning algorithms, SAC optimizes a policy by maximizing the expected cumulative reward the agent obtains over time. This optimization is primarily achieved through an actor-critic structure.
 
-The actor is responsible for selecting actions based on the current policy in
-response to the observed state of the environment. It is typically represented
-by a shallow neural network that approximates the mapping between the input
-state and the output probability distribution over actions. SAC incorporates a
-stochastic policy in its actor part, which encourages exploration and helps the
-agent improve policies.
+The actor determines the best actions by interpreting the current environmental conditions and adhering to the existing policy. Typically, the actor is visualized as a shallow neural network that approximates the mapping between the input state and the output probability distribution over actions. Furthermore, SAC incorporates a stochastic policy within its actor, which fosters exploration and aids the agent in refining its policies.
 
-The critic, on the other hand, evaluates the value of state-action pairs. It
-estimates the expected cumulative reward that the agent can obtain by following
-a certain policy. Typically, the critic is also represented by a neural
-network that takes state-action pairs as inputs and outputs estimated value.
+On the other hand, the critic evaluates the value of state-action pairs. It estimates the expected cumulative reward the agent can achieve by following a particular policy. More often than not, the critic is depicted as a neural network that processes state-action pairs as inputs to yield the estimated value.
 
-In addition to the actor and critic, a central feature of SAC is entropy
-regularization. The policy is trained to maximize a trade-off between expected return and entropy, which is a measure of randomness in the action selection. If
+A distinguishing feature of SAC, besides the actor-critic framework, is entropy regularization. SAC utilizes a stochastic policy. This means that instead of always settling on a single best action for each state, the agent considers a probability distribution over potential actions. The incorporation of entropy in SAC aims to encourage exploration: high entropy signifies a more uniform distribution, implying the agent's uncertainty and tendency to explore diverse actions, while low entropy points to a concentrated distribution, suggesting the agent's confidence in a specific action. By definition, entropy quantifies randomness. Within SAC, it captures the unpredictability of the policy's action distribution. If
 \(x\) is a random variable with a probability density function \(P\), the
 entropy \(H\) of \(x\) is defined as:
 
-\[
+\begin{equation}
  H(P) = \displaystyle \mathop{\mathbb{E}}_{x \sim P}[-\log P(x)]
-\]
+\end{equation}
 
 By maximizing entropy, SAC encourages exploration and accelerates learning. It
 also prevents the policy from prematurely converging to a suboptimal solution.
@@ -43,38 +25,37 @@ through a parameter, \(\alpha\). This parameter serves to balance the importance
 of exploration and exploitation within the optimization problem. The optimal policy
 \(\pi^*\) can be defined as follows:
 
-\[
+\begin{equation}
  \pi^* = {arg}{\max_{\pi}}{\displaystyle
  \mathop{\mathbb{E}}_{\tau\sim\pi}}{\Bigg[{\sum_{t=0}^{\infty}}{\gamma^{t}}{\Big(R(s_t,a_t,s_{t+1})}+{\alpha}H(\pi(\cdot\mid{s_t}))\Big)\Bigg]}
-\]
+\end{equation}
 
 During training, SAC learns a policy $\pi_{\theta}$ and two Q-functions
 $Q_{\phi_1} , Q_{\phi_2}$ concurrently. The loss functions for the two Q-networks are
 $(i \in {1, 2})$:
 
-\[
+\begin{equation}
   L(\phi_i,D) = \displaystyle
   \mathop{\mathbb{E}}_{(s,a,r,s',d)\sim{D}}\bigg[\bigg(Q_{\phi_i}(s,a)-y(r,s',d)\bigg)^2\bigg],
-\]
+\end{equation}
 
 where the temporal difference target \(y\) is given by:
-\begin{align*}
-  y(r,s',d) &= r + \gamma(1-d) \times \nonumber \\
-  & \bigg(\displaystyle
+\begin{align}
+  y(r,s',d) &= r + \gamma(1-d) \times \nonumber\bigg(\displaystyle
   \mathop{\min}_{j=1,2}Q_{\phi_{targ,j}}(s',\tilde{a}')-\alpha\log
   {\pi_\theta}(\tilde{a}'\mid{s}')\bigg), \\
   \tilde{a}'&\sim{\pi_\theta}(\cdot\mid{s'})
-\end{align*}
+\end{align}
 
 In each state, the policy \(\pi_\theta\) should act to maximize the expected
 future return \(Q\) while also considering the expected future entropy \(H\). In other
 words, it should maximize \(V^\pi(s)\):
-\begin{align*}
+\begin{align}
  V^\pi(s) &= {\displaystyle \mathop{\mathbb{E}}_{a\sim\pi}[Q^\pi(s,a)]} +
  \alpha{H(\pi(\cdot\mid{s}))} \\
  &= {\displaystyle \mathop{\mathbb{E}}_{a\sim\pi}[Q^\pi(s,a)]} -
  \alpha{\log {\pi(a\mid{s})}}
-\end{align*}
+\end{align}
 
 
 By employing an effective gradient-based optimization technique, the parameters
@@ -87,6 +68,8 @@ it a well-suited algorithm for addressing the challenges posed by continuous
 state and action spaces.
 
 \section{Linear quadratic regulator}
+The Linear Quadratic Regulator (LQR) is a popular control method for linear systems. For nonlinear dynamics, LQR can still be applied by linearizing the system around an operating point. Once linearized, an LQR controller can be constructed based on that linear approximation.
+
 We have the general form of a nonlinear system:
 \begin{equation}
     \dot{x}(t) = f(x(t), u(t))

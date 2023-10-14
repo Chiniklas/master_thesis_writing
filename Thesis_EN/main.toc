@@ -11,10 +11,6 @@
 \contentsline {subsection}{\numberline {2.1.1}Underactuated system}{9}{subsection.2.1.1}%
 \contentsline {subsection}{\numberline {2.1.2}Dynamics of underactuated double pendulum system}{10}{subsection.2.1.2}%
 \contentsline {section}{\numberline {2.2}Related work}{13}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Feedback cancellation}{13}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}PFL:Partial Feedback Linearization}{14}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Energy shaping}{14}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}Reinforcement-Learning based control}{14}{subsection.2.2.4}%
 \contentsline {chapter}{\numberline {3}Methodology}{15}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Soft actor critic}{15}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Linear quadratic regulator}{17}{section.3.2}%

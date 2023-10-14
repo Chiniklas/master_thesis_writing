@@ -207,30 +207,12 @@ The generalized coordinates \( \mathbf{q} =(q_1,q_2)^T \) are the joint angles m
 \section{Related work}
 In this section, we want to introduce the methods of underactuated control and the works related.
 
-\subsection{Feedback cancellation}
-Fully actuated systems are dramatically easier to control than underactuated systems. For fully actuated systems with accurate, known dynamics(e.g. \(f_1\) and \(f_2\) are known for a second order system), it is possible to use feedback to effectively change an arbitrary control problem into the problem of controlling a simple linear system.
+Extensive research has been conducted on complex robotic motion control, with learning-based methods gaining widespread adoption in recent times. 
 
-When \(f_2\) has full row rank, it is invertible. Consider the potential nonlinear feedback control:
+A notable example is the classical control module within the Gymnasium environment, a well-known reinforcement learning framework developed by OpenAI. This module serves as an ideal platform for exploring and evaluating new motion control algorithms. 
 
-\begin{align}
- u = \pi(q, \dot{q}, t) = f_2^{-1}(q, \dot{q}, t) [u' - f_1(q, \dot{q}, t)]
-\end{align}
+Another noteworthy achievement in the field is the DeepMimic project [2]. Through imitation learning within a simulated environment, this project has enabled robots to acquire intricate human movements, including backflips and martial arts maneuvers. 
 
-where \(u'\) is the new control input(can be viewed as an internal input into your controller). Applying this feedback controller to equation(2.2) can lead to a linear, decoupled, second order system.
-
-\begin{align}
-  \ddot{q} = u' 
-\end{align}
-
-In other words, if \(f_1\) and \(f_2\) are known and \(f_2\) is invertible, the system is "feedback equivalent" to \(\ddot{q} = u' \). Then we can use simple control method for linear systems to handle is equivalent system.
-
-\subsection{PFL:Partial Feedback Linearization}
-
-\subsection{Energy shaping}
-example: torque limited simple pendulum
-
-\subsection{Reinforcement-Learning based control}
-Something about model free reinforcement learning and model based reinforcement learning.
-
+Additionally, a research team from ETH Zurich has made significant progress in addressing the sim-to-real interface challenge [3]. Their methodology involves training a control model for a mini-cheetah-like robot within a simulation environment. By utilizing a neural network and leveraging data collected from the real robot, they approximated the dynamics model of the physical robot. This approach has facilitated accurate implementation of the control policy derived from the virtual environment onto the real robot. These exemplary works demonstrate the promising applications of learning-based approaches in various aspects of robot control.
 
 \cleardoublepage
