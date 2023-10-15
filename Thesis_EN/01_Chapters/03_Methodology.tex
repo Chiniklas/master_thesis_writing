@@ -1,5 +1,5 @@
 \chapter{Methodology}
-To accomplish the swing-up task, we utilize the Soft Actor-Critic, a classic model-free reinforcement learning algorithm. This trains a policy that can guide the system to the region of attraction (RoA) of a continuous-time linear quadratic regulator (LQR) controller. Once the system is within the RoA, we switch to the LQR controller to achieve full stabilization.
+Our primary goal is to achieve the swing-up movement in the pendubot or acrobot setup and to maintain stability around the highest points. Initial training trials with reinforcement learning have revealed challenges. These include potential entrapment in local minima and difficulty in maintaining stability at the highest point for extended periods. To address these challenges, we adopt two main strategies. For the stabilization issue, we introduce a combined controller. During the swing-up process, an RL-trained agent, using the Soft Actor-Critic—a classic model-free reinforcement learning algorithm—assumes control based on its learned policies. Yet, as the system nears the maximum point, a seamless transition takes place. This shift allows a continuous-time LQR controller to take over, ensuring the final stabilization required to maintain stability at the highest point.
 
 \section{Soft actor critic}
 Within the landscape of reinforcement learning, the Soft Actor Critic (SAC) stands out as an algorithm specifically designed for environments with continuous action spaces. Such environments, exemplified by our double pendulum system where actuators can be adjusted to any value within the torque limit range, influenced our decision to adopt SAC.
@@ -68,64 +68,87 @@ it a well-suited algorithm for addressing the challenges posed by continuous
 state and action spaces.
 
 \section{Linear quadratic regulator}
-The Linear Quadratic Regulator (LQR) is a popular control method for linear systems. For nonlinear dynamics, LQR can still be applied by linearizing the system around an operating point. Once linearized, an LQR controller can be constructed based on that linear approximation.
+The Linear Quadratic Regulator (LQR) is an effective control method primarily designed for linear systems. Yet, when dealing with nonlinear dynamics, it remains applicable.The nonlinear system is linearized around a selected operating point, and based on this linearized version, the LQR controller can be sculpted.
 
-We have the general form of a nonlinear system:
+Taking a step back, the general form of a nonlinear system can be expressed as:
 \begin{equation}
-    \dot{x}(t) = f(x(t), u(t))
+ \dot{x}(t) = f(x(t), u(t))
 \end{equation}
 
-Linearize it around an operating point:
+
+In certain applications like pendubot or acrobot stabilization, it is important to select the appropriate operating point. We select the operating point around the upright position, specifically \(x_{op} = [\pi,0,0,0]^T\). Around this point, the system can be linearized, leading to:
+
 \begin{equation}
-    \dot{\overline{x}}(t) = A \overline{x}(t) + B u(t)
+\dot{\overline{x}}(t) = A \overline{x}(t) + B u(t)
 \end{equation}
 
-The difference of the current state and the desired state is:
+
+Here, the deviation from the desired state is given by \(\overline{x} = x - x_{\text{op}}\), and its first derivative, \(\dot{\overline{x}} = \dot{x}\). The linearized  matrices \(A\) and \(B\) are derived as:
+
 \begin{equation}
-    \overline{x} = x - x_{\text{op}}, \quad \dot{\overline{x}} = \dot{x}
+ A = \left.\frac{\partial f}{\partial x}\right|_{\text{op}}, \quad B = \left.\frac{\partial f}{\partial u}\right|_{\text{op}}
 \end{equation}
 
-where \(A\) and \(B\) can be calculated as:
+
+To derive an optimal control strategy, we use a quadratic cost function \(J\):
+
 \begin{equation}
-    A = \left.\frac{\partial f}{\partial x}\right|_{\text{op}}, \quad B = \left.\frac{\partial f}{\partial u}\right|_{\text{op}}
+  J = \int_0^{\infty} \left( x^T Q x + u^T R u \right) \, dt
 \end{equation}
 
-The cost function we are dealing with here is:
+Solving this, we arrive at the continuous-time algebraic Riccati equation:
 \begin{equation}
-J = \int_0^{\infty} \left( x^T Q x + u^T R u \right) dt
+ A^T S + SA - SBR^{-1}B^T S + Q = 0
 \end{equation}
 
-Based on the Riccati equation:
+Finally, the LQR control law for this linearized system is:
 \begin{equation}
-    A^T S + SA - SBR^{-1}B^T S + Q = 0
+ u(t) = -K\overline{x}(t)
 \end{equation}
+with \(K = R^{-1}B^T S\).
 
- the LQR control law for the linearized system:
-\begin{equation}
-    u(t) = -K\overline{x}(t)
-\end{equation}
-
-Where \(K\) can be calculated as:
-\begin{equation}
-    K = R^{-1}B^T S
-\end{equation}
 
 \section{Combining SAC and LQR with region of attraction}
-This section is about how to use ROA to combine SAC and LQR
+In our approach, we employ a combined control method for both the swing-up and stabilization tasks. During the swing-up phase, we utilize the SAC controller. Once the state of the double pendulum approaches the vicinity of the desired goal state, we transition from the SAC controller to the LQR controller for final-stage stabilization. A vital aspect of any combined control strategy is determining the conditions under which the system is primed for a transition between control methods. In our SAC+LQR control strategy, the region of attraction method serves as the criterion for making this determination.
 
-How to optimize the RoA of the LQR controller
+The region of attraction of the LQR controller essentially delineates the area in state space where the controlled system will be asymptotically stable. Consequently, it's necessary to analyze the stability of the controlled system:
 
-First, construct Lyapunov function for stability check:
 \begin{equation}
-    0< V(\bar{x}) = \bar{x}^T S \bar{x} < \rho
+\dot{x}(t) = (A - BK)x(t)
 \end{equation}
 
-Second, first derivative of Lyapunov function has to be negative
+where \(A_c = A - BK\).
+
+We choose a Lyapunov function, usually in a quadratic form:
 \begin{equation}
+  V(\bar{x}) = \bar{x}^T S \bar{x} 
+\end{equation}
+
+where \(S\) is a positive definite matrix. This function serves as an "energy-like" metric, and we aim to demonstrate its decrease over time for a stable system.
+
+Next, we compute the time derivative of the Lyapunov function \(V\):
+\begin{equation}
+\dot{V}(x) = 2x^{T}Sx
+\end{equation}
+
+For the system to be asymptotically stable at the equilibrium \(x_{op}\), we require:
+\begin{equation}
+\begin{cases}
+   V(x) > 0 \\
+   \dot{V}(x) < 0 & \text{for all} \quad x \neq x_{op}
+\end{cases}
+\end{equation}
+
+To construct an optimizable region of attraction, we define an upper bound \(\rho\) for the Lyapunov function \(V\). By choosing suitable values for \(\rho\) and \(S\), we can maximize the volume of the RoA. 
+\begin{equation}
+\begin{cases}
+    0 < V(\bar{x}) = \bar{x}^T S \bar{x} < \rho \\
     \dot{V}(\bar{x}) = 2\dot{\bar{x}}^T S \bar{x} < 0
+\end{cases}
 \end{equation}
 
-Choose suitable \(\rho\) and \(S\) that maximize the volumn of an ellipsoid shaped RoA in 4D state space.
+Consequently, the resulting shape of the ROA in a 4D state space resembles an ellipsoid.
+
 
 \begin{figure}[htbp]
     \centering
@@ -135,7 +158,10 @@ Choose suitable \(\rho\) and \(S\) that maximize the volumn of an ellipsoid shap
 \end{figure}
 
 \section{Reward shaping}
-This section is about the reward shaping problem of reinforcement learning training.
+
+
+To steer the agent away from hazardous local minima, we devised a three-stage
+reward function. The full equation for this reward function is:
 
 \begin{equation}
 \begin{aligned}
@@ -162,6 +188,43 @@ This section is about the reward shaping problem of reinforcement learning train
             \end{dcases*}
 \end{aligned}
 \end{equation}
+
+In the initial stage, a quadratic reward function is employed to encourage
+smooth swinging of the entire system within a relatively small number of
+training sessions. The matrix  \(Q_{train} = diag(Q_1, Q_2, Q_3, Q_4)\) is a
+diagonal matrix, while \(R_{train}\) is a scalar. This is due to the nature
+of underactuated control in the double pendulum system, where only a single
+control input is available.
+
+As the end effector reaches a threshold line \(h_{line} = 0.8(l_1+l_2)\), we
+introduce a second level of reward \(r_{line}\). The end effector height is
+given by
+\begin{align}
+    h(p_1, p_2) = -l_1\cos(p_1) - l_2 \cos(p_1 + p_2).
+\end{align}
+with the link lengths $l_1$ and $l_2$.
+This reward provides the agent with a fixed value
+but is carefully designed to prevent the system from spinning rapidly in either
+clockwise or counterclockwise directions. To discourage the agent from
+exploiting rewards by spinning at excessive speeds, a significant penalty
+\(-r_{vel}\) is implemented for any speed exceeding $v_{thresh}=8\,
+\text{rad}/\text{s}$ in absolute value.
+This penalty effectively compels the agent to approach the maximum point while
+adhering to the predefined speed interval. The speed penalty was only needed for
+the acrobot.
+
+The third level of reward $r_{LQR}$ aims to provide a substantial reward to the
+agent when it remains within the Region of Attraction (ROA) of the LQR
+controller. By this we want to achieve that the policy learns to enter the LQR
+controller RoA so that there can be a smooth transition between both
+controllers. For details on the LQR controller and its region of attraction, we
+refer to these lecture notes. The parameters, we used in
+the cost matrices of the LQR controller are listed in
+Table~\ref{tab:parameters}. We computed the RoA similar to
+but with a sums of squares method.  Once the RoA is computed,
+it can be checked whether a state $x$ belongs to the estimated RoA of the LQR
+controller by calculating the cost-to-go of the LQR controller with the matrix
+$S_{LQR}$ and comparing it with the scalar $\rho$.
 
 \begin{figure}[htbp]
     \centering

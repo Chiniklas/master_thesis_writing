@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.24)  14 OCT 2023 16:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.24)  15 OCT 2023 23:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2289,36 +2289,48 @@ chapter 3.
 
 
 ]
-Package cleveref Info: loaded `english' language definitions on input line 65.
+Package cleveref Info: loaded `english' language definitions on input line 58.
  [16]
-Package cleveref Info: loaded `english' language definitions on input line 106.
-
+Package cleveref Info: loaded `english' language definitions on input line 90.
  [17]
-<example-image.png, id=289, 401.5pt x 301.125pt>
-File: example-image.png Graphic file (type png)
-<use example-image.png>
-Package pdftex.def Info: example-image.png  used on input line 132.
-(pdftex.def)             Requested size: 270.95435pt x 203.22762pt.
-Package cleveref Info: loaded `english' language definitions on input line 164.
+Package cleveref Info: loaded `english' language definitions on input line 125.
 
  [18]
-<figures/reward_explained.png, id=299, 517.278pt x 362.883pt>
+<example-image.png, id=295, 401.5pt x 301.125pt>
+File: example-image.png Graphic file (type png)
+<use example-image.png>
+Package pdftex.def Info: example-image.png  used on input line 155.
+(pdftex.def)             Requested size: 270.95435pt x 203.22762pt.
+Package cleveref Info: loaded `english' language definitions on input line 190.
+
+ [19]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Package cleveref Info: loaded `english' language definitions on input line 204.
+
+ [20 </usr/share/texlive/texmf-dist/tex/latex/mwe/example-image.png>]
+<figures/reward_explained.png, id=311, 517.278pt x 362.883pt>
 File: figures/reward_explained.png Graphic file (type png)
 <use figures/reward_explained.png>
-Package pdftex.def Info: figures/reward_explained.png  used on input line 168.
+Package pdftex.def Info: figures/reward_explained.png  used on input line 231.
 (pdftex.def)             Requested size: 406.42462pt x 285.12955pt.
-Package cleveref Info: loaded `english' language definitions on input line 173.
+Package cleveref Info: loaded `english' language definitions on input line 236.
 
- [19 </usr/share/texlive/texmf-dist/tex/latex/mwe/example-image.png>]
-Package cleveref Info: loaded `english' language definitions on input line 173.
+ [21pdfTeX warning (ext4): destination with the same identifier (name{equation.
+3.4.18}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.236 \cleardoublepage
+                      ]
+Package cleveref Info: loaded `english' language definitions on input line 236.
 
- [20 <./figures/reward_explained.png>])
+ [22 <./figures/reward_explained.png>])
 \openout2 = `01_Chapters/04_experiment_training_and_simulation.aux'.
 
 
 (./01_Chapters/04_experiment_training_and_simulation.tex
 chapter 4.
-<figures/learning_curve/pendubot_learning_curve.png, id=312, 1195.46625pt x 498
+<figures/learning_curve/pendubot_learning_curve.png, id=324, 1195.46625pt x 498
 .86375pt>
 File: figures/learning_curve/pendubot_learning_curve.png Graphic file (type png
 )
@@ -2326,7 +2338,7 @@ File: figures/learning_curve/pendubot_learning_curve.png Graphic file (type png
 Package pdftex.def Info: figures/learning_curve/pendubot_learning_curve.png  us
 ed on input line 35.
 (pdftex.def)             Requested size: 406.42462pt x 169.5962pt.
-<figures/learning_curve/acrobot_learning_curve.png, id=313, 1195.46625pt x 498.
+<figures/learning_curve/acrobot_learning_curve.png, id=325, 1195.46625pt x 498.
 86375pt>
 File: figures/learning_curve/acrobot_learning_curve.png Graphic file (type png)
 
@@ -2337,7 +2349,7 @@ d on input line 42.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [21
+ [23
 
 
 
@@ -2347,16 +2359,16 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ]
 Package cleveref Info: loaded `english' language definitions on input line 49.
 
-[22 <./figures/learning_curve/pendubot_learning_curve.png> <./figures/learning_
+[24 <./figures/learning_curve/pendubot_learning_curve.png> <./figures/learning_
 curve/acrobot_learning_curve.png>]
-<figures/simulation_result/pendubot_unclipped.png, id=328, 1256.7753pt x 560.81
+<figures/simulation_result/pendubot_unclipped.png, id=339, 1256.7753pt x 560.81
 52pt>
 File: figures/simulation_result/pendubot_unclipped.png Graphic file (type png)
 <use figures/simulation_result/pendubot_unclipped.png>
 Package pdftex.def Info: figures/simulation_result/pendubot_unclipped.png  used
  on input line 53.
 (pdftex.def)             Requested size: 406.42462pt x 181.3557pt.
-<figures/simulation_result/acrobot_unclipped.png, id=329, 1266.8931pt x 563.706
+<figures/simulation_result/acrobot_unclipped.png, id=340, 1266.8931pt x 563.706
 pt>
 File: figures/simulation_result/acrobot_unclipped.png Graphic file (type png)
 <use figures/simulation_result/acrobot_unclipped.png>
@@ -2364,33 +2376,33 @@ Package pdftex.def Info: figures/simulation_result/acrobot_unclipped.png  used
 on input line 62.
 (pdftex.def)             Requested size: 406.42462pt x 180.83687pt.
 Package cleveref Info: loaded `english' language definitions on input line 68.
- [23 <./figures/simulation_result/pendubot_unclipped.png>]
+ [25 <./figures/simulation_result/pendubot_unclipped.png>]
 Package cleveref Info: loaded `english' language definitions on input line 68.
- [24 <./figures/simulation_result/acrobot_unclipped.png>])
+ [26 <./figures/simulation_result/acrobot_unclipped.png>])
 \openout2 = `01_Chapters/05_experiment_hardware_system.aux'.
 
 
 (./01_Chapters/05_experiment_hardware_system.tex
 chapter 5.
-<figures/double_pendulum_CAD.png, id=343, 339.51843pt x 602.25pt>
+<figures/double_pendulum_CAD.png, id=353, 339.51843pt x 602.25pt>
 File: figures/double_pendulum_CAD.png Graphic file (type png)
 <use figures/double_pendulum_CAD.png>
 Package pdftex.def Info: figures/double_pendulum_CAD.png  used on input line 12
 .
 (pdftex.def)             Requested size: 152.40923pt x 270.34834pt.
-<figures/double_pendulum_real_system.png, id=344, 2993.76pt x 3991.68pt>
+<figures/double_pendulum_real_system.png, id=354, 2993.76pt x 3991.68pt>
 File: figures/double_pendulum_real_system.png Graphic file (type png)
 <use figures/double_pendulum_real_system.png>
 Package pdftex.def Info: figures/double_pendulum_real_system.png  used on input
  line 18.
 (pdftex.def)             Requested size: 203.21231pt x 270.91902pt.
-<figures/hardware_setup/motor.jpg, id=345, 602.25pt x 469.755pt>
+<figures/hardware_setup/motor.jpg, id=355, 602.25pt x 469.755pt>
 File: figures/hardware_setup/motor.jpg Graphic file (type jpg)
 <use figures/hardware_setup/motor.jpg>
 Package pdftex.def Info: figures/hardware_setup/motor.jpg  used on input line 2
 7.
 (pdftex.def)             Requested size: 203.21231pt x 158.50322pt.
-<figures/hardware_setup/torque_speed_curve.jpg, id=346, 1505.625pt x 1287.81125
+<figures/hardware_setup/torque_speed_curve.jpg, id=356, 1505.625pt x 1287.81125
 pt>
 File: figures/hardware_setup/torque_speed_curve.jpg Graphic file (type jpg)
 <use figures/hardware_setup/torque_speed_curve.jpg>
@@ -2400,7 +2412,7 @@ Package pdftex.def Info: figures/hardware_setup/torque_speed_curve.jpg  used on
 
 Underfull \vbox (badness 1184) has occurred while \output is active []
 
- [25
+ [27
 
 
 
@@ -2409,7 +2421,7 @@ Underfull \vbox (badness 1184) has occurred while \output is active []
 
  <./figures/double_pendulum_CAD.png> <./figures/double_pendulum_real_system.png
  (PNG copy)>]
-<figures/hardware_result/pendubot_noisy_unclipped.png, id=353, 1240.8759pt x 61
+<figures/hardware_result/pendubot_noisy_unclipped.png, id=363, 1240.8759pt x 61
 6.4631pt>
 File: figures/hardware_result/pendubot_noisy_unclipped.png Graphic file (type p
 ng)
@@ -2418,10 +2430,10 @@ Package pdftex.def Info: figures/hardware_result/pendubot_noisy_unclipped.png
 used on input line 50.
 (pdftex.def)             Requested size: 406.42462pt x 201.9096pt.
 Package cleveref Info: loaded `english' language definitions on input line 67.
- [26 <./figures/hardware_setup/motor.jpg> <./figures/hardware_setup/torque_spee
+ [28 <./figures/hardware_setup/motor.jpg> <./figures/hardware_setup/torque_spee
 d_curve.jpg>]
 Package cleveref Info: loaded `english' language definitions on input line 67.
- [27 <./figures/hardware_result/pendubot_noisy_unclipped.png>] [28
+ [29 <./figures/hardware_result/pendubot_noisy_unclipped.png>] [30
 
 
 ])
@@ -2432,7 +2444,7 @@ chapter 6.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [29
+ [31
 
 
 
@@ -2442,18 +2454,18 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 127.
 
- [30]
+ [32]
 Package cleveref Info: loaded `english' language definitions on input line 127.
 
 
-[31] [32
+[33] [34
 
 
 ])
 
 LaTeX Warning: Empty bibliography on input line 126.
 
-[33
+[35
 
 
 
@@ -2468,7 +2480,7 @@ chapter A.
 )
 Package cleveref Info: loaded `english' language definitions on input line 131.
 
- [34
+ [36
 
 
 ]
@@ -2504,11 +2516,11 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 60914 strings out of 478287
- 1422579 string characters out of 5849289
+ 60927 strings out of 478287
+ 1422702 string characters out of 5849289
  2461939 words of memory out of 5000000
- 77628 multiletter control sequences out of 15000+600000
- 550533 words of font info for 290 fonts, out of 8000000 for 9000
+ 77632 multiletter control sequences out of 15000+600000
+ 550793 words of font info for 294 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  113i,23n,109p,10633b,2966s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -2524,10 +2536,10 @@ e/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist
 /symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (42 pages, 10216498 bytes).
+Output written on main.pdf (44 pages, 10222917 bytes).
 PDF statistics:
- 592 PDF objects out of 1000 (max. 8388607)
- 458 compressed objects within 5 object streams
- 128 named destinations out of 1000 (max. 500000)
+ 603 PDF objects out of 1000 (max. 8388607)
+ 467 compressed objects within 5 object streams
+ 131 named destinations out of 1000 (max. 500000)
  84447 words of extra memory for PDF output out of 89155 (max. 10000000)
 
