@@ -96,22 +96,25 @@ To derive an optimal control strategy, we use a quadratic cost function \(J\):
   J = \int_0^{\infty} \left( x^T Q x + u^T R u \right) \, dt
 \end{equation}
 
-Solving this, we arrive at the continuous-time algebraic Riccati equation:
+Usually, the matrices \(Q\) and \(R\) are chosen to be symmetric and positive definite, which means \(Q = Q^T\) and all its eigenvalues are positive, and similarly \(R = R^T\) with all positive eigenvalues. With such choices, the Hamilton-Jacobi-Bellman equation, whose solution gives the optimal cost-to-go function from which the optimal policy is derived, can be reduced to the continuous-time algebraic Riccati equation.
+
 \begin{equation}
  A^T S + SA - SBR^{-1}B^T S + Q = 0
 \end{equation}
 
-Finally, the LQR control law for this linearized system is:
+Finally, the LQR control law obtained with above method for this linearized system is:
 \begin{equation}
  u(t) = -K\overline{x}(t)
 \end{equation}
 with \(K = R^{-1}B^T S\).
 
+For an infinite-horizon LQR controller like this, torques will always be applied to steer the system state toward the origin of the linear system.
+
 
 \section{Combining SAC and LQR with region of attraction}
 In our approach, we employ a combined control method for both the swing-up and stabilization tasks. During the swing-up phase, we utilize the SAC controller. Once the state of the double pendulum approaches the vicinity of the desired goal state, we transition from the SAC controller to the LQR controller for final-stage stabilization. A vital aspect of any combined control strategy is determining the conditions under which the system is primed for a transition between control methods. In our SAC+LQR control strategy, the region of attraction method serves as the criterion for making this determination.
 
-The region of attraction of the LQR controller essentially delineates the area in state space where the controlled system will be asymptotically stable. Consequently, it's necessary to analyze the stability of the controlled system:
+The region of attraction (ROA) for a nonlinear system, represented by \(R_a\), signifies the set \(\mathcal{B}\) of initial states surrounding a fixed point \(x_0\). If a state lies within this region, the system will gravitate towards \(x_0\) as \(t \rightarrow \infty\). In the context of an LQR controller, the ROA demarcates the area within the state space where the controlled system exhibits asymptotic stability. For complex systems, directly computing \(R_a\) can be challenging; it is often estimated instead. Therefore, analyzing the stability of the controlled system within this region becomes crucial. The state space representation of a controlled linear system can be expressed as:
 
 \begin{equation}
 \dot{x}(t) = (A - BK)x(t)
@@ -119,35 +122,39 @@ The region of attraction of the LQR controller essentially delineates the area i
 
 where \(A_c = A - BK\).
 
-We choose a Lyapunov function, usually in a quadratic form:
+The most straightforward way to analyze the stability of a system is using the Lyapunov method. We choose a Lyapunov function in a quadratic form:
 \begin{equation}
   V(\bar{x}) = \bar{x}^T S \bar{x} 
 \end{equation}
 
-where \(S\) is a positive definite matrix. This function serves as an "energy-like" metric, and we aim to demonstrate its decrease over time for a stable system.
+where \(S\) is a positive definite matrix. This function serves as an "energy-like" metric, and our goal is to demonstrate its decrease over time for a stable system.
 
-Next, we compute the time derivative of the Lyapunov function \(V\):
+Next, we compute the time derivative of the Lyapunov function. For the infinite horizon LQR, \(\frac{\partial S}{\partial t} = 0\) and \(\frac{\partial x_0}{\partial t} = 0\), hence \(\dot{V}\) is:
+
 \begin{equation}
-\dot{V}(x) = 2x^{T}Sx
+\dot{V}(\overline{x}) = 2\overline{x}^{T}S\dot{\overline{x}}
 \end{equation}
 
-For the system to be asymptotically stable at the equilibrium \(x_{op}\), we require:
+For the system to be asymptotically stable at the equilibrium \(x_{op}\), we require the system to satisfy the Lyapunov conditions:
+
 \begin{equation}
 \begin{cases}
-   V(x) > 0 \\
-   \dot{V}(x) < 0 & \text{for all} \quad x \neq x_{op}
+   V(\overline{x}) > 0 \\
+   \dot{V}(\overline{x}) < 0 & \text{for all} \quad x \neq x_{op}
 \end{cases}
 \end{equation}
 
-To construct an optimizable region of attraction, we define an upper bound \(\rho\) for the Lyapunov function \(V\). By choosing suitable values for \(\rho\) and \(S\), we can maximize the volume of the RoA. 
+To construct an optimizable region of attraction, we define an upper bound \(\rho\) for the Lyapunov function \(V\). We seek the greatest \(\rho\) such that the above Lyapunov conditions are satisfied:
+
 \begin{equation}
 \begin{cases}
-    0 < V(\bar{x}) = \bar{x}^T S \bar{x} < \rho \\
-    \dot{V}(\bar{x}) = 2\dot{\bar{x}}^T S \bar{x} < 0
+    \mathcal{B} = \{ x \mid 0 < V(x) < \rho \} \\
+    \dot{V}(x) = 2\bar{x}^T S \dot{\bar{x}} < 0
 \end{cases}
 \end{equation}
 
-Consequently, the resulting shape of the ROA in a 4D state space resembles an ellipsoid.
+Using the algorithm mentioned in [some paper], an inner approximation of the RoA is achieved by randomly chosing initial states sampled from a successively shrinking estimate \(\mathcal{B}\). Consequently, the resulting shape of the ROA in a 4D state space resembles an ellipsoid.
+
 
 
 \begin{figure}[htbp]
@@ -158,29 +165,25 @@ Consequently, the resulting shape of the ROA in a 4D state space resembles an el
 \end{figure}
 
 \section{Reward shaping}
-
-
-To steer the agent away from hazardous local minima, we devised a three-stage
-reward function. The full equation for this reward function is:
-
+In theory, the reward function is designed to guide the agent's behavior towards achieving stability around the system's goal point. However, initial training attempts have revealed challenges. For instance, the agent might get stuck in a local minimum for an extended period, fail to perform a swing-up, or be unable to maintain stability around the upright position for a prolonged duration. The stabilization problem is addressed by the LQR controller and its region of attraction, which guarantees asymptotic stability. To tackle the swing-up issue, we designed a customized three-stage reward function to steer the agent away from problematic local minima and into the region of attraction of the LQR controller. The full equation for this reward function is:
 \begin{equation}
 \begin{aligned}
- r(x,u) = &-(x - x_g)^T Q_{train} (x - x_g) - u^T R_{train}u \nonumber\\
+ r(x,u) = &-(x - x_g)^T Q_{train} (x - x_g) - u^T R_{train}u \\
            & +
             \begin{dcases*}
               r_{line} & \text{if} $h(p_1, p_2) \geq h_{line}$\, ,\\
               0 & \text{else}
-            \end{dcases*}\nonumber\\
+            \end{dcases*}\\
            & +
             \begin{dcases*}
               r_{LQR} & \text{if} $(x - x_g)^T S_{LQR} (x - x_g) \geq \rho $\, ,\\
               0 & \text{else}
-            \end{dcases*}\nonumber\\
+            \end{dcases*}\\
            & -
             \begin{dcases*}
               r_{vel} & \text{if} $|v_1| \geq v_{thresh}$\, ,\\
               0 & \text{else}
-            \end{dcases*}\nonumber\\
+            \end{dcases*}\\
            & -
             \begin{dcases*}
               r_{vel} & \text{if} $|v_2| \geq v_{thresh}$\, ,\\
@@ -202,6 +205,7 @@ given by
 \begin{align}
     h(p_1, p_2) = -l_1\cos(p_1) - l_2 \cos(p_1 + p_2).
 \end{align}
+
 with the link lengths $l_1$ and $l_2$.
 This reward provides the agent with a fixed value
 but is carefully designed to prevent the system from spinning rapidly in either
@@ -214,7 +218,7 @@ adhering to the predefined speed interval. The speed penalty was only needed for
 the acrobot.
 
 The third level of reward $r_{LQR}$ aims to provide a substantial reward to the
-agent when it remains within the Region of Attraction (ROA) of the LQR
+agent when it remains within the Region of Attraction (RoA) of the LQR
 controller. By this we want to achieve that the policy learns to enter the LQR
 controller RoA so that there can be a smooth transition between both
 controllers. For details on the LQR controller and its region of attraction, we
@@ -226,11 +230,26 @@ it can be checked whether a state $x$ belongs to the estimated RoA of the LQR
 controller by calculating the cost-to-go of the LQR controller with the matrix
 $S_{LQR}$ and comparing it with the scalar $\rho$.
 
-\begin{figure}[htbp]
+\begin{figure}[htb!]
     \centering
-    \includegraphics[width=0.9\textwidth]{figures/reward_explained.png} % Adjust the width as needed
-    \caption{Interpretation of reward shaping}
-    \label{fig:example}
+    \begin{subfigure}{.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{example-image-a}
+        \caption{First image caption}
+    \end{subfigure}%
+    \hfill % Horizontal fill to ensure there's no unwanted space
+    \begin{subfigure}{.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{example-image-b}
+        \caption{Second image caption}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}{.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{example-image-c}
+        \caption{Third image caption}
+    \end{subfigure}
+    \caption{Overall caption for all images}
 \end{figure}
 
 \cleardoublepage

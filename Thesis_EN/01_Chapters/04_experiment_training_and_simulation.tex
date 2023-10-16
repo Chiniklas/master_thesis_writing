@@ -1,10 +1,18 @@
-\chapter{Experiment: training and simulation}
-This chapter is about the training and simulation.
+\chapter{Experiment: agent training and simulation}
+Chapters 4 and 5 focus on the experimental phase of our project. This chapter details the training procedure of our SAC agent for the swing-up task and then transitions to a simulation phase to validate results for both the swing-up and stabilization tasks. We have structured this chapter into three distinct subsections: training setup, training process, and simulation results.
 
-ad;falknv.xzfvhlsakjdgfnmdflk asdjgfmndfgb;lkjesf;mngfbl;kjfx.,mszedk.jfal;j
-
+The first subsection describes the foundation of a reinforcement learning interaction rooted in a stable baseline3-based RL algorithm. It also touches upon a customized environment inherited from the OpenAI Gym environment. The second subsection centers on hyperparameter tuning and highlights the challenges encountered during training. The third subsection displays the results acquired from both the pendubot and acrobot setups.
 \section{Training setup}
 This section is about training setup and environemnt building.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{example-image}
+    \caption{Your caption here}
+    \label{fig:my_label}
+\end{figure}
+
+\section{Training process}
+This section is about learning curve and tuning parameters
 
 \begin{table}[htbp]
   \centering
@@ -26,9 +34,6 @@ This section is about training setup and environemnt building.
  \caption{Hyper parameters used for the SAC training and the LQR controller.}
  \label{tab:parameters}
 \end{table}
-
-\section{Training process}
-This section is about learning curve and tuning parameters
 
 \begin{figure}[htbp]
     \centering
