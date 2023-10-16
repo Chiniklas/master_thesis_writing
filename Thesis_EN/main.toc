@@ -18,20 +18,20 @@
 \contentsline {section}{\numberline {3.4}Reward shaping}{20}{section.3.4}%
 \contentsline {chapter}{\numberline {4}Experiment: agent training and simulation}{23}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Training setup}{23}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Training process}{23}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Simulation results}{23}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}pendubot}{26}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}acrobot}{26}{subsection.4.3.2}%
-\contentsline {chapter}{\numberline {5}Experiment: hardware system}{29}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Hardware setup}{29}{section.5.1}%
-\contentsline {section}{\numberline {5.2}system identification}{30}{section.5.2}%
-\contentsline {section}{\numberline {5.3}sim2real problem}{30}{section.5.3}%
-\contentsline {section}{\numberline {5.4}real hardware results}{30}{section.5.4}%
-\contentsline {chapter}{\numberline {6}Discussion}{33}{chapter.6}%
-\contentsline {section}{\numberline {6.1}introduction to leaderboard results}{33}{section.6.1}%
-\contentsline {section}{\numberline {6.2}interpretation of simulation results}{34}{section.6.2}%
-\contentsline {section}{\numberline {6.3}interpretation of hardware results}{34}{section.6.3}%
-\contentsline {section}{\numberline {6.4}future work}{35}{section.6.4}%
-\contentsline {chapter}{Appendix}{37}{section*.18}%
-\contentsline {chapter}{Appendix \numberline {A}An appendix}{38}{appendix.a.A}%
+\contentsline {section}{\numberline {4.2}Training phase}{26}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Simulation results}{28}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Pendubot simulation in ideal environment}{28}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Acrobot simulation in ideal environment}{29}{subsection.4.3.2}%
+\contentsline {chapter}{\numberline {5}Experiment: hardware system}{31}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Hardware setup}{31}{section.5.1}%
+\contentsline {section}{\numberline {5.2}system identification}{32}{section.5.2}%
+\contentsline {section}{\numberline {5.3}sim2real problem}{32}{section.5.3}%
+\contentsline {section}{\numberline {5.4}real hardware results}{32}{section.5.4}%
+\contentsline {chapter}{\numberline {6}Discussion}{35}{chapter.6}%
+\contentsline {section}{\numberline {6.1}introduction to leaderboard results}{35}{section.6.1}%
+\contentsline {section}{\numberline {6.2}interpretation of simulation results}{36}{section.6.2}%
+\contentsline {section}{\numberline {6.3}interpretation of hardware results}{36}{section.6.3}%
+\contentsline {section}{\numberline {6.4}future work}{37}{section.6.4}%
+\contentsline {chapter}{Appendix}{39}{section*.20}%
+\contentsline {chapter}{Appendix \numberline {A}An appendix}{40}{appendix.a.A}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

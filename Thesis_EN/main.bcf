@@ -2346,6 +2346,8 @@
     <bcf:datasource type="file" datatype="bibtex">03_Literature/00_Bibliography.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
+    <bcf:citekey order="1">some paper</bcf:citekey>
+    <bcf:citekey order="2">some paper</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">
