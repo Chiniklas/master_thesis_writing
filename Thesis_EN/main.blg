@@ -1,17 +1,17 @@
 [0] Config.pm:307> INFO - This is Biber 2.17
 [0] Config.pm:310> INFO - Logfile is 'main.blg'
-[67] biber:340> INFO - === Di Okt 17, 2023, 18:03:21
-[75] Biber.pm:418> INFO - Reading 'main.bcf'
-[110] Biber.pm:972> INFO - Found 1 citekeys in bib section 0
-[117] Biber.pm:4383> INFO - Processing section 0
-[123] Biber.pm:4574> INFO - Looking for bibtex file '03_Literature/00_Bibliography.bib' for section 0
-[124] bibtex.pm:1713> INFO - LaTeX decoding ...
-[127] bibtex.pm:1518> INFO - Found BibTeX data source '03_Literature/00_Bibliography.bib'
-[131] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[131] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[131] Biber.pm:4203> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[131] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
-[131] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[131] bbl.pm:757> INFO - Output to main.bbl
-[131] Biber.pm:130> WARN - I didn't find a database entry for 'some paper' (section 0)
-[131] Biber.pm:132> INFO - WARNINGS: 1
+[72] biber:340> INFO - === Mi Okt 18, 2023, 01:13:25
+[79] Biber.pm:418> INFO - Reading 'main.bcf'
+[116] Biber.pm:972> INFO - Found 1 citekeys in bib section 0
+[123] Biber.pm:4383> INFO - Processing section 0
+[129] Biber.pm:4574> INFO - Looking for bibtex file '03_Literature/00_Bibliography.bib' for section 0
+[130] bibtex.pm:1713> INFO - LaTeX decoding ...
+[133] bibtex.pm:1518> INFO - Found BibTeX data source '03_Literature/00_Bibliography.bib'
+[137] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[137] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[137] Biber.pm:4203> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[137] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
+[137] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[137] bbl.pm:757> INFO - Output to main.bbl
+[137] Biber.pm:130> WARN - I didn't find a database entry for 'some paper' (section 0)
+[137] Biber.pm:132> INFO - WARNINGS: 1

@@ -67,11 +67,25 @@ An emergency stop is connected directly to the 24V power source. If the behavior
 
 In scenarios where the system is moving at a very high speed when the emergency stop is engaged, the motors attached to the revolute joints act as generators, dissipating the mechanical energy from the system's motion. The generated current is fed back into the circuit, and in extreme cases, it could overload the power supply. To counteract this, a capacitor is connected to the power supply to absorb any electrical surge resulting from a sudden stop.
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{example-image}
+    \caption{picture of the capacitor}
+    \label{fig:example_figure}
+\end{figure}
+
 Further, speed and position limits have been set at the software level. As the links of the pendulum can experience vibrations and rotational imbalances at high speeds, potentially leading to structural disassembly, a speed limit of 20 rad/s has been established. Any speed exceeding this value will trigger a full system stop, equivalent to pressing the emergency stop button. The position limit is set to \(2\pi\) for both pos1 and pos2. Excessive rotations could cause the CAN and power cables to become entangled, leading to interference and potential cable damage.
 
 Lastly, to guard against unpredictable system failures, a custom protective cage has been constructed using aluminum profiles and thick acrylic boards. This cage fully encloses the double pendulum hardware, significantly reducing the risk of accidents.
 
 These measures have been instrumental in minimizing potential hazards during testing and operation.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{example-image}
+    \caption{a overview of experiment setup}
+    \label{fig:example_figure}
+\end{figure}
 
 \section{System identification}
 System identification is the process of deriving mathematical models of dynamic systems from observed input-output data. This method is fundamental in control theory, used to analyze, predict, and control the behavior of real-world systems. After setting up the hardware system and before transitioning the working model from a successful simulation to the real system, it's necessary to undergo a system identification process. This helps ascertain the real-world parameters governing the dynamics of the double pendulum.
@@ -90,6 +104,8 @@ By running excitation trajectories on the actual hardware, data tuples in the fo
 
 The identified model parameters are shown in table below:
 
+[here include a table]
+
 
 \section{Sim2Real problem}
 Transferring working models from simulation to real systems to produce similar performance has always been a challenge in controller design. This challenge is even more pronounced in model-free reinforcement learning for several reasons.
@@ -101,6 +117,41 @@ Secondly, many simulations operate in discrete time and space, whereas the real 
 Thirdly, uncertainties in the environment can lead to substantial complications when attempting to apply learned strategies or actions. Generally speaking, the uncertainty of the environment is addressed by the robustness of the model. However, for highly chaotic systems like the pendubot or acrobot, even slight measurement errors can result in significant deviations from the planned behavior. Our model for controlling the pendubot and acrobot requires a higher level of robustness or a more effective sim2real transfer method.
 
 \subsection{Validation with noisy simulation}
+Our approach to addressing the sim2real challenge involves training multiple agents using the SAC algorithm under similar setups. Subsequently, we validate them in a noisy simulation. Only those agents that prove robust against perturbations in this noisy environment proceed to real system testing. Any agent failing these noisy simulation tests is deemed insufficiently robust and is discarded.
+
+Throughout our experiments with real systems, we identified four critical factors contributing to successful swing-up and stabilization. Of these, friction emerged as the most significant. This is because our agent training was conducted in an ideal environment devoid of friction, thereby making friction the primary differentiator between the simulation and real-world conditions. To counter this, we adopted a friction compensation approach, beginning with modeling based on Coulomb's friction.
+
+Coulomb's friction model is among the simplest existing friction models. It possesses two primary advantages: it's independent of both the contact area and the relative velocity. The frictional force (\( F_f \)) is directly proportional to the normal force (\( F_n \)) between the surfaces, represented by:
+\begin{equation}
+F_{fi} = c_{fi} \arctan(100\dot{q_i})\, , \quad i = 1,2
+\end{equation}
+
+where \( c_f \) is the coefficient of kinetic friction. This frictional force opposes the relative motion between the surfaces. To neutralize this force, friction compensation applies torque in the same direction as the angular motion, energizing the system to mitigate friction's effects.
+
+Though friction coefficients \( c_{f1} \) and \( c_{f2} \) were determined during the system identification phase, they seemed imprecise during real system tests. Consequently, we resorted to free fall tests to estimate the coefficients, fine-tuning them manually until the system behaved conservatively under friction's influence.
+
+The second most critical factor is measurement noise. While the AK80-6 motors use built-in encoders to measure the position difference from the initial position with high accuracy, velocity measurement, which is derived from the first derivative of the position measurement, tends to have a relatively high error. In the simulation environment, we assume zero measurement error. However, in real-world applications, this error becomes significant.
+
+To address this issue, we model the measurement error as a normal distribution where the mean corresponds to the true velocity value and the standard deviation is manually adjustable. Let's consider the measurement noise vector \(\boldsymbol{\epsilon} = 
+\begin{bmatrix}
+\delta\text{pos1},
+\delta\text{pos2},
+\delta\text{vel1},
+\delta\text{vel2}
+\end{bmatrix}^T\). We model this noise as following a multivariate normal distribution, given by:
+\begin{equation}
+\boldsymbol{\epsilon} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})
+\end{equation}
+
+where \(\boldsymbol{\mu}\) is the mean vector (which represents the true values in the absence of noise), and \(\boldsymbol{\Sigma}\) is the \(4 \times 4\) covariance matrix that captures the spread or uncertainty of the noise in each dimension. Since the measurements of the four states are considered independent of each other, \(\boldsymbol{\Sigma}\) is diagonal.
+
+Latency is the third significant factor. Since any communication system requires time to transmit and receive data, and programs also take time to execute, latency is inevitable. This latency poses a substantial risk to control systems, especially those based on reinforcement learning. This is because reinforcement learning is grounded in the principles of Markov Decision Processes (MDPs) which adhere to the Markov property. This property dictates that the future state of a process is contingent only on the current state and action, not on the sequence of states that led to it. Latency undermines the Markov property by causing state mismatches and creating dependencies on historical data. If not addressed, this can have severe consequences.
+
+The fourth factor to consider is torque responsiveness. We observed that when confronted with rapidly alternating control signals with significant differences between time steps, the motor struggles to produce torque that matches the control signal. In other words, the motor cannot respond timely to changes in torque. This lag means that the controller cannot operate at its full potential due to hardware constraints. Some potential solutions to this include reducing the control frequency and increasing torque smoothness.
+
+In summary, we take into account friction, measurement error, latency, and torque responsiveness in the noisy simulation to select the most suitable agent.
+
+As shown in the figure below, a trained pendubot agent successfully executed a swing-up and stabilization in the noisy simulation environment, indicating its robustness is sufficient for real-world application.
 
 \begin{figure}[htbp]
     \centering
@@ -108,8 +159,9 @@ Thirdly, uncertainties in the environment can lead to substantial complications 
     \caption{pendubot noisy simulation result}
     \label{fig:image_b}
 \end{figure}
-\subsection{Training with domain randomization}
 
+\subsection{Training with domain randomization}
+Hope we have a good result.
 
 
 \section{Real hardware results}

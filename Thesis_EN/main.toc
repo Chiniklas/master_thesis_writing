@@ -24,18 +24,18 @@
 \contentsline {subsection}{\numberline {4.3.2}Acrobot simulation in ideal environment}{30}{subsection.4.3.2}%
 \contentsline {chapter}{\numberline {5}Experiment: hardware system}{31}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Hardware setup}{31}{section.5.1}%
-\contentsline {section}{\numberline {5.2}System identification}{35}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Sim2Real problem}{36}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Validation with noisy simulation}{37}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Training with domain randomization}{38}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}Real hardware results}{38}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}pendubot results}{38}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}acrobot results}{38}{subsection.5.4.2}%
-\contentsline {chapter}{\numberline {6}Discussion}{39}{chapter.6}%
-\contentsline {section}{\numberline {6.1}introduction to leaderboard results}{39}{section.6.1}%
-\contentsline {section}{\numberline {6.2}interpretation of simulation results}{40}{section.6.2}%
-\contentsline {section}{\numberline {6.3}interpretation of hardware results}{40}{section.6.3}%
-\contentsline {section}{\numberline {6.4}future work}{41}{section.6.4}%
-\contentsline {chapter}{Appendix}{43}{section*.23}%
-\contentsline {chapter}{Appendix \numberline {A}An appendix}{44}{appendix.a.A}%
+\contentsline {section}{\numberline {5.2}System identification}{36}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Sim2Real problem}{37}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Validation with noisy simulation}{38}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Training with domain randomization}{40}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Real hardware results}{40}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}pendubot results}{40}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}acrobot results}{41}{subsection.5.4.2}%
+\contentsline {chapter}{\numberline {6}Discussion}{43}{chapter.6}%
+\contentsline {section}{\numberline {6.1}introduction to leaderboard results}{43}{section.6.1}%
+\contentsline {section}{\numberline {6.2}interpretation of simulation results}{44}{section.6.2}%
+\contentsline {section}{\numberline {6.3}interpretation of hardware results}{44}{section.6.3}%
+\contentsline {section}{\numberline {6.4}future work}{45}{section.6.4}%
+\contentsline {chapter}{Appendix}{47}{section*.25}%
+\contentsline {chapter}{Appendix \numberline {A}An appendix}{48}{appendix.a.A}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
