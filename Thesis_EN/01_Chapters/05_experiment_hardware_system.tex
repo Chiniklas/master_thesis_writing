@@ -165,10 +165,19 @@ Hope we have a good result.
 
 
 \section{Real hardware results}
-This section is about simulation results in pendubot and acrobot.
+In this section, we present the results from the real hardware tests. Only agents trained for the pendubot setup successfully passed the noisy simulation check, so results are limited to this setup. The complete real-world test procedure is as follows: power up, manually set the initial state, release the emergency button, run the initialization script (which enables the motor, sets the current position to zero, and tests the CAN connection), confirm the start of the test, record video, draw plots, and exit the test. This procedure is illustrated in the flow chart below:
+
+\begin{figure}[htbp]
+    \centering
+    \fbox{\includegraphics[width=0.7\textwidth]{example-image}} % Second image
+    \caption{Real hardware system testing procedure}
+    \label{fig:image_b}
+\end{figure}
+
+A remote testing system has been established to allow global access and sharing of our double pendulum testing hardware. This infrastructure was developed for the IJCAI 2023 competition, RealAIGym. Several groups have tested their algorithms on this remote system, including teams from the University of Padova and the Technical University of Darmstadt.
 
 \subsection{pendubot results}
-pendubot:
+Below is an example of one of our successful tests. [some explanation] We executed a sequence of 10 tests to determine the success rate and other key metrics for evaluating performance and robustness. These results will be discussed in the next chapter. 
 
 \begin{figure}[H]
     \centering

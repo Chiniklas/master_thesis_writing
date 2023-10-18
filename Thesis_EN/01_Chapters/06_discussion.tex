@@ -1,38 +1,40 @@
 \chapter{Discussion}
-This chapter is about the discussion of results.
+In this chapter, we delve into the results of experiments conducted both in simulation and on the real system. The chapter is structured as follows: The first subsection provides a comprehensive introduction to the leaderboard metrics employed. Sections 6.2, 6.3, and 6.4 discuss the three facets of leaderboard analysis, namely simulation, robustness, and real hardware, respectively. The final section wraps up our current findings and hints at directions for future research.
 
-ad;falknv.xzfvhlsakjdgfnmdflk asdjgfmndfgb;lkjesf;mngfbl;kjfx.,mszedk.jfal;j
+\section{Introduction to leaderboard metrics}
+To compare the performances of various controllers developed for the double pendulum testbench, we have established three distinct leaderboards: the simulation leaderboard, the robustness leaderboard, and the real system leaderboard. Each of these leaderboards is further subdivided into two categories based on the pendubot and acrobot setups.
 
-\section{introduction to leaderboard results}
-This section is about simulation and real system leaderboard
+\subsection{Performance Leaderboard in Simulation and Real system}
+
+In our evaluation of controller performance, we employ a set of metrics that go beyond just measuring task success. They delve deeper into the nuances of controller operation. For experiments conducted both in simulation environments and on real hardware, the performance evaluation metrics remain consistent. These measures span from assessing the fundamental success of a swing-up maneuver to understanding the intricate details of energy and torque usage. Below is a detailed breakdown of each metric:
 
 \begin{itemize}
   \item \textbf{Swingup Success} \(c_{\text{success}}\):
-  Whether the swingup was successful, i.e. if the end-effector is above the threshold line at the end of the simulation.
+  Determines if the end-effector successfully remains above the predefined threshold by the simulation's conclusion.
   
-  \item \textbf{Swingup time} \(c_{\text{time}}\):
-  The time it takes for the pendubot to reach the goal region above the threshold line and stay there. If the end-effector enters the goal region but falls below the line before the simulation time is over, the swingup is not considered successful! The swingup time is the time when the end-effector enters the goal region and does not leave the region until the end.
+  \item \textbf{Swingup Time} \(c_{\text{time}}\):
+  Measures the duration taken for the pendubot or acrobot to achieve and maintain its position above the threshold line. The metric only considers the swingup successful if the end-effector remains above the threshold until the simulation's end.
   
   \item \textbf{Energy} \(c_{\text{energy}}\):
-  The mechanical energy used during the execution.
+  Quantifies the total mechanical energy expended during the task.
   
   \item \textbf{Max Torque} \(c_{\tau, \text{max}}\):
-  The peak torque that was used during the execution.
+  Captures the highest torque applied at any point during the task.
   
   \item \textbf{Integrated Torque} \(c_{\tau, \text{integ}}\):
-  The time integral over the used torque over the execution duration.
+  Represents the cumulative torque applied throughout the task's duration.
   
   \item \textbf{Torque Cost} \(c_{\tau, \text{cost}}\):
-  A quadratic cost on the used torques (\(c_{\tau, \text{cost}} = \sum u^TRu\)), with \(R = 1\).
+  A quadratic metric that weighs the torques used, defined as \(c_{\tau, \text{cost}} = \sum u^TRu\), where \(R = 1\).
   
   \item \textbf{Torque Smoothness} \(c_{\tau, \text{smooth}}\):
-  The standard deviation of the changes in the torque signal.
+  Reflects the variability or fluctuations in the torque signals by measuring their standard deviation.
   
   \item \textbf{Velocity Cost} \(c_{\text{vel, cost}}\):
-  A quadratic cost on the joint velocities that were reached during the execution (\(c_{\text{vel}} = \dot{q}^T Q \dot{q}\)), with \(Q = \text{identity}\).
+  A metric assessing the joint velocities achieved, computed as \(c_{\text{vel}} = \dot{q}^T Q \dot{q}\), with \(Q\) being the identity matrix.
 \end{itemize}
 
-
+We utilize the subsequent criteria to determine the cumulative RealAI Score based on the specified formula:
 \begin{equation}
 \begin{aligned}
 S = c_{\text{success}} \Bigg(& w_{\text{time}}\frac{c_{\text{time}}}{n_{\text{time}}} + \\
@@ -45,83 +47,134 @@ w_{\text{vel, cost}}\frac{c_{\text{vel, cost}}}{n_{\text{vel, cost}}} \Bigg)
 \end{aligned}
 \end{equation}
 
-
-
-\section{interpretation of simulation results}
-This section is about explaining the simulation results.
-
-\begin{table}
- % \begin{tabularx}{0.55\textwidth} {
- %  | >{\raggedright\arraybackslash}X
- %  | >{\centering\arraybackslash}X
- %  | >{\raggedleft\arraybackslash}X| }
+The weights and normalizations are:
+\begin{table}[H]
   \centering
- \begin{tabular}{lcc}
- %\hline
-  Criteria& Pendubot  & Acrobot \\
+  \begin{tabular}{lcc}
+    \hline
+    Criteria & Normalization \(\mathit{n}\) & Weight \(\mathit{w}\) \\
+    \hline
+    Swingup time & 10.0 & 0.2 \\
+    Energy & 100.0 & 0.1 \\
+    Max. Torque & 6.0 & 0.1 \\
+    Integrated Torque & 60.0 & 0.1 \\
+    Torque Cost & 360 & 0.1 \\
+    Torque Smoothness & 12.0 & 0.2 \\
+    Velocity Cost & 1000.0 & 0.2 \\
+    \hline
+  \end{tabular}
+  \caption{Weights and normalizations for performance leaderboards}
+  \label{tab:performance}
+\end{table}
+
+In the simulation experiments, the pendubot is modeled using a Runge-Kutta 4 integrator with a timestep of \(dt=0.002s\) over a span of \(T=10s\). We initiate the pendubot in a hanging down configuration, represented as \(x_0 = (0, 0, 0, 0)\), and aim to reach the unstable fixed point of the upright configuration, denoted as \(x_g = (\pi, 0, 0, 0)\). The double pendulum is deemed to have achieved its upright position once the end-effector surpasses the threshold line situated at \(h=0.45m\), with the origin being the mounting point.
+
+When it comes to real hardware experiments, there's a torque limit of 0.5 Nm on the passive joint, which serves to offset the motor's friction. The actuators can operate with a control frequency as high as 500Hz, and each experiment lasts for 10 seconds. The pendubot starts from a hanging down position, with the objective being the unstable fixed point in the upright configuration. Successful attainment of the upright position is confirmed when the end-effector crosses the threshold line set at \(h=0.45m\), measured from the mounting point's origin.
+
+\subsection{Simulation Robustness Leaderboard}
+
+\begin{itemize}
+    \item \textbf{Model Inaccuracies \(c_{model}\)}: Model parameters determined through system identification are never perfectly accurate. To evaluate potential inaccuracies, we modify each model parameter individually within the simulator, while keeping the controller's parameters unchanged.
+
+    \item \textbf{Measurement Noise \(c_{vel, noise}\)}: Controller outputs heavily rely on the captured system state. Particularly with the Quick Double Derivatives (QDDs), online velocity measurements can be noisy. It's crucial for successful transferability that a controller can handle this inherent noise. We test controllers with both the presence and absence of a low-pass noise filter.
+
+    \item \textbf{Torque Noise \(c_{\tau,noise}\)}: It's not only the measurements that can exhibit noise. Sometimes the torque output from the controller might deviate from the intended value.
+
+    \item \textbf{Torque Response \(c_{\tau,response}\)}: The torque requested by the controller is dynamic and can vary throughout execution. Due to mechanical limitations, the motor might not always adjust immediately to abrupt torque changes, leading to overshooting or undershooting the desired torque value. We model this with the equation \(\tau = \tau_{t-1} + k_{\text{resp}} (\tau_{\text{des}} - \tau_{t-1})\), where \(\tau_{\text{des}}\) is the desired torque. In this model, a \(k_{\text{resp}}\) value of 1 indicates flawless torque response, while any deviation from 1 indicates imperfect motor responses.
+
+    \item \textbf{Time Delay \(c_{delay}\)}: Operating in a real-world environment inevitably introduces time delays due to communication lag and system reaction times. It's essential to account for these when evaluating controller performance.
+\end{itemize}
+
+The above criteria are employed to compute the comprehensive RealAI Score using the given formula:
+\begin{equation}
+ S = w_{model} c_{model} + 
+    w_{vel, noise} c_{vel, noise} +  
+    w_{\tau, noise} c_{\tau, noise} +  
+    w_{\tau, response} c_{\tau, response} +  
+    w_{delay} c_{delay}
+\end{equation}
+
+The weights are:
+\begin{equation}
+ w_{model} = w_{vel, noise} = w_{\tau, noise} = w_{\tau, response} = w_{delay} = 0.2
+\end{equation}
+
+\section{Interpretation of simulation leaderboard}
+In the table below, you can see the performance leaderboard results for both the pendubot and acrobot in simulation experiments. Three major types of controllers are listed for comparison. The SAC+LQR controller is our design, and it is based on the model-free reinforcement learning method. MC-PILCO stands for Monte Carlo Probabilistic Inference for Learning Control. It is a model-based reinforcement learning method that uses probabilistic models to predict the system's dynamics and employs Monte Carlo methods to optimize control policies based on these predictions. tvLQR is an extension of the standard Linear Quadratic Regulator (LQR) control design, tailored for systems with time-dependent state-space matrices or where the optimal control needs to vary over time. It represents the optimal control method.
+
+\begin{table}[H]
+  \centering
+ \begin{tabular}{lcccccc}
  \hline
- Swingup Success& success  & success\\
- %\hline
- Swingup time [s]& 0.65   & 2.06\\
- %\hline
- Energy [J]& 9.4  & 29.24 \\
- %\hline
- Max. Torque [Nm]& 5.0   & 5.0 \\
- %\hline
- Integrated Torque [Nm]& 2.21  & 4.57 \\
- %\hline
- Torque Cost [N²m²] & 8.58  & 12.32 \\
- %\hline
- Torque Smoothness [Nm]& 0.172 & 0.954 \\
- %\hline
- Velocity Cost [m²/s²]& 44.98 & 193.78  \\
- %\hline
- RealAI Score & 0.801 & 0.722  \\
- %\hline
-% \end{tabularx}
+ Criteria & \multicolumn{2}{c}{SAC+LQR} & \multicolumn{2}{c}{MC-PILCO} & \multicolumn{2}{c}{tvLQR} \\
+ & Pendubot & Acrobot & Pendubot & Acrobot & Pendubot & Acrobot \\
+ \hline
+ Swingup Success & success & success & success & success & success & success \\
+ Swingup time [s] & 0.65 & 2.06 & 1.43 & 1.1 & 4.2 & 3.98 \\
+ Energy [J] & 9.4 & 29.24 & 12.67 & 9.81 & 9.06 & 10.92 \\
+ Max. Torque [Nm] & 5.0 & 5.0 & 2.4 & 2.82 & 2.82 & 5.0 \\
+ Integrated Torque [Nm] & 2.21 & 4.57 & 3.48 & 1.27 & 2.57 & 2.27 \\
+ Torque Cost [N²m²] & 8.58 & 12.32 & 7.77 & 2.27 & 2.0 & 2.47 \\
+ Torque Smoothness [Nm] & 0.172 & 0.954 & 0.07 & 0.057 & 0.031 & 0.077 \\
+ Velocity Cost [m²/s²] & 44.98 & 193.78 & 94.68 & 242.44 & 137.31 & 100.34 \\
+ RealAI Score & 0.801 & 0.722 & 0.891 & 0.869 & 0.827 & 0.8 \\
+ \hline
  \end{tabular}
- \caption{Performance scores of our controller for pendubot and acrobot.}
+ \caption{Performance scores of various controllers for pendubot and acrobot experiments.}
  \label{tab:performance}
 \end{table}
 
-\section{interpretation of hardware results}
+
+\section{Interpretation of robust leaderboard}
+
+\begin{table}[H]
+  \centering
+ \begin{tabular}{lcccccc}
+ \hline
+ Criteria & \multicolumn{2}{c}{SAC+LQR} & \multicolumn{2}{c}{MC-PILCO} & \multicolumn{2}{c}{tvLQR} \\
+ & Pendubot & Acrobot & Pendubot & Acrobot & Pendubot & Acrobot \\
+ \hline
+ Model inaccuracy [\%] & 71.9 & 76.7 & 45.2 & 40.5 & 75.2 & 59.0 \\
+ Velocity noise [\%] & 100.0 & 71.4 & 90.5 & 66.7 & 100.0 & 95.2 \\
+ Torque noise [\%] & 100.0 & 100.0 & 100.0 & 81.0 & 100.0 & 100.0 \\
+ Torque response [\%] & 100.0 & 100.0 & 100.0 & 90.5 & 100.0 & 100.0 \\
+ Time delay [\%] & 76.2 & 61.9 & 90.5 & 19.0 & 100.0 & 76.2 \\
+ Overall Score & 0.896 & 0.820 & 0.852 & 0.595 & 0.950 & 0.861 \\
+ \hline
+ \end{tabular}
+ \caption{Robustness scores of various controllers for pendubot and acrobot experiments.}
+ \label{tab:robustness}
+\end{table}
+
+\section{Interpretation of real system leaderboard}
 This section is about explaining the hardware results.
 
-\begin{table}
- % \begin{tabularx}{0.55\textwidth} {
- %  | >{\raggedright\arraybackslash}X
- %  | >{\centering\arraybackslash}X
- %  | >{\raggedleft\arraybackslash}X| }
+\begin{table}[H]
   \centering
- \begin{tabular}{lcc}
- %\hline
-  Criteria& Pendubot  & Acrobot \\
+ \begin{tabular}{lcccccc}
  \hline
- Swingup Success& success  & insuccess\\
- %\hline
- Swingup time [s]& 0.67   & -\\
- %\hline
- Energy [J]& 37.12  & - \\
- %\hline
- Max. Torque [Nm]& 5.0   & - \\
- %\hline
- Integrated Torque [Nm]& 24.87  & - \\
- %\hline
- Torque Cost [N²m²] & 78.7  & - \\
- %\hline
- Torque Smoothness [Nm]& 0.774 & - \\
- %\hline
- Velocity Cost [m²/s²]& 114.04 & -  \\
- %\hline
- RealAI Score & 0.298 & -  \\
- %\hline
-% \end{tabularx}
+ Criteria & \multicolumn{2}{c}{SAC+LQR} & \multicolumn{2}{c}{MC-PILCO} & \multicolumn{2}{c}{tvLQR} \\
+ & Pendubot & Acrobot & Pendubot & Acrobot & Pendubot & Acrobot \\
+ \hline
+ Swingup Success & 4/10 & insuccess & 10/10 & 10/10 & 8/10 & 10/10 \\
+ Swingup time [s] & 0.67 & - & 1.37 & 1.55 & 4.12 & 4.03 \\
+ Energy [J] & 37.12 & - & 11.66 & 17.95 & 34.02 & 13.75 \\
+ Max. Torque [Nm] & 5.0 & - & 4.99 & 5.0 & 5.0 & 2.98 \\
+ Integrated Torque [Nm] & 24.87 & - & 3.72 & 5.93 & 19.06 & 5.61 \\
+ Torque Cost [N²m²] & 78.7 & - & 8.93 & 11.73 & 51.88 & 3.26 \\
+ Torque Smoothness [Nm] & 0.774 & - & 0.54 & 0.671 & 0.643 & 0.108 \\
+ Velocity Cost [m²/s²] & 114.04 & - & 84.61 & 118.38 & 242.34 & 109.77 \\
+ Best RealAI Score & 0.767 & - & 0.843 & 0.82 & 0.695 & 0.822 \\
+ Average RealAI Score & 0.298 & - & 0.839 & 0.817 & 0.547 & 0.821 \\
+ \hline
  \end{tabular}
- \caption{Real hardware performance scores of our controller for pendubot and acrobot.}
+ \caption{Real hardware performance scores of multiple controllers for pendubot and acrobot experiments.}
  \label{tab:performance}
 \end{table}
 
-\section{future work}
+
+
+\section{Conclusion and future work}
 This section is to talk about things to be done.
 
 \cleardoublepage

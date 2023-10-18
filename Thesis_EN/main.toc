@@ -29,13 +29,16 @@
 \contentsline {subsection}{\numberline {5.3.1}Validation with noisy simulation}{38}{subsection.5.3.1}%
 \contentsline {subsection}{\numberline {5.3.2}Training with domain randomization}{40}{subsection.5.3.2}%
 \contentsline {section}{\numberline {5.4}Real hardware results}{40}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}pendubot results}{40}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}acrobot results}{41}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.1}pendubot results}{41}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}acrobot results}{42}{subsection.5.4.2}%
 \contentsline {chapter}{\numberline {6}Discussion}{43}{chapter.6}%
-\contentsline {section}{\numberline {6.1}introduction to leaderboard results}{43}{section.6.1}%
-\contentsline {section}{\numberline {6.2}interpretation of simulation results}{44}{section.6.2}%
-\contentsline {section}{\numberline {6.3}interpretation of hardware results}{44}{section.6.3}%
-\contentsline {section}{\numberline {6.4}future work}{45}{section.6.4}%
-\contentsline {chapter}{Appendix}{47}{section*.25}%
-\contentsline {chapter}{Appendix \numberline {A}An appendix}{48}{appendix.a.A}%
+\contentsline {section}{\numberline {6.1}Introduction to leaderboard metrics}{43}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Performance Leaderboard in Simulation and Real system}{43}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Simulation Robustness Leaderboard}{45}{subsection.6.1.2}%
+\contentsline {section}{\numberline {6.2}Interpretation of simulation leaderboard}{46}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Interpretation of robust leaderboard}{47}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Interpretation of real system leaderboard}{47}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Conclusion and future work}{48}{section.6.5}%
+\contentsline {chapter}{Appendix}{49}{section*.28}%
+\contentsline {chapter}{Appendix \numberline {A}An appendix}{50}{appendix.a.A}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
