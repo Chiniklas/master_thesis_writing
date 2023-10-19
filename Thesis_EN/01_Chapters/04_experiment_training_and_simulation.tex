@@ -4,9 +4,9 @@ Chapters 4 and 5 focus on the experimental phase of our project. This chapter de
 The first subsection describes the foundation of a reinforcement learning interaction rooted in a stable baseline3-based RL algorithm. It also touches upon a customized environment inherited from the OpenAI Gym environment. The second subsection centers on hyperparameter tuning and highlights the challenges encountered during training. The third subsection displays the results acquired from both the pendubot and acrobot setups.
 
 \section{Training setup}
-Stable Baseline 3(SB3)[some paper] is an open-source implementation of deep reinforcement learning algorithms based on the Python language. This library includes seven commonly used model-free deep reinforcement learning algorithms including SAC. Prior implementations of deep RL algorithms often encountered a problem wherein small implementation details could greatly affect performance, typically exceeding the differences between algorithms[some paper]. The developers of SB3 have done a commendable job stabilizing the performance of these deep RL algorithms by benchmarking each one on common environments and comparing them to prior implementations. Owing to its user-friendly and reliable nature, we chose Stable Baseline 3 as our RL library, which greatly simplified our research process.
+Stable Baseline 3(SB3)\cite{stable-baselines3} is an open-source implementation of deep reinforcement learning algorithms based on the Python language. This library includes seven commonly used model-free deep reinforcement learning algorithms including SAC. Prior implementations of deep RL algorithms often encountered a problem wherein small implementation details could greatly affect performance, typically exceeding the differences between algorithms[some paper]. The developers of SB3 have done a commendable job stabilizing the performance of these deep RL algorithms by benchmarking each one on common environments and comparing them to prior implementations. Owing to its user-friendly and reliable nature, we chose Stable Baseline 3 as our RL library, which greatly simplified our research process.
 
-OpenAI Gymnasium[some paper] is a toolkit for developing and comparing reinforcement learning algorithms, and it is widely used in the research community. Among its many advantages are its open-source nature and standardized environments, which facilitate the rapid testing and benchmarking of new algorithms. Additionally, it offers easy visualization and monitoring. Our decision to use the Gym library is based on its extensibility—from standard environments to highly customized ones—as well as its capability to integrate with tools like PyTorch and TensorFlow for GPU-accelerated computations. Furthermore, Gym provides the ability to construct stacked training environments for parallel training.
+OpenAI Gymnasium\cite{towers_gymnasium_2023} is a toolkit for developing and comparing reinforcement learning algorithms, and it is widely used in the research community. Among its many advantages are its open-source nature and standardized environments, which facilitate the rapid testing and benchmarking of new algorithms. Additionally, it offers easy visualization and monitoring. Our decision to use the Gym library is based on its extensibility—from standard environments to highly customized ones—as well as its capability to integrate with tools like PyTorch and TensorFlow for GPU-accelerated computations. Furthermore, Gym provides the ability to construct stacked training environments for parallel training.
 
 \begin{figure}[htbp]
     \centering
@@ -19,7 +19,7 @@ To construct the customized environment, we begin with the symbolic dynamic func
 
 This predicted state is then input into the reward function, which yields a scalar output. This output is subsequently relayed to the SAC algorithm for policy evaluation and update. After these computations, the simulation provides an estimation of the current state, and the policy identifies the most probable action. Both of these values are then directed back to the dynamics function, initiating a new cycle.
 
-It's widely recognized \cite{some paper} that reinforcement learning algorithms tend to converge more effectively when using normalized state and action spaces. Therefore, we've designed a scaling mechanism to translate the state and action spaces from their normalized versions to real-world measurements. Users can choose to activate or deactivate this scaling. For example, while a normalized state resides within the interval \( [-1,1] \), we might wish to map it to real-world measurements \( \left[ \text{pos1}, \text{pos2}, \text{vel1}, \text{vel2} \right] \), such as \( \text{pos1} \) in \( [0,2\pi] \), \( \text{pos2} \) in \( [-\pi,\pi] \), and velocities \( \text{vel1} \) and \( \text{vel2} \) in \( [-20,20] \) rad/s, while keeping the torque within \( [-\tau_{\text{limit}}, \tau_{\text{limit}}] \). When this scaling mechanism is activated, it ensures that states and actions in the SAC algorithm always stay within the \( [-1,1] \) boundary, which often leads to faster convergence. The mapping relation of the scaling mechanism is demonstrated in the picture below:
+It's widely recognized that reinforcement learning algorithms tend to converge more effectively when using normalized state and action spaces \cite{sutton2018reinforcement}. Therefore, we've designed a scaling mechanism to translate the state and action spaces from their normalized versions to real-world measurements. Users can choose to activate or deactivate this scaling. For example, while a normalized state resides within the interval \( [-1,1] \), we might wish to map it to real-world measurements \( \left[ \text{pos1}, \text{pos2}, \text{vel1}, \text{vel2} \right] \), such as \( \text{pos1} \) in \( [0,2\pi] \), \( \text{pos2} \) in \( [-\pi,\pi] \), and velocities \( \text{vel1} \) and \( \text{vel2} \) in \( [-20,20] \) rad/s, while keeping the torque within \( [-\tau_{\text{limit}}, \tau_{\text{limit}}] \). When this scaling mechanism is activated, it ensures that states and actions in the SAC algorithm always stay within the \( [-1,1] \) boundary, which often leads to faster convergence. The mapping relation of the scaling mechanism is demonstrated in the picture below:
 
 \begin{figure}[H]
     \centering
@@ -36,6 +36,22 @@ The logic of the pipeline of the interaction of customized environment is descri
     \caption{logic of the interaction}
     \label{fig:my_label}
 \end{figure}
+
+or
+
+\begin{algorithm}
+\caption{Customized environment}
+\begin{algorithmic}[1]
+\Procedure{Euclid}{$a,b$}
+\While{$b \neq 0$}
+    \State $t \gets b$
+    \State $b \gets a \mod b$
+    \State $a \gets t$
+\EndWhile
+\State \textbf{return} $a$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
 \section{Training phase}
 The training phase started immediately after we finished setting up the training pipeline. During the training of the SAC controller for both the acrobot and pendubot, our primary focus was on tuning several key hyperparameters. These encompassed the learning rate, control frequency, episode length, and learning timestep. We invested much effort in adjusting hyperparameters for the reward function and the LQR controller, given their pivotal roles in the learning process, as detailed in Table 4.1.

@@ -5,7 +5,7 @@ This chapter is about the state of the art.
 This section is about the theory, for example dynamics and underactuated control.
 
 \subsection{Underactuated system}
-According to newtons second law(\( F = ma \)), The dynamics of mechanical systems can be discribed as follows:
+According to Newtons second law(\( F = ma \)), The dynamics of mechanical systems can be discribed as follows:
 \begin{align}
     \ddot{q} = f(q, \dot{q}, u, t)
 \end{align}
@@ -24,7 +24,7 @@ For a controlled dynamical system described by equation(2.2), if we have:
     \text{rank}[f_2(q, \dot{q}, t)] < \text{dim}[q]
 \end{align}
 
-then the system is underactuated at \((q, \dot{q}, t)\). There is another case for underactuation is even when \(f_2\) is full rank, but additional constraints like \(|\mathbf{u}| \leq 1\) can also make a system underactuated.
+then the system is underactuated at \((q, \dot{q}, t)\)\cite{tedrake2022underactuated}. There is another case for underactuation is even when \(f_2\) is full rank, but additional constraints like \(|\mathbf{u}| \leq 1\) can also make a system underactuated.
 
 
 \subsection{Dynamics of underactuated double pendulum system}
@@ -56,16 +56,16 @@ The generalized coordinates \( \mathbf{q} =(q_1,q_2)^T \) are the joint angles m
 
 \textbf{Step 2. Express the Kinetic Energy (\(T\)):}
 
-   The kinetic energy (\(T\)) of the double pendulum is the sum of the kinetic energies of both pendulums. The kinetic energy for a pendulum is given by:
+   The kinetic energy (\(T\)) of the double pendulum is the sum of the kinetic energies of both links. The kinetic energy for a link is given by:
    \begin{align}
         T = \frac{1}{2} m_1 (\dot{x}_1^2 + \dot{y}_1^2) + \frac{1}{2} m_2 (\dot{x}_2^2 + \dot{y}_2^2)
    \end{align}
 
-   where \(m_1\) and \(m_2\) are the masses of the pendulums, \((x_1, y_1)\) and \((x_2, y_2)\) are their positions, and \(\dot{x}_1, \dot{y}_1, \dot{x}_2, \dot{y}_2\) are their respective velocities.
+   where \(m_1\) and \(m_2\) are the masses of the links, \((x_1, y_1)\) and \((x_2, y_2)\) are their positions, and \(\dot{x}_1, \dot{y}_1, \dot{x}_2, \dot{y}_2\) are their respective velocities.
 
 \textbf{Step 3. Express the Potential Energy (\(U\)):}
 
-   The potential energy (\(U\)) of the double pendulum is the sum of the potential energies of both pendulums. The potential energy for a pendulum in a gravitational field is given by:
+   The potential energy (\(U\)) of the double pendulum is the sum of the potential energies of both links. The potential energy for a link in a gravitational field is given by:
    \begin{align}
          U = m_1 g y_1 + m_2 g y_2
    \end{align}
@@ -123,7 +123,7 @@ The generalized coordinates \( \mathbf{q} =(q_1,q_2)^T \) are the joint angles m
         \right.
     \end{align}
 
-    Put equation(2.12) and (2.13) into (2.7)(2.8)(2.9)(2.10),we can get the mass matrix (with \(s_1 = \sin(q_1), c_1 = \cos(q_1), \ldots\))
+    Put equation(2.10) and (2.11) into (2.6)(2.7)(2.8)(2.9),we can get the mass matrix (with \(s_1 = \sin(q_1), c_1 = \cos(q_1), \ldots\))
     \begin{equation}
     \mathbf{M} =
     \left[ 

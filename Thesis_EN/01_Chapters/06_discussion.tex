@@ -72,11 +72,12 @@ In the simulation experiments, the pendubot is modeled using a Runge-Kutta 4 int
 When it comes to real hardware experiments, there's a torque limit of 0.5 Nm on the passive joint, which serves to offset the motor's friction. The actuators can operate with a control frequency as high as 500Hz, and each experiment lasts for 10 seconds. The pendubot starts from a hanging down position, with the objective being the unstable fixed point in the upright configuration. Successful attainment of the upright position is confirmed when the end-effector crosses the threshold line set at \(h=0.45m\), measured from the mounting point's origin.
 
 \subsection{Simulation Robustness Leaderboard}
+In addition to performance metrics, we also consider robustness metrics. As the ultimate goal is to transfer successful models from a simulation environment to real hardware, it's essential to assess the robustness of controllers developed within the simulation. This helps determine the types of perturbations that affect each controller.
 
 \begin{itemize}
     \item \textbf{Model Inaccuracies \(c_{model}\)}: Model parameters determined through system identification are never perfectly accurate. To evaluate potential inaccuracies, we modify each model parameter individually within the simulator, while keeping the controller's parameters unchanged.
 
-    \item \textbf{Measurement Noise \(c_{vel, noise}\)}: Controller outputs heavily rely on the captured system state. Particularly with the Quick Double Derivatives (QDDs), online velocity measurements can be noisy. It's crucial for successful transferability that a controller can handle this inherent noise. We test controllers with both the presence and absence of a low-pass noise filter.
+    \item \textbf{Velocity Measurement Noise \(c_{vel, noise}\)}: Controller outputs heavily rely on the captured system state. Particularly with the Quasi Direct Drives (QDDs), online velocity measurements can be noisy. It's crucial for successful transferability that a controller can handle this inherent noise. We test controllers with both the presence and absence of a low-pass noise filter.
 
     \item \textbf{Torque Noise \(c_{\tau,noise}\)}: It's not only the measurements that can exhibit noise. Sometimes the torque output from the controller might deviate from the intended value.
 
@@ -100,7 +101,7 @@ The weights are:
 \end{equation}
 
 \section{Interpretation of simulation leaderboard}
-In the table below, you can see the performance leaderboard results for both the pendubot and acrobot in simulation experiments. Three major types of controllers are listed for comparison. The SAC+LQR controller is our design, and it is based on the model-free reinforcement learning method. MC-PILCO stands for Monte Carlo Probabilistic Inference for Learning Control. It is a model-based reinforcement learning method that uses probabilistic models to predict the system's dynamics and employs Monte Carlo methods to optimize control policies based on these predictions. tvLQR is an extension of the standard Linear Quadratic Regulator (LQR) control design, tailored for systems with time-dependent state-space matrices or where the optimal control needs to vary over time. It represents the optimal control method.
+In the table below, the performance leaderboard results for both the pendubot and acrobot in simulation experiments are presented. Three major types of controllers are listed for comparison. The SAC+LQR controller is our design and is based on the model-free reinforcement learning method. MC-PILCO~\cite{amadio2022model}~\cite{Libera2023AthleticIO}, which stands for Monte Carlo Probabilistic Inference for Learning Control, is a model-based reinforcement learning method. It utilizes probabilistic models to predict the system's dynamics and employs Monte Carlo methods to optimize control policies based on these predictions. This method was implemented by a team from the University of Padova using a remote testing system. tvLQR is an extension of the standard Linear Quadratic Regulator (LQR) control design. It is tailored for systems with time-dependent state-space matrices or where the optimal control needs to be dynamic. Representing the optimal control method, it was implemented by a separate team from DFKI RIC.
 
 \begin{table}[H]
   \centering
@@ -124,8 +125,18 @@ In the table below, you can see the performance leaderboard results for both the
  \label{tab:performance}
 \end{table}
 
+All three controllers are successful with both the Pendubot and Acrobot setups.
+
+In the Pendubot setup, the performance of the SAC+LQR controller is commendable, particularly with a swift swing-up time of 0.65s. The energy consumption of the SAC+LQR controller (9.4J) is significantly lower than that of the MC-PILCO controller (12.67J) and is nearly on par with the tvLQR controller (9.06J). Additionally, its overall RealAI score is competitive, closely trailing the scores of MC-PILCO and tvLQR. However, a notable drawback is its torque smoothness; it performs the worst among the three controllers, being 2.46 times that of MC-PILCO and 5.55 times that of tvLQR.
+
+For the Acrobot setup, the SAC+LQR controller loses its edge in both swing-up time and energy consumption. Its deficit in torque smoothness becomes even more pronounced, leading to a considerably lower RealAI score compared to the other two controllers.
+
+In general, the SAC+LQR controller demonstrates competitive performance in simpler tasks, such as the Pendubot, especially excelling in swing-up time. However, when faced with a more complex challenge like the Acrobot, its performance declines. The MC-PILCO consistently delivers the best overall performance across both setups and is notable for its remarkably low maximum torque input and consistent torque smoothness. Conversely, the tvLQR, a non-learning-based method, highlights its effectiveness in both scenarios. While its swing-up time is relatively extended, its energy consumption and torque smoothness are commendably low, leading to a moderate RealAI score.
 
 \section{Interpretation of robust leaderboard}
+In comparison, the SAC+LQR controller achieves a moderate overall robustness score among the three controllers. It exhibits a higher resistance to model inaccuracy (71.9\% for pendubot and 76.7\% for acrobot) compared to MC-PILCO (45.2\% for pendubot and 40.5\% for acrobot) and tvLQR (75.2\% for pendubot and 59.0\% for acrobot). While the other two controllers demonstrate a noticeable decline when tackling the more complex acrobot task, the performance of the SAC+LQR remains consistent. Additionally, SAC+LQR offers better resistance against velocity measurement noise compared to MC-PILCO, though the top score in this category is held by tvLQR. Apart from MC-PILCO, the other two controllers display consistent and strong robustness regarding torque noise and torque response.
+
+When considering time delay, tvLQR outperforms both SAC+LQR and MC-PILCO. As previously predicted, time delay is the Achilles heel for RL-based methods, since high latency can disrupt the Markov decision process entirely.
 
 \begin{table}[H]
   \centering
@@ -146,8 +157,10 @@ In the table below, you can see the performance leaderboard results for both the
  \label{tab:robustness}
 \end{table}
 
+In general, tvLQR achieves the best robustness scores for both pendubot and acrobot setups, followed by SAC+LQR, with MC-PILCO ranking last. While SAC+LQR boasts consistency in robustness across both setups, time delay remains a significant issue, limiting the robustness of RL-based methods.
+
 \section{Interpretation of real system leaderboard}
-This section is about explaining the hardware results.
+This section is about explaining the hardware results. [to be filled]
 
 \begin{table}[H]
   \centering
@@ -156,7 +169,7 @@ This section is about explaining the hardware results.
  Criteria & \multicolumn{2}{c}{SAC+LQR} & \multicolumn{2}{c}{MC-PILCO} & \multicolumn{2}{c}{tvLQR} \\
  & Pendubot & Acrobot & Pendubot & Acrobot & Pendubot & Acrobot \\
  \hline
- Swingup Success & 4/10 & insuccess & 10/10 & 10/10 & 8/10 & 10/10 \\
+ Swingup Success & 4/10 & 0/10 & 10/10 & 10/10 & 8/10 & 10/10 \\
  Swingup time [s] & 0.67 & - & 1.37 & 1.55 & 4.12 & 4.03 \\
  Energy [J] & 37.12 & - & 11.66 & 17.95 & 34.02 & 13.75 \\
  Max. Torque [Nm] & 5.0 & - & 4.99 & 5.0 & 5.0 & 2.98 \\

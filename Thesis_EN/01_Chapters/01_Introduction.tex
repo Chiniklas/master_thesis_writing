@@ -1,59 +1,55 @@
 \chapter{Introduction}
-Nonlinear systems, as their name suggests, don't adhere to linear relationships between inputs and outputs. This lack of linearity means the system's response to input changes is intricate and often unpredictable. In the real world, nearly all systems exhibit some form of nonlinearity. This nonlinearity manifests in various phenomena. For instance, in systems with multiple inputs and multiple outputs, interdependencies between variables become complex, posing a coupling problem. Chaotic behavior, often referred to as the butterfly effect, is another common issue. Even a slight alteration in initial conditions can drastically alter the system's outcome. The classic butterfly effect example illustrates this sensitivity — a butterfly's wings in Brazil potentially triggering a tornado in Texas. When dealing with control tasks, especially in many real-world systems, accounting for this nonlinearity is essential.
+Nonlinear systems, as their name suggests, do not exhibit linear relationships between inputs and outputs. This inherent non-linearity means the system's response to changes in input can be complex and often unpredictable. In the real world, nearly all systems display some degree of nonlinearity. This nonlinearity can manifest in a variety of phenomena. For example, in systems with multiple inputs and outputs, the interdependencies between variables can become intricate, leading to coupling issues. Another frequent challenge is chaotic behavior, where even minor alterations in initial conditions can lead to vastly different outcomes. Addressing these nonlinearities is crucial when managing control tasks, especially in real-world systems.
 
-Gaining proficient control over nonlinear systems has been a primary objective in the field of control theory for a substantial period. Throughout history, control engineers have developed a diverse range of approaches to handle these intricate systems. The advent of robotics in recent times has brought forth new methodologies specifically designed to tackle the challenges posed by nonlinearities.
+Achieving precise control over nonlinear systems has been a primary focus in the field of control theory for a long time. While linear equations can often be solved quickly and analytically, nonlinear equations usually lack closed-form solutions, necessitating the use of approximations and numerical methods. Efficiently and accurately executing these methods is the central challenge of nonlinear control. Throughout history, control engineers have devised a wide range of strategies to manage these complex systems. The rise of robotics in recent decades has introduced new methods tailored to address the challenges presented by nonlinearities.
 
 \section{Motivation}
 Robots, which are programmable mechanical entities, are purposefully designed for autonomous or semi-autonomous task execution, showcasing mobility, manipulation, and interaction with their surroundings.
 
-In the realm of modern robotics, these machines exemplify intricate, highly nonlinear mechanical systems. Some well-known instances include quadruped robotics, autonomous vehicles, quadcopters, and humanoid robots.
+In the realm of modern robotics, these machines exemplify intricate, highly nonlinear mechanical systems. Some well-known instances include quadruped robotics\cite{biswal2021development}, autonomous vehicles\cite{schwarting2018planning}, quadcopters\cite{luukkonen2011modelling}, and humanoid robots\cite{saeedvand2019comprehensive}.
 
-\begin{figure}[!htbp]
-  \centering
-  \begin{minipage}[b]{0.40\textwidth}
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{figures/quadruped.jpg}
-    \caption{Caption for Image 1}
-    \label{fig:image1}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[b]{0.40\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{figures/quadcopter.png}
-    \caption{Caption for Image 2}
-    \label{fig:image2}
-  \end{minipage}
-  
-  \vspace{1em} % Adjust the vertical space between rows
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{figures/quadruped.jpg}
+        \caption{Quadruped}
+        \label{fig:image1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{figures/quadcopter.png}
+        \caption{Quadcopter}
+        \label{fig:image2}
+    \end{subfigure}
 
-  \begin{minipage}[b]{0.40\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{figures/humanoid.jpg}
-    \caption{Caption for Image 3}
-    \label{fig:image3}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[b]{0.40\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{figures/waymo.png}
-    \caption{Caption for Image 4}
-    \label{fig:image4}
-  \end{minipage}
+    \vspace{1em} % or use \bigskip or \medskip depending on the space you want
+
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{figures/humanoid.jpg}
+        \caption{Humanoid}
+        \label{fig:image3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{figures/waymo.png}
+        \caption{Waymo}
+        \label{fig:image4}
+    \end{subfigure}
+    \caption{Four popular highly dynamic and nonlinear systems in the field of robotics}
+    \label{fig:four_images}
 \end{figure}
 
 \subsection{Trajectory planning and tracking}
 To enhance their motion capabilities, reliable nonlinear control methods are essential. Traditionally, for planning complex motion in systems like those mentioned above, a two-step approach is followed, namely trajectory planning and trajectory tracking.
 
-Trajectory planning involves computing a smooth and feasible path that a robot should follow to reach a specific target position or work point. A common method employed is trajectory optimization, aiming to minimize a cost function that factors in travel time, energy consumption, and smoothness of motion. Techniques such as gradient descent or genetic algorithms are often used for this optimization. Adhering to constraints such as maximum velocity and accelerations is crucial during this process.
+Trajectory planning involves computing a smooth and feasible path that a robot should follow to reach a specific target position or work point. A common method employed is trajectory optimization, aiming to minimize a cost function that can factor in travel time, energy consumption, and smoothness of motion. Techniques such as gradient descent or genetic algorithms are often used for this optimization. Adhering to constraints such as maximum velocities and accelerations is crucial during this process.
 
 Once the trajectory is successfully planned, trajectory tracking involves implementing control algorithms to guide the robot along the planned trajectory. Typically, a feedback control approach is utilized, continuously monitoring the robot's position and adjusting control inputs. However, in real-world systems, even with a well-planned trajectory, external disturbances, uncertainties, or system limitations may cause significant deviations. Hence, accurate state estimation and robust control are crucial in the realm of feedback control.
 
 [maybe there a better example is to explain how atlas works]
 In the domain of industrial robot control, it's typical to separate the process into distinct planning and execution phases. This division arises from the fact that real-time responsiveness is not a stringent necessity in this context. When a task is defined, the planning phase kicks in, utilizing algorithms like linear interpolation and A* for trajectory generation. Following this, a steady and reliable control policy is implemented to ensure precise tracking of the generated trajectory during the execution phase.
 
-Yet, in dynamic domains like automotive and flight control, the demand for real-time responsiveness takes center stage. Model Predictive Control (MPC) stands as a prime illustration of this critical requirement. MPC seamlessly integrates trajectory planning and execution into a unified framework. The process commences by projecting a sequence of control actions into the future as part of the planning stage. Subsequently, the calculated control inputs are meticulously fine-tuned to minimize the deviation between the actual system state and the planned trajectory. This strategic implementation effectively guides the system to closely track the intended trajectory.
-
-MPC's brilliance lies in its ability to concurrently devise and optimize trajectories while swiftly adapting in real time to stay closely aligned with the planned trajectory, even when facing various disturbances and uncertainties. This amalgamation plays a pivotal role in achieving precise control and adaptability, especially in rapidly changing and intricate environments.
+Yet, in dynamic domains like automotive and flight control, the demand for real-time responsiveness takes center stage. Model Predictive Control (MPC) stands as a prime illustration of this critical requirement. MPC seamlessly integrates trajectory planning and execution into a unified framework. The process commences by projecting a sequence of control actions into the future as part of the planning stage. Subsequently, the calculated control inputs are meticulously fine-tuned to minimize the deviation between the actual system state and the planned trajectory. This strategic implementation effectively guides the system to closely track the intended trajectory. MPC's brilliance lies in its ability to concurrently devise and optimize trajectories while swiftly adapting in real time to stay closely aligned with the planned trajectory, even when facing various disturbances and uncertainties. This amalgamation plays a pivotal role in achieving precise control and adaptability, especially in rapidly changing and intricate environments.
 
 Though the traditional approach of trajectory generation and tracking has proven effective for many systems, it has the following drawbacks:
 \begin{itemize}
@@ -66,9 +62,6 @@ Though the traditional approach of trajectory generation and tracking has proven
     \item \textbf{Difficulty with Nonlinear Systems:}
     Trajectory planning struggles with highly nonlinear systems where the dynamics are hard to model accurately. Linearizing the system for planning purposes may lead to suboptimal or infeasible trajectories.
     
-    \item \textbf{Static Planning:}
-    Traditional trajectory planning is often static, assuming a stationary environment. It does not readily adapt to changing circumstances or dynamic obstacles, which limits its applicability in real-world scenarios.
-    
     \item \textbf{High Computational Demands:}
     Some trajectory planning algorithms can be computationally intensive, especially for high-dimensional or complex robotic systems. This computational demand becomes a drawback, particularly in real-time or time-critical applications.
 \end{itemize}
@@ -78,7 +71,7 @@ In contrast to trajectory-based control, reinforcement learning (RL)-based contr
 
 \begin{itemize}
     \item \textbf{Adaptability and Flexibility:}
-    RL enables systems to adapt and learn optimal behavior in environments that are dynamic and chaning. The control policy can continuously evolve based on new experiences and acquired knowledge, ensuring adaptability to varying circumstances.
+    RL enables systems to adapt and learn optimal behavior in environments that are dynamic and changing. The control policy can continuously evolve based on new experiences and acquired knowledge, ensuring adaptability to varying circumstances.
     
     \item \textbf{Less Model Information Required:}
     In contrast to traditional control methods that often necessitate a precise mathematical model of the system, RL can directly learn from interactions with the environment without relying on an explicit model. This characteristic is particularly valuable in scenarios where system dynamics are complex or unknown.
@@ -116,7 +109,7 @@ In this paper, our main contribution is as follows: developing an effective cont
 To tackle the swing-up task, we utilized a well-known model-free reinforcement learning algorithm called soft actor-critic. This algorithm allowed us to train a policy capable of reaching the region of attraction (RoA) of a continuous-time linear quadratic regulator (LQR) controller. Once the system enters the RoA, we seamlessly transition to the LQR controller to maintain stability around the highest point.
 
 \section{Content}
-The paper is structured as follows:
+The thesis is structured as follows:
 
 \begin{itemize}
   \item \textbf{Chapter 2: State-of-the-Art}

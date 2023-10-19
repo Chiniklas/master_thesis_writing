@@ -2,15 +2,15 @@
 Our primary goal is to achieve the swing-up movement in the pendubot or acrobot setup and to maintain stability around the highest points. Initial training trials with reinforcement learning have revealed challenges. These include potential entrapment in local minima and difficulty in maintaining stability at the highest point for extended periods. To address these challenges, we adopt two main strategies. For the stabilization issue, we introduce a combined controller. During the swing-up process, an RL-trained agent, using the Soft Actor-Critic—a classic model-free reinforcement learning algorithm—assumes control based on its learned policies. Yet, as the system nears the maximum point, a seamless transition takes place. This shift allows a continuous-time LQR controller to take over, ensuring the final stabilization required to maintain stability at the highest point.
 
 \section{Soft actor critic}
-Within the landscape of reinforcement learning, the Soft Actor Critic (SAC) stands out as an algorithm specifically designed for environments with continuous action spaces. Such environments, exemplified by our double pendulum system where actuators can be adjusted to any value within the torque limit range, influenced our decision to adopt SAC.
+Within the landscape of reinforcement learning, the Soft Actor Critic (SAC)\cite{haarnoja2018soft} stands out as an algorithm specifically designed for environments with continuous state and action spaces. Such environments, exemplified by our double pendulum system where actuators can be adjusted to any value within the torque limit range, and state measurement can take any real number, influenced our decision to adopt SAC.
 
-Like many other deep reinforcement learning algorithms, SAC optimizes a policy by maximizing the expected cumulative reward the agent obtains over time. This optimization is primarily achieved through an actor-critic structure.
+Like many other deep reinforcement learning algorithms, SAC optimizes a policy by maximizing the expected cumulative reward the agent obtains over time. This optimization is primarily achieved through an actor-critic structure\cite{konda1999actor}.
 
 The actor determines the best actions by interpreting the current environmental conditions and adhering to the existing policy. Typically, the actor is visualized as a shallow neural network that approximates the mapping between the input state and the output probability distribution over actions. Furthermore, SAC incorporates a stochastic policy within its actor, which fosters exploration and aids the agent in refining its policies.
 
 On the other hand, the critic evaluates the value of state-action pairs. It estimates the expected cumulative reward the agent can achieve by following a particular policy. More often than not, the critic is depicted as a neural network that processes state-action pairs as inputs to yield the estimated value.
 
-A distinguishing feature of SAC, besides the actor-critic framework, is entropy regularization. SAC utilizes a stochastic policy. This means that instead of always settling on a single best action for each state, the agent considers a probability distribution over potential actions. The incorporation of entropy in SAC aims to encourage exploration: high entropy signifies a more uniform distribution, implying the agent's uncertainty and tendency to explore diverse actions, while low entropy points to a concentrated distribution, suggesting the agent's confidence in a specific action. By definition, entropy quantifies randomness. Within SAC, it captures the unpredictability of the policy's action distribution. If
+A distinguishing feature of SAC, besides the actor-critic framework, is entropy regularization\cite{achiam2018spinning}. SAC utilizes a stochastic policy. This means that instead of always settling on a single best action for each state, the agent considers a probability distribution over potential actions. The incorporation of entropy in SAC aims to encourage exploration: high entropy signifies a more uniform distribution, implying the agent's uncertainty and tendency to explore diverse actions, while low entropy points to a concentrated distribution, suggesting the agent's confidence in a specific action. By definition, entropy quantifies randomness. Within SAC, it captures the unpredictability of the policy's action distribution. If
 \(x\) is a random variable with a probability density function \(P\), the
 entropy \(H\) of \(x\) is defined as:
 
@@ -68,7 +68,7 @@ it a well-suited algorithm for addressing the challenges posed by continuous
 state and action spaces.
 
 \section{Linear quadratic regulator}
-The Linear Quadratic Regulator (LQR) is an effective control method primarily designed for linear systems. Yet, when dealing with nonlinear dynamics, it remains applicable.The nonlinear system is linearized around a selected operating point, and based on this linearized version, the LQR controller can be sculpted.
+The Linear Quadratic Regulator (LQR)\cite{lehtomaki1981robustness} is an effective control method primarily designed for linear systems. Yet, when dealing with nonlinear dynamics, it remains applicable.The nonlinear system is linearized around a selected operating point, and based on this linearized version, the LQR controller can be sculpted.
 
 Taking a step back, the general form of a nonlinear system can be expressed as:
 \begin{equation}
@@ -112,7 +112,7 @@ For an infinite-horizon LQR controller like this, torques will always be applied
 
 
 \section{Combining SAC and LQR with region of attraction}
-In our approach, we employ a combined control method for both the swing-up and stabilization tasks. During the swing-up phase, we utilize the SAC controller. Once the state of the double pendulum approaches the vicinity of the desired goal state, we transition from the SAC controller to the LQR controller for final-stage stabilization. A vital aspect of any combined control strategy is determining the conditions under which the system is primed for a transition between control methods. In our SAC+LQR control strategy, the region of attraction method serves as the criterion for making this determination.
+In our approach, we employ a combined control method for both the swing-up and stabilization tasks. During the swing-up phase, we utilize the SAC controller. Once the state of the double pendulum approaches the vicinity of the desired goal state, we transition from the SAC controller to the LQR controller for final-stage stabilization. A vital aspect of any combined control strategy is determining the conditions under which the system is primed for a transition between control methods. In our SAC+LQR control strategy, the region of attraction method\cite{maywald2022co} serves as the criterion for making this determination.
 
 The region of attraction (ROA) for a nonlinear system, represented by \(R_a\), signifies the set \(\mathcal{B}\) of initial states surrounding a fixed point \(x_0\). If a state lies within this region, the system will gravitate towards \(x_0\) as \(t \rightarrow \infty\). In the context of an LQR controller, the ROA demarcates the area within the state space where the controlled system exhibits asymptotic stability. For complex systems, directly computing \(R_a\) can be challenging; it is often estimated instead. Therefore, analyzing the stability of the controlled system within this region becomes crucial. The state space representation of a controlled linear system can be expressed as:
 
@@ -124,15 +124,15 @@ where \(A_c = A - BK\).
 
 The most straightforward way to analyze the stability of a system is using the Lyapunov method. We choose a Lyapunov function in a quadratic form:
 \begin{equation}
-  V(\bar{x}) = \bar{x}^T S \bar{x} 
+  V(\bar{x}) = \bar{x}^T S_{LQR} \bar{x} 
 \end{equation}
 
-where \(S\) is a positive definite matrix. This function serves as an "energy-like" metric, and our goal is to demonstrate its decrease over time for a stable system.
+where \(S_{LQR}\) is a positive definite matrix. This function serves as an "energy-like" metric, and our goal is to demonstrate its decrease over time for a stable system.
 
-Next, we compute the time derivative of the Lyapunov function. For the infinite horizon LQR, \(\frac{\partial S}{\partial t} = 0\) and \(\frac{\partial x_0}{\partial t} = 0\), hence \(\dot{V}\) is:
+Next, we compute the time derivative of the Lyapunov function. For the infinite horizon LQR, \(\frac{\partial S_{LQR}}{\partial t} = 0\) and \(\frac{\partial x_0}{\partial t} = 0\), hence \(\dot{V}\) is:
 
 \begin{equation}
-\dot{V}(\overline{x}) = 2\overline{x}^{T}S\dot{\overline{x}}
+\dot{V}(\overline{x}) = 2\overline{x}^{T}S_{LQR}\dot{\overline{x}}
 \end{equation}
 
 For the system to be asymptotically stable at the equilibrium \(x_{op}\), we require the system to satisfy the Lyapunov conditions:
@@ -149,20 +149,19 @@ To construct an optimizable region of attraction, we define an upper bound \(\rh
 \begin{equation}
 \begin{cases}
     \mathcal{B} = \{ x \mid 0 < V(x) < \rho \} \\
-    \dot{V}(x) = 2\bar{x}^T S \dot{\bar{x}} < 0
+    \dot{V}(x) = 2\bar{x}^T S_{LQR} \dot{\bar{x}} < 0
 \end{cases}
 \end{equation}
 
-Using the algorithm mentioned in [some paper], an inner approximation of the RoA is achieved by randomly chosing initial states sampled from a successively shrinking estimate \(\mathcal{B}\). Consequently, the resulting shape of the ROA in a 4D state space resembles an ellipsoid.
-
-
-
+We computed the RoA similar to\cite{maywald2022co} but with a sums of squares method\cite{tedrake2010lqr}.  Consequently, the resulting shape of the ROA in a 4D state space resembles an ellipsoid.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.6\textwidth]{example-image.png} % Adjust the width as needed
+    \includegraphics[width=0.6\textwidth]{figures/methodology/roaplot.png} % Adjust the width as needed
     \caption{Region of Attraction}
     \label{fig:example}
 \end{figure}
+
+Once the RoA is computed, it can be checked whether a state \(x\) belongs to the estimated RoA of the LQR controller by calculating the cost-to-go of the LQR controller with the matrix \(S_{LQR}\) and comparing it with the scalar \(\rho\).
 
 \section{Reward shaping}
 In theory, the reward function is designed to guide the agent's behavior towards achieving stability around the system's goal point. However, initial training attempts have revealed challenges. For instance, the agent might get stuck in a local minimum for an extended period, fail to perform a swing-up, or be unable to maintain stability around the upright position for a prolonged duration. The stabilization problem is addressed by the LQR controller and its region of attraction, which guarantees asymptotic stability. To tackle the swing-up issue, we designed a customized three-stage reward function to steer the agent away from problematic local minima and into the region of attraction of the LQR controller. The full equation for this reward function is:

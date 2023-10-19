@@ -74,21 +74,19 @@ babel, % deutsche Sonderzeichen
 ]{csquotes} % Bilbliographiestil
 
 \usepackage[%
-	style=authoryear-icomp, % Zitierstil
-	dashed=false, % kein Gruppieren der Autoren im Verzeichnis
-	doi=true,  % DOI soll angegeben werden oder nicht
-	maxcitenames=2, % Zeige max. 2 Autoren im Zitat
-	mincitenames=1, % Zeige mind. 1 Autor im Zitat
-	maxbibnames=8, % Zeige bis zu acht Autoren im Verzeichnis
-	minbibnames=8, % Zeige bis zu acht Autoren im Verzeichnis
-	uniquelist=false, % Erstellt auch gleich aussehende Einträge zu verschiedenen Werken
-	isbn=false, % ISBN soll nicht angegeben werden
-	giveninits=true, % Vornamen sollen abgekürzt werden (falls in Datei noch nicht abgekürzt)
-	backend=biber, % ausführender Compiler (falls biber muss in der Editorkonfiguration auch biber als Erzeuger ausgewählt werden)
-%	backref=true, % Literaturverzeichnis verweist auf die referenzierten Textstellen in DIESER Arbeit
-	backrefstyle=all+, % Kompaktere Darstellung für backref
-]{biblatex} % Bibliographiepaket
-
+    style=numeric, % Citation style
+    doi=true,  
+    maxcitenames=2, 
+    mincitenames=1, 
+    maxbibnames=8, 
+    minbibnames=8, 
+    uniquelist=false, 
+    isbn=false, 
+    giveninits=true,
+    backend=biber,
+    % backref=true, 
+    backrefstyle=all+,
+]{biblatex}
 
 \usepackage[%
 autooneside=false,	% ???
