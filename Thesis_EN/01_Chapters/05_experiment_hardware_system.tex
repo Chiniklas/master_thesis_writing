@@ -204,15 +204,20 @@ As shown in the figure below, a trained pendubot agent successfully executed a s
 \end{figure}
 
 \subsection{Training with domain randomization}
-Hope we have a good result.
+Domain randomization[some paper] is a classic technique used to bridge the gap between simulation and reality. Its primary goal is to allow a model, when generalized in a simulated environment, to perform effectively in real-world scenarios without needing labeled real-world training data.
 
+The concept of domain randomization originates from the field of computer vision. Instead of training a model in a single, fixed simulation, the model is exposed to a more varied and noisy environment by introducing random variations to the ideal simulation. Techniques commonly employed in vision-based systems include changing the colors and textures of objects, modifying the lighting conditions, adjusting object shapes and sizes, introducing random noise to sensor data, and perturbing physical properties like friction or mass.
+
+In our effort to apply domain randomization to robotic manipulation tasks, we opted to introduce random measurement noise to both position and velocity and to introduce perturbations to model parameters. These perturbations are considered independent of one another and follow a normal distribution. The mean of this distribution is the true value, and there's a tunable standard deviation.
+
+[results and more explanation]
 
 \section{Real hardware results}
 In this section, we present the results from the real hardware tests. Only agents trained for the pendubot setup successfully passed the noisy simulation check, so results are limited to this setup. 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/double_pendulum_real_system.png}
+    \includegraphics[width=0.45\textwidth]{figures/double_pendulum_real_system.png}
     \caption{Double pendulum in real system}
     \label{fig:image_b}
 \end{figure}
@@ -221,11 +226,10 @@ The complete real-world test procedure is as follows: power up, manually set the
 
 \begin{figure}[H]
     \centering
-    \fbox{\includegraphics[width=0.7\textwidth]{example-image}} % Second image
+    \includegraphics[width=0.9\textwidth]{figures/hardware_setup/testing_procedure.png}% Second image
     \caption{Real hardware system testing procedure}
     \label{fig:image_b}
 \end{figure}
-
 A remote testing system has been established to allow global access and sharing of our double pendulum testing hardware. This infrastructure was developed for the IJCAI 2023 competition, RealAIGym. Several groups have tested their algorithms on this remote system, including teams from the University of Padova and the Technical University of Darmstadt.
 
 \subsection{Pendubot results}

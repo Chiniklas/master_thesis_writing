@@ -170,6 +170,65 @@
       \field{pages}{1861\bibrangedash 1870}
       \range{pages}{10}
     \endentry
+    \entry{hwangbo2019learning}{article}{}
+      \name{author}{7}{}{%
+        {{hash=8c6a64beba14091eba8c78ac2e5d2a2b}{%
+           family={Hwangbo},
+           familyi={H\bibinitperiod},
+           given={Jemin},
+           giveni={J\bibinitperiod}}}%
+        {{hash=d333f9325f8f60f584e433bef783b3b3}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Joonho},
+           giveni={J\bibinitperiod}}}%
+        {{hash=72308762399d6ab62bbd9391c64c7bfd}{%
+           family={Dosovitskiy},
+           familyi={D\bibinitperiod},
+           given={Alexey},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a550a75bddbfd180b87e643700015d08}{%
+           family={Bellicoso},
+           familyi={B\bibinitperiod},
+           given={Dario},
+           giveni={D\bibinitperiod}}}%
+        {{hash=8365fb13ef3d3614cbb5c649c02da065}{%
+           family={Tsounis},
+           familyi={T\bibinitperiod},
+           given={Vassilios},
+           giveni={V\bibinitperiod}}}%
+        {{hash=9025300f43a193cfed8e10e924f2a117}{%
+           family={Koltun},
+           familyi={K\bibinitperiod},
+           given={Vladlen},
+           giveni={V\bibinitperiod}}}%
+        {{hash=164607f9daa616a03bed0e2bf6531a8d}{%
+           family={Hutter},
+           familyi={H\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Association for the Advancement of Science}%
+      }
+      \strng{namehash}{52f08f096d39a43921ba8b33dd0be677}
+      \strng{fullhash}{5d0a085626c1bf618a65aee4f4d71fdf}
+      \strng{bibnamehash}{5d0a085626c1bf618a65aee4f4d71fdf}
+      \strng{authorbibnamehash}{5d0a085626c1bf618a65aee4f4d71fdf}
+      \strng{authornamehash}{52f08f096d39a43921ba8b33dd0be677}
+      \strng{authorfullhash}{5d0a085626c1bf618a65aee4f4d71fdf}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Science Robotics}
+      \field{number}{26}
+      \field{title}{Learning agile and dynamic motor skills for legged robots}
+      \field{volume}{4}
+      \field{year}{2019}
+      \field{pages}{eaau5872}
+      \range{pages}{-1}
+    \endentry
     \entry{konda1999actor}{article}{}
       \name{author}{2}{}{%
         {{hash=78a8e5a461c3029ed45a351a0a6efff0}{%
@@ -379,6 +438,50 @@
       \field{year}{2022}
       \field{pages}{2636\bibrangedash 2641}
       \range{pages}{6}
+    \endentry
+    \entry{peng2018deepmimic}{article}{}
+      \name{author}{4}{}{%
+        {{hash=eaf6d025c486d283ccc7c617f05b7214}{%
+           family={Peng},
+           familyi={P\bibinitperiod},
+           given={Xue\bibnamedelima Bin},
+           giveni={X\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=e28d4ee199593959d8c29980a64f1974}{%
+           family={Abbeel},
+           familyi={A\bibinitperiod},
+           given={Pieter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=c9545da54b33744da25943cdf66eadac}{%
+           family={Levine},
+           familyi={L\bibinitperiod},
+           given={Sergey},
+           giveni={S\bibinitperiod}}}%
+        {{hash=625047e6bbadc6d0c1973ce2b6d8b156}{%
+           family={Van\bibnamedelimb de\bibnamedelima Panne},
+           familyi={V\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim P\bibinitperiod},
+           given={Michiel},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACM New York, NY, USA}%
+      }
+      \strng{namehash}{72c11efbedbafc36dc5f89b1e53e79bf}
+      \strng{fullhash}{cbe1df7de24f5412838be25f9faba16d}
+      \strng{bibnamehash}{cbe1df7de24f5412838be25f9faba16d}
+      \strng{authorbibnamehash}{cbe1df7de24f5412838be25f9faba16d}
+      \strng{authornamehash}{72c11efbedbafc36dc5f89b1e53e79bf}
+      \strng{authorfullhash}{cbe1df7de24f5412838be25f9faba16d}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ACM Transactions On Graphics (TOG)}
+      \field{number}{4}
+      \field{title}{Deepmimic: Example-guided deep reinforcement learning of physics-based character skills}
+      \field{volume}{37}
+      \field{year}{2018}
+      \field{pages}{1\bibrangedash 14}
+      \range{pages}{14}
     \endentry
     \entry{stable-baselines3}{article}{}
       \name{author}{6}{}{%

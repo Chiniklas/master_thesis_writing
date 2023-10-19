@@ -1,8 +1,8 @@
 \chapter{State of the art}
-This chapter is about the state of the art.
+In this chapter, we will explore the state of the art. In the first section, we delve into the definition of an underactuated system and examine the basic dynamics of a double pendulum system. In the second section, we will review some of the most renowned works related to learning-based control in the field of robotics.
 
 \section{Theory}
-This section is about the theory, for example dynamics and underactuated control.
+In this section, we will address the fundamental question: What is an underactuated system? Additionally, we will explore the dynamics of the double pendulum, a renowned example of a nonlinear and chaotic system, and express its behavior in mathematical form.
 
 \subsection{Underactuated system}
 According to Newtons second law(\( F = ma \)), The dynamics of mechanical systems can be discribed as follows:
@@ -205,14 +205,10 @@ The generalized coordinates \( \mathbf{q} =(q_1,q_2)^T \) are the joint angles m
     for the fully actuated system, the pendubot or the acrobot.
 
 \section{Related work}
-In this section, we want to introduce the methods of underactuated control and the works related.
-
 Extensive research has been conducted on complex robotic motion control, with learning-based methods gaining widespread adoption in recent times. 
 
-A notable example is the classical control module within the Gymnasium environment, a well-known reinforcement learning framework developed by OpenAI. This module serves as an ideal platform for exploring and evaluating new motion control algorithms. 
+A noteworthy achievement in the field is the DeepMimic project\cite{peng2018deepmimic}. Through imitation learning within a simulated environment, this project has enabled robots to acquire intricate human movements, including backflips and martial arts maneuvers. 
 
-Another noteworthy achievement in the field is the DeepMimic project [2]. Through imitation learning within a simulated environment, this project has enabled robots to acquire intricate human movements, including backflips and martial arts maneuvers. 
-
-Additionally, a research team from ETH Zurich has made significant progress in addressing the sim-to-real interface challenge [3]. Their methodology involves training a control model for a mini-cheetah-like robot within a simulation environment. By utilizing a neural network and leveraging data collected from the real robot, they approximated the dynamics model of the physical robot. This approach has facilitated accurate implementation of the control policy derived from the virtual environment onto the real robot. These exemplary works demonstrate the promising applications of learning-based approaches in various aspects of robot control.
+Additionally, a research team from ETH Zurich has made significant progress in addressing the sim-to-real interface challenge \cite{hwangbo2019learning}. Their methodology involves training a control model for a mini-cheetah-like robot within a simulation environment. By utilizing a neural network and leveraging data collected from the real robot, they approximated the dynamics model of the physical robot. This approach has facilitated accurate implementation of the control policy derived from the virtual environment onto the real robot. These exemplary works demonstrate the promising applications of learning-based approaches in various aspects of robot control.
 
 \cleardoublepage

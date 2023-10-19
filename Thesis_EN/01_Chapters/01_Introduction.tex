@@ -91,11 +91,18 @@ Within the realm of nonlinear systems, a particularly challenging class is under
 
 The double pendulum, a simple setup comprising two links connected by two rotational joints, is a prime example. The joints involved are the shoulder joint, directly connected to the world frame, and the elbow joint, situated between the two links. The end effector is positioned at the tip of the second link. Active control is achieved by attaching motors to the shoulder and elbow joints. In the domain of underactuated control, if the shoulder joint is actuated, the setup is known as a pendubot. On the other hand, if the elbow joint is actuated, it's referred to as an acrobot.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{example-image} % Replace "example-image" with the actual image file name and path
-  \caption{This is a sample image.}
-  \label{fig:sample}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.2\textwidth}
+        \includegraphics[width=\textwidth]{figures/pendubot_explained.png}
+        \caption{Pendubot setup}
+    \end{subfigure}
+%     \hfill
+    \begin{subfigure}[b]{0.2\textwidth}
+        \includegraphics[width=\textwidth]{figures/Acrobot_explained.png}
+        \caption{Acrobot setup}
+    \end{subfigure}
+    \caption{Two variations of underactuated double pendulum}
 \end{figure}
 
 Despite its simple configuration, the system exhibits highly nonlinear and chaotic behavior. The double pendulum setup presents two classic tasks: swing-up and stabilization around the highest point. Research on swing-up and stabilization of the double pendulum can be traced back to the 1990s, and it continues to be a crucial testbed for validating the effectiveness of newly designed control algorithms.

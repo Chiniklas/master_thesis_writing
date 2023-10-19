@@ -16,19 +16,19 @@
 \contentsline {section}{\numberline {3.2}Linear quadratic regulator}{17}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Combining SAC and LQR with region of attraction}{18}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Reward shaping}{20}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Experiment: agent training and simulation}{23}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Training setup}{23}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Training phase}{26}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Simulation results}{29}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Pendubot simulation in ideal environment}{29}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Acrobot simulation in ideal environment}{30}{subsection.4.3.2}%
+\contentsline {chapter}{\numberline {4}Experiment: agent training and simulation}{25}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Training setup}{25}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Training phase}{27}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Simulation results}{30}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Pendubot simulation in ideal environment}{30}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Acrobot simulation in ideal environment}{31}{subsection.4.3.2}%
 \contentsline {chapter}{\numberline {5}Experiment: hardware system}{33}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Hardware setup}{33}{section.5.1}%
 \contentsline {section}{\numberline {5.2}System identification}{39}{section.5.2}%
 \contentsline {section}{\numberline {5.3}Sim2Real problem}{40}{section.5.3}%
 \contentsline {subsection}{\numberline {5.3.1}Validation with noisy simulation}{41}{subsection.5.3.1}%
 \contentsline {subsection}{\numberline {5.3.2}Training with domain randomization}{43}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}Real hardware results}{43}{section.5.4}%
+\contentsline {section}{\numberline {5.4}Real hardware results}{44}{section.5.4}%
 \contentsline {subsection}{\numberline {5.4.1}Pendubot results}{45}{subsection.5.4.1}%
 \contentsline {subsection}{\numberline {5.4.2}acrobot results}{46}{subsection.5.4.2}%
 \contentsline {chapter}{\numberline {6}Discussion}{47}{chapter.6}%
@@ -39,7 +39,7 @@
 \contentsline {section}{\numberline {6.3}Interpretation of robust leaderboard}{52}{section.6.3}%
 \contentsline {section}{\numberline {6.4}Interpretation of real system leaderboard}{52}{section.6.4}%
 \contentsline {section}{\numberline {6.5}Conclusion and future work}{53}{section.6.5}%
-\contentsline {chapter}{\nonumberline Bibliography}{55}{chapter*.30}%
-\contentsline {chapter}{Appendix}{57}{section*.31}%
+\contentsline {chapter}{\nonumberline Bibliography}{55}{chapter*.31}%
+\contentsline {chapter}{Appendix}{57}{section*.32}%
 \contentsline {chapter}{Appendix \numberline {A}An appendix}{58}{appendix.a.A}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

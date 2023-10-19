@@ -1,5 +1,7 @@
 \chapter{Methodology}
-Our primary goal is to achieve the swing-up movement in the pendubot or acrobot setup and to maintain stability around the highest points. Initial training trials with reinforcement learning have revealed challenges. These include potential entrapment in local minima and difficulty in maintaining stability at the highest point for extended periods. To address these challenges, we adopt two main strategies. For the stabilization issue, we introduce a combined controller. During the swing-up process, an RL-trained agent, using the Soft Actor-Critic—a classic model-free reinforcement learning algorithm—assumes control based on its learned policies. Yet, as the system nears the maximum point, a seamless transition takes place. This shift allows a continuous-time LQR controller to take over, ensuring the final stabilization required to maintain stability at the highest point.
+Our primary goal is to achieve the swing-up movement in the pendubot or acrobot setup and to maintain stability around the highest points. Initial training trials with reinforcement learning have revealed challenges. These include potential entrapment in local minima and difficulty in maintaining stability at the highest point for extended periods. 
+
+To address these challenges, we adopt two main strategies. For the stabilization issue, we introduce a combined controller. During the swing-up process, an RL-trained agent, using the Soft Actor-Critic—a classic model-free reinforcement learning algorithm—assumes control based on its learned policies. Yet, as the system nears the maximum point, a seamless transition takes place. This shift allows a continuous-time LQR controller to take over, ensuring the final stabilization required to maintain stability at the highest point.
 
 \section{Soft actor critic}
 Within the landscape of reinforcement learning, the Soft Actor Critic (SAC)\cite{haarnoja2018soft} stands out as an algorithm specifically designed for environments with continuous state and action spaces. Such environments, exemplified by our double pendulum system where actuators can be adjusted to any value within the torque limit range, and state measurement can take any real number, influenced our decision to adopt SAC.
@@ -198,6 +200,13 @@ diagonal matrix, while \(R_{train}\) is a scalar. This is due to the nature
 of underactuated control in the double pendulum system, where only a single
 control input is available.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.25\textwidth]{figures/methodology/stage1.png} % Adjust the width as desired
+    \caption{Swing up stage 1}
+    \label{fig:my_image_label} % Optional label for referencing
+\end{figure}
+
 As the end effector reaches a threshold line \(h_{line} = 0.8(l_1+l_2)\), we
 introduce a second level of reward \(r_{line}\). The end effector height is
 given by
@@ -216,6 +225,13 @@ This penalty effectively compels the agent to approach the maximum point while
 adhering to the predefined speed interval. The speed penalty was only needed for
 the acrobot.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.25\textwidth]{figures/methodology/stage2.png} % Adjust the width as desired
+    \caption{Swing up stage 2}
+    \label{fig:my_image_label} % Optional label for referencing
+\end{figure}
+
 The third level of reward $r_{LQR}$ aims to provide a substantial reward to the
 agent when it remains within the Region of Attraction (RoA) of the LQR
 controller. By this we want to achieve that the policy learns to enter the LQR
@@ -229,26 +245,11 @@ it can be checked whether a state $x$ belongs to the estimated RoA of the LQR
 controller by calculating the cost-to-go of the LQR controller with the matrix
 $S_{LQR}$ and comparing it with the scalar $\rho$.
 
-\begin{figure}[htb!]
+\begin{figure}[H]
     \centering
-    \begin{subfigure}{.3\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{example-image-a}
-        \caption{First image caption}
-    \end{subfigure}%
-    \hfill % Horizontal fill to ensure there's no unwanted space
-    \begin{subfigure}{.3\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{example-image-b}
-        \caption{Second image caption}
-    \end{subfigure}%
-    \hfill
-    \begin{subfigure}{.3\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{example-image-c}
-        \caption{Third image caption}
-    \end{subfigure}
-    \caption{Overall caption for all images}
+    \includegraphics[width=0.25\textwidth]{figures/methodology/stage3.png} % Adjust the width as desired
+    \caption{Swing up stage 3}
+    \label{fig:my_image_label} % Optional label for referencing
 \end{figure}
 
 \cleardoublepage
