@@ -40,6 +40,84 @@
       \field{title}{Spinning up in deep reinforcement learning}
       \field{year}{2018}
     \endentry
+    \entry{aguilar2010direct}{article}{}
+      \name{author}{3}{}{%
+        {{hash=20a55c588ed5b8e98c198dc230bf26dd}{%
+           family={Aguilar-Ibañez},
+           familyi={A\bibinithyphendelim I\bibinitperiod},
+           given={Carlos},
+           giveni={C\bibinitperiod}}}%
+        {{hash=75f62d09966b1ce59ba38d709d265e99}{%
+           family={Suárez-Castañón},
+           familyi={S\bibinithyphendelim C\bibinitperiod},
+           given={Miguel\bibnamedelima S},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=1e5981e06c89d1dabcbae05a873efa06}{%
+           family={Gutiérres-Frias},
+           familyi={G\bibinithyphendelim F\bibinitperiod},
+           given={Oscar\bibnamedelima O},
+           giveni={O\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor \& Francis}%
+      }
+      \strng{namehash}{9c094d7253a4e73888ef62bd173efa54}
+      \strng{fullhash}{f3d1b6636a53b6861050703d8c518ac8}
+      \strng{bibnamehash}{f3d1b6636a53b6861050703d8c518ac8}
+      \strng{authorbibnamehash}{f3d1b6636a53b6861050703d8c518ac8}
+      \strng{authornamehash}{9c094d7253a4e73888ef62bd173efa54}
+      \strng{authorfullhash}{f3d1b6636a53b6861050703d8c518ac8}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Control}
+      \field{number}{11}
+      \field{title}{The direct Lyapunov method for the stabilisation of the Furuta pendulum}
+      \field{volume}{83}
+      \field{year}{2010}
+      \field{pages}{2285\bibrangedash 2293}
+      \range{pages}{9}
+    \endentry
+    \entry{albahkali2009swing}{article}{}
+      \name{author}{3}{}{%
+        {{hash=0d8725244241bd6af5f0c7e04ae83b57}{%
+           family={Albahkali},
+           familyi={A\bibinitperiod},
+           given={Thamer},
+           giveni={T\bibinitperiod}}}%
+        {{hash=6bcf2cadd25d9b14594122e0f49e7b69}{%
+           family={Mukherjee},
+           familyi={M\bibinitperiod},
+           given={Ranjan},
+           giveni={R\bibinitperiod}}}%
+        {{hash=1f1d27ae2d0c841ddcc95e7ad5a0f71f}{%
+           family={Das},
+           familyi={D\bibinitperiod},
+           given={Tuhin},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{91c3245c7b2daf7827120975d54b80ac}
+      \strng{fullhash}{56d56511b83c072e7b4e734de66220e6}
+      \strng{bibnamehash}{56d56511b83c072e7b4e734de66220e6}
+      \strng{authorbibnamehash}{56d56511b83c072e7b4e734de66220e6}
+      \strng{authornamehash}{91c3245c7b2daf7827120975d54b80ac}
+      \strng{authorfullhash}{56d56511b83c072e7b4e734de66220e6}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Robotics}
+      \field{number}{4}
+      \field{title}{Swing-up control of the pendubot: an impulse--momentum approach}
+      \field{volume}{25}
+      \field{year}{2009}
+      \field{pages}{975\bibrangedash 982}
+      \range{pages}{8}
+    \endentry
     \entry{amadio2022model}{article}{}
       \name{author}{6}{}{%
         {{hash=f6f15a0062316e15088d1743e193a983}{%
@@ -94,6 +172,122 @@
       \field{pages}{3879\bibrangedash 3898}
       \range{pages}{20}
     \endentry
+    \entry{ba2016layer}{article}{}
+      \name{author}{3}{}{%
+        {{hash=750bb29ebaf655e36626e464041edb6d}{%
+           family={Ba},
+           familyi={B\bibinitperiod},
+           given={Jimmy\bibnamedelima Lei},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=9ce51427604561924b91aa544c9c1b2a}{%
+           family={Kiros},
+           familyi={K\bibinitperiod},
+           given={Jamie\bibnamedelima Ryan},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=813bd95fe553e6079cd53a567b238287}{%
+           family={Hinton},
+           familyi={H\bibinitperiod},
+           given={Geoffrey\bibnamedelima E},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{5c9d3265b5af8088b0bec9949217b6eb}
+      \strng{fullhash}{059348b2d0b3fe9a67209502c14057d1}
+      \strng{bibnamehash}{059348b2d0b3fe9a67209502c14057d1}
+      \strng{authorbibnamehash}{059348b2d0b3fe9a67209502c14057d1}
+      \strng{authornamehash}{5c9d3265b5af8088b0bec9949217b6eb}
+      \strng{authorfullhash}{059348b2d0b3fe9a67209502c14057d1}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1607.06450}
+      \field{title}{Layer normalization}
+      \field{year}{2016}
+    \endentry
+    \entry{betts1998survey}{article}{}
+      \name{author}{1}{}{%
+        {{hash=d33f4fc7f2b9d843e34173b1f8f1fe86}{%
+           family={Betts},
+           familyi={B\bibinitperiod},
+           given={John\bibnamedelima T},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \strng{namehash}{d33f4fc7f2b9d843e34173b1f8f1fe86}
+      \strng{fullhash}{d33f4fc7f2b9d843e34173b1f8f1fe86}
+      \strng{bibnamehash}{d33f4fc7f2b9d843e34173b1f8f1fe86}
+      \strng{authorbibnamehash}{d33f4fc7f2b9d843e34173b1f8f1fe86}
+      \strng{authornamehash}{d33f4fc7f2b9d843e34173b1f8f1fe86}
+      \strng{authorfullhash}{d33f4fc7f2b9d843e34173b1f8f1fe86}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of guidance, control, and dynamics}
+      \field{number}{2}
+      \field{title}{Survey of numerical methods for trajectory optimization}
+      \field{volume}{21}
+      \field{year}{1998}
+      \field{pages}{193\bibrangedash 207}
+      \range{pages}{15}
+    \endentry
+    \entry{biagiotti2008trajectory}{book}{}
+      \name{author}{2}{}{%
+        {{hash=19f06cd7f0aa050f4be4280dcc9b8c8c}{%
+           family={Biagiotti},
+           familyi={B\bibinitperiod},
+           given={Luigi},
+           giveni={L\bibinitperiod}}}%
+        {{hash=580ae604502d9ceaecb55ba8183987e0}{%
+           family={Melchiorri},
+           familyi={M\bibinitperiod},
+           given={Claudio},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Science \& Business Media}%
+      }
+      \strng{namehash}{62caec430059b4372692bb48cc0aac88}
+      \strng{fullhash}{62caec430059b4372692bb48cc0aac88}
+      \strng{bibnamehash}{62caec430059b4372692bb48cc0aac88}
+      \strng{authorbibnamehash}{62caec430059b4372692bb48cc0aac88}
+      \strng{authornamehash}{62caec430059b4372692bb48cc0aac88}
+      \strng{authorfullhash}{62caec430059b4372692bb48cc0aac88}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Trajectory planning for automatic machines and robots}
+      \field{year}{2008}
+    \endentry
+    \entry{bickley1968piecewise}{article}{}
+      \name{author}{1}{}{%
+        {{hash=d88dd6d8fd1a52026750f8265755c534}{%
+           family={Bickley},
+           familyi={B\bibinitperiod},
+           given={WG},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {The British Computer Society}%
+      }
+      \strng{namehash}{d88dd6d8fd1a52026750f8265755c534}
+      \strng{fullhash}{d88dd6d8fd1a52026750f8265755c534}
+      \strng{bibnamehash}{d88dd6d8fd1a52026750f8265755c534}
+      \strng{authorbibnamehash}{d88dd6d8fd1a52026750f8265755c534}
+      \strng{authornamehash}{d88dd6d8fd1a52026750f8265755c534}
+      \strng{authorfullhash}{d88dd6d8fd1a52026750f8265755c534}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The computer journal}
+      \field{number}{2}
+      \field{title}{Piecewise cubic interpolation and two-point boundary problems}
+      \field{volume}{11}
+      \field{year}{1968}
+      \field{pages}{206\bibrangedash 208}
+      \range{pages}{3}
+    \endentry
     \entry{biswal2021development}{article}{}
       \name{author}{2}{}{%
         {{hash=e10bf135f5a51769d250c4c2160f7e1d}{%
@@ -127,6 +321,256 @@
       \field{year}{2021}
       \field{pages}{2017\bibrangedash 2031}
       \range{pages}{15}
+    \endentry
+    \entry{bogdanov2004optimal}{article}{}
+      \name{author}{1}{}{%
+        {{hash=b6f0e57a5fa11c8925b2e1d6a4a3c3a9}{%
+           family={Bogdanov},
+           familyi={B\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{b6f0e57a5fa11c8925b2e1d6a4a3c3a9}
+      \strng{fullhash}{b6f0e57a5fa11c8925b2e1d6a4a3c3a9}
+      \strng{bibnamehash}{b6f0e57a5fa11c8925b2e1d6a4a3c3a9}
+      \strng{authorbibnamehash}{b6f0e57a5fa11c8925b2e1d6a4a3c3a9}
+      \strng{authornamehash}{b6f0e57a5fa11c8925b2e1d6a4a3c3a9}
+      \strng{authorfullhash}{b6f0e57a5fa11c8925b2e1d6a4a3c3a9}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Oregon Health and Science University, Tech. Rep. CSE-04-006, OGI School of Science and Engineering, Beaverton, OR}
+      \field{title}{Optimal control of a double inverted pendulum on a cart}
+      \field{year}{2004}
+    \endentry
+    \entry{cazzolato2011dynamics}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{2}{}{%
+        {{hash=50d5783c0e53d5e613e339bb7b986a4d}{%
+           family={Cazzolato},
+           familyi={C\bibinitperiod},
+           given={Benjamin\bibnamedelima Seth},
+           giveni={B\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=033dfa644c123b0482c4b852db662c24}{%
+           family={Prime},
+           familyi={P\bibinitperiod},
+           given={Zebb},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Hindawi}%
+      }
+      \strng{namehash}{22e5d8fdeb5697fcbf059f9cd3409551}
+      \strng{fullhash}{22e5d8fdeb5697fcbf059f9cd3409551}
+      \strng{bibnamehash}{22e5d8fdeb5697fcbf059f9cd3409551}
+      \strng{authorbibnamehash}{22e5d8fdeb5697fcbf059f9cd3409551}
+      \strng{authornamehash}{22e5d8fdeb5697fcbf059f9cd3409551}
+      \strng{authorfullhash}{22e5d8fdeb5697fcbf059f9cd3409551}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Control Science and Engineering}
+      \field{title}{On the dynamics of the furuta pendulum}
+      \field{volume}{2011}
+      \field{year}{2011}
+    \endentry
+    \entry{cui2011based}{article}{}
+      \name{author}{2}{}{%
+        {{hash=86c812b1cfdf0bee260b4e16dfd410c0}{%
+           family={Cui},
+           familyi={C\bibinitperiod},
+           given={Xiao},
+           giveni={X\bibinitperiod}}}%
+        {{hash=bd856a3b71fd9af902c1afb5c55eccb8}{%
+           family={Shi},
+           familyi={S\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {International Journal of Computer Science}%
+        {Network Security (IJCSNS)}%
+      }
+      \strng{namehash}{253ba9621b07b42d69a7c6eae87f7a90}
+      \strng{fullhash}{253ba9621b07b42d69a7c6eae87f7a90}
+      \strng{bibnamehash}{253ba9621b07b42d69a7c6eae87f7a90}
+      \strng{authorbibnamehash}{253ba9621b07b42d69a7c6eae87f7a90}
+      \strng{authornamehash}{253ba9621b07b42d69a7c6eae87f7a90}
+      \strng{authorfullhash}{253ba9621b07b42d69a7c6eae87f7a90}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Computer Science and Network Security}
+      \field{number}{1}
+      \field{title}{A*-based pathfinding in modern computer games}
+      \field{volume}{11}
+      \field{year}{2011}
+      \field{pages}{125\bibrangedash 130}
+      \range{pages}{6}
+    \endentry
+    \entry{furuta1992swing}{article}{}
+      \name{author}{3}{}{%
+        {{hash=688e5e41087f872b67308f793711a3af}{%
+           family={Furuta},
+           familyi={F\bibinitperiod},
+           given={Katsuhisa},
+           giveni={K\bibinitperiod}}}%
+        {{hash=a30a338c13350efe8acf0cf227e1834c}{%
+           family={Yamakita},
+           familyi={Y\bibinitperiod},
+           given={M},
+           giveni={M\bibinitperiod}}}%
+        {{hash=e4b3bf28b71a7d97be83f2c6699fc681}{%
+           family={Kobayashi},
+           familyi={K\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {SAGE Publications Sage UK: London, England}%
+      }
+      \strng{namehash}{c26df69158892d148e864b47c062da4b}
+      \strng{fullhash}{ae923680f7ff794cd1e8d101a52d3c2e}
+      \strng{bibnamehash}{ae923680f7ff794cd1e8d101a52d3c2e}
+      \strng{authorbibnamehash}{ae923680f7ff794cd1e8d101a52d3c2e}
+      \strng{authornamehash}{c26df69158892d148e864b47c062da4b}
+      \strng{authorfullhash}{ae923680f7ff794cd1e8d101a52d3c2e}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the Institution of Mechanical Engineers, Part I: Journal of Systems and Control Engineering}
+      \field{number}{4}
+      \field{title}{Swing-up control of inverted pendulum using pseudo-state feedback}
+      \field{volume}{206}
+      \field{year}{1992}
+      \field{pages}{263\bibrangedash 269}
+      \range{pages}{7}
+    \endentry
+    \entry{gasparetto2015path}{article}{}
+      \name{author}{4}{}{%
+        {{hash=d51f0dc60767a4adaeaf45e1fa1d4c61}{%
+           family={Gasparetto},
+           familyi={G\bibinitperiod},
+           given={Alessandro},
+           giveni={A\bibinitperiod}}}%
+        {{hash=079253368d3f09dc5f85f0038f9725d3}{%
+           family={Boscariol},
+           familyi={B\bibinitperiod},
+           given={Paolo},
+           giveni={P\bibinitperiod}}}%
+        {{hash=98695d1f881b0351feac8ef12636351d}{%
+           family={Lanzutti},
+           familyi={L\bibinitperiod},
+           given={Albano},
+           giveni={A\bibinitperiod}}}%
+        {{hash=eb5b3138b0ff46fd56479cc67b45c9b5}{%
+           family={Vidoni},
+           familyi={V\bibinitperiod},
+           given={Renato},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{51ce6c6ba951dfdca7bc2998edae3e99}
+      \strng{fullhash}{5855feef864bf66f6af0c38b2fbf5bc9}
+      \strng{bibnamehash}{5855feef864bf66f6af0c38b2fbf5bc9}
+      \strng{authorbibnamehash}{5855feef864bf66f6af0c38b2fbf5bc9}
+      \strng{authornamehash}{51ce6c6ba951dfdca7bc2998edae3e99}
+      \strng{authorfullhash}{5855feef864bf66f6af0c38b2fbf5bc9}
+      \field{extraname}{1}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Motion and Operation Planning of Robotic Systems: Background and Practical Approaches}
+      \field{title}{Path planning and trajectory planning algorithms: A general overview}
+      \field{year}{2015}
+      \field{pages}{3\bibrangedash 27}
+      \range{pages}{25}
+    \endentry
+    \entry{gasparetto2012trajectory}{article}{}
+      \name{author}{4}{}{%
+        {{hash=d51f0dc60767a4adaeaf45e1fa1d4c61}{%
+           family={Gasparetto},
+           familyi={G\bibinitperiod},
+           given={Alessandro},
+           giveni={A\bibinitperiod}}}%
+        {{hash=079253368d3f09dc5f85f0038f9725d3}{%
+           family={Boscariol},
+           familyi={B\bibinitperiod},
+           given={Paolo},
+           giveni={P\bibinitperiod}}}%
+        {{hash=98695d1f881b0351feac8ef12636351d}{%
+           family={Lanzutti},
+           familyi={L\bibinitperiod},
+           given={Albano},
+           giveni={A\bibinitperiod}}}%
+        {{hash=eb5b3138b0ff46fd56479cc67b45c9b5}{%
+           family={Vidoni},
+           familyi={V\bibinitperiod},
+           given={Renato},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{51ce6c6ba951dfdca7bc2998edae3e99}
+      \strng{fullhash}{5855feef864bf66f6af0c38b2fbf5bc9}
+      \strng{bibnamehash}{5855feef864bf66f6af0c38b2fbf5bc9}
+      \strng{authorbibnamehash}{5855feef864bf66f6af0c38b2fbf5bc9}
+      \strng{authornamehash}{51ce6c6ba951dfdca7bc2998edae3e99}
+      \strng{authorfullhash}{5855feef864bf66f6af0c38b2fbf5bc9}
+      \field{extraname}{2}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematics in Computer Science}
+      \field{title}{Trajectory planning in robotics}
+      \field{volume}{6}
+      \field{year}{2012}
+      \field{pages}{269\bibrangedash 279}
+      \range{pages}{11}
+    \endentry
+    \entry{gasparetto2010optimal}{article}{}
+      \name{author}{2}{}{%
+        {{hash=d51f0dc60767a4adaeaf45e1fa1d4c61}{%
+           family={Gasparetto},
+           familyi={G\bibinitperiod},
+           given={Alessandro},
+           giveni={A\bibinitperiod}}}%
+        {{hash=fbdb0fd8c8486859cf839be226f92495}{%
+           family={Zanotto},
+           familyi={Z\bibinitperiod},
+           given={Vanni},
+           giveni={V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{b38bf0e4e2533d4f9af59de7851fd992}
+      \strng{fullhash}{b38bf0e4e2533d4f9af59de7851fd992}
+      \strng{bibnamehash}{b38bf0e4e2533d4f9af59de7851fd992}
+      \strng{authorbibnamehash}{b38bf0e4e2533d4f9af59de7851fd992}
+      \strng{authornamehash}{b38bf0e4e2533d4f9af59de7851fd992}
+      \strng{authorfullhash}{b38bf0e4e2533d4f9af59de7851fd992}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Advances in Engineering Software}
+      \field{number}{4}
+      \field{title}{Optimal trajectory planning for industrial robots}
+      \field{volume}{41}
+      \field{year}{2010}
+      \field{pages}{548\bibrangedash 556}
+      \range{pages}{9}
     \endentry
     \entry{haarnoja2018soft}{inproceedings}{}
       \name{author}{4}{}{%
@@ -169,6 +613,48 @@
       \field{year}{2018}
       \field{pages}{1861\bibrangedash 1870}
       \range{pages}{10}
+    \endentry
+    \entry{hiraoka2021dropout}{article}{}
+      \name{author}{5}{}{%
+        {{hash=34c0958ca8ed4fa1de46e9d431fe44cf}{%
+           family={Hiraoka},
+           familyi={H\bibinitperiod},
+           given={Takuya},
+           giveni={T\bibinitperiod}}}%
+        {{hash=435353b3c65d8fe0bd5913c05eaaef6d}{%
+           family={Imagawa},
+           familyi={I\bibinitperiod},
+           given={Takahisa},
+           giveni={T\bibinitperiod}}}%
+        {{hash=52785e72ea2493be01b0c74dc580c162}{%
+           family={Hashimoto},
+           familyi={H\bibinitperiod},
+           given={Taisei},
+           giveni={T\bibinitperiod}}}%
+        {{hash=b72885951be929ef51dc853c755e67e5}{%
+           family={Onishi},
+           familyi={O\bibinitperiod},
+           given={Takashi},
+           giveni={T\bibinitperiod}}}%
+        {{hash=c6f3b0c6c919ce3981dde162aeac0203}{%
+           family={Tsuruoka},
+           familyi={T\bibinitperiod},
+           given={Yoshimasa},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{bf2a392a9aa583e94b8ac4ca51897205}
+      \strng{fullhash}{fd7ee696d2dc03c25cb6aae7d3f01649}
+      \strng{bibnamehash}{fd7ee696d2dc03c25cb6aae7d3f01649}
+      \strng{authorbibnamehash}{fd7ee696d2dc03c25cb6aae7d3f01649}
+      \strng{authornamehash}{bf2a392a9aa583e94b8ac4ca51897205}
+      \strng{authorfullhash}{fd7ee696d2dc03c25cb6aae7d3f01649}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2110.02034}
+      \field{title}{Dropout q-functions for doubly efficient reinforcement learning}
+      \field{year}{2021}
     \endentry
     \entry{hwangbo2019learning}{article}{}
       \name{author}{7}{}{%
@@ -256,6 +742,74 @@
       \field{title}{Actor-critic algorithms}
       \field{volume}{12}
       \field{year}{1999}
+    \endentry
+    \entry{kouvaritakis2016model}{article}{}
+      \name{author}{2}{}{%
+        {{hash=cc72b15c91fef7534aa5376086a38baf}{%
+           family={Kouvaritakis},
+           familyi={K\bibinitperiod},
+           given={Basil},
+           giveni={B\bibinitperiod}}}%
+        {{hash=6c557ab1156d90dd2aa0a798d04da6b7}{%
+           family={Cannon},
+           familyi={C\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{5d1f6e7ddac27396454e3c840ccf8934}
+      \strng{fullhash}{5d1f6e7ddac27396454e3c840ccf8934}
+      \strng{bibnamehash}{5d1f6e7ddac27396454e3c840ccf8934}
+      \strng{authorbibnamehash}{5d1f6e7ddac27396454e3c840ccf8934}
+      \strng{authornamehash}{5d1f6e7ddac27396454e3c840ccf8934}
+      \strng{authorfullhash}{5d1f6e7ddac27396454e3c840ccf8934}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Switzerland: Springer International Publishing}
+      \field{title}{Model predictive control}
+      \field{volume}{38}
+      \field{year}{2016}
+    \endentry
+    \entry{kumar2021rma}{article}{}
+      \name{author}{4}{}{%
+        {{hash=c4665f76db9bd49e7d08a82359ed197b}{%
+           family={Kumar},
+           familyi={K\bibinitperiod},
+           given={Ashish},
+           giveni={A\bibinitperiod}}}%
+        {{hash=871ca5e6de8cc6f1b62466dd6e9a440a}{%
+           family={Fu},
+           familyi={F\bibinitperiod},
+           given={Zipeng},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=09e431093c8637ade01037714cfc992c}{%
+           family={Pathak},
+           familyi={P\bibinitperiod},
+           given={Deepak},
+           giveni={D\bibinitperiod}}}%
+        {{hash=c75a5377b6dc5213831576e88ffe553c}{%
+           family={Malik},
+           familyi={M\bibinitperiod},
+           given={Jitendra},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{05c3981500f977ffee5ce1db1ef3a2e9}
+      \strng{fullhash}{a0c173937a48617ec52f4c65ce7589b6}
+      \strng{bibnamehash}{a0c173937a48617ec52f4c65ce7589b6}
+      \strng{authorbibnamehash}{a0c173937a48617ec52f4c65ce7589b6}
+      \strng{authornamehash}{05c3981500f977ffee5ce1db1ef3a2e9}
+      \strng{authorfullhash}{a0c173937a48617ec52f4c65ce7589b6}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2107.04034}
+      \field{title}{Rma: Rapid motor adaptation for legged robots}
+      \field{year}{2021}
     \endentry
     \entry{lehtomaki1981robustness}{article}{}
       \name{author}{3}{}{%
@@ -368,6 +922,40 @@
       \verb https://api.semanticscholar.org/CorpusID:261487429
       \endverb
     \endentry
+    \entry{liu2013survey}{article}{}
+      \name{author}{2}{}{%
+        {{hash=621013bf54d3546375ad71f17f020b5b}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Yang},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=15c1c949e5d13e94b6ff0d02f193707f}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Hongnian},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{c8d00dba44e2609d04750449a9e7bee6}
+      \strng{fullhash}{c8d00dba44e2609d04750449a9e7bee6}
+      \strng{bibnamehash}{c8d00dba44e2609d04750449a9e7bee6}
+      \strng{authorbibnamehash}{c8d00dba44e2609d04750449a9e7bee6}
+      \strng{authornamehash}{c8d00dba44e2609d04750449a9e7bee6}
+      \strng{authorfullhash}{c8d00dba44e2609d04750449a9e7bee6}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IET Control Theory \& Applications}
+      \field{number}{7}
+      \field{title}{A survey of underactuated mechanical systems}
+      \field{volume}{7}
+      \field{year}{2013}
+      \field{pages}{921\bibrangedash 935}
+      \range{pages}{15}
+    \endentry
     \entry{luukkonen2011modelling}{article}{}
       \name{author}{1}{}{%
         {{hash=810a8c9303e23de496764e359030e52e}{%
@@ -391,6 +979,35 @@
       \field{title}{Modelling and control of quadcopter}
       \field{volume}{22}
       \field{year}{2011}
+    \endentry
+    \entry{lynch2017modern}{book}{}
+      \name{author}{2}{}{%
+        {{hash=ab9086b1452a1a9813fc6765151b4f61}{%
+           family={Lynch},
+           familyi={L\bibinitperiod},
+           given={Kevin\bibnamedelima M},
+           giveni={K\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=66f19f2d439b6eb60c024ab622b0389f}{%
+           family={Park},
+           familyi={P\bibinitperiod},
+           given={Frank\bibnamedelima C},
+           giveni={F\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{8d01efb70f6cec86f711e78e22f97a48}
+      \strng{fullhash}{8d01efb70f6cec86f711e78e22f97a48}
+      \strng{bibnamehash}{8d01efb70f6cec86f711e78e22f97a48}
+      \strng{authorbibnamehash}{8d01efb70f6cec86f711e78e22f97a48}
+      \strng{authornamehash}{8d01efb70f6cec86f711e78e22f97a48}
+      \strng{authorfullhash}{8d01efb70f6cec86f711e78e22f97a48}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Modern robotics}
+      \field{year}{2017}
     \endentry
     \entry{maywald2022co}{inproceedings}{}
       \name{author}{5}{}{%
@@ -621,6 +1238,131 @@
       \field{pages}{187\bibrangedash 210}
       \range{pages}{24}
     \endentry
+    \entry{shinbrot1992chaos}{article}{}
+      \name{author}{4}{}{%
+        {{hash=871f2680606f667833144ae42cacf00c}{%
+           family={Shinbrot},
+           familyi={S\bibinitperiod},
+           given={Troy},
+           giveni={T\bibinitperiod}}}%
+        {{hash=9f654a92d8a2a67fb7102f51f641511f}{%
+           family={Grebogi},
+           familyi={G\bibinitperiod},
+           given={Celso},
+           giveni={C\bibinitperiod}}}%
+        {{hash=14dde021da07a46f4623ee564ef55969}{%
+           family={Wisdom},
+           familyi={W\bibinitperiod},
+           given={Jack},
+           giveni={J\bibinitperiod}}}%
+        {{hash=6182e68f7c9c52a8dc75c4afdde36dd6}{%
+           family={Yorke},
+           familyi={Y\bibinitperiod},
+           given={James\bibnamedelima A},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Association of Physics Teachers}%
+      }
+      \strng{namehash}{303aaaac59afc8118de73074f5756801}
+      \strng{fullhash}{476e6962129edadae197204901892b6c}
+      \strng{bibnamehash}{476e6962129edadae197204901892b6c}
+      \strng{authorbibnamehash}{476e6962129edadae197204901892b6c}
+      \strng{authornamehash}{303aaaac59afc8118de73074f5756801}
+      \strng{authorfullhash}{476e6962129edadae197204901892b6c}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Journal of Physics}
+      \field{number}{6}
+      \field{title}{Chaos in a double pendulum}
+      \field{volume}{60}
+      \field{year}{1992}
+      \field{pages}{491\bibrangedash 499}
+      \range{pages}{9}
+    \endentry
+    \entry{smith2022walk}{article}{}
+      \name{author}{3}{}{%
+        {{hash=73f0e0a8bb81e77196aa34499e5be5cc}{%
+           family={Smith},
+           familyi={S\bibinitperiod},
+           given={Laura},
+           giveni={L\bibinitperiod}}}%
+        {{hash=36c384c0d52c2e0b0d8bc9f99b9fc985}{%
+           family={Kostrikov},
+           familyi={K\bibinitperiod},
+           given={Ilya},
+           giveni={I\bibinitperiod}}}%
+        {{hash=c9545da54b33744da25943cdf66eadac}{%
+           family={Levine},
+           familyi={L\bibinitperiod},
+           given={Sergey},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{24c367e2d37eb7901f154367c29d906b}
+      \strng{fullhash}{0ad372c8744292a3c1c2dbbaa4f67e2f}
+      \strng{bibnamehash}{0ad372c8744292a3c1c2dbbaa4f67e2f}
+      \strng{authorbibnamehash}{0ad372c8744292a3c1c2dbbaa4f67e2f}
+      \strng{authornamehash}{24c367e2d37eb7901f154367c29d906b}
+      \strng{authorfullhash}{0ad372c8744292a3c1c2dbbaa4f67e2f}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2208.07860}
+      \field{title}{A walk in the park: Learning to walk in 20 minutes with model-free reinforcement learning}
+      \field{year}{2022}
+    \endentry
+    \entry{srivastava2014dropout}{article}{}
+      \name{author}{5}{}{%
+        {{hash=6a147afa4569ce6cf23c0436e65d8486}{%
+           family={Srivastava},
+           familyi={S\bibinitperiod},
+           given={Nitish},
+           giveni={N\bibinitperiod}}}%
+        {{hash=9a8750ccdb2a4cf14d2655face1ce016}{%
+           family={Hinton},
+           familyi={H\bibinitperiod},
+           given={Geoffrey},
+           giveni={G\bibinitperiod}}}%
+        {{hash=c5e3a676e2ac1164b3afcd539c131fc9}{%
+           family={Krizhevsky},
+           familyi={K\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod}}}%
+        {{hash=8d569d1d5b8b5a7836017a98b430f959}{%
+           family={Sutskever},
+           familyi={S\bibinitperiod},
+           given={Ilya},
+           giveni={I\bibinitperiod}}}%
+        {{hash=bd2be300d445e9f6db7808f9533e66cb}{%
+           family={Salakhutdinov},
+           familyi={S\bibinitperiod},
+           given={Ruslan},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {JMLR. org}%
+      }
+      \strng{namehash}{4d6dba595c04c09619c7c1c0038d5b6b}
+      \strng{fullhash}{2850768171a28ccacd146c300f66f57d}
+      \strng{bibnamehash}{2850768171a28ccacd146c300f66f57d}
+      \strng{authorbibnamehash}{2850768171a28ccacd146c300f66f57d}
+      \strng{authornamehash}{4d6dba595c04c09619c7c1c0038d5b6b}
+      \strng{authorfullhash}{2850768171a28ccacd146c300f66f57d}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The journal of machine learning research}
+      \field{number}{1}
+      \field{title}{Dropout: a simple way to prevent neural networks from overfitting}
+      \field{volume}{15}
+      \field{year}{2014}
+      \field{pages}{1929\bibrangedash 1958}
+      \range{pages}{30}
+    \endentry
     \entry{sutton2018reinforcement}{book}{}
       \name{author}{2}{}{%
         {{hash=eb920e5277d3d5fd0903f3cd41e11871}{%
@@ -829,6 +1571,120 @@
       \verb{url}
       \verb https://zenodo.org/record/8127025
       \endverb
+    \endentry
+    \entry{xin2004new}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=983a92378cc7f5186c9e87a052306437}{%
+           family={Xin},
+           familyi={X\bibinitperiod},
+           given={Xin},
+           giveni={X\bibinitperiod}}}%
+        {{hash=4d1e54ee49cbbdb729bc7d66d42ad48e}{%
+           family={Kaneda},
+           familyi={K\bibinitperiod},
+           given={Masahiro},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{f25194fad248dbb3e7d08d6248dc738d}
+      \strng{fullhash}{f25194fad248dbb3e7d08d6248dc738d}
+      \strng{bibnamehash}{f25194fad248dbb3e7d08d6248dc738d}
+      \strng{authorbibnamehash}{f25194fad248dbb3e7d08d6248dc738d}
+      \strng{authornamehash}{f25194fad248dbb3e7d08d6248dc738d}
+      \strng{authorfullhash}{f25194fad248dbb3e7d08d6248dc738d}
+      \field{sortinit}{X}
+      \field{sortinithash}{1965c258adceecf23ce3d67b05113442}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2004 43rd IEEE Conference on Decision and Control (CDC)(IEEE Cat. No. 04CH37601)}
+      \field{title}{New analytical results of the energy based swinging up control of the Acrobot}
+      \field{volume}{1}
+      \field{year}{2004}
+      \field{pages}{704\bibrangedash 709}
+      \range{pages}{6}
+    \endentry
+    \entry{yamakita1995robust}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=a30a338c13350efe8acf0cf227e1834c}{%
+           family={Yamakita},
+           familyi={Y\bibinitperiod},
+           given={M},
+           giveni={M\bibinitperiod}}}%
+        {{hash=7abe030f5d73a1989182124aa9ce2854}{%
+           family={Iwashiro},
+           familyi={I\bibinitperiod},
+           given={M},
+           giveni={M\bibinitperiod}}}%
+        {{hash=b7221d687366902ee5798493760436c3}{%
+           family={Sugahara},
+           familyi={S\bibinitperiod},
+           given={Y},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=d2c653ebab21ec82abd3219c3e223722}{%
+           family={Furuta},
+           familyi={F\bibinitperiod},
+           given={K},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{e91353204892a127c173a4f67a8bd011}
+      \strng{fullhash}{dc94261a5cc5794a5368164868e0196c}
+      \strng{bibnamehash}{dc94261a5cc5794a5368164868e0196c}
+      \strng{authorbibnamehash}{dc94261a5cc5794a5368164868e0196c}
+      \strng{authornamehash}{e91353204892a127c173a4f67a8bd011}
+      \strng{authorfullhash}{dc94261a5cc5794a5368164868e0196c}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of 1995 American Control Conference-ACC'95}
+      \field{title}{Robust swing up control of double pendulum}
+      \field{volume}{1}
+      \field{year}{1995}
+      \field{pages}{290\bibrangedash 295}
+      \range{pages}{6}
+    \endentry
+    \entry{zheng2006control}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=61a21d8aba7853cbf9f3f099c48b174f}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Yu},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=9481ab136dda244fda47aaa193e32512}{%
+           family={Luo},
+           familyi={L\bibinitperiod},
+           given={Siwei},
+           giveni={S\bibinitperiod}}}%
+        {{hash=d82421773f433e01a990719d735c3c9e}{%
+           family={Lv},
+           familyi={L\bibinitperiod},
+           given={Ziang},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{093c0843dff23c24d27f8942ea1f6996}
+      \strng{fullhash}{ae8c7f47229cf7b80d615f64b4846b0e}
+      \strng{bibnamehash}{ae8c7f47229cf7b80d615f64b4846b0e}
+      \strng{authorbibnamehash}{ae8c7f47229cf7b80d615f64b4846b0e}
+      \strng{authornamehash}{093c0843dff23c24d27f8942ea1f6996}
+      \strng{authorfullhash}{ae8c7f47229cf7b80d615f64b4846b0e}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{18th International Conference on Pattern Recognition (ICPR'06)}
+      \field{title}{Control double inverted pendulum by reinforcement learning with double cmac network}
+      \field{volume}{4}
+      \field{year}{2006}
+      \field{pages}{639\bibrangedash 642}
+      \range{pages}{4}
     \endentry
   \enddatalist
 \endrefsection
