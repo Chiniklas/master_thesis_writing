@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.24)  31 OCT 2023 23:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.24)  2 NOV 2023 00:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1686,7 +1686,14 @@ LaTeX Warning: Unused global option(s):
     [listof].
 
 (./main.aux (./01_Chapters/01_Introduction.aux)
-(./01_Chapters/02_state_of_the_art.aux) (./01_Chapters/03_Methodology.aux
+(./01_Chapters/02_state_of_the_art.aux
+
+LaTeX Warning: Label `fig:benchmarking MBRL' multiply defined.
+
+
+LaTeX Warning: Label `fig:benchmarking MBRL@cref' multiply defined.
+
+) (./01_Chapters/03_Methodology.aux
 
 LaTeX Warning: Label `fig:my_image_label' multiply defined.
 
@@ -2399,13 +2406,31 @@ Package cleveref Info: loaded `english' language definitions on input line 221.
 File: figures/deepmimic.png Graphic file (type png)
 <use figures/deepmimic.png>
 Package pdftex.def Info: figures/deepmimic.png  used on input line 227.
-(pdftex.def)             Requested size: 451.58598pt x 120.83142pt.
+(pdftex.def)             Requested size: 406.42462pt x 108.74611pt.
 Package cleveref Info: loaded `english' language definitions on input line 237.
 
  [17 <./figures/deepmimic.png>]
-Package cleveref Info: loaded `english' language definitions on input line 241.
+<figures/benchmarking_mbrl.png, id=381, 1560.83125pt x 555.07375pt>
+File: figures/benchmarking_mbrl.png Graphic file (type png)
+<use figures/benchmarking_mbrl.png>
+Package pdftex.def Info: figures/benchmarking_mbrl.png  used on input line 242.
 
- [18])
+(pdftex.def)             Requested size: 406.42462pt x 144.53598pt.
+Package cleveref Info: loaded `english' language definitions on input line 252.
+
+ [18 <./figures/benchmarking_mbrl.png>]
+<figures/quadruped_sim2real.png, id=397, 1270.7475pt x 763.85374pt>
+File: figures/quadruped_sim2real.png Graphic file (type png)
+<use figures/quadruped_sim2real.png>
+Package pdftex.def Info: figures/quadruped_sim2real.png  used on input line 257
+.
+(pdftex.def)             Requested size: 406.42462pt x 244.29832pt.
+Package cleveref Info: loaded `english' language definitions on input line 269.
+
+ [19 <./figures/quadruped_sim2real.png>]
+Package cleveref Info: loaded `english' language definitions on input line 281.
+
+ [20])
 \openout2 = `01_Chapters/03_Methodology.aux'.
 
  (./01_Chapters/03_Methodology.tex
@@ -2413,7 +2438,7 @@ chapter 3.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [19
+ [21
 
 
 
@@ -2421,77 +2446,81 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-Underfull \vbox (badness 2005) has occurred while \output is active []
+Package cleveref Info: loaded `english' language definitions on input line 44.
 
-Package cleveref Info: loaded `english' language definitions on input line 50.
- [20]
+[22]
 Package cleveref Info: loaded `english' language definitions on input line 85.
-
-[21]
-Package cleveref Info: loaded `english' language definitions on input line 119.
-
- [22]
-Package cleveref Info: loaded `english' language definitions on input line 152.
-
  [23]
-<figures/methodology/roaplot.png, id=440, 462.528pt x 346.896pt>
+Package cleveref Info: loaded `english' language definitions on input line 115.
+
+ [24]
+Package cleveref Info: loaded `english' language definitions on input line 144.
+
+ [25]
+Package cleveref Info: loaded `english' language definitions on input line 176.
+
+ [26]
+<figures/methodology/roaplot.png, id=471, 462.528pt x 346.896pt>
 File: figures/methodology/roaplot.png Graphic file (type png)
 <use figures/methodology/roaplot.png>
-Package pdftex.def Info: figures/methodology/roaplot.png  used on input line 16
-2.
+Package pdftex.def Info: figures/methodology/roaplot.png  used on input line 18
+6.
 (pdftex.def)             Requested size: 270.95435pt x 203.22711pt.
-Package cleveref Info: loaded `english' language definitions on input line 171.
+Package cleveref Info: loaded `english' language definitions on input line 195.
 
- [24 <./figures/methodology/roaplot.png>]
-<figures/methodology/stage1.png, id=449, 199.509pt x 248.127pt>
+ [27 <./figures/methodology/roaplot.png>]
+<figures/methodology/stage1.png, id=480, 199.509pt x 248.127pt>
 File: figures/methodology/stage1.png Graphic file (type png)
 <use figures/methodology/stage1.png>
-Package pdftex.def Info: figures/methodology/stage1.png  used on input line 206
+Package pdftex.def Info: figures/methodology/stage1.png  used on input line 230
 .
 (pdftex.def)             Requested size: 112.89648pt x 140.4078pt.
-Package cleveref Info: loaded `english' language definitions on input line 216.
+Package cleveref Info: loaded `english' language definitions on input line 240.
 
- [25 <./figures/methodology/stage1.png>]
-<figures/methodology/stage2.png, id=457, 231.045pt x 248.127pt>
+ [28 <./figures/methodology/stage1.png>]
+<figures/methodology/stage2.png, id=489, 231.045pt x 248.127pt>
 File: figures/methodology/stage2.png Graphic file (type png)
 <use figures/methodology/stage2.png>
-Package pdftex.def Info: figures/methodology/stage2.png  used on input line 231
+Package pdftex.def Info: figures/methodology/stage2.png  used on input line 255
 .
 (pdftex.def)             Requested size: 112.89648pt x 121.24252pt.
-<figures/methodology/stage3.png, id=459, 161.184pt x 309.447pt>
+<figures/methodology/stage3.png, id=491, 161.184pt x 309.447pt>
 File: figures/methodology/stage3.png Graphic file (type png)
 <use figures/methodology/stage3.png>
-Package pdftex.def Info: figures/methodology/stage3.png  used on input line 251
+Package pdftex.def Info: figures/methodology/stage3.png  used on input line 275
 .
 (pdftex.def)             Requested size: 112.89648pt x 216.74362pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Package cleveref Info: loaded `english' language definitions on input line 255.
+Package cleveref Info: loaded `english' language definitions on input line 279.
 
- [26 <./figures/methodology/stage2.png>]
+ [29 <./figures/methodology/stage2.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Package cleveref Info: loaded `english' language definitions on input line 268.
+Package cleveref Info: loaded `english' language definitions on input line 292.
 
- [27 <./figures/methodology/stage3.png>]
+ [30 <./figures/methodology/stage3.png>]
 Underfull \vbox (badness 2012) has occurred while \output is active []
 
-Package cleveref Info: loaded `english' language definitions on input line 322.
+Package cleveref Info: loaded `english' language definitions on input line 346.
 
- [28]
-Package cleveref Info: loaded `english' language definitions on input line 334.
+ [31]
+Package cleveref Info: loaded `english' language definitions on input line 358.
 
 
-[29]
-Package cleveref Info: loaded `english' language definitions on input line 355.
+[32]
+Package cleveref Info: loaded `english' language definitions on input line 379.
 
- [30])
+ [33] [34
+
+
+])
 \openout2 = `01_Chapters/04_experiment_training_and_simulation.aux'.
 
  (./01_Chapters/04_experiment_training_and_simulation.tex
 chapter 4.
-<figures/simulation_result/RL_interaction.png, id=494, 574.656pt x 324.777pt>
+<figures/simulation_result/RL_interaction.png, id=529, 574.656pt x 324.777pt>
 File: figures/simulation_result/RL_interaction.png Graphic file (type png)
 <use figures/simulation_result/RL_interaction.png>
 Package pdftex.def Info: figures/simulation_result/RL_interaction.png  used on 
@@ -2500,15 +2529,13 @@ input line 13.
 
 Underfull \vbox (badness 4341) has occurred while \output is active []
 
- [31
-
-
+ [35
 
 
 
 
 ]
-<figures/simulation_result/scaling_mechanism.png, id=502, 568.305pt x 444.132pt
+<figures/simulation_result/scaling_mechanism.png, id=538, 568.305pt x 444.132pt
 >
 File: figures/simulation_result/scaling_mechanism.png Graphic file (type png)
 <use figures/simulation_result/scaling_mechanism.png>
@@ -2519,12 +2546,12 @@ on input line 28.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 31.
- [32 <./figures/simulation_result/RL_interaction.png>]
+ [36 <./figures/simulation_result/RL_interaction.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 37.
- [33 <./figures/simulation_result/scaling_mechanism.png>]
-<figures/learning_curve/pendubot_learning_curve.png, id=516, 1195.46625pt x 498
+ [37 <./figures/simulation_result/scaling_mechanism.png>]
+<figures/learning_curve/pendubot_learning_curve.png, id=552, 1195.46625pt x 498
 .86375pt>
 File: figures/learning_curve/pendubot_learning_curve.png Graphic file (type png
 )
@@ -2536,8 +2563,8 @@ ed on input line 63.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 67.
- [34]
-<figures/learning_curve/acrobot_learning_curve.png, id=522, 1195.46625pt x 498.
+ [38]
+<figures/learning_curve/acrobot_learning_curve.png, id=558, 1195.46625pt x 498.
 86375pt>
 File: figures/learning_curve/acrobot_learning_curve.png Graphic file (type png)
 
@@ -2549,9 +2576,9 @@ d on input line 72.
 Underfull \vbox (badness 1859) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 79.
- [35 <./figures/learning_curve/pendubot_learning_curve.png> <./figures/learning
+ [39 <./figures/learning_curve/pendubot_learning_curve.png> <./figures/learning
 _curve/acrobot_learning_curve.png>]
-<figures/simulation_result/pendubot_unclipped.png, id=532, 1256.7753pt x 560.81
+<figures/simulation_result/pendubot_unclipped.png, id=567, 1256.7753pt x 560.81
 52pt>
 File: figures/simulation_result/pendubot_unclipped.png Graphic file (type png)
 <use figures/simulation_result/pendubot_unclipped.png>
@@ -2562,8 +2589,8 @@ Package pdftex.def Info: figures/simulation_result/pendubot_unclipped.png  used
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 95.
- [36]
-<figures/simulation_result/acrobot_unclipped.png, id=537, 1266.8931pt x 563.706
+ [40]
+<figures/simulation_result/acrobot_unclipped.png, id=572, 1266.8931pt x 563.706
 pt>
 File: figures/simulation_result/acrobot_unclipped.png Graphic file (type png)
 <use figures/simulation_result/acrobot_unclipped.png>
@@ -2575,15 +2602,15 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 110.
 
- [37 <./figures/simulation_result/pendubot_unclipped.png>]
+ [41 <./figures/simulation_result/pendubot_unclipped.png>]
 Package cleveref Info: loaded `english' language definitions on input line 112.
 
- [38 <./figures/simulation_result/acrobot_unclipped.png>])
+ [42 <./figures/simulation_result/acrobot_unclipped.png>])
 \openout2 = `01_Chapters/05_experiment_hardware_system.aux'.
 
  (./01_Chapters/05_experiment_hardware_system.tex
 chapter 5.
-<figures/hardware_setup/double_pendulum_it1_v1.png, id=550, 459.21562pt x 819.0
+<figures/hardware_setup/double_pendulum_it1_v1.png, id=586, 459.21562pt x 819.0
 6pt>
 File: figures/hardware_setup/double_pendulum_it1_v1.png Graphic file (type png)
 
@@ -2591,7 +2618,7 @@ File: figures/hardware_setup/double_pendulum_it1_v1.png Graphic file (type png)
 Package pdftex.def Info: figures/hardware_setup/double_pendulum_it1_v1.png  use
 d on input line 14.
 (pdftex.def)             Requested size: 135.47717pt x 241.6331pt.
-<figures/hardware_setup/double_pendulum_it1_v2.png, id=551, 472.76625pt x 794.2
+<figures/hardware_setup/double_pendulum_it1_v2.png, id=587, 472.76625pt x 794.2
 172pt>
 File: figures/hardware_setup/double_pendulum_it1_v2.png Graphic file (type png)
 
@@ -2599,7 +2626,7 @@ File: figures/hardware_setup/double_pendulum_it1_v2.png Graphic file (type png)
 Package pdftex.def Info: figures/hardware_setup/double_pendulum_it1_v2.png  use
 d on input line 20.
 (pdftex.def)             Requested size: 135.47717pt x 227.59036pt.
-<figures/hardware_setup/double_pendulum_it2_v1.png, id=552, 383.93437pt x 782.9
+<figures/hardware_setup/double_pendulum_it2_v1.png, id=588, 383.93437pt x 782.9
 25pt>
 File: figures/hardware_setup/double_pendulum_it2_v1.png Graphic file (type png)
 
@@ -2607,7 +2634,7 @@ File: figures/hardware_setup/double_pendulum_it2_v1.png Graphic file (type png)
 Package pdftex.def Info: figures/hardware_setup/double_pendulum_it2_v1.png  use
 d on input line 28.
 (pdftex.def)             Requested size: 135.47717pt x 276.27379pt.
-<figures/hardware_setup/double_pendulum_it2_v2.png, id=553, 414.04688pt x 836.3
+<figures/hardware_setup/double_pendulum_it2_v2.png, id=589, 414.04688pt x 836.3
 747pt>
 File: figures/hardware_setup/double_pendulum_it2_v2.png Graphic file (type png)
 
@@ -2618,7 +2645,7 @@ d on input line 34.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [39
+ [43
 
 
 
@@ -2630,23 +2657,23 @@ Overfull \vbox (25.88568pt too high) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 41.
 
-[40 <./figures/hardware_setup/double_pendulum_it1_v1.png> <./figures/hardware_s
+[44 <./figures/hardware_setup/double_pendulum_it1_v1.png> <./figures/hardware_s
 etup/double_pendulum_it1_v2.png> <./figures/hardware_setup/double_pendulum_it2_
 v1.png> <./figures/hardware_setup/double_pendulum_it2_v2.png>]
-<figures/hardware_setup/motor.jpg, id=567, 602.25pt x 469.755pt>
+<figures/hardware_setup/motor.jpg, id=603, 602.25pt x 469.755pt>
 File: figures/hardware_setup/motor.jpg Graphic file (type jpg)
 <use figures/hardware_setup/motor.jpg>
 Package pdftex.def Info: figures/hardware_setup/motor.jpg  used on input line 4
 9.
 (pdftex.def)             Requested size: 203.21231pt x 158.50322pt.
-<figures/hardware_setup/torque_speed_curve.jpg, id=568, 1505.625pt x 1287.81125
+<figures/hardware_setup/torque_speed_curve.jpg, id=604, 1505.625pt x 1287.81125
 pt>
 File: figures/hardware_setup/torque_speed_curve.jpg Graphic file (type jpg)
 <use figures/hardware_setup/torque_speed_curve.jpg>
 Package pdftex.def Info: figures/hardware_setup/torque_speed_curve.jpg  used on
  input line 56.
 (pdftex.def)             Requested size: 203.21231pt x 173.80771pt.
-<figures/hardware_setup/wiring-diagram.png, id=569, 227.84836pt x 384.05153pt>
+<figures/hardware_setup/wiring-diagram.png, id=605, 227.84836pt x 384.05153pt>
 File: figures/hardware_setup/wiring-diagram.png Graphic file (type png)
 <use figures/hardware_setup/wiring-diagram.png>
 Package pdftex.def Info: figures/hardware_setup/wiring-diagram.png  used on inp
@@ -2656,13 +2683,13 @@ ut line 68.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 72.
- [41 <./figures/hardware_setup/motor.jpg> <./figures/hardware_setup/torque_spee
+ [45 <./figures/hardware_setup/motor.jpg> <./figures/hardware_setup/torque_spee
 d_curve.jpg>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 74.
- [42 <./figures/hardware_setup/wiring-diagram.png>]
-<figures/hardware_setup/can_blue_box.png, id=582, 481.8pt x 481.8pt>
+ [46 <./figures/hardware_setup/wiring-diagram.png>]
+<figures/hardware_setup/can_blue_box.png, id=617, 481.8pt x 481.8pt>
 File: figures/hardware_setup/can_blue_box.png Graphic file (type png)
 <use figures/hardware_setup/can_blue_box.png>
 Package pdftex.def Info: figures/hardware_setup/can_blue_box.png  used on input
@@ -2673,33 +2700,33 @@ File: example-image.pdf Graphic file (type pdf)
 Package pdftex.def Info: example-image.pdf  used on input line 90.
 (pdftex.def)             Requested size: 180.63162pt x 135.4765pt.
 Package cleveref Info: loaded `english' language definitions on input line 97.
- [43 <./figures/hardware_setup/can_blue_box.png>]
+ [47 <./figures/hardware_setup/can_blue_box.png>]
 File: example-image.pdf Graphic file (type pdf)
 <use example-image.pdf>
 Package pdftex.def Info: example-image.pdf  used on input line 103.
 (pdftex.def)             Requested size: 270.95435pt x 203.2221pt.
 Package cleveref Info: loaded `english' language definitions on input line 110.
 
- [44]
+ [48]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 151.
 
- [45]
+ [49]
 Underfull \vbox (badness 7344) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 161.
 
- [46]
+ [50]
 Package cleveref Info: loaded `english' language definitions on input line 177.
 
 
-[47]
+[51]
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
 (Font)              using `U/stmry/m/n' instead on input line 178.
 
-<figures/hardware_result/pendubot_noisy_unclipped.png, id=610, 1240.8759pt x 61
+<figures/hardware_result/pendubot_noisy_unclipped.png, id=646, 1240.8759pt x 61
 6.4631pt>
 File: figures/hardware_result/pendubot_noisy_unclipped.png Graphic file (type p
 ng)
@@ -2709,8 +2736,8 @@ used on input line 201.
 (pdftex.def)             Requested size: 406.42462pt x 201.9096pt.
 Package cleveref Info: loaded `english' language definitions on input line 208.
 
-[48]
-<figures/double_pendulum_real_system.png, id=616, 2993.76pt x 3991.68pt>
+[52]
+<figures/double_pendulum_real_system.png, id=652, 2993.76pt x 3991.68pt>
 File: figures/double_pendulum_real_system.png Graphic file (type png)
 <use figures/double_pendulum_real_system.png>
 Package pdftex.def Info: figures/double_pendulum_real_system.png  used on input
@@ -2718,8 +2745,8 @@ Package pdftex.def Info: figures/double_pendulum_real_system.png  used on input
 (pdftex.def)             Requested size: 203.21231pt x 270.91902pt.
 Package cleveref Info: loaded `english' language definitions on input line 223.
 
- [49 <./figures/hardware_result/pendubot_noisy_unclipped.png>]
-<figures/hardware_setup/testing_procedure.png, id=623, 632.472pt x 455.301pt>
+ [53 <./figures/hardware_result/pendubot_noisy_unclipped.png>]
+<figures/hardware_setup/testing_procedure.png, id=660, 632.472pt x 455.301pt>
 File: figures/hardware_setup/testing_procedure.png Graphic file (type png)
 <use figures/hardware_setup/testing_procedure.png>
 Package pdftex.def Info: figures/hardware_setup/testing_procedure.png  used on 
@@ -2730,7 +2757,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 233.
 
- [50 <./figures/double_pendulum_real_system.png (PNG copy)>]
+ [54 <./figures/double_pendulum_real_system.png (PNG copy)>]
 File: example-image.pdf Graphic file (type pdf)
 <use example-image.pdf>
 Package pdftex.def Info: example-image.pdf  used on input line 240.
@@ -2740,10 +2767,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 244.
 
- [51 <./figures/hardware_setup/testing_procedure.png>]
+ [55 <./figures/hardware_setup/testing_procedure.png>]
 Package cleveref Info: loaded `english' language definitions on input line 248.
 
- [52])
+ [56])
 \openout2 = `01_Chapters/06_discussion.aux'.
 
 
@@ -2754,7 +2781,7 @@ Overfull \hbox (10.08737pt too wide) in paragraph at lines 9--25
  [][] 
  []
 
-[53
+[57
 
 
 
@@ -2765,7 +2792,7 @@ Overfull \hbox (10.08737pt too wide) in paragraph at lines 9--25
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 59.
- [54]
+ [58]
 Overfull \hbox (10.08737pt too wide) in paragraph at lines 68--85
  [][] 
  []
@@ -2774,12 +2801,12 @@ Overfull \hbox (10.08737pt too wide) in paragraph at lines 68--85
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package cleveref Info: loaded `english' language definitions on input line 88.
- [55]
+ [59]
 Package cleveref Info: loaded `english' language definitions on input line 94.
 
-[56])
+[60])
 chapter without number
-[57
+[61
 
 
 
@@ -2794,10 +2821,16 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 Package cleveref Info: loaded `english' language definitions on input line 127.
 
- [58] [59]
+ [62]
+Overfull \hbox (4.9511pt too wide) in paragraph at lines 127--127
+\T1/ptm/m/n/12 (-20) ^^P  Bench-mark-ing model-based re-in-force-ment learn-ing
+^^Q. In: \T1/ptm/m/it/12 (-20) arXiv preprint arXiv:1907.02057
+ []
+
+[63]
 Package cleveref Info: loaded `english' language definitions on input line 130.
 
- [60] [61
+ [64] [65
 
 
 
@@ -2810,7 +2843,7 @@ chapter A.
 )
 Package cleveref Info: loaded `english' language definitions on input line 132.
 
- [62
+ [66
 
 
 ]
@@ -2838,11 +2871,11 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 61572 strings out of 478287
- 1440339 string characters out of 5849289
- 2461407 words of memory out of 5000000
- 78088 multiletter control sequences out of 15000+600000
- 561022 words of font info for 346 fonts, out of 8000000 for 9000
+ 61635 strings out of 478287
+ 1441675 string characters out of 5849289
+ 2461880 words of memory out of 5000000
+ 78119 multiletter control sequences out of 15000+600000
+ 565246 words of font info for 356 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  113i,23n,109p,10633b,2962s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -2859,10 +2892,10 @@ urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (70 pages, 11593510 bytes).
+Output written on main.pdf (74 pages, 12320122 bytes).
 PDF statistics:
- 943 PDF objects out of 1000 (max. 8388607)
- 745 compressed objects within 8 object streams
- 231 named destinations out of 1000 (max. 500000)
- 88682 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 982 PDF objects out of 1000 (max. 8388607)
+ 776 compressed objects within 8 object streams
+ 245 named destinations out of 1000 (max. 500000)
+ 96884 words of extra memory for PDF output out of 106986 (max. 10000000)
 

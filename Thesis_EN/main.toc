@@ -11,35 +11,35 @@
 \contentsline {subsection}{\numberline {2.1.1}Variations of double pendulum}{11}{subsection.2.1.1}%
 \contentsline {subsection}{\numberline {2.1.2}Dynamics of underactuated double pendulum system}{13}{subsection.2.1.2}%
 \contentsline {section}{\numberline {2.2}Related work}{16}{section.2.2}%
-\contentsline {chapter}{\numberline {3}Methodology}{19}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Soft actor critic}{19}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Linear quadratic regulator}{21}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Combining SAC and LQR with region of attraction}{22}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Reward shaping}{24}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Introduction to leaderboard metrics}{27}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Performance Leaderboard in Simulation and Real system}{27}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Simulation Robustness Leaderboard}{29}{subsection.3.5.2}%
-\contentsline {chapter}{\numberline {4}Agent training and experiments in simulation environment}{31}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Training setup}{31}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Training phase}{33}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Simulation results}{36}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Pendubot simulation in ideal environment}{36}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Acrobot simulation in ideal environment}{37}{subsection.4.3.2}%
-\contentsline {chapter}{\numberline {5}Experiments on real hardware}{39}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Hardware setup}{39}{section.5.1}%
-\contentsline {section}{\numberline {5.2}System identification}{45}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Sim2Real problem}{46}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Validation with noisy simulation}{47}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Training with domain randomization}{49}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}Real hardware results}{50}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Pendubot results}{51}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}acrobot results}{52}{subsection.5.4.2}%
-\contentsline {chapter}{\numberline {6}Discussion and Future Work}{53}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Interpretation of simulation leaderboard}{53}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Interpretation of robust leaderboard}{54}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Interpretation of real system leaderboard}{55}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Conclusion and future work}{56}{section.6.4}%
-\contentsline {chapter}{\nonumberline Bibliography}{57}{chapter*.35}%
-\contentsline {chapter}{Appendix}{61}{section*.36}%
-\contentsline {chapter}{Appendix \numberline {A}An appendix}{62}{appendix.a.A}%
+\contentsline {chapter}{\numberline {3}Methodology}{21}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Soft actor critic}{21}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Linear quadratic regulator}{24}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Combining SAC and LQR with region of attraction}{25}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Reward shaping}{27}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Introduction to leaderboard metrics}{30}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Performance Leaderboard in Simulation and Real system}{30}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Simulation Robustness Leaderboard}{32}{subsection.3.5.2}%
+\contentsline {chapter}{\numberline {4}Agent training and experiments in simulation environment}{35}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Training setup}{35}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Training phase}{37}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Simulation results}{40}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Pendubot simulation in ideal environment}{40}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Acrobot simulation in ideal environment}{41}{subsection.4.3.2}%
+\contentsline {chapter}{\numberline {5}Experiments on real hardware}{43}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Hardware setup}{43}{section.5.1}%
+\contentsline {section}{\numberline {5.2}System identification}{49}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Sim2Real problem}{50}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Validation with noisy simulation}{51}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Training with domain randomization}{53}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Real hardware results}{54}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Pendubot results}{55}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}acrobot results}{56}{subsection.5.4.2}%
+\contentsline {chapter}{\numberline {6}Discussion and Future Work}{57}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Interpretation of simulation leaderboard}{57}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Interpretation of robust leaderboard}{58}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Interpretation of real system leaderboard}{59}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Conclusion and future work}{60}{section.6.4}%
+\contentsline {chapter}{\nonumberline Bibliography}{61}{chapter*.37}%
+\contentsline {chapter}{Appendix}{65}{section*.38}%
+\contentsline {chapter}{Appendix \numberline {A}An appendix}{66}{appendix.a.A}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

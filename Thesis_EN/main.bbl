@@ -344,6 +344,58 @@
       \field{title}{Optimal control of a double inverted pendulum on a cart}
       \field{year}{2004}
     \endentry
+    \entry{brockman2016openai}{article}{}
+      \name{author}{7}{}{%
+        {{hash=7ae2a0efeaf9c031f9b420bcb1c19e54}{%
+           family={Brockman},
+           familyi={B\bibinitperiod},
+           given={Greg},
+           giveni={G\bibinitperiod}}}%
+        {{hash=ece7baf9b320c51ead8e24c1c6386dbf}{%
+           family={Cheung},
+           familyi={C\bibinitperiod},
+           given={Vicki},
+           giveni={V\bibinitperiod}}}%
+        {{hash=1c9e26679bbf72679894fbc2d3a86eb1}{%
+           family={Pettersson},
+           familyi={P\bibinitperiod},
+           given={Ludwig},
+           giveni={L\bibinitperiod}}}%
+        {{hash=5167ef9d0b77bf68557730648baac9b7}{%
+           family={Schneider},
+           familyi={S\bibinitperiod},
+           given={Jonas},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3e09bd2a25d237ebdaed560a07c0451e}{%
+           family={Schulman},
+           familyi={S\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=d0b3008e85b1a8b38f46556abf1791c7}{%
+           family={Tang},
+           familyi={T\bibinitperiod},
+           given={Jie},
+           giveni={J\bibinitperiod}}}%
+        {{hash=e9fec85bbce1b087a6ebefe26e73f7bf}{%
+           family={Zaremba},
+           familyi={Z\bibinitperiod},
+           given={Wojciech},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{ce46cc7360f33a11d3532ad41aff3485}
+      \strng{fullhash}{87cdccf072890926f8955924be595134}
+      \strng{bibnamehash}{87cdccf072890926f8955924be595134}
+      \strng{authorbibnamehash}{87cdccf072890926f8955924be595134}
+      \strng{authornamehash}{ce46cc7360f33a11d3532ad41aff3485}
+      \strng{authorfullhash}{87cdccf072890926f8955924be595134}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1606.01540}
+      \field{title}{Openai gym}
+      \field{year}{2016}
+    \endentry
     \entry{cazzolato2011dynamics}{article}{}
       \true{moreauthor}
       \true{morelabelname}
@@ -1571,6 +1623,73 @@
       \verb{url}
       \verb https://zenodo.org/record/8127025
       \endverb
+    \endentry
+    \entry{wang2019benchmarking}{article}{}
+      \name{author}{10}{}{%
+        {{hash=b290478e3e33fec365eab237305fbd61}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Tingwu},
+           giveni={T\bibinitperiod}}}%
+        {{hash=dbd6ed78d64d58c9717c01beea265b99}{%
+           family={Bao},
+           familyi={B\bibinitperiod},
+           given={Xuchan},
+           giveni={X\bibinitperiod}}}%
+        {{hash=a0423de20f2c114c3f6bb51a7a7e76d6}{%
+           family={Clavera},
+           familyi={C\bibinitperiod},
+           given={Ignasi},
+           giveni={I\bibinitperiod}}}%
+        {{hash=b60597e23ac50589efc7a4ad3e994ff9}{%
+           family={Hoang},
+           familyi={H\bibinitperiod},
+           given={Jerrick},
+           giveni={J\bibinitperiod}}}%
+        {{hash=94d0386dbc9a4ebaae29006133f1d26f}{%
+           family={Wen},
+           familyi={W\bibinitperiod},
+           given={Yeming},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=1d73c9f9de9facb2a8f84587fa441b5a}{%
+           family={Langlois},
+           familyi={L\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+        {{hash=1bd7357a5f3647cd92e5ff4d08f0fd9e}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Shunshi},
+           giveni={S\bibinitperiod}}}%
+        {{hash=67cf1f71a516120793970cb0772e206e}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Guodong},
+           giveni={G\bibinitperiod}}}%
+        {{hash=e28d4ee199593959d8c29980a64f1974}{%
+           family={Abbeel},
+           familyi={A\bibinitperiod},
+           given={Pieter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=8aa66e8231cc2fdbe67aa4f18ca970c6}{%
+           family={Ba},
+           familyi={B\bibinitperiod},
+           given={Jimmy},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{54ac8cbc89ff8a0e3e68478cd5feb235}
+      \strng{fullhash}{ea117e49095e1c58151164662cea890e}
+      \strng{bibnamehash}{32e091a2264c3aa53e2ef3a684c526da}
+      \strng{authorbibnamehash}{32e091a2264c3aa53e2ef3a684c526da}
+      \strng{authornamehash}{54ac8cbc89ff8a0e3e68478cd5feb235}
+      \strng{authorfullhash}{ea117e49095e1c58151164662cea890e}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1907.02057}
+      \field{title}{Benchmarking model-based reinforcement learning}
+      \field{year}{2019}
     \endentry
     \entry{xin2004new}{inproceedings}{}
       \name{author}{2}{}{%

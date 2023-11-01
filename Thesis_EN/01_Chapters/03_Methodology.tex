@@ -24,13 +24,15 @@ By maximizing entropy, SAC encourages exploration and accelerates learning. It
 also prevents the policy from prematurely converging to a suboptimal solution.
 The trade-off between maximizing reward and maximizing entropy is controlled
 through a parameter, \(\alpha\). This parameter serves to balance the importance
-of exploration and exploitation within the optimization problem. The optimal policy
+of exploration and exploitation within the optimization problem. Each interactioin between the agent and the environment can be recorded as a tuple \((s_t,a_t,R,s_{t+1})\). The optimal policy
 \(\pi^*\) can be defined as follows:
 
 \begin{equation}
  \pi^* = {arg}{\max_{\pi}}{\displaystyle
  \mathop{\mathbb{E}}_{\tau\sim\pi}}{\Bigg[{\sum_{t=0}^{\infty}}{\gamma^{t}}{\Big(R(s_t,a_t,s_{t+1})}+{\alpha}H(\pi(\cdot\mid{s_t}))\Big)\Bigg]}
 \end{equation}
+
+Where \(s_t\) and \(a_t\) represent the state and action at time \(t\), and \(s_{t+1}\) represents the state at time \(t+1\). \(R\) denotes the immediate reward received by the agent after taking action \(a_t\) in state \(s_t\), while \(\gamma\) is the discount factor that determines the agent's emphasis on long-term cumulative rewards over immediate ones.
 
 During training, SAC learns a policy $\pi_{\theta}$ and two Q-functions
 $Q_{\phi_1} , Q_{\phi_2}$ concurrently. The loss functions for the two Q-networks are
@@ -42,6 +44,7 @@ $(i \in {1, 2})$:
 \end{equation}
 
 where the temporal difference target \(y\) is given by:
+
 \begin{align}
   y(r,s',d) &= r + \gamma(1-d) \times \nonumber\bigg(\displaystyle
   \mathop{\min}_{j=1,2}Q_{\phi_{targ,j}}(s',\tilde{a}')-\alpha\log
@@ -52,17 +55,27 @@ where the temporal difference target \(y\) is given by:
 In each state, the policy \(\pi_\theta\) should act to maximize the expected
 future return \(Q\) while also considering the expected future entropy \(H\). In other
 words, it should maximize \(V^\pi(s)\):
+
 \begin{align}
  V^\pi(s) &= {\displaystyle \mathop{\mathbb{E}}_{a\sim\pi}[Q^\pi(s,a)]} +
  \alpha{H(\pi(\cdot\mid{s}))} \\
- &= {\displaystyle \mathop{\mathbb{E}}_{a\sim\pi}[Q^\pi(s,a)]} -
- \alpha{\log {\pi(a\mid{s})}}
+ &= {\displaystyle \mathop{\mathbb{E}}_{a\sim\pi}[Q^\pi(s,a)} -
+ \alpha{\log {\pi(a\mid{s})]}}
 \end{align}
 
+The interaction experiences are stored as tuples \((s, a, r, s', d)\) in a replay buffer \(\textit{D}\). Here, \(d\) represents the signal for episode termination. When it is time to update the Q-value and policy, a batch of transitions \(\textit{B} = \{(s, a, r, s', d)\}\) is randomly sampled from \(\textit{D}\). The Q-functions are updated by one step of gradient descent using:
 
-By employing an effective gradient-based optimization technique, the parameters
-of both the actor and critic neural networks undergo updates, subsequently
-leading to the adaptation of the policies themselves.
+\begin{equation}
+\nabla_{\phi_i} \frac{1}{|\textit{B}|} \sum_{(s, a, r, s', d) \in \textit{B}} \left(Q_{\phi_i}(s, a) - y(r, s', d)\right)^2 \quad \text{for} \quad i=1,2
+\end{equation}
+
+The policy is updated using one step of gradient ascent:
+
+\begin{equation}
+\nabla_{\theta} \frac{1}{|\textit{B}|} \sum_{s \in \textit{B}}\left(\min\limits_{\substack{i=1,2}}Q_{\phi_i}(s,\widetilde{a}_{\theta}(s)) - \alpha \log\pi_{\theta}(\widetilde{a}_{\theta}(s)|s)\right)
+\end{equation}
+
+where \(\widetilde{a}_{\theta}(s)\) is a sample of action derived from \(\pi_\theta(\cdot|s)\) which is differentiable with respect to \(\theta\). The actor and critic neural networks' parameters are updated, resulting in policy adaptation.
 
 In conclusion, SAC's combination of stochastic policies, exploration through
 entropy regularization, value estimation, and gradient-based optimization make
@@ -72,48 +85,59 @@ state and action spaces.
 \section{Linear quadratic regulator}
 The Linear Quadratic Regulator (LQR)\cite{lehtomaki1981robustness} is an effective control method primarily designed for linear systems. Yet, when dealing with nonlinear dynamics, it remains applicable.The nonlinear system is linearized around a selected operating point, and based on this linearized version, the LQR controller can be sculpted.
 
-Taking a step back, the general form of a nonlinear system can be expressed as:
+Taking a step back, the general form of a nonlinear system defined by state vector \(x\) and input vector \(u\) can be expressed as:
 \begin{equation}
  \dot{x}(t) = f(x(t), u(t))
 \end{equation}
 
 
-In certain applications like pendubot or acrobot stabilization, it is important to select the appropriate operating point. We select the operating point around the upright position, specifically \(x_{op} = [\pi,0,0,0]^T\). Around this point, the system can be linearized, leading to:
+In certain applications, such as pendubot or acrobot stabilization, it is important to select the appropriate operating point. Due to the tasks to be completed, the operating point is chosen around the upright position, specifically \(x_{op} = [\pi,0,0,0]^T\). Around this point, the system can be linearized, leading to:
 
 \begin{equation}
 \dot{\overline{x}}(t) = A \overline{x}(t) + B u(t)
 \end{equation}
 
-
-Here, the deviation from the desired state is given by \(\overline{x} = x - x_{\text{op}}\), and its first derivative, \(\dot{\overline{x}} = \dot{x}\). The linearized  matrices \(A\) and \(B\) are derived as:
-
-\begin{equation}
- A = \left.\frac{\partial f}{\partial x}\right|_{\text{op}}, \quad B = \left.\frac{\partial f}{\partial u}\right|_{\text{op}}
-\end{equation}
-
-
-To derive an optimal control strategy, we use a quadratic cost function \(J\):
+Here, the deviation from the desired state is given by \(\overline{x} = x - x_{\text{op}}\). Its first derivative, \(\dot{\overline{x}} = \dot{x} - \dot{x}_{\text{op}} = \dot{x}\), for \(x_{\text{op}}\) being a constant. The linearized state matrices \(A\) and input matrix \(B\) around the operation point are derived as:
 
 \begin{equation}
-  J = \int_0^{\infty} \left( x^T Q x + u^T R u \right) \, dt
+A = \left.\frac{\partial f}{\partial x}\right|_{x = x_{\text{op}}}, \quad B = \left.\frac{\partial f}{\partial u}\right|_{x = x_{\text{op}}}
 \end{equation}
 
-Usually, the matrices \(Q\) and \(R\) are chosen to be symmetric and positive definite, which means \(Q = Q^T\) and all its eigenvalues are positive, and similarly \(R = R^T\) with all positive eigenvalues. With such choices, the Hamilton-Jacobi-Bellman equation, whose solution gives the optimal cost-to-go function from which the optimal policy is derived, can be reduced to the continuous-time algebraic Riccati equation.
+To derive an optimal control strategy, a quadratic cost function \(J\) is needed:
+
+\begin{equation}
+  J = \int_0^{T} \left( x^T Q x + u^T R u \right) \, dt
+  \label{eq:quadratic_cost}
+\end{equation}
+
+The matrices \(Q\) and \(R\) must be chosen to be symmetric and positive definite, which means \(Q = Q^T\) with all its eigenvalues positive, and similarly, \(R = R^T\) with all positive eigenvalues.
+
+The Hamilton-Jacobi-Bellman equation (HJB) characterizes the optimal value function \(J^*(x)\), representing the minimum cost-to-go from state \(x\) to termination at \(T\). The HJB equation is as follows:
+
+\begin{equation}
+ \frac{dJ^*(x)}{dt} = \min_u \left( x^T Q x + u^T R u + \frac{dJ^*(x)}{dx} (Ax + Bu) \right)
+ \label{eq:HJB}
+\end{equation}
+
+By calculating \(\frac{dJ^*(x)}{dt}\) from Equation \ref{eq:quadratic_cost}, the HJB equation can be reduced to the continuous-time algebraic Riccati equation:
 
 \begin{equation}
  A^T S + SA - SBR^{-1}B^T S + Q = 0
 \end{equation}
 
-Finally, the LQR control law obtained with above method for this linearized system is:
+Finally, the LQR control law obtained with the above method for this linearized system is:
+
 \begin{equation}
  u(t) = -K\overline{x}(t)
 \end{equation}
-with \(K = R^{-1}B^T S\).
 
-For an infinite-horizon LQR controller like this, torques will always be applied to steer the system state toward the origin of the linear system.
+where \(K = R^{-1}B^T S\).
+
+For a LQR controller like this, torques will always be applied to steer the system state toward the origin of the linear system.
 
 
 \section{Combining SAC and LQR with region of attraction}
+some other guy[sean gillen] has done a similar work, cite that.
 
 In our approach, a combined control method is utilized for both the swing-up and stabilization tasks. During the swing-up phase, the SAC controller is employed. Once the state of the double pendulum approaches the vicinity of the desired goal state, the transition from the SAC controller to the LQR controller is made for final-stage stabilization. An essential aspect of any combined control strategy is the determination of the conditions under which the system is ready for a transition between control methods. In our SAC+LQR control strategy, the criterion for making this determination is provided by the region of attraction method\cite{maywald2022co}.
 
