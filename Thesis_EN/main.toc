@@ -15,13 +15,13 @@
 \contentsline {section}{\numberline {3.1}Soft actor critic}{21}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Linear quadratic regulator}{24}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Combining SAC and LQR with region of attraction}{25}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Reward shaping}{27}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Introduction to leaderboard metrics}{30}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Performance Leaderboard in Simulation and Real system}{30}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Simulation Robustness Leaderboard}{32}{subsection.3.5.2}%
+\contentsline {section}{\numberline {3.4}Reward shaping}{28}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Introduction to leaderboard metrics}{31}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Performance Leaderboard in Simulation and Real system}{31}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Simulation Robustness Leaderboard}{33}{subsection.3.5.2}%
 \contentsline {chapter}{\numberline {4}Agent training and experiments in simulation environment}{35}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Training setup}{35}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Training phase}{37}{section.4.2}%
+\contentsline {section}{\numberline {4.2}Training phase}{38}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Simulation results}{40}{section.4.3}%
 \contentsline {subsection}{\numberline {4.3.1}Pendubot simulation in ideal environment}{40}{subsection.4.3.1}%
 \contentsline {subsection}{\numberline {4.3.2}Acrobot simulation in ideal environment}{41}{subsection.4.3.2}%
@@ -39,7 +39,7 @@
 \contentsline {section}{\numberline {6.2}Interpretation of robust leaderboard}{58}{section.6.2}%
 \contentsline {section}{\numberline {6.3}Interpretation of real system leaderboard}{59}{section.6.3}%
 \contentsline {section}{\numberline {6.4}Conclusion and future work}{60}{section.6.4}%
-\contentsline {chapter}{\nonumberline Bibliography}{61}{chapter*.37}%
-\contentsline {chapter}{Appendix}{65}{section*.38}%
+\contentsline {chapter}{\nonumberline Bibliography}{61}{chapter*.39}%
+\contentsline {chapter}{Appendix}{65}{section*.40}%
 \contentsline {chapter}{Appendix \numberline {A}An appendix}{66}{appendix.a.A}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

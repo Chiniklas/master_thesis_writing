@@ -1,5 +1,5 @@
 \chapter{Agent training and experiments in simulation environment}
-Chapters 4 and 5 focus on the experimental phase of our project. This chapter details the training procedure of our SAC agent for the swing-up task and then transitions to a simulation phase to validate results for both the swing-up and stabilization tasks. We have structured this chapter into three distinct subsections: training setup, training process, and simulation results.
+Chapters 4 and 5 focus on the experimental phase of the project. This chapter details the training procedure of our SAC agent for the swing-up task and then transitions to a simulation phase to validate results for both the swing-up and stabilization tasks. We have structured this chapter into three distinct subsections: training setup, training process, and simulation results.
 
 The first subsection describes the foundation of a reinforcement learning interaction rooted in a stable baseline3-based RL algorithm. It also touches upon a customized environment inherited from the OpenAI Gym environment. The second subsection centers on hyperparameter tuning and highlights the challenges encountered during training. The third subsection displays the results acquired from both the pendubot and acrobot setups.
 
@@ -12,28 +12,49 @@ OpenAI Gymnasium\cite{towers_gymnasium_2023} is a toolkit for developing and com
     \centering
     \includegraphics[width=0.8\linewidth]{figures/simulation_result/RL_interaction.png}
     \caption{Interaction between reinforcement learning agent and customized environment}
-    \label{fig:my_label}
+    \label{fig:RL_interaction}
 \end{figure}
 
-To construct the customized environment, we begin with the symbolic dynamic function that captures the nonlinear dynamics of the underactuated double pendulum. This function uses the current state observation from the simulation and the action determined by the control policy, producing a prediction of the next state via a Runge-Kutta integrator.
+To construct the customized environment, we begin with the dynamic function that captures the nonlinear dynamics of the underactuated double pendulum from this respository\cite{2023_ram_wiebe_double_pendulum}. The dynamic function uses the current state observation and the action determined by the control policy, producing the next state via a Runge-Kutta integrator.
 
-This predicted state is then input into the reward function, which yields a scalar output. This output is subsequently relayed to the SAC algorithm for policy evaluation and update. After these computations, the simulation provides an estimation of the current state, and the policy identifies the most probable action. Both of these values are then directed back to the dynamics function, initiating a new cycle.
+This integrated state is then input into the reward function, which yields a scalar output. This output is subsequently relayed to the SAC algorithm for policy evaluation and update. After these computations, the simulation calculates the current state, and the policy identifies the most probable action. Both of these values are then directed back to the dynamics function, initiating a new cycle.
 
-It's widely recognized that reinforcement learning algorithms tend to converge more effectively when using normalized state and action spaces \cite{sutton2018reinforcement}. Therefore, we've designed a scaling mechanism to translate the state and action spaces from their normalized versions to real-world measurements. Users can choose to activate or deactivate this scaling. For example, while a normalized state resides within the interval \( [-1,1] \), we might wish to map it to real-world measurements \( \left[ \text{pos1}, \text{pos2}, \text{vel1}, \text{vel2} \right] \), such as \( \text{pos1} \) in \( [0,2\pi] \), \( \text{pos2} \) in \( [-\pi,\pi] \), and velocities \( \text{vel1} \) and \( \text{vel2} \) in \( [-20,20] \) rad/s, while keeping the torque within \( [-\tau_{\text{limit}}, \tau_{\text{limit}}] \). When this scaling mechanism is activated, it ensures that states and actions in the SAC algorithm always stay within the \( [-1,1] \) boundary, which often leads to faster convergence. 
+It is widely recognized in the field of reinforcement learning that algorithms tend to converge more effectively when utilizing normalized state and action spaces \cite{sutton2018reinforcement}. Therefore, a scaling mechanism is designed to map the state and action spaces from their normalized versions to real-world measurements. The activation or deactivation of this scaling is optional.
+
+For instance, in the case of a normalized state within the interval $[-1,1]$, we may choose to map it to real-world measurements such as $p_1$ in $[0,2\pi]$, $p_2$ in $[-\pi,\pi]$, and velocities $v_1$ and $v_2$ in $[-20,20]$ rad/s, while maintaining torque within the range $[-\tau_{\text{limit}}, \tau_{\text{limit}}]$. When this scaling mechanism is activated, it ensures that states and actions within the SAC algorithm always remain within the $[-1,1]$ boundary, thereby often leading to faster convergence.
 
 The logic of the pipeline of the interaction of customized environment is described in the picture below.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\linewidth]{figures/simulation_result/scaling_mechanism.png}
-    \caption{Detailed scaling pipeline in training process}
-    \label{fig:my_label}
+    \caption{Detailed scaling pipeline in training process[some problem here]}
+    \label{fig:scasling_mech}
 \end{figure}
 
-\section{Training phase}
-The training phase started immediately after we finished setting up the training pipeline. During the training of the SAC controller for both the acrobot and pendubot, our primary focus was on tuning several key hyperparameters. These encompassed the learning rate, control frequency, episode length, and learning timestep. We invested much effort in adjusting hyperparameters for the reward function and the LQR controller, given their pivotal roles in the learning process, as detailed in Table 4.1.
+Previous work in the double pendulum repository has featured several combinations of link lengths, designated as designs A, B, C, and D. Each design has undergone various system identification attempts, resulting in different outcomes labeled as models 1.0, 2.0, and so on. The combinations of these designs are displayed below:
 
-We set the learning rate at 0.01 to promote effective learning and adaptation. Additionally, we configured the control frequency of the simulation to 100Hz, ensuring frequent updates and heightened responsiveness in the control process. We selected an episode length of 1000 for both the Acrobot and Pendubot, translating to 10-second-long episodes, to provide sufficient exploration and learning opportunities. To harness the full training potential, we executed a total of 2e7 learning time steps for the pendubot and 5e7 for the acrobot, allowing the agent to accumulate vast experience and enhance its performance.
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+  & design A & design B & design C & design D \\
+\hline
+$l_1$(m) & 0.3 & 0.3 & 0.2 & 0.3 \\
+\hline
+$l_2$(m) & 0.2 & 0.4 & 0.3 & 0.3 \\
+\hline
+\end{tabular}
+\caption{Combinations of $l_1$ and $l_2$ of different designs}
+\label{tab:different_designs}
+\end{table}
+
+In addition, the trial phase uses a noisy initialization with a Gaussian noise posed on the supposed initial state \([0,0,0,0]^T\), which increases exploration. When it is time for evaluation, a zero initialization is used to ensure exploitation of the learned policy.
+
+\section{Training phase}
+During the training of the SAC controller for both the acrobot and pendubot, the primary focus was on tuning several key hyperparameters. These encompassed the learning rate, control frequency, episode length, and learning timestep. Effort was invested in adjusting hyperparameters for the reward function and the LQR controller, given their pivotal roles in the learning process, as detailed in Table \ref{tab:training_parameters}.
+
+The learning rate was set at 0.01 to promote effective learning and adaptation. Additionally, the control frequency of the simulation was configured to 100Hz, ensuring frequent updates and heightened responsiveness in the control process. An episode length of 1000 was selected for both the Acrobot and Pendubot, translating to 10-second-long episodes, to provide sufficient exploration and learning opportunities. To harness the full training potential, a total of 2e7 learning time steps were executed for the pendubot and 5e7 for the acrobot, allowing the agent to accumulate vast experience and enhance its performance.
 
 \begin{table}[H]
   \centering
@@ -53,10 +74,10 @@ We set the learning rate at 0.01 to promote effective learning and adaptation. A
   & \(R\) = 1e-4  &  & \(R\) = 0.11\\
   \end{tabular}
  \caption{Hyper parameters used for the SAC training and the LQR controller.}
- \label{tab:parameters}
+ \label{tab:training_parameters}
 \end{table}
 
-The learning curve for a total of 2e7 timesteps for the pendubot is illustrated below.As depicted in the figure, from 0 to 1e7 timesteps, the learning curve experiences a gradual ascent. Between 1e7 and 1.2e7 timesteps, the learning curve surges rapidly, peaking in reward around one million. After 1.2e6 timesteps, the curve begins to stabilize with occasional fluctuations, and no substantial increase in reward is observed.
+One of the successful learning curves for a total of 2e7 timesteps for the pendubot is illustrated below. This experiment, like all other simulation experiments done on the pendubot setup, uses design A, namely, $l_1 = 0.3m$ and $l_2 = 0.2m$. As depicted in the figure, from 0 to 1e7 timesteps, the learning curve experiences a gradual ascent. Between 1e7 and 1.2e7 timesteps, the learning curve surges rapidly, peaking at around one million in reward. After 1.2e6 timesteps, the curve begins to stabilize with occasional fluctuations, and no substantial increase in reward is observed.
 
 \begin{figure}[H]
     \centering
@@ -65,7 +86,7 @@ The learning curve for a total of 2e7 timesteps for the pendubot is illustrated 
     \label{fig:image_a}
 \end{figure}
 
-As shown in the learning curve over a total of 3e7 timesteps for the acrobot, the curve experienced a relatively steady growth until 1.8e7 timesteps. After a sudden drop in reward between 1.8e7 and 2e7 timesteps, the learning curve began to increase drastically, with two major fallbacks. By 3e7 timesteps, the learning curve hadn't reached its peak. We extended the learning period to 5e7 using a warm start from the model obtained at 3e7 timesteps, and the learning curve began to stabilize around 4e7 time steps.
+The simulation experiments on the acrobot are based on design C, with $l_1$ being 0.2m and $l_2$ being 0.3m. As shown in the successful learning curve over a total of 3e7 timesteps for the acrobot, the curve experienced relatively steady growth until 1.8e7 timesteps. After a sudden drop in reward between 1.8e7 and 2e7 timesteps, the learning curve began to increase drastically, with two major setbacks. By 3e7 timesteps, the learning curve had not reached its peak. We extended the learning period to 5e7 using a warm start from the model obtained at 3e7 timesteps, and the learning curve began to stabilize around 4e7 time steps.
 
 \begin{figure}[H]
     \centering
@@ -74,13 +95,13 @@ As shown in the learning curve over a total of 3e7 timesteps for the acrobot, th
     \label{fig:image_b}
 \end{figure}
 
-In conclusion, the training for the pendubot converges more quickly than that for the acrobot. Additionally, based on the training curves, the pendubot's training process is more stable than the acrobot's.
+% In conclusion, the training for the pendubot converges more quickly than that for the acrobot. Additionally, based on the training curves, the pendubot's training process is more stable than the acrobot's.
 
 \section{Simulation results}
 In this section, the simulation results for the acrobot and pendubot are presented separately. The model trained using the SAC algorithm is utilized during the swing-up stage and switches to the LQR controller when nearing the upright position. The primary success criteria for both swing-up and stabilization involve swinging up the double pendulum and maintaining its stability around the upright position for a prolonged period. Therefore, a total simulation time of 10 seconds is used. If the double pendulum fails to swing up within these 10 seconds, the result is deemed unsuccessful. Similarly, if the double pendulum loses stability within this time frame, the outcome is still considered a failure.
 
 \subsection{Pendubot simulation in ideal environment}
-A testing environment, identical to the customized learning environment, has been established to validate the training results and accurately replicate the agent's behavior learned during the reinforcement learning process. The pendulum is initialized at its lowest point with zero velocity and begins its swing-up using the control policy derived solely from the SAC.
+The testing environment, identical to the customized learning environment employed during the evaluation phase in training, has been established to validate the training outcomes and replicate the agent's learned behavior from the reinforcement learning process. This testing environment is considered ideal as it excludes disturbances such as friction and damping, focusing solely on the effects of gravity, joint torque, and mechanical constraints. In this environment, zero initialization is applied instead of the noisy initialization used during the trial phase in training. The system begins with an initial state of \([0,0,0,0]^T\), representing its lowest point with zero velocity, and initiates the swing-up using the control policy exclusively derived from SAC.
 
 As depicted in the figure, the swing-up time is under 1 second. After this, the state of the pendubot enters the Region of Attraction (ROA) of the LQR controller. The transition between the two controllers is both seamless and effective, with the system stabilizing towards the desired state under the LQR controller's influence. This validates the effectiveness of the ROA method for the LQR takeover.
 
@@ -95,11 +116,9 @@ A significant highlight from this successful simulation is the impressively shor
 
 \subsection{Acrobot simulation in ideal environment}
 
-Just like the pendubot simulation, the acrobot setup is tested in an ideal environment identical to its training environment. The acrobot begins its swing from the downward position with the goal of stabilizing around its highest point.
+Just like the pendubot simulation, experiments on the acrobot setup are conducted in an ideal environment identical to the evaluation environment during the training phase. The acrobot begins its swing from the downward position with zero velocity, with the final goal of stabilizing around its highest point.
 
 The accompanying image depicts a successful swing-up and stabilization within a 10-second window. The swing-up process takes about 2 seconds before the LQR effectively assumes control, maintaining an asymptotic stability around the target state with minimal fluctuations.
-
-In comparison to the pendubot's simulation curves, the swing-up time for the acrobot is roughly twice as long. This aligns with the notion that controlling the acrobot is a more challenging task than the pendubot. A shared drawback observed in both simulations is the lack of torque smoothness. For the acrobot, the input torque exhibits several significant jumps from one torque limit to the other, which might cause difficulties when translating to real-world hardware control.
 
 \begin{figure}[H]
     \centering
@@ -108,5 +127,6 @@ In comparison to the pendubot's simulation curves, the swing-up time for the acr
     \label{fig:image_b}
 \end{figure}
 
+In comparison to the pendubot's simulation curves, the swing-up time for the acrobot is roughly twice as long. This aligns with the notion that controlling the acrobot is a more challenging task than the pendubot. A shared drawback observed in both simulations is the lack of torque smoothness. For the acrobot, the input torque exhibits several significant jumps from one torque limit to the other, which might cause difficulties when translating to real-world hardware control.
 
 \cleardoublepage

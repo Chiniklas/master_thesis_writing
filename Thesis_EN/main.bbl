@@ -624,6 +624,43 @@
       \field{pages}{548\bibrangedash 556}
       \range{pages}{9}
     \endentry
+    \entry{gillen2020combining}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=2aab4831a15b6d9bbdcfb41ae57655d6}{%
+           family={Gillen},
+           familyi={G\bibinitperiod},
+           given={Sean},
+           giveni={S\bibinitperiod}}}%
+        {{hash=081cec0eebf58e7941ee6f0f61d97e24}{%
+           family={Molnar},
+           familyi={M\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod}}}%
+        {{hash=39789be7aecbeebf76e310a8cec75eaf}{%
+           family={Byl},
+           familyi={B\bibinitperiod},
+           given={Katie},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{af6c3e43cc716c3ffc5d5b8c5dcaa685}
+      \strng{fullhash}{38a217f65b4df6708099cc18b6fa8d4b}
+      \strng{bibnamehash}{38a217f65b4df6708099cc18b6fa8d4b}
+      \strng{authorbibnamehash}{38a217f65b4df6708099cc18b6fa8d4b}
+      \strng{authornamehash}{af6c3e43cc716c3ffc5d5b8c5dcaa685}
+      \strng{authorfullhash}{38a217f65b4df6708099cc18b6fa8d4b}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2020 59th IEEE Conference on Decision and Control (CDC)}
+      \field{title}{Combining deep reinforcement learning and local control for the acrobot swing-up and balance task}
+      \field{year}{2020}
+      \field{pages}{4129\bibrangedash 4134}
+      \range{pages}{6}
+    \endentry
     \entry{haarnoja2018soft}{inproceedings}{}
       \name{author}{4}{}{%
         {{hash=45b14f55dd7ae28cb6cb2e23e4a168b9}{%
@@ -766,6 +803,38 @@
       \field{year}{2019}
       \field{pages}{eaau5872}
       \range{pages}{-1}
+    \endentry
+    \entry{khalil2002nonlinear}{book}{}
+      \name{author}{1}{}{%
+        {{hash=58e274a4049e547f88d35c2c5f6b37e0}{%
+           family={Khalil},
+           familyi={K\bibinitperiod},
+           given={H.K.},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall}%
+      }
+      \strng{namehash}{58e274a4049e547f88d35c2c5f6b37e0}
+      \strng{fullhash}{58e274a4049e547f88d35c2c5f6b37e0}
+      \strng{bibnamehash}{58e274a4049e547f88d35c2c5f6b37e0}
+      \strng{authorbibnamehash}{58e274a4049e547f88d35c2c5f6b37e0}
+      \strng{authornamehash}{58e274a4049e547f88d35c2c5f6b37e0}
+      \strng{authorfullhash}{58e274a4049e547f88d35c2c5f6b37e0}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780130673893}
+      \field{series}{Pearson Education}
+      \field{title}{Nonlinear Systems}
+      \field{year}{2002}
+      \verb{urlraw}
+      \verb https://books.google.de/books?id=t_d1QgAACAAJ
+      \endverb
+      \verb{url}
+      \verb https://books.google.de/books?id=t_d1QgAACAAJ
+      \endverb
     \endentry
     \entry{konda1999actor}{article}{}
       \name{author}{2}{}{%
@@ -1690,6 +1759,54 @@
       \field{journaltitle}{arXiv preprint arXiv:1907.02057}
       \field{title}{Benchmarking model-based reinforcement learning}
       \field{year}{2019}
+    \endentry
+    \entry{2023_ram_wiebe_double_pendulum}{article}{}
+      \name{author}{6}{}{%
+        {{hash=077e42e3d5099d042cfb47fb7970a08a}{%
+           family={Wiebe},
+           familyi={W\bibinitperiod},
+           given={Felix},
+           giveni={F\bibinitperiod}}}%
+        {{hash=2e48b2891338cced49b0862cd7f52707}{%
+           family={Kumar},
+           familyi={K\bibinitperiod},
+           given={Shivesh},
+           giveni={S\bibinitperiod}}}%
+        {{hash=916263afd1e25de33c54744b96841dae}{%
+           family={Shala},
+           familyi={S\bibinitperiod},
+           given={Lasse},
+           giveni={L\bibinitperiod}}}%
+        {{hash=58a114f9eeb72390dbe954dd1c51efc5}{%
+           family={Vyas},
+           familyi={V\bibinitperiod},
+           given={Shubham},
+           giveni={S\bibinitperiod}}}%
+        {{hash=3504f2e99c129013fd0afb4899bcf544}{%
+           family={Javadi},
+           familyi={J\bibinitperiod},
+           given={Mahdi},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a9fc00ec70309d0bf954eab4dc3a5fc4}{%
+           family={Kirchner},
+           familyi={K\bibinitperiod},
+           given={Frank},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{925db26d46806f249b30de1343ec9a65}
+      \strng{fullhash}{4ea29ae91551256b040dc2070f2e32be}
+      \strng{bibnamehash}{4ea29ae91551256b040dc2070f2e32be}
+      \strng{authorbibnamehash}{4ea29ae91551256b040dc2070f2e32be}
+      \strng{authornamehash}{925db26d46806f249b30de1343ec9a65}
+      \strng{authorfullhash}{4ea29ae91551256b040dc2070f2e32be}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Robotics and Automation Magazine}
+      \field{note}{under review}
+      \field{title}{An Open Source Dual Purpose Acrobot and Pendubot Platform for Benchmarking Control Algorithms for Underactuated Robotics}
+      \field{year}{2023}
     \endentry
     \entry{xin2004new}{inproceedings}{}
       \name{author}{2}{}{%

@@ -137,50 +137,57 @@ For a LQR controller like this, torques will always be applied to steer the syst
 
 
 \section{Combining SAC and LQR with region of attraction}
-some other guy[sean gillen] has done a similar work, cite that.
+In our approach, a combined control method is utilized for both the swing-up and stabilization tasks. This combined control framework is a natural choice and has previous work that supports this method. In this work by S. Gillen et al.\cite{gillen2020combining}, a similar structure combining a local controller and a learned controller with a gate function was employed. The work was conducted on chaotic control of an acrobot setup in simulation, which aligns with our task.
 
-In our approach, a combined control method is utilized for both the swing-up and stabilization tasks. During the swing-up phase, the SAC controller is employed. Once the state of the double pendulum approaches the vicinity of the desired goal state, the transition from the SAC controller to the LQR controller is made for final-stage stabilization. An essential aspect of any combined control strategy is the determination of the conditions under which the system is ready for a transition between control methods. In our SAC+LQR control strategy, the criterion for making this determination is provided by the region of attraction method\cite{maywald2022co}.
+In our implementation, during the swing-up phase, the SAC controller is employed. Once the state of the double pendulum approaches the vicinity of the desired goal state, the transition from the SAC controller to the LQR controller is made for final-stage stabilization. An essential aspect of any combined control strategy is the determination of the conditions under which the system is ready for a transition between control methods. In our SAC+LQR control strategy, the gate function for making this determination is provided by the region of attraction method\cite{maywald2022co}.
 
-The region of attraction (ROA) for a nonlinear system, represented by \(R_a\), signifies the set \(\mathcal{B}\) of initial states surrounding a fixed point \(x_0\). If a state lies within this region, the system will gravitate towards \(x_0\) as \(t \rightarrow \infty\). In the context of an LQR controller, the ROA demarcates the area within the state space where the controlled system exhibits asymptotic stability. For complex systems, directly computing \(R_a\) can be challenging; it is often estimated instead. Therefore, analyzing the stability of the controlled system within this region becomes crucial. The state space representation of a controlled linear system can be expressed as:
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{example-image.jpg}
+    \caption{Example Image}
+    \label{fig:example}
+\end{figure}
 
-\begin{equation}
-\dot{x}(t) = (A - BK)x(t)
-\end{equation}
 
-where \(A_c = A - BK\).
+The region of attraction (ROA) for a nonlinear system, denoted as \(R_a\), describes the set of initial states surrounding a fixed point \(x_0\). If a state lies within this region, the system will converge towards \(x_0\) as \(t \rightarrow \infty\). In the context of an LQR controller, the ROA signifies the area within the state space where the controlled system exhibits asymptotic stability. For complex systems, directly computing \(R_a\) can be challenging; instead, it is often estimated. The simplest way to estimate such a set requires the assistance of a Lyapunov function \(V(x)\) bounded by a scalar \(\rho\)\cite{khalil2002nonlinear}.
 
-The most straightforward way to analyze the stability of a system is using the Lyapunov method. We choose a Lyapunov function in a quadratic form:
-\begin{equation}
-  V(\bar{x}) = \bar{x}^T S_{LQR} \bar{x} 
-\end{equation}
+Here, \(B\) represents the estimated subset of the real region of attraction \(R_a\).
 
-where \(S_{LQR}\) is a positive definite matrix. This function serves as an "energy-like" metric, and our goal is to demonstrate its decrease over time for a stable system.
-
-Next, we compute the time derivative of the Lyapunov function. For the infinite horizon LQR, \(\frac{\partial S_{LQR}}{\partial t} = 0\) and \(\frac{\partial x_0}{\partial t} = 0\), hence \(\dot{V}\) is:
+The Lyapunov function for a controlled linear system, \(\dot{x}(t) = (A - BK)x(t)\), is chosen in a quadratic form:
 
 \begin{equation}
-\dot{V}(\overline{x}) = 2\overline{x}^{T}S_{LQR}\dot{\overline{x}}
+  V(x) = x^T S_{LQR} x 
+  \label{eq:V}
 \end{equation}
 
-For the system to be asymptotically stable at the equilibrium \(x_{op}\), we require the system to satisfy the Lyapunov conditions:
+Here \(S_{LQR}\) is a positive definite matrix. This function serves as an 'energy-like' metric, and the goal is to find the largest \(\rho\) for which the Lyapunov conditions are satisfied. These conditions are as follows:
 
 \begin{equation}
 \begin{cases}
-   V(\overline{x}) > 0 \\
-   \dot{V}(\overline{x}) < 0 & \text{for all} \quad x \neq x_{op}
+   V(x) > 0 \\
+   \dot{V}(x) < 0 & \text{for} \quad x \in B
 \end{cases}
+\label{eq:V_conditions}
 \end{equation}
 
-To construct an optimizable region of attraction, we define an upper bound \(\rho\) for the Lyapunov function \(V\). We seek the greatest \(\rho\) such that the above Lyapunov conditions are satisfied:
+Next, we calculate the time derivative of the Lyapunov function.For the infinite horizon LQR, \(\frac{\partial S_{LQR}}{\partial t} = 0\) and \(\frac{\partial x_0}{\partial t} = 0\), hence, \(\dot{V}\) is:
+
+\begin{equation}
+\dot{V}(x) = 2x^{T}S_{LQR}\dot{x}
+\label{eq:V_dot}
+\end{equation}
+
+Combining equations and conditions \ref{eq:V}, \ref{eq:V_conditions}, \ref{eq:V_dot}, we have the following expression:
 
 \begin{equation}
 \begin{cases}
-    \mathcal{B} = \{ x \mid 0 < V(x) < \rho \} \\
-    \dot{V}(x) = 2\bar{x}^T S_{LQR} \dot{\bar{x}} < 0
+    B = \{ x \mid 0 < V(x) < \rho \} \\
+    \dot{V}(x) = 2x^T S_{LQR} \dot{x} < 0
 \end{cases}
 \end{equation}
 
-We computed the RoA similar to\cite{maywald2022co} but with a sums of squares method\cite{tedrake2010lqr}.  Consequently, the resulting shape of the ROA in a 4D state space resembles an ellipsoid.
+The RoA is computed similar to\cite{maywald2022co} but with a sums of squares method\cite{tedrake2010lqr}. The resulting shape of the ROA in a 4D state space resembles an ellipsoid.
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.6\textwidth]{figures/methodology/roaplot.png} % Adjust the width as needed
@@ -191,7 +198,14 @@ We computed the RoA similar to\cite{maywald2022co} but with a sums of squares me
 Once the RoA is computed, it can be checked whether a state \(x\) belongs to the estimated RoA of the LQR controller by calculating the cost-to-go of the LQR controller with the matrix \(S_{LQR}\) and comparing it with the scalar \(\rho\).
 
 \section{Reward shaping}
-In theory, the reward function is designed to guide the agent's behavior towards achieving stability around the system's goal point. However, initial training attempts have revealed challenges. For instance, the agent might get stuck in a local minimum for an extended period, fail to perform a swing-up, or be unable to maintain stability around the upright position for a prolonged duration. The stabilization problem is addressed by the LQR controller and its region of attraction, which guarantees asymptotic stability. To tackle the swing-up issue, we designed a customized three-stage reward function to steer the agent away from problematic local minima and into the region of attraction of the LQR controller. The full equation for this reward function is:
+The reward function is intended to guide the agent in performing desired behavior. In our design, the reward function aims to guide the double pendulum system towards achieving stability around the highest point.
+
+One of the primary reasons why controlling an underactuated double pendulum system using RL is so challenging is the state space that can lead to successful stabilization is very small. Initial training attempts using OpenAI Gym Acrobot-v1\cite{towers_gymnasium_2023} rewards have revealed this challenge. For instance, the agent may accidentally get close to the goal state but not receive enough reward. This can result in being stuck in an unsuitable position for an extended period or a high-speed rotation of the second link with the first link almost upright. The manifestation of failure is entirely random.
+
+Another significant challenge in our RL-based training is that, due to our plan for real hardware deployment, the dynamic model of the double pendulum is more detailed than that of most simulation environments like OpenAI Gym Acrobot-v1\cite{towers_gymnasium_2023}. Because we are using quasi-direct drive motors to simplify joint dynamics, one of the significant drawbacks of this motor type is its low gear ratio, resulting in a relatively low torque limit (5 Nm).
+
+Therefore, there is a need for an innovative and reliable reward function design suitable for our problem setup. To tackle the swing-up issue, a customized three-stage reward function is designed to steer the agent away from problematic local minima and into the region of attraction of the LQR controller. The full equation for this reward function is:
+
 \begin{equation}
 \begin{aligned}
  r(x,u) = &-(x - x_g)^T Q_{train} (x - x_g) - u^T R_{train}u \\
@@ -229,7 +243,7 @@ control input is available.
     \centering
     \includegraphics[width=0.25\textwidth]{figures/methodology/stage1.png} % Adjust the width as desired
     \caption{Swing up stage 1}
-    \label{fig:my_image_label} % Optional label for referencing
+    \label{fig:stage1} % Optional label for referencing
 \end{figure}
 
 As the end effector reaches a threshold line \(h_{line} = 0.8(l_1+l_2)\), we
@@ -247,43 +261,36 @@ exploiting rewards by spinning at excessive speeds, a significant penalty
 \(-r_{vel}\) is implemented for any speed exceeding $v_{thresh}=8\,
 \text{rad}/\text{s}$ in absolute value.
 This penalty effectively compels the agent to approach the maximum point while
-adhering to the predefined speed interval. The speed penalty was only needed for
-the acrobot.
+adhering to the predefined speed interval(less than 20 rad/s). The speed penalty was only needed for the acrobot when the experiments are confined in simulation.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.25\textwidth]{figures/methodology/stage2.png} % Adjust the width as desired
     \caption{Swing up stage 2}
-    \label{fig:my_image_label} % Optional label for referencing
+    \label{fig:stage2} % Optional label for referencing
 \end{figure}
 
 The third level of reward $r_{LQR}$ aims to provide a substantial reward to the
 agent when it remains within the Region of Attraction (RoA) of the LQR
 controller. By this we want to achieve that the policy learns to enter the LQR
 controller RoA so that there can be a smooth transition between both
-controllers. For details on the LQR controller and its region of attraction, we
-refer to these lecture notes. The parameters, we used in
+controllers.  The parameters, we used in
 the cost matrices of the LQR controller are listed in
-Table~\ref{tab:parameters}. We computed the RoA similar to
-but with a sums of squares method.  Once the RoA is computed,
-it can be checked whether a state $x$ belongs to the estimated RoA of the LQR
-controller by calculating the cost-to-go of the LQR controller with the matrix
-$S_{LQR}$ and comparing it with the scalar $\rho$.
+Table~\ref{tab:training_parameters}. 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.25\textwidth]{figures/methodology/stage3.png} % Adjust the width as desired
+    \includegraphics[width=0.2\textwidth]{figures/methodology/stage3.png} % Adjust the width as desired
     \caption{Swing up stage 3}
-    \label{fig:my_image_label} % Optional label for referencing
+    \label{fig:stage3} % Optional label for referencing
 \end{figure}
 
 
 \section{Introduction to leaderboard metrics}
-To compare the performances of various controllers developed for the double pendulum testbench, we have established three distinct leaderboards: the simulation leaderboard, the robustness leaderboard, and the real system leaderboard. Each of these leaderboards is further subdivided into two categories based on the pendubot and acrobot setups.
+To facilitate a comparison of controller performance for the double pendulum testbench, three separate leaderboards have been created: the simulation leaderboard, the robustness leaderboard, and the real system leaderboard\cite{2023_ram_wiebe_double_pendulum}. Each of these leaderboards is additionally divided into two categories, which are determined by the pendubot and acrobot configurations.
 
 \subsection{Performance Leaderboard in Simulation and Real system}
-
-In our evaluation of controller performance, we employ a set of metrics that go beyond just measuring task success. They delve deeper into the nuances of controller operation. For experiments conducted both in simulation environments and on real hardware, the performance evaluation metrics remain consistent. These measures span from assessing the fundamental success of a swing-up maneuver to understanding the intricate details of energy and torque usage. Below is a detailed breakdown of each metric:
+In the evaluation of controller performance, a set of metrics is utilized that extends beyond mere task success, delving into the finer aspects of controller operation. The same performance evaluation metrics are consistently applied to experiments conducted in both simulation environments and on real hardware. These metrics encompass various aspects, ranging from fundamental swing-up maneuver success to detailed examinations of energy consumption and torque utilization. Below, we provide a comprehensive breakdown of each metric:
 
 \begin{itemize}
   \item \textbf{Swingup Success} \(c_{\text{success}}\):
@@ -311,7 +318,8 @@ In our evaluation of controller performance, we employ a set of metrics that go 
   A metric assessing the joint velocities achieved, computed as \(c_{\text{vel}} = \dot{q}^T Q \dot{q}\), with \(Q\) being the identity matrix.
 \end{itemize}
 
-We utilize the subsequent criteria to determine the cumulative RealAI Score based on the specified formula:
+The cumulative RealAI Score is determined based on the specified formula, using the following criteria:
+
 \begin{equation}
 \begin{aligned}
 S = c_{\text{success}} \Bigg(& w_{\text{time}}\frac{c_{\text{time}}}{n_{\text{time}}} + \\
@@ -344,23 +352,23 @@ The weights and normalizations are:
   \label{tab:performance}
 \end{table}
 
-In the simulation experiments, the pendubot is modeled using a Runge-Kutta 4 integrator with a timestep of \(dt=0.002s\) over a span of \(T=10s\). We initiate the pendubot in a hanging down configuration, represented as \(x_0 = (0, 0, 0, 0)\), and aim to reach the unstable fixed point of the upright configuration, denoted as \(x_g = (\pi, 0, 0, 0)\). The double pendulum is deemed to have achieved its upright position once the end-effector surpasses the threshold line situated at \(h=0.45m\), with the origin being the mounting point.
+In the simulation experiments, the pendubot is modeled using a Runge-Kutta 4 integrator with a timestep of \(dt=0.002s\) over a span of \(T=10s\). The pendubot is initiated in a hanging down configuration, represented as \(x_0 = [0, 0, 0, 0]^T\), with the goal of reaching the unstable fixed point in the upright configuration, denoted as \(x_g = [\pi, 0, 0, 0]^T\). The double pendulum is considered to have achieved its upright position once the end-effector surpasses the threshold line situated at \(h=0.45m\), with the origin being the mounting point.
 
-When it comes to real hardware experiments, there's a torque limit of 0.5 Nm on the passive joint, which serves to offset the motor's friction. The actuators can operate with a control frequency as high as 500Hz, and each experiment lasts for 10 seconds. The pendubot starts from a hanging down position, with the objective being the unstable fixed point in the upright configuration. Successful attainment of the upright position is confirmed when the end-effector crosses the threshold line set at \(h=0.45m\), measured from the mounting point's origin.
+In real hardware experiments, there exists a torque limit of 0.5 Nm on the passive joint, which compensates for the motor's friction. The actuators are capable of operating at a control frequency as high as 500Hz, and each experiment has a duration of 10 seconds. The pendubot commences from a hanging down position, aiming to reach the unstable fixed point in the upright configuration. Successful attainment of the upright position is confirmed when the end-effector crosses the threshold line set at \(h=0.45m\), measured from the mounting point's origin.
 
 \subsection{Simulation Robustness Leaderboard}
 In addition to performance metrics, we also consider robustness metrics. As the ultimate goal is to transfer successful models from a simulation environment to real hardware, it's essential to assess the robustness of controllers developed within the simulation. This helps determine the types of perturbations that affect each controller.
 
 \begin{itemize}
-    \item \textbf{Model Inaccuracies \(c_{model}\)}: Model parameters determined through system identification are never perfectly accurate. To evaluate potential inaccuracies, we modify each model parameter individually within the simulator, while keeping the controller's parameters unchanged.
+    \item \textbf{Model Inaccuracies \(c_{model}\)}: Model parameters determined through system identification are inherently subject to inaccuracies. To assess these inaccuracies, variations are introduced one at a time into the independent model parameters within the simulator while maintaining the use of the original model parameters in the controller.
 
-    \item \textbf{Velocity Measurement Noise \(c_{vel, noise}\)}: Controller outputs heavily rely on the captured system state. Particularly with the Quasi Direct Drives (QDDs), online velocity measurements can be noisy. It's crucial for successful transferability that a controller can handle this inherent noise. We test controllers with both the presence and absence of a low-pass noise filter.
+    \item \textbf{Velocity Measurement Noise \(c_{vel, noise}\)}: The outputs of the controllers depend on the measured system state, and in the case of the QDDs, online velocity measurements introduce noise. Therefore, it is important for transferability that a controller can handle at least this level of noise in the measured data. Testing is conducted with and without a low-pass noise filter.
+    
+    \item \textbf{Torque Noise \(c_{\tau,noise}\)}: Beyond measurement noise, the torque output by the controller may not precisely match the desired value.
 
-    \item \textbf{Torque Noise \(c_{\tau,noise}\)}: It's not only the measurements that can exhibit noise. Sometimes the torque output from the controller might deviate from the intended value.
+    \item \textbf{Torque Response \(c_{\tau,response}\)}: The controller's requested torque typically varies during execution, and the motor may not be able to instantaneously respond to significant torque changes. Instead, it may overshoot or undershoot the desired torque value. This behavior is modeled by the equation \(\tau = \tau_{t-1} + k_{\text{resp}} (\tau_{\text{des}} - \tau_{t-1})\), where \(\tau_{\text{des}}\) is the desired torque. In this model, a \(k_{\text{resp}}\) value of 1 indicates flawless torque response, while any deviation from 1 indicates imperfect motor responses.
 
-    \item \textbf{Torque Response \(c_{\tau,response}\)}: The torque requested by the controller is dynamic and can vary throughout execution. Due to mechanical limitations, the motor might not always adjust immediately to abrupt torque changes, leading to overshooting or undershooting the desired torque value. We model this with the equation \(\tau = \tau_{t-1} + k_{\text{resp}} (\tau_{\text{des}} - \tau_{t-1})\), where \(\tau_{\text{des}}\) is the desired torque. In this model, a \(k_{\text{resp}}\) value of 1 indicates flawless torque response, while any deviation from 1 indicates imperfect motor responses.
-
-    \item \textbf{Time Delay \(c_{delay}\)}: Operating in a real-world environment inevitably introduces time delays due to communication lag and system reaction times. It's essential to account for these when evaluating controller performance.
+    \item \textbf{Time Delay \(c_{delay}\)}: In real-system operations, time delays inevitably arise due to communication and reaction times. It's essential to account for these when evaluating controller performance.
 \end{itemize}
 
 The above criteria are employed to compute the comprehensive RealAI Score using the given formula:
