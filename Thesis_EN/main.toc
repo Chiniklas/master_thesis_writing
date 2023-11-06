@@ -21,25 +21,25 @@
 \contentsline {subsection}{\numberline {3.5.2}Simulation Robustness Leaderboard}{33}{subsection.3.5.2}%
 \contentsline {chapter}{\numberline {4}Agent training and experiments in simulation environment}{35}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Training setup}{35}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Training phase}{38}{section.4.2}%
+\contentsline {section}{\numberline {4.2}Training process}{38}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Simulation results}{40}{section.4.3}%
 \contentsline {subsection}{\numberline {4.3.1}Pendubot simulation in ideal environment}{40}{subsection.4.3.1}%
 \contentsline {subsection}{\numberline {4.3.2}Acrobot simulation in ideal environment}{41}{subsection.4.3.2}%
-\contentsline {chapter}{\numberline {5}Experiments on real hardware}{43}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Hardware setup}{43}{section.5.1}%
-\contentsline {section}{\numberline {5.2}System identification}{49}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Sim2Real problem}{50}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Validation with noisy simulation}{51}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Training with domain randomization}{53}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}Real hardware results}{54}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Pendubot results}{55}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}acrobot results}{56}{subsection.5.4.2}%
-\contentsline {chapter}{\numberline {6}Discussion and Future Work}{57}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Interpretation of simulation leaderboard}{57}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Interpretation of robust leaderboard}{58}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Interpretation of real system leaderboard}{59}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Conclusion and future work}{60}{section.6.4}%
-\contentsline {chapter}{\nonumberline Bibliography}{61}{chapter*.39}%
-\contentsline {chapter}{Appendix}{65}{section*.40}%
-\contentsline {chapter}{Appendix \numberline {A}An appendix}{66}{appendix.a.A}%
+\contentsline {subsection}{\numberline {4.3.3}Self stablizing behaviour on both pendubot and acrobot}{42}{subsection.4.3.3}%
+\contentsline {chapter}{\numberline {5}Experiments on real hardware}{45}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Hardware setup}{45}{section.5.1}%
+\contentsline {section}{\numberline {5.2}System identification}{53}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Sim-to-Real transfer}{54}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Validation with noisy environment}{55}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Training with domain randomization}{57}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Results of domain randomization and noisy environment validation}{57}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Real hardware results}{60}{section.5.4}%
+\contentsline {chapter}{\numberline {6}Discussion and Future Work}{63}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Interpretation of simulation leaderboard}{63}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Interpretation of robust leaderboard}{64}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Interpretation of real system leaderboard}{65}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Conclusion and future work}{66}{section.6.4}%
+\contentsline {chapter}{\nonumberline Bibliography}{67}{chapter*.45}%
+\contentsline {chapter}{Appendix}{71}{section*.46}%
+\contentsline {chapter}{Appendix \numberline {A}An appendix}{72}{appendix.a.A}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

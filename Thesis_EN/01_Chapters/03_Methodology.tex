@@ -149,18 +149,15 @@ In our implementation, during the swing-up phase, the SAC controller is employed
 \end{figure}
 
 
-The region of attraction (ROA) for a nonlinear system, denoted as \(R_a\), describes the set of initial states surrounding a fixed point \(x_0\). If a state lies within this region, the system will converge towards \(x_0\) as \(t \rightarrow \infty\). In the context of an LQR controller, the ROA signifies the area within the state space where the controlled system exhibits asymptotic stability. For complex systems, directly computing \(R_a\) can be challenging; instead, it is often estimated. The simplest way to estimate such a set requires the assistance of a Lyapunov function \(V(x)\) bounded by a scalar \(\rho\)\cite{khalil2002nonlinear}.
-
-Here, \(B\) represents the estimated subset of the real region of attraction \(R_a\).
-
-The Lyapunov function for a controlled linear system, \(\dot{x}(t) = (A - BK)x(t)\), is chosen in a quadratic form:
+The region of attraction (RoA) for a nonlinear system, denoted as \(R_a\), describes the set of initial states surrounding a fixed point \(x_0\). If a state lies within this region, the system will converge towards \(x_0\) as \(t \rightarrow \infty\). In the context of an LQR controller, the RoA signifies the area within the state space where the controlled system exhibits asymptotic stability. For complex systems, directly computing \(R_a\) can be challenging; instead, it is often estimated. The simplest way to estimate such a set requires the assistance of a Lyapunov function \(V(x)\) bounded by a scalar \(\rho\)\cite{khalil2002nonlinear}.
 
 \begin{equation}
-  V(x) = x^T S_{LQR} x 
-  \label{eq:V}
+ B = \{x|V(x)<\rho\}
 \end{equation}
 
-Here \(S_{LQR}\) is a positive definite matrix. This function serves as an 'energy-like' metric, and the goal is to find the largest \(\rho\) for which the Lyapunov conditions are satisfied. These conditions are as follows:
+Here, \(B\) represents the estimated subset of the real region of attraction \(R_a\). 
+
+The goal is to find the largest \(\rho\) for which the Lyapunov conditions are satisfied. These conditions are as follows:
 
 \begin{equation}
 \begin{cases}
@@ -170,14 +167,21 @@ Here \(S_{LQR}\) is a positive definite matrix. This function serves as an 'ener
 \label{eq:V_conditions}
 \end{equation}
 
-Next, we calculate the time derivative of the Lyapunov function.For the infinite horizon LQR, \(\frac{\partial S_{LQR}}{\partial t} = 0\) and \(\frac{\partial x_0}{\partial t} = 0\), hence, \(\dot{V}\) is:
+The Lyapunov function for a controlled linear system, \(\dot{x}(t) = (A - BK)x(t)\), is chosen in a quadratic form:
+
+\begin{equation}
+  V(x) = x^T S_{LQR} x 
+  \label{eq:V}
+\end{equation}
+
+Here \(S_{LQR}\) is a positive definite matrix. This function serves as an 'energy-like' metric. Next, we calculate the time derivative of the Lyapunov function.For the infinite horizon LQR, \(\frac{\partial S_{LQR}}{\partial t} = 0\) and \(\frac{\partial x_0}{\partial t} = 0\), hence, \(\dot{V}\) is:
 
 \begin{equation}
 \dot{V}(x) = 2x^{T}S_{LQR}\dot{x}
 \label{eq:V_dot}
 \end{equation}
 
-Combining equations and conditions \ref{eq:V}, \ref{eq:V_conditions}, \ref{eq:V_dot}, we have the following expression:
+Combining equations and conditions \ref{eq:V_conditions}, \ref{eq:V}, \ref{eq:V_dot}, we have the following expression:
 
 \begin{equation}
 \begin{cases}
@@ -186,7 +190,7 @@ Combining equations and conditions \ref{eq:V}, \ref{eq:V_conditions}, \ref{eq:V_
 \end{cases}
 \end{equation}
 
-The RoA is computed similar to\cite{maywald2022co} but with a sums of squares method\cite{tedrake2010lqr}. The resulting shape of the ROA in a 4D state space resembles an ellipsoid.
+The RoA is computed similar to\cite{maywald2022co} but with a sums of squares method\cite{tedrake2010lqr}. The resulting shape of the RoA in a 4D state space resembles an ellipsoid.
 
 \begin{figure}[htbp]
     \centering

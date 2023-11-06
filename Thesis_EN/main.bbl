@@ -79,6 +79,15 @@
       \field{pages}{2285\bibrangedash 2293}
       \range{pages}{9}
     \endentry
+    \entry{cubemarsAK806}{misc}{}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.cubemars.com/goods-981-AK80-6.html}}
+      \field{note}{Accessed: 2023-11-03}
+      \field{title}{{AK80-6 Robotic Actuator}}
+      \field{year}{2023}
+    \endentry
     \entry{albahkali2009swing}{article}{}
       \name{author}{3}{}{%
         {{hash=0d8725244241bd6af5f0c7e04ae83b57}{%
@@ -464,6 +473,27 @@
       \field{pages}{125\bibrangedash 130}
       \range{pages}{6}
     \endentry
+    \entry{esdCANUSB2}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=5201ddcb6f04969affbfe80d0540ad03}{%
+           family={{ESD Electronics}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{5201ddcb6f04969affbfe80d0540ad03}
+      \strng{fullhash}{5201ddcb6f04969affbfe80d0540ad03}
+      \strng{bibnamehash}{5201ddcb6f04969affbfe80d0540ad03}
+      \strng{authorbibnamehash}{5201ddcb6f04969affbfe80d0540ad03}
+      \strng{authornamehash}{5201ddcb6f04969affbfe80d0540ad03}
+      \strng{authorfullhash}{5201ddcb6f04969affbfe80d0540ad03}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://esd.eu/en/products/can-usb-2}}
+      \field{note}{Accessed: yyyy-mm-dd}
+      \field{title}{CAN-USB/2}
+      \field{year}{2023}
+    \endentry
     \entry{furuta1992swing}{article}{}
       \name{author}{3}{}{%
         {{hash=688e5e41087f872b67308f793711a3af}{%
@@ -803,6 +833,43 @@
       \field{year}{2019}
       \field{pages}{eaau5872}
       \range{pages}{-1}
+    \endentry
+    \entry{islam2017reproducibility}{article}{}
+      \name{author}{4}{}{%
+        {{hash=227ede2745d597df1564e6adddb6ee97}{%
+           family={Islam},
+           familyi={I\bibinitperiod},
+           given={Riashat},
+           giveni={R\bibinitperiod}}}%
+        {{hash=50374f86d34cc54b8a5788ccbcce4cfe}{%
+           family={Henderson},
+           familyi={H\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=9863db87299f0e8040456c49c052ab46}{%
+           family={Gomrokchi},
+           familyi={G\bibinitperiod},
+           given={Maziar},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4428b76e1301b2db58587fb18bb59a38}{%
+           family={Precup},
+           familyi={P\bibinitperiod},
+           given={Doina},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{d11117af6e2496d08724fc7abc895612}
+      \strng{fullhash}{886d5bdcf12422a57723ca7bc472e011}
+      \strng{bibnamehash}{886d5bdcf12422a57723ca7bc472e011}
+      \strng{authorbibnamehash}{886d5bdcf12422a57723ca7bc472e011}
+      \strng{authornamehash}{d11117af6e2496d08724fc7abc895612}
+      \strng{authorfullhash}{886d5bdcf12422a57723ca7bc472e011}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1708.04133}
+      \field{title}{Reproducibility of benchmarked deep reinforcement learning tasks for continuous control}
+      \field{year}{2017}
     \endentry
     \entry{khalil2002nonlinear}{book}{}
       \name{author}{1}{}{%
@@ -1578,6 +1645,58 @@
       \field{year}{2010}
       \field{pages}{1038\bibrangedash 1052}
       \range{pages}{15}
+    \endentry
+    \entry{tobin2017domain}{inproceedings}{}
+      \name{author}{6}{}{%
+        {{hash=e6a2e03971ee3e138dbe64b3a4c5a95a}{%
+           family={Tobin},
+           familyi={T\bibinitperiod},
+           given={Josh},
+           giveni={J\bibinitperiod}}}%
+        {{hash=71105dfe9b3b73a20fb9a3156d389fad}{%
+           family={Fong},
+           familyi={F\bibinitperiod},
+           given={Rachel},
+           giveni={R\bibinitperiod}}}%
+        {{hash=143fa59d90387ae4a6aa650dcf1c7ceb}{%
+           family={Ray},
+           familyi={R\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod}}}%
+        {{hash=5167ef9d0b77bf68557730648baac9b7}{%
+           family={Schneider},
+           familyi={S\bibinitperiod},
+           given={Jonas},
+           giveni={J\bibinitperiod}}}%
+        {{hash=e9fec85bbce1b087a6ebefe26e73f7bf}{%
+           family={Zaremba},
+           familyi={Z\bibinitperiod},
+           given={Wojciech},
+           giveni={W\bibinitperiod}}}%
+        {{hash=e28d4ee199593959d8c29980a64f1974}{%
+           family={Abbeel},
+           familyi={A\bibinitperiod},
+           given={Pieter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{2c42dddd45e1ea280a64e08c9a87d720}
+      \strng{fullhash}{59127397f3045b880071f52e5e66fdf5}
+      \strng{bibnamehash}{59127397f3045b880071f52e5e66fdf5}
+      \strng{authorbibnamehash}{59127397f3045b880071f52e5e66fdf5}
+      \strng{authornamehash}{2c42dddd45e1ea280a64e08c9a87d720}
+      \strng{authorfullhash}{59127397f3045b880071f52e5e66fdf5}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2017 IEEE/RSJ international conference on intelligent robots and systems (IROS)}
+      \field{title}{Domain randomization for transferring deep neural networks from simulation to the real world}
+      \field{year}{2017}
+      \field{pages}{23\bibrangedash 30}
+      \range{pages}{8}
     \endentry
     \entry{towers_gymnasium_2023}{misc}{}
       \name{author}{16}{}{%
