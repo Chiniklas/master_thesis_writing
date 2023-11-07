@@ -61,16 +61,16 @@ For communication, the Controller Area Network (CAN) bus was chosen due to its c
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.45\textwidth]{example-image}
+  \includegraphics[width=0.9\textwidth]{figures/hardware_setup/can_connection.png}
   \caption{CAN connection diagram}
-  \label{fig:exampleImage}
+  \label{fig:can_connection_diagram}
 \end{figure}
 
 To achieve a higher control frequency of approximately 500 Hz, the CAN-USB/2 product from ESD GmbH Hannover~\cite{esdCANUSB2} was selected. This specialized interface exploits the USB 2.0 standard, which allows for a data rate of 480 Mbit/s, and features CAN capability at 1 Mbit/s as per ISO 11898-2. Furthermore, compatibility with the SocketCAN interface, which is incorporated into the Linux Kernel 2.6, is supported, thereby facilitating its use within a Linux development environment.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\linewidth]{figures/hardware_setup/can_blue_box.png}
+    \includegraphics[width=0.3\linewidth]{figures/hardware_setup/can_blue_box.png}
     \caption{High speed CAN to USB interface\cite{esdCANUSB2}}
     \label{fig:can_blue_box}
 \end{figure}
@@ -87,9 +87,9 @@ In instances where the emergency stop is activated while the system operates at 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{example-image}
-    \caption{picture of the capacitor}
-    \label{fig:example_figure}
+    \includegraphics[width=0.4\textwidth]{figures/hardware_setup/capacitor.jpg}
+    \caption{Capacitor}
+    \label{fig:capacitor}
 \end{figure}
 
 \textbf{Speed and position limit:}
@@ -104,8 +104,8 @@ These safety measures have been crucial in reducing the risks associated with te
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{example-image}
-    \caption{An overview of experiment setup}
+    \includegraphics[width=0.9\textwidth]{figures/hardware_setup/enclosure.jpg}
+    \caption{Physical enclosure for protection}
     \label{fig:overview_experiment_setup}
 \end{figure}
 
@@ -163,8 +163,8 @@ Firstly, model-free reinforcement learning relies solely on interaction with the
 
 Secondly, many simulations operate in discrete time and space, whereas the real world functions continuously. In our implementation, the control frequency presents a significant challenge. We use a control frequency of 100 Hz in simulation; however, it does not suffice in the real system. To enhance performance, we increased the control frequency to 400 Hz when experimenting on the real system, and this adjustment yielded positive results.
 
-\subsection{Validation with noisy environment}
-In addressing the challenge of sim2real transfer, multiple agents were trained using the Soft Actor-Critic (SAC) algorithm under similar setups. These agents were then subjected to validation within a noisy environment. Only those agents demonstrating robustness to perturbations within this environment were advanced to testing on the actual system. Agents that did not withstand the noisy environment were deemed insufficiently robust and subsequently discarded.
+\subsection{Validation with noisy simulation environment}
+In addressing the challenge of sim2real transfer, multiple agents were trained using the Soft Actor-Critic (SAC) algorithm under similar setups in ideal environment. These agents were then subjected to validation within a noisy environment. Only those agents demonstrating robustness to perturbations within this environment were advanced to testing on the actual system. Agents that did not withstand the noisy environment were deemed insufficiently robust and subsequently discarded.
 
 In the course of experiments on real systems, four critical factors were identified that differ from ideal simulations: friction, measurement noise, latency, and torque responsiveness.
 
@@ -200,75 +200,129 @@ The fourth factor to be considered is torque responsiveness. In real hardware te
 
 When \(c_{tr}\) equals zero, the torque that is exerted on the system precisely mirrors the controller's output. A lower \(c_{tr}\) value makes it more difficult to apply significant changes to the control signal. Conversely, a policy that functions effectively with a low \(c_{tr}\) value indicates better torque smoothness. This also acts as an intuitive measure of the policy's capacity to yield smooth torque outputs. In most cases, \(c_{tr}\) is set to 0.85; however, to test the controllers' boundaries, values below 0.7 are also examined.
 
-\subsection{Training with domain randomization}
-For those that succeeded in ideal simulation but failed in noisy simulation, one way to improve robustness is through domain randomization.
+\subsection{Noisy training based on domain randomization}
+For agents that succeeded in ideal simulations yet failed in noisy simulations, domain randomization has been identified as one method to enhance robustness.
 
-Domain randomization\cite{tobin2017domain} is a classic technique used to bridge the gap between simulation and reality. Its primary goal is to allow a model, when generalized in a simulated environment, to perform effectively in real-world scenarios without needing labeled real-world training data.
+Domain randomization \cite{tobin2017domain}, a technique conceived to narrow the gap between simulation and reality, aims to enable a model to operate effectively in real-world conditions, without the need for labeled real-world training data.
 
-The concept of domain randomization originates from the field of computer vision. Instead of training a model in a single, fixed simulation, the model is exposed to a more varied and noisy environment by introducing random variations to the ideal simulation. Techniques commonly employed in vision-based systems include changing the colors and textures of objects, modifying the lighting conditions, adjusting object shapes and sizes, introducing random noise to sensor data, and perturbing physical properties like friction or mass.
+Initially emerging from the computer vision domain, domain randomization involves training a model not within a single, static simulation but rather within a diverse and perturbed environment. This is achieved by incorporating random variations into the ideal simulation. Techniques commonly employed in vision-based systems include changing the colors and textures of objects, modifying the lighting conditions, adjusting object shapes and sizes, introducing random noise to sensor data, and perturbing physical properties like friction or mass.
 
-In the application of domain randomization to robotic manipulation tasks, disturbances introduced in the noisy simulation were employed to construct a noisy training process. This process resembles the previous training regimen, but the environments for both the trial and evaluation phases were substituted with noisy environments. The training was initiated ('warm-started') with agents that had demonstrated success in ideal simulations yet performed poorly in noisy simulations.
+In the application of domain randomization to robotic manipulation tasks, disturbances introduced in the noisy simulation were employed to construct a noisy training process. This process resembles the previous ideal training process, but the environments for both the trial and evaluation phases were substituted with noisy environments. The training was warm-started with pretrained agents that had demonstrated success in ideal simulations yet performed poorly in noisy simulations.
 
-The outcomes of implementing domain randomization in the noisy training process were found to be highly unstable. While some agents exhibited significant improvement after only 5e6 iterations of noisy training, others showed no improvement whatsoever; some even deteriorated in performance, failing in ideal simulations where they had previously succeeded.
+The results of domain randomization in noisy training proved to be highly variable. Some agents significantly improved after a mere 5e6 iterations of noisy training, while others remained unchanged or worsened, with some even regressing to the point of failure in ideal simulations where they had once succeeded.
 
-\subsection{Results of domain randomization and noisy environment validation}
-Incorporating factors such as friction, measurement error, latency, and torque responsiveness, the noisy simulation serves to select the most suitable agent for real hardware tests. Figure \ref{fig:noisy_simulation_acrobot} demonstrates the results of the noisy simulation for the acrobot using the same agent depicted in Figure \ref{fig:ideal_simulation_acrobot}. The tasks of swing-up and stabilization are also successfully accomplished in this instance. 
-
-\begin{figure}[H]
-    \centering
-    \fbox{\includegraphics[width=0.9\textwidth]{figures/hardware_result/acrobot_noisy_simulation_designC.0.png}} % Second image
-    \caption{A successful acrobot noisy simulation result}
-    \label{fig:noisy_simulation_acrobot}
-\end{figure}
-
-As depicted in Figure \ref{fig:noisy_simulation_pendubot}, an agent, previously verified in an ideal simulation environment for the pendubot setup, undergoes a secondary phase of validation within a noisy simulation. Successful performance in swing-up and stabilization tasks within this framework indicates adequate robustness for real-world applications.
-
-\begin{figure}[H]
-    \centering
-    \fbox{\includegraphics[width=0.6\textwidth]{example-image}} % Second image
-    \caption{A failed pendubot noisy simulation result}
-    \label{fig:noisy_simulation_pendubot}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \fbox{\includegraphics[width=0.9\textwidth]{figures/hardware_result/pendubot_noisy_simulation_designC.1.png}} % Second image
-    \caption{A successful pendubot noisy simulation result}
-    \label{fig:noisy_simulation_pendubot}
-\end{figure}
-
-
-
-
+% \subsection{Results of domain randomization and noisy environment validation}
+% Incorporating factors such as friction, measurement error, latency, and torque responsiveness, the noisy simulation serves to select the most suitable agent for real hardware tests. Figure \ref{fig:noisy_simulation_acrobot} demonstrates the results of the noisy simulation for the acrobot using the same agent depicted in Figure \ref{fig:ideal_simulation_acrobot}. The tasks of swing-up and stabilization are also successfully accomplished in this instance. 
+% 
+% \begin{figure}[H]
+%     \centering
+%     \fbox{\includegraphics[width=0.9\textwidth]{figures/hardware_result/acrobot_noisy_simulation_designC.0.png}} % Second image
+%     \caption{A successful acrobot noisy simulation result}
+%     \label{fig:noisy_simulation_acrobot}
+% \end{figure}
+% 
+% As depicted in Figure \ref{fig:noisy_simulation_pendubot}, an agent, previously verified in an ideal simulation environment for the pendubot setup, undergoes a secondary phase of validation within a noisy simulation. Successful performance in swing-up and stabilization tasks within this framework indicates adequate robustness for real-world applications.
+% 
+% \begin{figure}[H]
+%     \centering
+%     \fbox{\includegraphics[width=0.6\textwidth]{example-image}} % Second image
+%     \caption{A failed pendubot noisy simulation result}
+%     \label{fig:noisy_simulation_pendubot}
+% \end{figure}
+% 
+% \begin{figure}[H]
+%     \centering
+%     \fbox{\includegraphics[width=0.9\textwidth]{figures/hardware_result/pendubot_noisy_simulation_designC.1.png}} % Second image
+%     \caption{A successful pendubot noisy simulation result}
+%     \label{fig:noisy_simulation_pendubot}
+% \end{figure}
 
 \section{Real hardware results}
-In this section, the procedure for real hardware tests is first introduced, followed by the presentation of results from one successful pendubot setup test. The scope of results is confined to the pendubot setup, as only agents trained for this setup have successfully passed the noisy simulation test.
-
+In this section, results from real hardware tests are presented. Initially, the procedure for selecting agents suitable for real-world testing is introduced. Subsequently, the successful outcomes from an agent trained for the pendubot setup are displayed. The range of results is restricted to the pendubot setup because the introduction of speed and position limits has significantly narrowed the range of possible policies. In the acrobot experiments, although an agent was deemed worthy of real-world testing, it exceeded the position limits and was therefore discarded.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.45\textwidth]{figures/double_pendulum_real_system.png}
     \caption{Double pendulum in real system}
-    \label{fig:image_b}
+    \label{fig:double_pendulum_real_system}
 \end{figure}
 
-The complete real-world test procedure is as follows: power up, manually set the initial state, release the emergency button, run the initialization script (which enables the motor, sets the current position to zero, and tests the CAN connection), confirm the start of the test, record video, draw plots, and exit the test. This procedure is illustrated in the flow chart below:
+An agent deemed suitable for real-system tests must undergo a process that includes ideal training and validation, followed by noisy validation. If the agent proves successful in noisy validation, it can proceed to further testing on the real system. If it does not succeed, we employ the domain randomization method in an attempt to enhance its performance. Should the retrained agent pass the noisy validation, it will then advance to real-system testing; otherwise, it will be discarded.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{figures/hardware_setup/testing_procedure.png}% Second image
-    \caption{Real hardware system testing procedure}
-    \label{fig:image_b}
+    \includegraphics[width=0.9\textwidth]{figures/hardware_result/agent_selection_procedure.png}% Second image
+    \caption{Agent selection procedure for real hardware tests}
+    \label{fig:agent_selection}
 \end{figure}
 
-Below is an example of one of our successful tests. [some explanation] We executed a sequence of 10 tests to determine the success rate and other key metrics for evaluating performance and robustness. These results will be discussed in the next chapter. 
+All real hardware experiments are based on design C (\(l_1 = 0.2, l_2 = 0.3\)).For pendubot setup, obtaining a working agent is straightforward. We did a little modification on the training process for ideal simulation phase by activating the scaling mechanism mentioned in section 4.1 and add a termination condition that terminates the training episode whenever the shoulder or elbow joint exceeds \(2\pi\). The training successfully delivered a working model in ideal simulation with 2e7 timesteps using parameters in Table \ref{tab:training_parameters_real_world}. 
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{p{2cm} | p{3cm} | p{3cm} | p{3cm}}
+  Robot & Quadratic Reward  & Constant Reward & LQR\\
+  \hline
+  \multirow{5}{*}{Pendubot} & \(Q_1\) = 100 &  & \(Q_1\) = 1.92\\
+  & \(Q_2\) = 100  & \(r_{line}=1e3\) & \(Q_2\) = 1.92\\
+  & \(Q_3\) = 1.0  & \(r_{vel}=0.0\) & \(Q_3\) = 0.3\\
+  & \(Q_4\) = 1.0  & \(r_{LQR}=1e5\)& \(Q_4\) = 0.3\\
+  & \(R\) = 1e-2  & & \(R\) = 0.82\\
+  \end{tabular}
+ \caption{Hyper parameters used for training agents for real world experience}
+ \label{tab:training_parameters_real_world}
+\end{table}
+
+Figure \ref{fig:training_curves_for_real_world} presents the training curve for the acquisition of an agent designated for real-world pendubot experiments, utilizing an ideal training process. As depicted in Figure \ref{fig:mean episode length}, the mean episode length initially approaches the maximum of 1000 but then rapidly descends to below 200 after 3e6 training steps. This descent indicates that the agent consistently attempts to rotate beyond 360 degrees in pursuit of higher rewards. A gradual emergence from this valley is observed at 15e6 training steps, with a subsequent significant increase in episode length. Correspondingly, the mean episode reward, as illustrated in Figure \ref{fig:mean episode reward}, also shows a gradual increase before 15e6 time steps, followed by a rapid ascent thereafter.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.1\linewidth]{figures/hardware_result/pendubot_real_system_working.png}
-    \caption{Pendubot results on real systems}
-    \label{fig:my_label}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/hardware_result/train_without_limit_ep_length.png}
+        \caption{Mean episode length}
+        \label{fig:mean episode length}
+    \end{subfigure}
+    \hfill % add some horizontal spacing
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/hardware_result/train_without_limit_ep_reward.png}
+        \caption{Mean episode reward}
+        \label{fig:mean episode reward}
+    \end{subfigure}
+    \caption{Training curves of the working agent on pendubot}
+    \label{fig:training_curves_for_real_world}
 \end{figure}
+
+The result in the ideal environment is shown in Figure \ref{fig:pendubot_ideal_working}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/hardware_result/pendubot_ideal_validation_designC.1.png}
+    \caption{Pendubot result in the ideal environment}
+    \label{fig:pendubot_ideal_working}
+\end{figure}
+
+When tested in a noisy simulation, the pretrained agent did not perform adequately. Consequently, the agent was subjected to an additional 2e7 timesteps of training within a noisy environment. The resultant agent successfully passed the noisy validation with an approximate success rate of 40\%. The result of a successful trial is shown in Figure \ref{fig:pendubot_noisy_working}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/hardware_result/pendubot_noisy_simulation_designC.1.png}
+    \caption{Pendubot result in the noisy environment}
+    \label{fig:pendubot_noisy_working}
+\end{figure}
+
+We consider the agent ready for a real-world test, so we deploy it onto the test bench for the final evaluation. A control frequency of 400Hz was utilized. The agent's average success rate in the real system was 40\%, aligning with the success rate observed during noisy validation. A depiction of one such successful outcome is presented in Figure \ref{fig:pendubot_real_working}. 
+
+The transition to the LQR controller occurred smoothly at approximately one second. Upon assuming control, the LQR controller succeeded in sustaining the system's upright position, albeit with vibrations, until the completion of the experiment. Contrary to the results in both noisy and ideal simulations, the torque applied by the LQR controller was noticeably less smooth, resulting in greater amplitude of position and velocity vibrations. Given that the feature of self-stabilization had been evident during the ideal validation phase, an attempt was made to omit the LQR controller, allowing the agent to execute the swing-up and stabilize independently; however, this approach proved unsuccessful.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/hardware_result/pendubot_real_system_working.png}
+    \caption{Result of a successful pendubot experiment on real system}
+    \label{fig:pendubot_real_working}
+\end{figure}
+
 
 
 \cleardoublepage

@@ -141,11 +141,11 @@ In our approach, a combined control method is utilized for both the swing-up and
 
 In our implementation, during the swing-up phase, the SAC controller is employed. Once the state of the double pendulum approaches the vicinity of the desired goal state, the transition from the SAC controller to the LQR controller is made for final-stage stabilization. An essential aspect of any combined control strategy is the determination of the conditions under which the system is ready for a transition between control methods. In our SAC+LQR control strategy, the gate function for making this determination is provided by the region of attraction method\cite{maywald2022co}.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{example-image.jpg}
-    \caption{Example Image}
-    \label{fig:example}
+    \includegraphics[width=0.8\textwidth]{figures/methodology/combined_controller.png}
+    \caption{Combined controller}
+    \label{fig:combined_controller}
 \end{figure}
 
 
@@ -192,7 +192,7 @@ Combining equations and conditions \ref{eq:V_conditions}, \ref{eq:V}, \ref{eq:V_
 
 The RoA is computed similar to\cite{maywald2022co} but with a sums of squares method\cite{tedrake2010lqr}. The resulting shape of the RoA in a 4D state space resembles an ellipsoid.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{figures/methodology/roaplot.png} % Adjust the width as needed
     \caption{Region of Attraction}
