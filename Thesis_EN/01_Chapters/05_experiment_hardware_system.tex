@@ -1,5 +1,5 @@
 \chapter{Experiments on real hardware}
-In this chapter, we discuss experiments conducted on the hardware system. The content is organized into four sections. The first section provides an overview of the hardware setup for the double pendulum system. The second section delves into the system identification of the hardware. The third section details our approach to addressing the sim-to-real gap challenge. The final section presents the successful outcomes of our hardware experiments.
+In this chapter, the experiments conducted on the hardware system are discussed. The content is organized into four sections. An overview of the hardware setup for the double pendulum system is provided in the first section. The system identification of the hardware is delved into in the second section. The approach to addressing the sim-to-real gap challenge is detailed in the third section. The outcomes of the hardware experiments are presented in the final section.
 
 \section{Hardware setup}
 To be clear upfront, the hardware design and manufacturing were completed by previous researchers and coworkers at the Underactuated Lab of the German Research Center for Artificial Intelligence GmbH, Robotics Innovation Center branch. My role in this section is to understand the logic of all the involved subsystems and set up the test environment using existing components.
@@ -43,12 +43,12 @@ For actuation selection, quasi-direct drive (QDD) motors were chosen. QDDs are p
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\textwidth]{figures/hardware_setup/motor.jpg}
+  \includegraphics[width=0.5\textwidth]{figures/hardware_setup/motor.jpg}
   \caption{AK80-6 V100 motor\cite{cubemarsAK806}}
   \label{fig:AK80-6}
 \end{figure}
 
-The AK80-6 V100 motors from CubeMars were selected for their ease of mounting, which is facilitated from both the front and rear ends\cite{cubemarsAK806}. These motors are characterized by a peak torque of 12 Nm and a rated torque of 6 Nm during continuous operation, aligning with the project's set torque limit of 5 Nm. They are designed to operate on a 24V voltage with a gear ratio of 6:1. Additionally, their design incorporates compatibility with both serial and CAN bus systems, which simplifies the development process.
+The AK80-6 V100 motors from CubeMars were selected for their ease of mounting, which is facilitated from both the front and rear ends\cite{cubemarsAK806}. As shown in Figure \ref{fig:torque_speed_curve}, these motors are characterized by a peak torque of 12 Nm and a rated torque of 6 Nm during continuous operation, aligning with the project's set torque limit of 5 Nm. They are designed to operate on a 24V voltage with a gear ratio of 6:1. Additionally, their design incorporates compatibility with both serial and CAN bus systems, which simplifies the development process.
 
 \begin{figure}[H]
   \centering
@@ -57,7 +57,9 @@ The AK80-6 V100 motors from CubeMars were selected for their ease of mounting, w
   \label{fig:torque_speed_curve}
 \end{figure}
 
-For communication, the Controller Area Network (CAN) bus was chosen due to its compatibility with the actuators. Known for its robustness, flexibility, and efficiency, the CAN bus is a communication protocol that has been widely utilized in various applications. The adoption of the CAN bus for control brings numerous advantages. It provides error checking and fault confinement capabilities and supports real-time operation, facilitating high control frequencies with a relatively simple wiring arrangement. In the proposed configuration, the network comprises one master node (the PC) and two slave nodes (the motors). The control loop is constituted by a CAN-to-USB converter, a single CAN high cable, and a single CAN low cable, with termination resistors of \(120 \Omega\) at both the initial and terminal points of the network.
+For communication, the Controller Area Network (CAN) bus was chosen due to its compatibility with the actuators. Known for its robustness, flexibility, and efficiency, the CAN bus is a communication protocol that has been widely utilized in various applications. The adoption of the CAN bus for control brings numerous advantages. It provides error checking and fault confinement capabilities and supports real-time operation, facilitating high control frequencies with a relatively simple wiring arrangement. 
+
+In our application (Figure \ref{fig:can_connection_diagram}), the network comprises one master node (the PC) and two slave nodes (the motors). The control loop is constituted by a CAN-to-USB converter, a single CAN high cable, and a single CAN low cable, with termination resistors of \(120 \Omega\) at both the initial and terminal points of the network.
 
 \begin{figure}[H]
   \centering
@@ -164,21 +166,21 @@ Firstly, model-free reinforcement learning relies solely on interaction with the
 Secondly, many simulations operate in discrete time and space, whereas the real world functions continuously. In our implementation, the control frequency presents a significant challenge. We use a control frequency of 100 Hz in simulation; however, it does not suffice in the real system. To enhance performance, we increased the control frequency to 400 Hz when experimenting on the real system, and this adjustment yielded positive results.
 
 \subsection{Validation with noisy simulation environment}
-In addressing the challenge of sim2real transfer, multiple agents were trained using the Soft Actor-Critic (SAC) algorithm under similar setups in ideal environment. These agents were then subjected to validation within a noisy environment. Only those agents demonstrating robustness to perturbations within this environment were advanced to testing on the actual system. Agents that did not withstand the noisy environment were deemed insufficiently robust and subsequently discarded.
+In addressing the challenge of sim-to-real transfer, multiple agents were trained using the Soft Actor-Critic (SAC) algorithm under similar setups in an ideal environment. These agents were then subjected to validation within a noisy environment, which is an ideal environment incorporated with real-world features. Only those agents demonstrating robustness to perturbations within this environment were advanced to real-world tests. Agents that did not withstand the noisy environment were deemed insufficiently robust and subsequently discarded.
 
-In the course of experiments on real systems, four critical factors were identified that differ from ideal simulations: friction, measurement noise, latency, and torque responsiveness.
+In the course of real world experiments, four critical factors were identified that differ from ideal simulations: friction, measurement noise, latency, and torque responsiveness.
 
 \textbf{Friction:}
 
-Friction was identified as the predominant factor. The agent training took place in a simulated environment devoid of friction, which does not reflect real-world conditions. To address this discrepancy, a strategy for friction compensation was employed, initially involving modeling based on Coulomb’s law of friction.
+Friction, identified as the predominant factor affecting performance, was not accounted for in the simulated training environment. To bridge this gap with real-world conditions, a friction compensation strategy was employed, starting with modeling the friction based on Coulomb’s law as detailed in Equation \ref{eq:friction_function}. 
 
-This frictional force counteracts the relative motion between contact surfaces. Friction compensation was applied by exerting torque in the same direction as the angular motion, thereby supplying the system with the necessary energy to counteract the effects of friction.
+Since frictional force counteracts the relative motion between contact surfaces, this compensation involved exerting additional torque in the same direction as the angular motion, providing the system with the necessary energy to overcome the effects of friction.
 
 Despite the friction coefficients \(c_{f1}\) and \(c_{f2}\) being ascertained during the system identification phase, they were subsequently found to be imprecise during real system testing. To refine these coefficients, free-fall tests were conducted, which entailed releasing the double pendulum from a slight angular displacement and allowing it to descend under the force of gravity. Given the coupling influence of the two links, one joint was immobilized during the friction coefficient tuning of the other: the elbow joint remained static while estimating the shoulder joint's coefficient, and vice versa. Manual adjustments to the friction coefficients were made until the position output of the tested joint resulted in a sine wave without decay.
 
 \textbf{Measurement noise:}
 
-Measurement noise has been identified as the second most critical factor. The position displacement is measured with high accuracy using built-in encoders in the AK80-6 motors. However, the velocity measurement, which is derived as the first derivative of the position measurement, tends to introduce a relatively higher error. In the simulation environment, measurement error for both position and velocity is assumed to be non-existent. Nonetheless, this error is considerable in real-world applications.
+Measurement noise has been identified as the second most critical factor. The position displacement is measured with high accuracy using built-in encoders in the AK80-6 motors. However, the velocity measurement, which is derived as the first derivative of the position measurement, tends to introduce a relatively higher error. In the ideal environment, measurement error for both position and velocity is assumed to be non-existent. Nonetheless, this error is considerable in real-world applications.
 
 To tackle this problem, the measurement error has been modeled as a normal distribution, with the mean representing the true velocity value and a manually adjustable standard deviation. The measurement noise vector is denoted by \(\epsilon = [\Delta p_1, \Delta p_2, \Delta v_1, \Delta v_2]^T\), and is assumed to follow a multivariate normal distribution:
 \begin{equation}
@@ -188,7 +190,7 @@ where \(\boldsymbol{\mu}\) is the vector of means, and \(\boldsymbol{\Sigma}\) i
 
 \textbf{Latency:}
 
-Latency has been identified as the third significant factor. Given that any communication system requires time to transmit and receive data, and programs also require time to execute, latency is an inevitable aspect. Such latency presents a substantial challenge to control systems, especially those based on reinforcement learning. Reinforcement learning operates on the principles of Markov Decision Processes (MDPs), which follow the Markov property. According to this property, the future state of a process is determined solely by the current state and action, and not by the sequence of states that preceded it. However, latency compromises the Markov property by inducing state mismatches and fostering dependencies on historical data. During free-fall tests, the maximum latency observed was 0.015 seconds; therefore, this value has been established as the standard latency.
+Latency has been identified as the third significant factor. Given that any communication system requires time to transmit and receive data, and programs also require time to execute, latency is an inevitable aspect. Such latency presents a substantial challenge to control systems, especially those based on reinforcement learning. Reinforcement learning operates on the principles of Markov Decision Processes (MDPs), which follow the Markov property. According to this property, the future state of a MDP process is determined solely by the current state and action, and not by the sequence of states that preceded it. However, latency compromises the Markov property by inducing state mismatches and fostering dependencies on historical data. During free-fall tests, the maximum latency observed was 0.015 seconds. Therefore, this value has been established as the standard latency.
 
 \textbf{Torque responsiveness:}
 
@@ -211,34 +213,9 @@ In the application of domain randomization to robotic manipulation tasks, distur
 
 The results of domain randomization in noisy training proved to be highly variable. Some agents significantly improved after a mere 5e6 iterations of noisy training, while others remained unchanged or worsened, with some even regressing to the point of failure in ideal simulations where they had once succeeded.
 
-% \subsection{Results of domain randomization and noisy environment validation}
-% Incorporating factors such as friction, measurement error, latency, and torque responsiveness, the noisy simulation serves to select the most suitable agent for real hardware tests. Figure \ref{fig:noisy_simulation_acrobot} demonstrates the results of the noisy simulation for the acrobot using the same agent depicted in Figure \ref{fig:ideal_simulation_acrobot}. The tasks of swing-up and stabilization are also successfully accomplished in this instance. 
-% 
-% \begin{figure}[H]
-%     \centering
-%     \fbox{\includegraphics[width=0.9\textwidth]{figures/hardware_result/acrobot_noisy_simulation_designC.0.png}} % Second image
-%     \caption{A successful acrobot noisy simulation result}
-%     \label{fig:noisy_simulation_acrobot}
-% \end{figure}
-% 
-% As depicted in Figure \ref{fig:noisy_simulation_pendubot}, an agent, previously verified in an ideal simulation environment for the pendubot setup, undergoes a secondary phase of validation within a noisy simulation. Successful performance in swing-up and stabilization tasks within this framework indicates adequate robustness for real-world applications.
-% 
-% \begin{figure}[H]
-%     \centering
-%     \fbox{\includegraphics[width=0.6\textwidth]{example-image}} % Second image
-%     \caption{A failed pendubot noisy simulation result}
-%     \label{fig:noisy_simulation_pendubot}
-% \end{figure}
-% 
-% \begin{figure}[H]
-%     \centering
-%     \fbox{\includegraphics[width=0.9\textwidth]{figures/hardware_result/pendubot_noisy_simulation_designC.1.png}} % Second image
-%     \caption{A successful pendubot noisy simulation result}
-%     \label{fig:noisy_simulation_pendubot}
-% \end{figure}
 
-\section{Real hardware results}
-In this section, results from real hardware tests are presented. Initially, the procedure for selecting agents suitable for real-world testing is introduced. Subsequently, the successful outcomes from an agent trained for the pendubot setup are displayed. The range of results is restricted to the pendubot setup because the introduction of speed and position limits has significantly narrowed the range of possible policies. In the acrobot experiments, although an agent was deemed worthy of real-world testing, it exceeded the position limits and was therefore discarded.
+\section{Results on real hardware}
+In this section, the results from the real hardware phase are presented. The content is divided into three parts. The first part discusses the procedure for selecting agents suitable for real-world testing. The second part displays the successful outcomes from an agent trained for the pendubot setup. The range of results is restricted to the pendubot setup due to the introduction of speed and position limits, which have significantly narrowed the range of possible policies. The third part discusses an unsuccessful agent in the acrobot setup. It passed ideal and noisy validations but cannot be transferred to real-world tests due to a violation of the \(2\pi\) position limit.
 
 \begin{figure}[H]
     \centering
@@ -247,7 +224,8 @@ In this section, results from real hardware tests are presented. Initially, the 
     \label{fig:double_pendulum_real_system}
 \end{figure}
 
-An agent deemed suitable for real-system tests must undergo a process that includes ideal training and validation, followed by noisy validation. If the agent proves successful in noisy validation, it can proceed to further testing on the real system. If it does not succeed, we employ the domain randomization method in an attempt to enhance its performance. Should the retrained agent pass the noisy validation, it will then advance to real-system testing; otherwise, it will be discarded.
+\subsection{Agent selection procedure for real world tests}
+An agent deemed suitable for real-system tests must undergo a process that includes training and validation in ideal environment, followed by validation in noisy environment. If the agent proves successful in noisy validation, it can proceed to further testing on the real system. If it does not succeed, we employ the domain randomization method in an attempt to enhance its performance. Should the retrained agent pass the noisy validation, it will then advance to real-system testing. Otherwise, it will be discarded.
 
 \begin{figure}[H]
     \centering
@@ -256,35 +234,34 @@ An agent deemed suitable for real-system tests must undergo a process that inclu
     \label{fig:agent_selection}
 \end{figure}
 
-All real hardware experiments are based on design C (\(l_1 = 0.2, l_2 = 0.3\)).For pendubot setup, obtaining a working agent is straightforward. We did a little modification on the training process for ideal simulation phase by activating the scaling mechanism mentioned in section 4.1 and add a termination condition that terminates the training episode whenever the shoulder or elbow joint exceeds \(2\pi\). The training successfully delivered a working model in ideal simulation with 2e7 timesteps using parameters in Table \ref{tab:training_parameters_real_world}. 
+\subsection{Pendubot results in real world}
+All real hardware experiments are based on design C \( (l_1 = 0.2, l_2 = 0.3) \). For the pendubot setup, obtaining a working agent is relatively straightforward. Slight modifications were made to the training process for the ideal simulation phase by deactivating the scaling mechanism mentioned in Section 4.1 and adding a termination condition that ends the training episode if the shoulder or elbow joint exceeds \( 2\pi \), which means the agents are trained on unnormalized real physical state values with strict constraints on speed and velocity boundaries. Utilizing the parameters listed in Table~\ref{tab:training_parameters_real_world_pendubot}, the training process successfully yielded a working model in the ideal simulation within \( 2 \times 10^7 \) timesteps.
 
 \begin{table}[H]
   \centering
   \begin{tabular}{p{2cm} | p{3cm} | p{3cm} | p{3cm}}
   Robot & Quadratic Reward  & Constant Reward & LQR\\
   \hline
-  \multirow{5}{*}{Pendubot} & \(Q_1\) = 100 &  & \(Q_1\) = 1.92\\
-  & \(Q_2\) = 100  & \(r_{line}=1e3\) & \(Q_2\) = 1.92\\
-  & \(Q_3\) = 1.0  & \(r_{vel}=0.0\) & \(Q_3\) = 0.3\\
-  & \(Q_4\) = 1.0  & \(r_{LQR}=1e5\)& \(Q_4\) = 0.3\\
-  & \(R\) = 1e-2  & & \(R\) = 0.82\\
+  \multirow{5}{*}{Pendubot} & \(Q_1\) = 100 &  & \(Q_1\) = 0.97\\
+  & \(Q_2\) = 100  & \(r_{line}=1e3\) & \(Q_2\) = 0.93\\
+  & \(Q_3\) = 1.0  & \(r_{vel}=0.0\) & \(Q_3\) = 0.39\\
+  & \(Q_4\) = 1.0  & \(r_{LQR}=1e5\)& \(Q_4\) = 0.26\\
+  & \(R\) = 1e-2  & & \(R\) = 0.11\\
   \end{tabular}
- \caption{Hyper parameters used for training agents for real world experience}
- \label{tab:training_parameters_real_world}
+ \caption{Hyper parameters used for training pendubot agents for real world tests}
+ \label{tab:training_parameters_real_world_pendubot}
 \end{table}
-
-Figure \ref{fig:training_curves_for_real_world} presents the training curve for the acquisition of an agent designated for real-world pendubot experiments, utilizing an ideal training process. As depicted in Figure \ref{fig:mean episode length}, the mean episode length initially approaches the maximum of 1000 but then rapidly descends to below 200 after 3e6 training steps. This descent indicates that the agent consistently attempts to rotate beyond 360 degrees in pursuit of higher rewards. A gradual emergence from this valley is observed at 15e6 training steps, with a subsequent significant increase in episode length. Correspondingly, the mean episode reward, as illustrated in Figure \ref{fig:mean episode reward}, also shows a gradual increase before 15e6 time steps, followed by a rapid ascent thereafter.
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.47\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/hardware_result/train_without_limit_ep_length.png}
         \caption{Mean episode length}
         \label{fig:mean episode length}
     \end{subfigure}
     \hfill % add some horizontal spacing
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.47\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/hardware_result/train_without_limit_ep_reward.png}
         \caption{Mean episode reward}
@@ -294,16 +271,16 @@ Figure \ref{fig:training_curves_for_real_world} presents the training curve for 
     \label{fig:training_curves_for_real_world}
 \end{figure}
 
-The result in the ideal environment is shown in Figure \ref{fig:pendubot_ideal_working}.
+Figure \ref{fig:training_curves_for_real_world} presents the training curve for the acquisition of an agent designated for real-world pendubot experiments, utilizing an ideal training process. As depicted in Figure \ref{fig:mean episode length}, the mean episode length initially approaches the maximum of 1000, but then it rapidly descends to below 200 after 3e6 training steps. This descent indicates that the agent consistently attempts to rotate beyond 360 degrees in pursuit of higher rewards. A sign of emergence from this performance valley is observed at 15e6 training steps, with a subsequent significant increase in episode length. Correspondingly, the mean episode reward, as illustrated in Figure \ref{fig:mean episode reward}, also shows a gradual increase before 15e6 time steps, followed by a rapid ascent thereafter.
+
+The agent is put to the test in an ideal environment for validation. The results are 100\% successful, as shown in Figure \ref{fig:pendubot_ideal_working}. The switching time between the SAC controller and the LQR controller occurs in less than 1 second. After taking over, the LQR controller is able to maintain balance around the goal state until the end of the experiment.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/hardware_result/pendubot_ideal_validation_designC.1.png}
+    \includegraphics[width=0.95\linewidth]{figures/hardware_result/pendubot_ideal_validation_designC.1.png}
     \caption{Pendubot result in the ideal environment}
     \label{fig:pendubot_ideal_working}
 \end{figure}
-
-When tested in a noisy simulation, the pretrained agent did not perform adequately. Consequently, the agent was subjected to an additional 2e7 timesteps of training within a noisy environment. The resultant agent successfully passed the noisy validation with an approximate success rate of 40\%. The result of a successful trial is shown in Figure \ref{fig:pendubot_noisy_working}.
 
 \begin{figure}[H]
     \centering
@@ -312,9 +289,9 @@ When tested in a noisy simulation, the pretrained agent did not perform adequate
     \label{fig:pendubot_noisy_working}
 \end{figure}
 
-We consider the agent ready for a real-world test, so we deploy it onto the test bench for the final evaluation. A control frequency of 400Hz was utilized. The agent's average success rate in the real system was 40\%, aligning with the success rate observed during noisy validation. A depiction of one such successful outcome is presented in Figure \ref{fig:pendubot_real_working}. 
+Subsequently, the agent was subjected to noisy validation. In a noisy simulation, the pretrained agent was found to succeed at rate of 40\%, as demonstrated in Figure \ref{fig:pendubot_noisy_working}. In successful trials, the transition time between the SAC controller and the LQR controller occurred around 1 second. The LQR controller was still very effective in maintaining the system's stability. In unsuccessful trials, two scenarios occurred. Most often, the transition did not occur, and the system, remaining under the influence of the SAC controller, was inadequate for maintaining stability. In a few cases, although the transition did occur, the LQR controller failed to maintain the system's relative stable state around the upright position, resulting in experimental failure.
 
-The transition to the LQR controller occurred smoothly at approximately one second. Upon assuming control, the LQR controller succeeded in sustaining the system's upright position, albeit with vibrations, until the completion of the experiment. Contrary to the results in both noisy and ideal simulations, the torque applied by the LQR controller was noticeably less smooth, resulting in greater amplitude of position and velocity vibrations. Given that the feature of self-stabilization had been evident during the ideal validation phase, an attempt was made to omit the LQR controller, allowing the agent to execute the swing-up and stabilize independently; however, this approach proved unsuccessful.
+Though the noisy validation only have 40\% success rate, we consider the above shown agent ready for a real-world test, so we deploy it onto the test bench for the real world evaluation. A control frequency of 400Hz was utilized. The agent's average success rate in the real system was 40\%, aligning with the success rate observed during noisy validation. A depiction of one such successful outcome is presented in Figure \ref{fig:pendubot_real_working}. 
 
 \begin{figure}[H]
     \centering
@@ -323,6 +300,72 @@ The transition to the LQR controller occurred smoothly at approximately one seco
     \label{fig:pendubot_real_working}
 \end{figure}
 
+The transition to the LQR controller occurred smoothly at approximately one second. Upon assuming control, the LQR controller succeeded in sustaining the system's upright position, albeit with vibrations, until the completion of the experiment. Contrary to the results in both noisy and ideal simulations, the torque applied by the LQR controller was noticeably less smooth, resulting in greater amplitude of position and velocity vibrations. Given that the feature of self-stabilization had been evident during the ideal validation phase, an attempt was made to omit the LQR controller, allowing the agent to execute the swing-up and stabilize independently; however, this approach proved unsuccessful.
 
+In unsuccessful trials, similar problems that occurred during noisy validation recurred. The system either failed to switch from the SAC controller to the LQR controller, or the LQR controller was unable to maintain stability. The latter scenario is more likely to occur in real-world tests than in noisy validation.
+
+
+\subsection{Acrobot results in real world}
+Training for the acrobot setup has encountered numerous challenges, which can be summarized into the following aspects:
+
+\textbf{Violation of Speed and Position Limit:}
+
+The introduction of new rules, with a speed limit set at 20 rad/s and a position limit set at \(2\pi\), has made it more challenging to train a functional agent in the acrobot setup. Attempts have been made to train agents using unscaled real physical state values with a termination condition aimed at keeping the agent within the position limit; however, this approach did not perform as well as it did with the pendubot setup. Despite the application of 5e7 timesteps (which takes approximately 5 hours), neither the mean episode length nor the mean episode reward exhibited growth. A return to the method of training based on scaled state values without termination conditions eventually yielded a working model in ideal validation, although the \(2\pi\) position limit was violated.
+
+\textbf{Inconsistency in Training:}
+
+The training of acrobot agents has proven to be highly unstable. Despite the use of consistent and carefully tuned hyperparameters, training success has varied. There are instances when significant growth in mean episode reward suggests that training is progressing correctly, yet the resulting agent may perform inconsistently in ideal simulations.
+
+\textbf{Long Training Hours:}
+
+When compared to pendubot training, exploration in the acrobot setup often requires more time. While pendubot training typically produces a functional agent within 2e7 timesteps, acrobot training may take between 3e7 to 4e7 timesteps, with no guarantee that the resulting agent will pass an ideal validation. Such iterations, taking 3-4 hours each, are considerably time-consuming.
+
+The most favorable outcome in the acrobot setup has been an agent that functions effectively in both ideal and noisy validations. It was trained using parameters detailed in Table \ref{tab:training_parameters_real_world_acrobot}, with an active scaling mechanism and in the absence of termination conditions, indicating that the agent was trained using normalized state values.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{p{2cm} | p{3cm} | p{3cm} | p{3cm}}
+  Robot & Quadratic Reward  & Constant Reward & LQR\\
+  \hline
+  \multirow{5}{*}{Pendubot} & \(Q_1\) = 100 &  & \(Q_1\) = 1.92\\
+  & \(Q_2\) = 90  & \(r_{line}=1e3\) & \(Q_2\) = 1.92\\
+  & \(Q_3\) = 1.0  & \(r_{vel}=1e4\) & \(Q_3\) = 0.3\\
+  & \(Q_4\) = 1.0  & \(r_{LQR}=1e5\)& \(Q_4\) = 0.3\\
+  & \(R\) = 1e-2  & & \(R\) = 0.82\\
+  \end{tabular}
+ \caption{Hyper parameters used for training acrobot agents for real world tests}
+ \label{tab:training_parameters_real_world_acrobot}
+\end{table}
+
+As shown in Figure \ref{fig:acrobot_training_curve}, the reward for this agent experienced a smooth increase up to 2.5e7 timesteps and then a rapid ascent in the final 5 million timesteps. Because a termination condition was not implemented, the episode length remained consistently at 1000. This outcome was anticipated and led to  a working agent in an ideal environment.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/hardware_result/acrobot_learning_curve_real_world.png}
+    \caption{Training curve of best result in acrobot setup}
+    \label{fig:acrobot_training_curve}
+\end{figure}
+
+The behavior of this agent during ideal validation is shown in Figure \ref{fig:acrobot_ideal}. The swing-up is performed by the SAC controller within 2 seconds. After the LQR controller takes over, the system maintains stability around the highest position for a prolonged period. The ideal validation is considered successful.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{figures/hardware_result/acrobot_ideal_simulation_designC.1.png}
+    \caption{Acrobot result in ideal environment}
+    \label{fig:acrobot_ideal}
+\end{figure}
+
+The agent operates successfully within a noisy simulation after ideal validation, eliminating the need for further noisy training. The success rate is approximately 50\%. Figure \ref{fig:acrobot_noisy} shows one of the successful tests.
+
+In successful trials, the swing-up phase conducted by the SAC controller concludes within 2 seconds. Although the torque applied in ideal environment tests is already quite noisy, the torque in a noisy environment exhibits even greater fluctuations. Once the LQR controller takes effect, the system stabilizes around the goal state until the experiment concludes. In unsuccessful trials, the inability to switch to the LQR controller is the primary issue. But the agent has high recovery ability, the system sometimes misses the first transition oppotunity and making several rotations before it finds itself reaching a point for LQR controller to take over.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/hardware_result/acrobot_noisy_simulation_designC.1.png}
+    \caption{Acrobot result in noisy environment}
+    \label{fig:acrobot_noisy}
+\end{figure}
+
+Due to the agent's violation of the \(2\pi\) position limit, it has been deemed unsuitable for real-world tests. Consequently, no additional results from real-world tests in the acrobot setup are presented.
 
 \cleardoublepage

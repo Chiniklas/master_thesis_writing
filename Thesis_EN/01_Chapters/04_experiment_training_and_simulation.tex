@@ -1,9 +1,9 @@
 \chapter{Agent training and experiments in ideal simulation environment}
-Chapters 4 and 5 focus on the experimental phase of the project. This chapter details the training procedure of our SAC agent for the swing-up task and then transitions to a simulation phase to validate results for both the swing-up and stabilization tasks. We have structured this chapter into three distinct subsections: training setup, training process, and simulation results.
+Chapters 4 and 5 focus on the experimental phase of the project. This chapter details the training procedure of SAC agents for the swing-up task and then transitions to a simulation phase in ideal environments to validate results for both the swing-up and stabilization tasks. The chapter is structured into three distinct subsections: training setup, training process, and simulation results.
 
-The first subsection describes the foundation of a reinforcement learning interaction rooted in a stable baseline3-based RL algorithm. It also touches upon a customized environment inherited from the OpenAI Gym environment. The second subsection centers on hyperparameter tuning and highlights the challenges encountered during training. The third subsection displays the results acquired from both the pendubot and acrobot setups.
+The first subsection describes the training framework, combining a Stable-Baseline3-based RL algorithm with a customized environment inherited from the OpenAI Gym environment. The second subsection centers on hyperparameter-tuning and highlights the challenges encountered during training. The third subsection displays the results acquired from both the pendubot and acrobot setups in ideal simulations.
 
-\section{Ideal training setup}
+\section{Training setup in ideal environment}
 Stable Baseline 3(SB3)\cite{stable-baselines3} is an open-source implementation of deep reinforcement learning algorithms based on the Python language. This library includes seven commonly used model-free deep reinforcement learning algorithms including SAC. Prior implementations of deep RL algorithms often encountered a problem wherein small implementation details could greatly affect performance, typically exceeding the differences between algorithms\cite{islam2017reproducibility}. The developers of SB3 have done a commendable job stabilizing the performance of these deep RL algorithms by benchmarking each one on common environments and comparing them to prior implementations. Owing to its user-friendly and reliable nature, we chose Stable Baseline 3 as our RL library, which greatly simplified our research process.
 
 OpenAI Gymnasium\cite{towers_gymnasium_2023} is a toolkit for developing and comparing reinforcement learning algorithms, and it is widely used in the research community. Among its many advantages are its open-source nature and standardized environments, which facilitate the rapid testing and benchmarking of new algorithms. Additionally, it offers easy visualization and monitoring. Our decision to use the Gymnasium library is based on its extensibility—from standard environments to highly customized ones—as well as its capability to integrate with tools like PyTorch and TensorFlow for GPU-accelerated computations. Furthermore, Gymnasium provides the ability to construct stacked training environments for parallel training.
@@ -15,9 +15,9 @@ OpenAI Gymnasium\cite{towers_gymnasium_2023} is a toolkit for developing and com
     \label{fig:RL_interaction}
 \end{figure}
 
-To construct the customized environment, we begin with the dynamic function that captures the nonlinear dynamics of the underactuated double pendulum from this respository\cite{2023_ram_wiebe_double_pendulum}. The dynamic function uses the current state observation and the action determined by the control policy, producing the next state via a Runge-Kutta integrator.
+The construction of the customized environment begins with the dynamic function that captures the nonlinear dynamics of the underactuated double pendulum, as detailed in this repository\cite{2023_ram_wiebe_double_pendulum}. The dynamic function, utilizing the current state observation and the action determined by the control policy, produces the next state via a Runge-Kutta integrator.
 
-This integrated state is then input into the reward function, which yields a scalar output. This output is subsequently relayed to the SAC algorithm for policy evaluation and update. After these computations, the simulation calculates the current state, and the policy identifies the most probable action. Both of these values are then directed back to the dynamics function, initiating a new cycle.
+The integrated state is then processed by the reward function, which generates a scalar output. This output is, in turn, used by the SAC algorithm for policy evaluation and update. Following these computations, the simulation is tasked with calculating the current state, and the policy has the role of identifying the most probable action. These values are subsequently fed back into the dynamics function, thus initiating a new cycle.
 
 It is widely recognized in the field of reinforcement learning that algorithms tend to converge more effectively when utilizing normalized state and action spaces \cite{sutton2018reinforcement}. Therefore, a scaling mechanism is designed to map the state and action spaces from their normalized versions to real-world measurements. The activation or deactivation of this scaling is optional.
 
@@ -51,7 +51,7 @@ $l_2$(m) & 0.2 & 0.4 & 0.3 & 0.3 \\
 
 In addition, the trial phase during training introduces a noisy initialization by adding Gaussian noise to the presumed initial state \([0,0,0,0]^T\), thereby increasing exploration. The mean of this Gaussian noise is set to \([0,0,0,0]^T\), and the covariance matrix is diagonal, specified as \(diag(0.01,0.01,0.005,0.005) \). For the evaluation phase, a zero initialization is employed to ensure the exploitation of the learned policy.
 
-\section{Ideal training process}
+\section{Training process in ideal environment}
 During the training of the SAC controller for both the acrobot and pendubot, the primary focus was on tuning several key hyperparameters. These encompassed the learning rate, control frequency, episode length, and learning timestep. Effort was invested in adjusting hyperparameters for the reward function and the LQR controller, given their pivotal roles in the learning process, as detailed in Table \ref{tab:training_parameters}.
 
 The learning rate was set at 0.01 to promote effective learning and adaptation. Additionally, the control frequency during training was configured to 100Hz, ensuring frequent updates and heightened responsiveness in the control process. An episode length of 1000 was selected for both the Acrobot and Pendubot, translating to 10-second-long episodes, to provide sufficient exploration and learning opportunities. To harness the full training potential, a total of 2e7 learning time steps were executed for the pendubot and 5e7 for the acrobot, allowing the agent to accumulate vast experience and enhance its performance.
@@ -77,62 +77,62 @@ The learning rate was set at 0.01 to promote effective learning and adaptation. 
  \label{tab:training_parameters}
 \end{table}
 
-One of the successful learning curves for a total of 2e7 timesteps for the pendubot is illustrated below. This experiment, like all other simulation experiments done on the pendubot setup, uses design A, namely, $l_1 = 0.3m$ and $l_2 = 0.2m$. As depicted in the figure, from 0 to 1e7 timesteps, the learning curve experiences a gradual ascent. Between 1e7 and 1.2e7 timesteps, the learning curve surges rapidly, peaking at around one million in reward. After 1.2e6 timesteps, the curve begins to stabilize with occasional fluctuations, and no substantial increase in reward is observed.
+Experiments on the pendubot in the ideal simulation phase use Design A, namely, \( l_1 = 0.3 \) m and \( l_2 = 0.2 \) m. One of the successful learning curves, spanning a total of \( 2 \times 10^7 \) timesteps for the pendubot, is illustrated in Figure \ref{fig:pendubot_learning_curve_ideal}. As depicted in the figure, the learning curve experiences a gradual ascent from 0 to 1e7 timesteps. Between 1e7 and 1.2e7 timesteps, the curve surges rapidly, peaking at around one million in reward. After 1.2e7 timesteps, the curve begins to stabilize with occasional fluctuations, and no substantial increase in reward is observed.
 
 \begin{figure}[H]
     \centering
     \fbox{\includegraphics[width=1.0\textwidth]{figures/learning_curve/pendubot_learning_curve.png}} % First image
     \caption{Pendubot learning curve}
-    \label{fig:image_a}
+    \label{fig:pendubot_learning_curve_ideal}
 \end{figure}
-
-The training on the acrobot are based on design C, with $l_1$ being 0.2m and $l_2$ being 0.3m. As shown in the successful learning curve over a total of 3e7 timesteps for the acrobot, the curve experienced relatively steady growth until 1.8e7 timesteps. After a sudden drop in reward between 1.8e7 and 2e7 timesteps, the learning curve began to increase drastically, with two major setbacks. By 3e7 timesteps, the learning curve had not reached its peak. We extended the learning period to 5e7 using a warm start from the model obtained at 3e7 timesteps, and the learning curve began to stabilize around 4e7 time steps.
 
 \begin{figure}[H]
     \centering
     \fbox{\includegraphics[width=1.0\textwidth]{figures/learning_curve/acrobot_learning_curve.png}} % Second image
     \caption{Acrobot learning curve}
-    \label{fig:image_b}
+    \label{fig:acrobot_learning_curve_ideal}
 \end{figure}
 
-% In conclusion, the training for the pendubot converges more quickly than that for the acrobot. Additionally, based on the training curves, the pendubot's training process is more stable than the acrobot's.
+Experiments on the acrobot in the ideal simulation phase are based on Design C, with \(l_1\) being 0.2m and \(l_2\) being 0.3m. As shown in Figure \ref{fig:acrobot_learning_curve_ideal}, this learning took a total of 3e7 timesteps for the acrobot. Initially, the curve experienced relatively steady growth until 1.8e7 timesteps. After a sudden drop in reward between 1.8e7 and 2e7 timesteps, the learning curve began to increase drastically despite two major setbacks. By 3e7 timesteps, the learning curve had not yet reached its peak. This learning of 3e7 timesteps delivered a working agent, but the behaviour was not stable. Consequently, we extended the learning period to 5e7 timesteps, using a warm start from the agent obtained at 3e7 timesteps, and observed that the learning curve began to stabilize around 4e7 timesteps. The resulting agent has a good result in ideal simulation.
 
-\section{Ideal simulation results}
-In this section, the simulation results for the acrobot and pendubot are presented separately. The model trained using the SAC algorithm is utilized during the swing-up stage and switches to the LQR controller when nearing the upright position. The primary success criteria for both swing-up and stabilization involve swinging up the double pendulum and maintaining its stability around the upright position for a prolonged period. Therefore, a total simulation time of 10 seconds is used. If the double pendulum fails to swing up within these 10 seconds, the result is deemed unsuccessful. Similarly, if the double pendulum loses stability within this time frame, the outcome is still considered a failure.
+\section{Results in ideal simulation}
+In this section, the ideal simulation results for the acrobot and pendubot are presented separately. Agents trained using the SAC algorithm are generally utilized during the swing-up stage, and the systems transition to the LQR controller when approaching the upright position. The primary criteria for success in both the swing-up and stabilization tasks involve swinging the double pendulum up to the upright position and maintaining stability for a prolonged period. Therefore, a simulation duration of 10 seconds is established. If the double pendulum fails to swing up or maintain stability within this timeframe, the trial is deemed unsuccessful.
 
 \subsection{Pendubot simulation in ideal environment}
-The testing environment, identical to the customized learning environment employed during the evaluation phase in training, has been established to validate the training outcomes and replicate the agent's learned behavior from the reinforcement learning process. This testing environment is considered ideal as it excludes disturbances such as friction and damping, focusing solely on the effects of gravity, joint torque, and mechanical constraints. In this environment, zero initialization is applied instead of the noisy initialization. The system begins with an initial state of \([0,0,0,0]^T\), representing its lowest point with zero velocity, and initiates the swing-up using the control policy exclusively derived from SAC.
+In the testing environment employed, also referred to as the ideal environment, disturbances such as friction and damping are excluded, with the focus placed solely on the effects of gravity, joint torque, and mechanical constraints. Zero initialization, as opposed to noisy initialization, is utilized, meaning the system commences from an initial state of \([0,0,0,0]^\text{T}\), indicating a start at zero position with zero velocity, and the swing-up is initiated using a control policy exclusively derived from SAC.
 
-As depicted in the figure, the swing-up time is under 1 second. After this, the state of the pendubot enters the Region of Attraction (ROA) of the LQR controller. The transition between the two controllers is both seamless and effective, with the system stabilizing towards the desired state under the LQR controller's influence. This validates the effectiveness of the ROA method for the LQR takeover.
+As depicted in Figure \ref{fig:ideal_simulation_pendubot}, the swing-up time is under 1 second, after which the state of the pendubot enters the Region of Attraction (ROA) for the LQR controller. The transition between the two controllers is seamless and effective, with the LQR controller subsequently maintaining the system's stability at the desired state. This demonstrates the effectiveness of the ROA method for LQR control takeover.
 
 A significant highlight from this successful simulation is the impressively short swing-up time, despite having strict torque limit in place. However, a concerning feature observed from this simulation is the noisiness of the input control signal. The torque alternates signs rapidly, and the gradient of the torque tends to have a high absolute value.
 
 \begin{figure}[H]
     \centering
     \fbox{\includegraphics[width=0.9\textwidth]{figures/simulation_result/pendubot_unclipped.png}} % First image
-    \caption{Pendubot simulation result}
+    \caption{Pendubot result in ideal simulation }
     \label{fig:ideal_simulation_pendubot}
 \end{figure}
 
 \subsection{Acrobot simulation in ideal environment}
 
-Just like the pendubot simulation, experiments on the acrobot setup are conducted in an ideal environment identical to the evaluation environment during the training phase. The acrobot begins its swing from the downward position with zero velocity, with the final goal of stabilizing around its highest point.
-
-The accompanying image depicts a successful swing-up and stabilization within a 10-second window. The swing-up process takes about 2 seconds before the LQR effectively assumes control, maintaining an asymptotic stability around the target state with minimal fluctuations.
+Just like the pendubot simulation, experiments on the acrobot setup are conducted in an ideal environment. The acrobot begins its swing from the downward position with zero velocity, aiming to stabilize around its highest point.
 
 \begin{figure}[H]
     \centering
     \fbox{\includegraphics[width=0.9\textwidth]{figures/simulation_result/acrobot_unclipped.png}} % Second image
-    \caption{Acrobot simulation result}
+    \caption{Acrobot result in ideal simulation}
     \label{fig:ideal_simulation_acrobot}
 \end{figure}
 
-In comparison to the pendubot's simulation curves, the swing-up time for the acrobot is roughly twice as long. This aligns with the notion that controlling the acrobot is a more challenging task than the pendubot. A shared drawback observed in both simulations is the lack of torque smoothness. For the acrobot, the input torque exhibits several significant jumps from one torque limit to the other, which might cause difficulties when translating to real-world hardware control.
+The accompanying image (Figure \ref{fig:ideal_simulation_acrobot}) depicts a successful swing-up and stabilization within a 10-second window. The swing-up process takes approximately 2 seconds before the LQR controller effectively takes over, maintaining stability around the target state for a prolonged time period.
+
+In comparison to the pendubot's simulation curves, the swing-up time for the acrobot is longer. This aligns with the notion that controlling the acrobot is a more challenging task than the pendubot. A shared drawback observed in both simulations is the lack of torque smoothness. For the acrobot, the input torque exhibits several significant jumps from one torque limit to the other, which might cause difficulties when translating to real-world hardware control.
 
 \subsection{Self stablizing behaviour on both pendubot and acrobot}
 An unexpected outcome emerged during the testing of the swing-up and stabilization of the underactuated double pendulum system using only the RL-learned policy. It was observed that some agents not only entered the Region of Attraction (ROA) of the LQR controller as intended but also remained upright for an extended period without LQR assistance. This self-stabilizing behavior was noticeable in both the pendubot and acrobot configurations.
 
-In the pendubot setup, self-stabilization was more frequently observed. With sufficient time steps (typically around 2e7), agents tasked with swing-up maneuvers in the pendubot configuration were highly likely to achieve self-stabilization at the upright position. As depicted in the figure below and discussed in section 4.3.1, the stabilization by the RL-learned policy, while using the same agent and model parameters for demonstration, is less smooth compared to the LQR-based stabilizer, with the torque fluctuating at an amplitude of approximately 1.5 Nm and minimal fluctuations in position and velocity.
+In the pendubot setup, self-stabilization was more frequently observed. With a sufficient number of training timesteps (typically around 2e7), agents tasked with swing-up maneuvers in the pendubot configuration were highly likely to achieve self-stabilization at the upright position. As depicted in Figure \ref{fig:pendubot_self_stabilization}, the stabilization by the RL-learned policy is less smooth compared to that achieved by the LQR-based stabilizer. The torque fluctuations have an amplitude of approximately 1.5 Nm, and there are minor fluctuations in position and velocity.
+
+Self-stabilization behavior has been observed in the acrobot setup as well. However, no consistent pattern has yet been identified as to the specific conditions under which the training yields a self-stabilizing agent. Fortunately, the same agent discussed in Section 4.3.2 exhibited a degree of self-stabilization, which is depicted in Figure \ref{fig:acrobot_self_stablization}. In the absence of a LQR controller, the RL-based controller was compelled to devise its own stabilization strategy. As illustrated in the graph, a relatively stable period commences at approximately 4 seconds, during which the system state exhibits prolonged fluctuations around the upright position. This occurs as the controller continuously corrects any deviation from the desired state. The stabilization provided by the RL-based controller is also less smooth than that of the LQR-based controller.
 
 \begin{figure}[H]
     \centering
@@ -140,8 +140,6 @@ In the pendubot setup, self-stabilization was more frequently observed. With suf
     \caption{Self stabilization of pendubot in simulation}
     \label{fig:pendubot_self_stablization}
 \end{figure}
-
-Self-stabilization behavior has been observed in the acrobot setup as well. However, no consistent pattern has yet been identified as to the specific conditions under which the training yields a self-stabilizing agent. Fortunately, the same agent discussed in Section 4.3.2 exhibited a degree of self-stabilization, which is depicted in the figure that follows. In the absence of a LQR controller, the RL-based controller was compelled to devise its own stabilization strategy. As illustrated in the graph, a relatively stable period commences at approximately 4 seconds, during which the system state exhibits prolonged fluctuations around the upright position. This occurs as the controller continuously corrects any deviation from the desired state. Although the stabilization provided by the RL-based controller is less smooth than that of the LQR-based controller, the inclination towards self-stabilization is distinctly apparent.
 
 \begin{figure}[H]
     \centering

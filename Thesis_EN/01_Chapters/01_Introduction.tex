@@ -73,9 +73,9 @@ The mathematical framework that describes RL is the Markov Decision Process (MDP
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{example-image}
-    \caption{Markov chain}
-%     \label{fig:example_picture}
+    \includegraphics[width=0.8\textwidth]{figures/MDP.png}
+    \caption{Markov decision process}
+    \label{fig:mdp}
 \end{figure}
 
 The ultimate objective in RL is to find an optimal policy, a mapping from states to actions, that dictates the best action to take in each state to achieve maximum long-term rewards. The learning process is driven by the tuple \((s,a,r,s')\), representing the current state, action taken, received reward, and subsequent state. Over time, through exploration of the state-action space and exploitation of acquired knowledge, the agent refines its policy, converging towards optimal behavior.

@@ -1,7 +1,7 @@
 \chapter{Methodology}
 The primary goal of this thesis is to achieve the swing-up movement in the pendubot or acrobot setup and to maintain stability around the highest points. Challenges have been revealed in initial training trials with reinforcement learning, including potential entrapment in local minima and difficulty in maintaining stability at the highest point for extended periods.
 
-To address these challenges, two main strategies are adopted. For the stabilization issue, a combined controller is introduced. During the swing-up process, control is assumed by an RL-trained agent, utilizing the Soft Actor-Critic—a classic model-free reinforcement learning algorithm—based on its learned policies. However, as the system nears the maximum point, a seamless transition occurs. This shift allows for the takeover of control by a continuous-time LQR controller, ensuring the final stabilization required to maintain stability at the highest point.
+To address these challenges, two main strategies are adopted. For the stabilization issue, a combined controller is introduced. During the swing-up process, control is assumed by an RL-trained agent, utilizing the Soft Actor-Critic—a classic model-free reinforcement learning algorithm—based on its learned policies. However, as the system nears the maximum point, a seamless transition occurs. This shift allows for the takeover of control by a continuous-time LQR controller, ensuring the final stabilization required to maintain stability at the highest point. For the entrapment in local minima problem, a carefully designed reward function is utilized to guide the agent away from hazadous local minima and achieve successful swing up.
 
 \section{Soft actor critic}
 Within the landscape of reinforcement learning, the Soft Actor Critic (SAC)\cite{haarnoja2018soft} stands out as an algorithm specifically designed for environments with continuous state and action spaces. Such environments, exemplified by our double pendulum system where actuators can be adjusted to any value within the torque limit range, and state measurement can take any real number, influenced our decision to adopt SAC.
@@ -63,19 +63,19 @@ words, it should maximize \(V^\pi(s)\):
  \alpha{\log {\pi(a\mid{s})]}}
 \end{align}
 
-The interaction experiences are stored as tuples \((s, a, r, s', d)\) in a replay buffer \(\textit{D}\). Here, \(d\) represents the signal for episode termination. When it is time to update the Q-value and policy, a batch of transitions \(\textit{B} = \{(s, a, r, s', d)\}\) is randomly sampled from \(\textit{D}\). The Q-functions are updated by one step of gradient descent using:
+The interaction experiences are stored as tuples \((s, a, r, s', d)\) in a replay buffer \(\textit{D}\). Here, \(d\) represents the signal for episode termination. When it is time to update the Q-value and policy, a batch of transitions \(\textit{B} = \{(s, a, r, s', d)\}\) is randomly sampled from \(\textit{D}\). The Q-functions are updated by one step of gradient descent, the gradients of the loss functions for the Q-networks are calculated by:
 
 \begin{equation}
 \nabla_{\phi_i} \frac{1}{|\textit{B}|} \sum_{(s, a, r, s', d) \in \textit{B}} \left(Q_{\phi_i}(s, a) - y(r, s', d)\right)^2 \quad \text{for} \quad i=1,2
 \end{equation}
 
-The policy is updated using one step of gradient ascent:
+The policy is updated using one step of gradient ascent, the gradient is expressed as:
 
 \begin{equation}
 \nabla_{\theta} \frac{1}{|\textit{B}|} \sum_{s \in \textit{B}}\left(\min\limits_{\substack{i=1,2}}Q_{\phi_i}(s,\widetilde{a}_{\theta}(s)) - \alpha \log\pi_{\theta}(\widetilde{a}_{\theta}(s)|s)\right)
 \end{equation}
 
-where \(\widetilde{a}_{\theta}(s)\) is a sample of action derived from \(\pi_\theta(\cdot|s)\) which is differentiable with respect to \(\theta\). The actor and critic neural networks' parameters are updated, resulting in policy adaptation.
+where \(\widetilde{a}_{\theta}(s)\) is a sample of action derived from \(\pi_\theta(\cdot|s)\) which is differentiable with respect to \(\theta\). 
 
 In conclusion, SAC's combination of stochastic policies, exploration through
 entropy regularization, value estimation, and gradient-based optimization make
@@ -83,13 +83,12 @@ it a well-suited algorithm for addressing the challenges posed by continuous
 state and action spaces.
 
 \section{Linear quadratic regulator}
-The Linear Quadratic Regulator (LQR)\cite{lehtomaki1981robustness} is an effective control method primarily designed for linear systems. Yet, when dealing with nonlinear dynamics, it remains applicable.The nonlinear system is linearized around a selected operating point, and based on this linearized version, the LQR controller can be sculpted.
+The Linear Quadratic Regulator (LQR)\cite{lehtomaki1981robustness} is an effective control method primarily designed for linear systems. Yet, when dealing with nonlinear dynamics, it remains applicable. The nonlinear system is linearized around a selected operating point, and based on this linearized version, the LQR controller can be sculpted.
 
 Taking a step back, the general form of a nonlinear system defined by state vector \(x\) and input vector \(u\) can be expressed as:
 \begin{equation}
  \dot{x}(t) = f(x(t), u(t))
 \end{equation}
-
 
 In certain applications, such as pendubot or acrobot stabilization, it is important to select the appropriate operating point. Due to the tasks to be completed, the operating point is chosen around the upright position, specifically \(x_{op} = [\pi,0,0,0]^T\). Around this point, the system can be linearized, leading to:
 
@@ -137,7 +136,7 @@ For a LQR controller like this, torques will always be applied to steer the syst
 
 
 \section{Combining SAC and LQR with region of attraction}
-In our approach, a combined control method is utilized for both the swing-up and stabilization tasks. This combined control framework is a natural choice and has previous work that supports this method. In this work by S. Gillen et al.\cite{gillen2020combining}, a similar structure combining a local controller and a learned controller with a gate function was employed. The work was conducted on chaotic control of an acrobot setup in simulation, which aligns with our task.
+In our approach, a combined control method is utilized for both the swing-up and stabilization tasks. This combined control framework is a natural choice and has previous work that supports this method. In this work by S. Gillen et al.\cite{gillen2020combining}, a similar structure combining a local controller and a learned controller with a gate function was employed. The work was conducted on chaotic control of an acrobot setup in simulation, which resembles our project.
 
 In our implementation, during the swing-up phase, the SAC controller is employed. Once the state of the double pendulum approaches the vicinity of the desired goal state, the transition from the SAC controller to the LQR controller is made for final-stage stabilization. An essential aspect of any combined control strategy is the determination of the conditions under which the system is ready for a transition between control methods. In our SAC+LQR control strategy, the gate function for making this determination is provided by the region of attraction method\cite{maywald2022co}.
 
@@ -147,7 +146,6 @@ In our implementation, during the swing-up phase, the SAC controller is employed
     \caption{Combined controller}
     \label{fig:combined_controller}
 \end{figure}
-
 
 The region of attraction (RoA) for a nonlinear system, denoted as \(R_a\), describes the set of initial states surrounding a fixed point \(x_0\). If a state lies within this region, the system will converge towards \(x_0\) as \(t \rightarrow \infty\). In the context of an LQR controller, the RoA signifies the area within the state space where the controlled system exhibits asymptotic stability. For complex systems, directly computing \(R_a\) can be challenging; instead, it is often estimated. The simplest way to estimate such a set requires the assistance of a Lyapunov function \(V(x)\) bounded by a scalar \(\rho\)\cite{khalil2002nonlinear}.
 
@@ -190,12 +188,12 @@ Combining equations and conditions \ref{eq:V_conditions}, \ref{eq:V}, \ref{eq:V_
 \end{cases}
 \end{equation}
 
-The RoA is computed similar to\cite{maywald2022co} but with a sums of squares method\cite{tedrake2010lqr}. The resulting shape of the RoA in a 4D state space resembles an ellipsoid.
+The RoA is computed similar to \cite{maywald2022co} but with a sums of squares method\cite{tedrake2010lqr}. The resulting shape of the RoA in a 4D state space resembles an ellipsoid.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{figures/methodology/roaplot.png} % Adjust the width as needed
-    \caption{Region of Attraction}
+    \caption{Region of Attraction[redraw this figure]}
     \label{fig:example}
 \end{figure}
 
@@ -204,11 +202,11 @@ Once the RoA is computed, it can be checked whether a state \(x\) belongs to the
 \section{Reward shaping}
 The reward function is intended to guide the agent in performing desired behavior. In our design, the reward function aims to guide the double pendulum system towards achieving stability around the highest point.
 
-One of the primary reasons why controlling an underactuated double pendulum system using RL is so challenging is the state space that can lead to successful stabilization is very small. Initial training attempts using OpenAI Gym Acrobot-v1\cite{towers_gymnasium_2023} rewards have revealed this challenge. For instance, the agent may accidentally get close to the goal state but not receive enough reward. This can result in being stuck in an unsuitable position for an extended period or a high-speed rotation of the second link with the first link almost upright. The manifestation of failure is entirely random.
+One of the primary reasons why controlling an underactuated double pendulum system using RL is so challenging is the state space that can lead to successful stabilization is very small. Initial training attempts using OpenAI Gym Acrobot-v1\cite{towers_gymnasium_2023} rewards have revealed this challenge. For instance, the agent may accidentally get close to the goal state but not receive enough reward. This can result in being stuck in an unsuitable position for an extended period or a high-speed rotation of the second link with the first link almost upright. 
 
 Another significant challenge in our RL-based training is that, due to our plan for real hardware deployment, the dynamic model of the double pendulum is more detailed than that of most simulation environments like OpenAI Gym Acrobot-v1\cite{towers_gymnasium_2023}. Because we are using quasi-direct drive motors to simplify joint dynamics, one of the significant drawbacks of this motor type is its low gear ratio, resulting in a relatively low torque limit (5 Nm).
 
-Therefore, there is a need for an innovative and reliable reward function design suitable for our problem setup. To tackle the swing-up issue, a customized three-stage reward function is designed to steer the agent away from problematic local minima and into the region of attraction of the LQR controller. The full equation for this reward function is:
+Therefore, there is a need for an innovative reward function design suitable for our problem setup. To tackle the swing-up issue, a customized three-stage reward function is designed to steer the agent away from problematic local minima and into the region of attraction of the LQR controller. The full equation for this reward function is:
 
 \begin{equation}
 \begin{aligned}
