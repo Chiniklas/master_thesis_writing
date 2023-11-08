@@ -119,16 +119,46 @@ These safety measures have been crucial in reducing the risks associated with te
 \end{figure}
 
 \section{System identification}
-System identification is the process of deriving mathematical models of dynamic systems from observed input-output data. This method is fundamental in control theory, used to analyze, predict, and control the behavior of real-world systems. After setting up the hardware system and before transitioning the working model from a successful simulation to the real system, it's necessary to undergo a system identification process. This helps ascertain the real-world parameters governing the dynamics of the double pendulum.
+Before implementing control strategies on a real system, it is crucial to ensure that the dynamics of the real system match those anticipated in theory. To achieve this, identifying the values used in the equation of motion is essential, and the system identification method is employed.
 
-Out of all model parameters, 15 are selected. While the naturally provided parameters \(g\) and \(g_r\) are held constant, the easily measurable parameters \(l_1\) and \(l_2\) are determined by the design(Table \ref{tab:different_designs}). The remaining system parameters need to be identified. , which are 
-\[
-m_1 r_1,\, m_2 r_2,\, m_1,\, m_2,\, I_1,\, I_2,\, I_r,\, b_1,\, b_2,\, c_{f1},\,c_{f2}
-\]
+System identification is the process of deriving mathematical models of dynamic systems from observed input-output data. This method is widely used in control theory to analyze and predict the behavior of real-world systems. The common procedure of system identification includes model structure selection, data collection, and parameter estimation.
 
-By running excitation trajectories on the actual hardware, data tuples in the form \((q, \dot{q}, \ddot{q}, u)\) can be collected. To determine the most accurate system parameters, one can leverage the linearity of the dynamic matrices \(M\), \(C\), \(G\), and \(F\) in relation to the independent model parameters. Consequently, a least squares optimization can be performed on the recorded data, relative to the dynamics equation.
+\textbf{Model Structure Selection:}
 
-The identified model parameters are shown in table below:
+As described in Section 2.1.2, the equation of motion for the target system is derived using the Lagrangian method, as expressed in Equation \ref{eq:EoM}. Fifteen parameters are required to fully describe the system dynamics, including masses $(m_1, m_2)$, lengths $(l_1, l_2)$, centers of masses $(r_1, r_2)$, inertias $(I_1, I_2)$ for the two links, and six actuator parameters, namely motor inertia $I_r$, gear ratio $g_r$, Coulomb friction $(c_{f1}, c_{f2})$, and viscous friction $(b_1, b_2)$ for the two joints, and gravity $g$.
+
+While the naturally provided parameters $g$ and $g_r$ are held constant, the easily measurable parameters $l_1$ and $l_2$ are measured by hand and recorded in Table \ref{tab:different_designs}. The remaining 11 system parameters need to be determined. We define the following terms as independent variables, which are to be estimated during the system identification experiment:
+
+\[m_1 r_1, m_2 r_2, m_1, m_2, I_1, I_2, I_r, b_1, b_2, c_{f1}, c_{f2}\]
+
+\textbf{Data Collection:}
+
+System identification experiments are conducted by running excitation trajectories on the real hardware. The excitation trajectories include inputs of $[t, q, \dot{q}, \ddot{q}]^T$, where $t$ is the timestamp, $q = [p_1, p_2]^T$ represents position, $\dot{q} = [v_1, v_2]^T$ represents velocity, and $\ddot{q} = [a_1, a_2]^T$ represents acceleration. Data tuples in the form $(q, \dot{q}, \ddot{q}, u)$ can be collected. One of the excitation trajectories are shown in Figure \ref{fig:excitation_traj}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\linewidth]{figures/hardware_setup/excitation_traj.png}
+    \caption{Excitation trajectory}
+    \label{fig:excitation_traj}
+\end{figure}
+
+\textbf{Parameter Estimation:}
+
+To determine the most accurate system parameters, a least squares optimization can be performed on the recorded data. The objective of the least squares optimization is to find the values of model parameters that minimize the sum of squared differences between the observed output data and the model's predictions. The objective function can be expressed as:
+
+\begin{equation}
+J(\theta) = \sum (y_{\text{observed}} - y_{\text{predicted}}(\theta))^2
+\end{equation}
+
+Where:
+\begin{itemize}
+\item $J(\theta)$ is the cost function to be minimized.
+\item $\theta$ represents the vector of model parameters to be estimated.
+\item $y_{\text{observed}}$ is the vector of observed output data.
+\item $y_{\text{predicted}}(\theta)$ is the vector of model predictions based on the current parameter values $\theta$.
+\end{itemize}
+
+The optimization uses the CMA-ES (Covariance Matrix Adaptation Evolution Strategy) algorithm\cite{hansen2001completely}, and the identified model parameters are shown in Table \ref{tab:parameters}. These parameters are based on design C ($l_1 = 0.2m$, $l_2 = 0.3m$), which is used in real-world tests.
 
 \begin{table}[H]
 \centering

@@ -15,10 +15,10 @@
 \contentsline {section}{\numberline {3.1}Soft actor critic}{21}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Linear quadratic regulator}{24}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Combining SAC and LQR with region of attraction}{25}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Reward shaping}{28}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Introduction to leaderboard metrics}{31}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Performance Leaderboard in Simulation and Real system}{31}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Simulation Robustness Leaderboard}{33}{subsection.3.5.2}%
+\contentsline {section}{\numberline {3.4}Reward shaping}{27}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Introduction to leaderboard metrics}{30}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Performance Leaderboard in Simulation and Real system}{30}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Simulation Robustness Leaderboard}{32}{subsection.3.5.2}%
 \contentsline {chapter}{\numberline {4}Agent training and experiments in ideal simulation environment}{35}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Training setup in ideal environment}{35}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Training process in ideal environment}{38}{section.4.2}%
@@ -29,19 +29,18 @@
 \contentsline {chapter}{\numberline {5}Experiments on real hardware}{45}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Hardware setup}{45}{section.5.1}%
 \contentsline {section}{\numberline {5.2}System identification}{53}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Sim-to-Real transfer}{54}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Validation with noisy simulation environment}{55}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Noisy training based on domain randomization}{57}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}Results on real hardware}{58}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Agent selection procedure for real world tests}{58}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Pendubot results in real world}{59}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}Acrobot results in real world}{63}{subsection.5.4.3}%
-\contentsline {chapter}{\numberline {6}Discussion and Future Work}{67}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Interpretation of simulation leaderboard}{67}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Interpretation of robust leaderboard}{69}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Interpretation of real system leaderboard}{69}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Conclusion and future work}{71}{section.6.4}%
-\contentsline {chapter}{\nonumberline Bibliography}{73}{chapter*.50}%
-\contentsline {chapter}{Appendix}{77}{section*.51}%
-\contentsline {chapter}{Appendix \numberline {A}An appendix}{78}{appendix.a.A}%
+\contentsline {section}{\numberline {5.3}Sim-to-Real transfer}{55}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Validation with noisy simulation environment}{56}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Noisy training based on domain randomization}{58}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Results on real hardware}{59}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Agent selection procedure for real world tests}{60}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Pendubot results in real world}{60}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Acrobot results in real world}{64}{subsection.5.4.3}%
+\contentsline {chapter}{\numberline {6}Discussion and Future Work}{69}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Interpretation of simulation leaderboard}{69}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Interpretation of robust leaderboard}{71}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Interpretation of real system leaderboard}{71}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Conclusion}{73}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Future work}{74}{section.6.5}%
+\contentsline {chapter}{\nonumberline Bibliography}{77}{chapter*.50}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

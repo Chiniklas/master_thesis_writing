@@ -1,0 +1,50 @@
+\babel@toc {english}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Four successful examples for controlling dynamic and nonlinear systems in the field of modern robotics\relax }}{2}{figure.caption.2}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Markov decision process\relax }}{5}{figure.caption.3}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Two variations of underactuated double pendulum\relax }}{8}{figure.caption.4}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Double inverted pendulum on a cart\blx@tocontentsinit {0}\cite {bogdanov2004optimal}\relax }}{12}{figure.caption.5}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Furuta pendulum\blx@tocontentsinit {0}\cite {aguilar2010direct}\relax }}{12}{figure.caption.6}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Double pendulum dynamics\relax }}{13}{figure.caption.7}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces 3D characters in Deepmimic project\blx@tocontentsinit {0}\cite {peng2018deepmimic}\relax }}{17}{figure.caption.8}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Benchmarking model-based reinforcement learning\blx@tocontentsinit {0}\cite {wang2019benchmarking}\relax }}{18}{figure.caption.9}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Sim-to-real framework for RL-based quadruped controller\blx@tocontentsinit {0}\cite {hwangbo2019learning}\relax }}{19}{figure.caption.10}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Combined controller\relax }}{26}{figure.caption.11}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Region of Attraction[redraw this figure]\relax }}{28}{figure.caption.12}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Swing up stage 1\relax }}{30}{figure.caption.13}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Swing up stage 2\relax }}{30}{figure.caption.14}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Swing up stage 3\relax }}{31}{figure.caption.15}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Interaction between reinforcement learning agent and customized environment\relax }}{36}{figure.caption.17}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Detailed scaling pipeline in training process\relax }}{37}{figure.caption.18}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Pendubot learning curve\relax }}{39}{figure.caption.21}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Acrobot learning curve\relax }}{39}{figure.caption.22}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Pendubot result in ideal simulation \relax }}{41}{figure.caption.23}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Acrobot result in ideal simulation\relax }}{41}{figure.caption.24}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Self stabilization of pendubot in simulation\relax }}{43}{figure.caption.25}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Self stabilization of acrobot in simulation\relax }}{43}{figure.caption.26}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Double pendulum mechanical system iteration 1 and iteration 2\relax }}{46}{figure.caption.27}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces AK80-6 V100 motor\blx@tocontentsinit {0}\cite {cubemarsAK806}\relax }}{47}{figure.caption.28}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Torque speed curve of AK80-6 V100 motor\blx@tocontentsinit {0}\cite {cubemarsAK806}\relax }}{48}{figure.caption.29}%
+\contentsline {figure}{\numberline {7.4}{\ignorespaces CAN connection diagram\relax }}{49}{figure.caption.30}%
+\contentsline {figure}{\numberline {7.5}{\ignorespaces High speed CAN to USB interface\blx@tocontentsinit {0}\cite {esdCANUSB2}\relax }}{49}{figure.caption.31}%
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Capacitor\relax }}{50}{figure.caption.32}%
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Physical enclosure for protection\relax }}{51}{figure.caption.33}%
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Wiring diagram\blx@tocontentsinit {0}\cite {2023_ram_wiebe_double_pendulum}\relax }}{52}{figure.caption.34}%
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Double pendulum in real system\relax }}{58}{figure.caption.36}%
+\contentsline {figure}{\numberline {7.10}{\ignorespaces Agent selection procedure for real hardware tests\relax }}{59}{figure.caption.37}%
+\contentsline {figure}{\numberline {7.11}{\ignorespaces Training curves of the working agent on pendubot\relax }}{60}{figure.caption.39}%
+\contentsline {figure}{\numberline {7.12}{\ignorespaces Pendubot result in the ideal environment\relax }}{61}{figure.caption.40}%
+\contentsline {figure}{\numberline {7.13}{\ignorespaces Pendubot result in the noisy environment\relax }}{61}{figure.caption.41}%
+\contentsline {figure}{\numberline {7.14}{\ignorespaces Result of a successful pendubot experiment on real system\relax }}{62}{figure.caption.42}%
+\contentsline {figure}{\numberline {7.15}{\ignorespaces Training curve of best result in acrobot setup\relax }}{64}{figure.caption.44}%
+\contentsline {figure}{\numberline {7.16}{\ignorespaces Acrobot result in ideal environment\relax }}{65}{figure.caption.45}%
+\contentsline {figure}{\numberline {7.17}{\ignorespaces Acrobot result in noisy environment\relax }}{66}{figure.caption.46}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

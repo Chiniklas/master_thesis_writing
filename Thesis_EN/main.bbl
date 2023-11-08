@@ -733,6 +733,40 @@
       \field{pages}{1861\bibrangedash 1870}
       \range{pages}{10}
     \endentry
+    \entry{hansen2001completely}{article}{}
+      \name{author}{2}{}{%
+        {{hash=71bc70e7c119a2151bf105823920cf83}{%
+           family={Hansen},
+           familyi={H\bibinitperiod},
+           given={Nikolaus},
+           giveni={N\bibinitperiod}}}%
+        {{hash=baad0a55a3d382a5b55ac169579ee0c8}{%
+           family={Ostermeier},
+           familyi={O\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{3db568fd306c52341edbb9bdc81edc55}
+      \strng{fullhash}{3db568fd306c52341edbb9bdc81edc55}
+      \strng{bibnamehash}{3db568fd306c52341edbb9bdc81edc55}
+      \strng{authorbibnamehash}{3db568fd306c52341edbb9bdc81edc55}
+      \strng{authornamehash}{3db568fd306c52341edbb9bdc81edc55}
+      \strng{authorfullhash}{3db568fd306c52341edbb9bdc81edc55}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Evolutionary computation}
+      \field{number}{2}
+      \field{title}{Completely derandomized self-adaptation in evolution strategies}
+      \field{volume}{9}
+      \field{year}{2001}
+      \field{pages}{159\bibrangedash 195}
+      \range{pages}{37}
+    \endentry
     \entry{hiraoka2021dropout}{article}{}
       \name{author}{5}{}{%
         {{hash=34c0958ca8ed4fa1de46e9d431fe44cf}{%

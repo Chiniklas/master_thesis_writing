@@ -132,20 +132,20 @@ An unexpected outcome emerged during the testing of the swing-up and stabilizati
 
 In the pendubot setup, self-stabilization was more frequently observed. With a sufficient number of training timesteps (typically around 2e7), agents tasked with swing-up maneuvers in the pendubot configuration were highly likely to achieve self-stabilization at the upright position. As depicted in Figure \ref{fig:pendubot_self_stabilization}, the stabilization by the RL-learned policy is less smooth compared to that achieved by the LQR-based stabilizer. The torque fluctuations have an amplitude of approximately 1.5 Nm, and there are minor fluctuations in position and velocity.
 
-Self-stabilization behavior has been observed in the acrobot setup as well. However, no consistent pattern has yet been identified as to the specific conditions under which the training yields a self-stabilizing agent. Fortunately, the same agent discussed in Section 4.3.2 exhibited a degree of self-stabilization, which is depicted in Figure \ref{fig:acrobot_self_stablization}. In the absence of a LQR controller, the RL-based controller was compelled to devise its own stabilization strategy. As illustrated in the graph, a relatively stable period commences at approximately 4 seconds, during which the system state exhibits prolonged fluctuations around the upright position. This occurs as the controller continuously corrects any deviation from the desired state. The stabilization provided by the RL-based controller is also less smooth than that of the LQR-based controller.
+Self-stabilization behavior has been observed in the acrobot setup as well. However, no consistent pattern has yet been identified as to the specific conditions under which the training yields a self-stabilizing agent. Fortunately, the same agent discussed in Section 4.3.2 exhibited a degree of self-stabilization, which is depicted in Figure \ref{fig:acrobot_self_stabilization}. In the absence of a LQR controller, the RL-based controller was compelled to devise its own stabilization strategy. As illustrated in the graph, a relatively stable period commences at approximately 4 seconds, during which the system state exhibits prolonged fluctuations around the upright position. This occurs as the controller continuously corrects any deviation from the desired state. The stabilization provided by the RL-based controller is also less smooth than that of the LQR-based controller.
 
 \begin{figure}[H]
     \centering
-    \fbox{\includegraphics[width=0.9\textwidth]{figures/simulation_result/pendubot_self_stablization.png}} % First image
-    \caption{Self stabilization of pendubot in simulation}
-    \label{fig:pendubot_self_stablization}
+    \fbox{\includegraphics[width=0.9\textwidth]{figures/simulation_result/pendubot_self_stabilization.png}} % First image
+    \caption{Self stabilization of pendubot in ideal simulation}
+    \label{fig:pendubot_self_stabilization}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \fbox{\includegraphics[width=0.9\textwidth]{figures/simulation_result/acrobot_self_stablization.png}} % First image
-    \caption{Self stabilization of acrobot in simulation}
-    \label{fig:acrobot_self_stablization}
+    \fbox{\includegraphics[width=0.9\textwidth]{figures/simulation_result/acrobot_self_stabilization.png}} % First image
+    \caption{Self stabilization of acrobot in ideal simulation}
+    \label{fig:acrobot_self_stabilization}
 \end{figure}
 
 \cleardoublepage

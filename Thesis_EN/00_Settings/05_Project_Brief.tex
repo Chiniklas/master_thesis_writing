@@ -17,7 +17,7 @@ Project Definition
 \textbf{Abstract}  \medskip \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fügen Sie hier Ihre Ausganssituation ein und löschen Sie die folgende Zeile
-\ToDo{\blindtext}
+The aim of our project is to have swing-up and stabilization tasks performed for underactuated double pendulum systems. For the swing-up task, a reinforcement learning-based control method is employed, while an LQR controller is utilized for stabilization around the highest point. The entire project is divided into two phases: simulation and real-world testing. In the simulation phase, SAC-based agents are successfully trained in an ideal environment for both the pendubot and acrobot, and they are subsequently combined with an LQR controller and tested in an ideal simulation, yielding positive results. During the real-world hardware phase, a noisy simulation is established to mimic real-world features, and controllers that pass validation in this noisy simulation are then tested on real hardware. To address the sim-to-real issue, a noisy training process based on domain randomization is implemented to enhance robustness. The SAC+LQR controller, which demonstrates a success rate of 40\% only on the pendubot, is evaluated in terms of performance and robustness based on the results from both simulation and real-world tests, with the quantitive metrics reflected on the respective leaderboards.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -30,7 +30,9 @@ Project Definition
 \textbf{Background} \medskip \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fügen Sie hier Ihre Ziele ein und löschen Sie die folgende Zeile
-\ToDo{\blindtext}
+This thesis is the master thesis of Chi Zhang, representing a collaborative effort between the Laboratory for Product Development and Lightweight Design (LPL) at the Technical University of Munich (TUM) and the Underactuated Lab at the Robotics Innovation Center (RIC) of the German Research Center for Artificial Intelligence GmbH (DFKI). This thesis builds upon prior work conducted by colleagues at DFKI RIC, expanding the controller range to include reinforcement learning-based control.
+
+This work was supported by the federal state of Bremen for setting up the Underactuated Robotics Lab under Grant 201-342-04-2/2021-4-1.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -48,6 +50,20 @@ Acknowledgement
 %\textbf{Abstract}  \medskip \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fügen Sie hier Ihre Ausganssituation ein und löschen Sie die folgende Zeile
-\ToDo{\blindtext}
+I would like to express my heartfelt gratitude to my thesis advisors, Felix Wiebe, Akhil Sathuluri, Prof. Dr. Shivesh Kumar, Prof. Dr. Frank Kirchner, and Prof. Dr. Markus Zimmermann, for their unwavering support, invaluable guidance, and expertise throughout my research journey.
+
+I extend my sincere appreciation to the federal state of Bremen for their generous financial support, which made this research possible. 
+
+I am thankful to my dedicated co-workers, Shubham Vyas, Bingbin Yu, and my labmates Maximilian Albracht and V.P. Rodrigues, for their invaluable assistance and fruitful discussions. Special recognition goes to all the previous researchers on this project for their collaborative spirit and contributions.
+
+I wish to convey my deep gratitude to my family, Wenbin Zhang and Yan Wang, as well as my friends, for their unwavering encouragement and understanding during this challenging endeavor.
+
+I offer my heartfelt thanks to the Technical University of Munich for providing me with the opportunity to conduct this research.
+
+This work would not have been possible without the support, guidance, and encouragement of all these individuals and institutions. Thank you.
+
+Chi Zhang
+
+15.11.2023
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
