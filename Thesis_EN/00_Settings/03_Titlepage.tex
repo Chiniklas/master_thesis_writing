@@ -39,15 +39,17 @@
 	\textbf{Thesis Advisor}\tab\hspace{-3cm}
 	\begin{minipage}[t]{\textwidth-\CurrentLineWidth}
 		\themenstellerlehrstuhl\\
-		\themensteller
-		\ifthenelse{\equal{\themenstellerlehrstuhl}{\betreutvonlehrstuhl}}
-		{%
-			\ifthenelse{\equal{\themensteller}{\betreutvonperson}}{%
-				\ifthenelse{\equal{\betreutvonzweitkorrektor}{}}{\strut}{
-				\\\betreutvonzweitkorrektor{} (Second corrector)\strut
-			}
-			}
-			{\strut}}{\strut}
+		\themensteller \\
+% 		\ifthenelse{\equal{\themenstellerlehrstuhl}{\betreutvonlehrstuhl}}
+% 		{%
+% 			\ifthenelse{\equal{\themensteller}{\betreutvonperson}}{%
+% 				\ifthenelse{\equal{\betreutvonzweitkorrektor}{}}{\strut}{
+% 				\\\betreutvonzweitkorrektor{} (Second corrector)\strut
+% 			}
+% 			}
+% 			{\strut}}{\strut}
+		Robotics Innovation Center, DFKI GmbH. \\
+		Prof. Dr. Frank Kirchner
 	\end{minipage}
 	
 	%%%%%%%%%%%%%%%%%%%%
@@ -61,10 +63,13 @@
 	\textbf{Supervisor}\tab\hspace{-3cm}
 	\begin{minipage}[t]{\textwidth-\CurrentLineWidth}
 		\betreutvonlehrstuhl\\
-		\betreutvonperson
-		\ifthenelse{\equal{\betreutvonzweitkorrektor}{}}{\strut}{
-			\\\betreutvonzweitkorrektor{} (Second corrector)\strut
-		}
+		Akhil Sathuluri, \betreutvonzweitkorrektor{} (Second corrector)\\
+		Robotics Innovation Center, DFKI GmbH. \\
+		Felix Wiebe, Prof. Dr. Shivesh Kumar
+% 		\betreutvonperson
+% 		\ifthenelse{\equal{\betreutvonzweitkorrektor}{}}{\strut}{
+% 			\\\betreutvonzweitkorrektor{} (Second corrector)\strut
+% 		}
 	\end{minipage}
 	%%%%%%%%%%%%%%%%%%%%
 	}}{}

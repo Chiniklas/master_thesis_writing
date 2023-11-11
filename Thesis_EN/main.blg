@@ -1,15 +1,17 @@
 [0] Config.pm:307> INFO - This is Biber 2.17
 [0] Config.pm:310> INFO - Logfile is 'main.blg'
-[44] biber:340> INFO - === Mi Nov  8, 2023, 18:20:52
-[56] Biber.pm:418> INFO - Reading 'main.bcf'
-[95] Biber.pm:972> INFO - Found 52 citekeys in bib section 0
-[102] Biber.pm:4383> INFO - Processing section 0
-[111] Biber.pm:4574> INFO - Looking for bibtex file '03_Literature/00_Bibliography.bib' for section 0
-[112] bibtex.pm:1713> INFO - LaTeX decoding ...
-[137] bibtex.pm:1518> INFO - Found BibTeX data source '03_Literature/00_Bibliography.bib'
-[360] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[360] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[360] Biber.pm:4203> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[360] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
-[393] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[412] bbl.pm:757> INFO - Output to main.bbl
+[72] biber:340> INFO - === Sa Nov 11, 2023, 23:08:42
+[80] Biber.pm:418> INFO - Reading 'main.bcf'
+[120] Biber.pm:972> INFO - Found 56 citekeys in bib section 0
+[127] Biber.pm:4383> INFO - Processing section 0
+[132] Biber.pm:4574> INFO - Looking for bibtex file '03_Literature/00_Bibliography.bib' for section 0
+[134] bibtex.pm:1713> INFO - LaTeX decoding ...
+[162] bibtex.pm:1518> INFO - Found BibTeX data source '03_Literature/00_Bibliography.bib'
+[399] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[399] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[399] Biber.pm:4203> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[399] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
+[433] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[452] bbl.pm:757> INFO - Output to main.bbl
+[452] Biber.pm:130> WARN - Duplicate entry key: 'sutton2018reinforcement' in file '03_Literature/00_Bibliography.bib', skipping ...
+[452] Biber.pm:132> INFO - WARNINGS: 1

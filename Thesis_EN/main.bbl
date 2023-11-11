@@ -40,45 +40,6 @@
       \field{title}{Spinning up in deep reinforcement learning}
       \field{year}{2018}
     \endentry
-    \entry{aguilar2010direct}{article}{}
-      \name{author}{3}{}{%
-        {{hash=20a55c588ed5b8e98c198dc230bf26dd}{%
-           family={Aguilar-Ibañez},
-           familyi={A\bibinithyphendelim I\bibinitperiod},
-           given={Carlos},
-           giveni={C\bibinitperiod}}}%
-        {{hash=75f62d09966b1ce59ba38d709d265e99}{%
-           family={Suárez-Castañón},
-           familyi={S\bibinithyphendelim C\bibinitperiod},
-           given={Miguel\bibnamedelima S},
-           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-        {{hash=1e5981e06c89d1dabcbae05a873efa06}{%
-           family={Gutiérres-Frias},
-           familyi={G\bibinithyphendelim F\bibinitperiod},
-           given={Oscar\bibnamedelima O},
-           giveni={O\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Taylor \& Francis}%
-      }
-      \strng{namehash}{9c094d7253a4e73888ef62bd173efa54}
-      \strng{fullhash}{f3d1b6636a53b6861050703d8c518ac8}
-      \strng{bibnamehash}{f3d1b6636a53b6861050703d8c518ac8}
-      \strng{authorbibnamehash}{f3d1b6636a53b6861050703d8c518ac8}
-      \strng{authornamehash}{9c094d7253a4e73888ef62bd173efa54}
-      \strng{authorfullhash}{f3d1b6636a53b6861050703d8c518ac8}
-      \field{sortinit}{A}
-      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{International Journal of Control}
-      \field{number}{11}
-      \field{title}{The direct Lyapunov method for the stabilisation of the Furuta pendulum}
-      \field{volume}{83}
-      \field{year}{2010}
-      \field{pages}{2285\bibrangedash 2293}
-      \range{pages}{9}
-    \endentry
     \entry{cubemarsAK806}{misc}{}
       \field{sortinit}{A}
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
@@ -331,28 +292,6 @@
       \field{pages}{2017\bibrangedash 2031}
       \range{pages}{15}
     \endentry
-    \entry{bogdanov2004optimal}{article}{}
-      \name{author}{1}{}{%
-        {{hash=b6f0e57a5fa11c8925b2e1d6a4a3c3a9}{%
-           family={Bogdanov},
-           familyi={B\bibinitperiod},
-           given={Alexander},
-           giveni={A\bibinitperiod}}}%
-      }
-      \strng{namehash}{b6f0e57a5fa11c8925b2e1d6a4a3c3a9}
-      \strng{fullhash}{b6f0e57a5fa11c8925b2e1d6a4a3c3a9}
-      \strng{bibnamehash}{b6f0e57a5fa11c8925b2e1d6a4a3c3a9}
-      \strng{authorbibnamehash}{b6f0e57a5fa11c8925b2e1d6a4a3c3a9}
-      \strng{authornamehash}{b6f0e57a5fa11c8925b2e1d6a4a3c3a9}
-      \strng{authorfullhash}{b6f0e57a5fa11c8925b2e1d6a4a3c3a9}
-      \field{sortinit}{B}
-      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Oregon Health and Science University, Tech. Rep. CSE-04-006, OGI School of Science and Engineering, Beaverton, OR}
-      \field{title}{Optimal control of a double inverted pendulum on a cart}
-      \field{year}{2004}
-    \endentry
     \entry{brockman2016openai}{article}{}
       \name{author}{7}{}{%
         {{hash=7ae2a0efeaf9c031f9b420bcb1c19e54}{%
@@ -405,39 +344,6 @@
       \field{title}{Openai gym}
       \field{year}{2016}
     \endentry
-    \entry{cazzolato2011dynamics}{article}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{2}{}{%
-        {{hash=50d5783c0e53d5e613e339bb7b986a4d}{%
-           family={Cazzolato},
-           familyi={C\bibinitperiod},
-           given={Benjamin\bibnamedelima Seth},
-           giveni={B\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-        {{hash=033dfa644c123b0482c4b852db662c24}{%
-           family={Prime},
-           familyi={P\bibinitperiod},
-           given={Zebb},
-           giveni={Z\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Hindawi}%
-      }
-      \strng{namehash}{22e5d8fdeb5697fcbf059f9cd3409551}
-      \strng{fullhash}{22e5d8fdeb5697fcbf059f9cd3409551}
-      \strng{bibnamehash}{22e5d8fdeb5697fcbf059f9cd3409551}
-      \strng{authorbibnamehash}{22e5d8fdeb5697fcbf059f9cd3409551}
-      \strng{authornamehash}{22e5d8fdeb5697fcbf059f9cd3409551}
-      \strng{authorfullhash}{22e5d8fdeb5697fcbf059f9cd3409551}
-      \field{sortinit}{C}
-      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Journal of Control Science and Engineering}
-      \field{title}{On the dynamics of the furuta pendulum}
-      \field{volume}{2011}
-      \field{year}{2011}
-    \endentry
     \entry{cui2011based}{article}{}
       \name{author}{2}{}{%
         {{hash=86c812b1cfdf0bee260b4e16dfd410c0}{%
@@ -473,6 +379,66 @@
       \field{pages}{125\bibrangedash 130}
       \range{pages}{6}
     \endentry
+    \entry{double_pendulum_dynamics}{online}{}
+      \name{author}{1}{}{%
+        {{hash=7d5b92a00ad0b8a41cd88410cd6842b0}{%
+           family={{DFKI RIC Underactuated Lab}},
+           familyi={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{7d5b92a00ad0b8a41cd88410cd6842b0}
+      \strng{fullhash}{7d5b92a00ad0b8a41cd88410cd6842b0}
+      \strng{bibnamehash}{7d5b92a00ad0b8a41cd88410cd6842b0}
+      \strng{authorbibnamehash}{7d5b92a00ad0b8a41cd88410cd6842b0}
+      \strng{authornamehash}{7d5b92a00ad0b8a41cd88410cd6842b0}
+      \strng{authorfullhash}{7d5b92a00ad0b8a41cd88410cd6842b0}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Website}
+      \field{title}{Double Pendulum Dynamics}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://dfki-ric-underactuated-lab.github.io/double_pendulum/dynamics.html
+      \endverb
+      \verb{url}
+      \verb https://dfki-ric-underactuated-lab.github.io/double_pendulum/dynamics.html
+      \endverb
+    \endentry
+    \entry{ditto1995principles}{article}{}
+      \name{author}{2}{}{%
+        {{hash=534d8e2c6ef4896460a04cae3e0aabe4}{%
+           family={Ditto},
+           familyi={D\bibinitperiod},
+           given={William},
+           giveni={W\bibinitperiod}}}%
+        {{hash=ed62aa11f0740cd66b559fdb80e4bb5c}{%
+           family={Munakata},
+           familyi={M\bibinitperiod},
+           given={Toshinori},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACM New York, NY, USA}%
+      }
+      \strng{namehash}{15fa031ef8a5dffb095a3f7d3fe20603}
+      \strng{fullhash}{15fa031ef8a5dffb095a3f7d3fe20603}
+      \strng{bibnamehash}{15fa031ef8a5dffb095a3f7d3fe20603}
+      \strng{authorbibnamehash}{15fa031ef8a5dffb095a3f7d3fe20603}
+      \strng{authornamehash}{15fa031ef8a5dffb095a3f7d3fe20603}
+      \strng{authorfullhash}{15fa031ef8a5dffb095a3f7d3fe20603}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Communications of the ACM}
+      \field{number}{11}
+      \field{title}{Principles and applications of chaotic systems}
+      \field{volume}{38}
+      \field{year}{1995}
+      \field{pages}{96\bibrangedash 102}
+      \range{pages}{7}
+    \endentry
     \entry{esdCANUSB2}{misc}{}
       \name{author}{1}{}{%
         {{hash=5201ddcb6f04969affbfe80d0540ad03}{%
@@ -493,45 +459,6 @@
       \field{note}{Accessed: yyyy-mm-dd}
       \field{title}{CAN-USB/2}
       \field{year}{2023}
-    \endentry
-    \entry{furuta1992swing}{article}{}
-      \name{author}{3}{}{%
-        {{hash=688e5e41087f872b67308f793711a3af}{%
-           family={Furuta},
-           familyi={F\bibinitperiod},
-           given={Katsuhisa},
-           giveni={K\bibinitperiod}}}%
-        {{hash=a30a338c13350efe8acf0cf227e1834c}{%
-           family={Yamakita},
-           familyi={Y\bibinitperiod},
-           given={M},
-           giveni={M\bibinitperiod}}}%
-        {{hash=e4b3bf28b71a7d97be83f2c6699fc681}{%
-           family={Kobayashi},
-           familyi={K\bibinitperiod},
-           given={S},
-           giveni={S\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {SAGE Publications Sage UK: London, England}%
-      }
-      \strng{namehash}{c26df69158892d148e864b47c062da4b}
-      \strng{fullhash}{ae923680f7ff794cd1e8d101a52d3c2e}
-      \strng{bibnamehash}{ae923680f7ff794cd1e8d101a52d3c2e}
-      \strng{authorbibnamehash}{ae923680f7ff794cd1e8d101a52d3c2e}
-      \strng{authornamehash}{c26df69158892d148e864b47c062da4b}
-      \strng{authorfullhash}{ae923680f7ff794cd1e8d101a52d3c2e}
-      \field{sortinit}{F}
-      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Proceedings of the Institution of Mechanical Engineers, Part I: Journal of Systems and Control Engineering}
-      \field{number}{4}
-      \field{title}{Swing-up control of inverted pendulum using pseudo-state feedback}
-      \field{volume}{206}
-      \field{year}{1992}
-      \field{pages}{263\bibrangedash 269}
-      \range{pages}{7}
     \endentry
     \entry{gasparetto2015path}{article}{}
       \name{author}{4}{}{%
@@ -868,6 +795,55 @@
       \field{pages}{eaau5872}
       \range{pages}{-1}
     \endentry
+    \entry{iqbal2017nonlinear}{article}{}
+      \name{author}{5}{}{%
+        {{hash=5ac5e0e75e0f0a84271d7d10b4a8c7c2}{%
+           family={Iqbal},
+           familyi={I\bibinitperiod},
+           given={Jamshed},
+           giveni={J\bibinitperiod}}}%
+        {{hash=16484a7da0292e3dc42f57448bcdae5a}{%
+           family={Ullah},
+           familyi={U\bibinitperiod},
+           given={Mukhtar},
+           giveni={M\bibinitperiod}}}%
+        {{hash=59407b40d48c8764f4be68e2265cfece}{%
+           family={Khan},
+           familyi={K\bibinitperiod},
+           given={Said\bibnamedelima Ghani},
+           giveni={S\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=5253deba0cec32690d0d56900f554fe1}{%
+           family={Khelifa},
+           familyi={K\bibinitperiod},
+           given={Baizid},
+           giveni={B\bibinitperiod}}}%
+        {{hash=7cf253ba89914db24da810a354d355a3}{%
+           family={Ćuković},
+           familyi={Ć\bibinitperiod},
+           given={Saša},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {De Gruyter}%
+      }
+      \strng{namehash}{96039dee05ab5a51dc28e3d1ef037803}
+      \strng{fullhash}{5ac189cfcc27da385365f263e894d8a5}
+      \strng{bibnamehash}{5ac189cfcc27da385365f263e894d8a5}
+      \strng{authorbibnamehash}{5ac189cfcc27da385365f263e894d8a5}
+      \strng{authornamehash}{96039dee05ab5a51dc28e3d1ef037803}
+      \strng{authorfullhash}{5ac189cfcc27da385365f263e894d8a5}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nonlinear Engineering}
+      \field{number}{4}
+      \field{title}{Nonlinear control systems-A brief overview of historical and recent advances}
+      \field{volume}{6}
+      \field{year}{2017}
+      \field{pages}{301\bibrangedash 312}
+      \range{pages}{12}
+    \endentry
     \entry{islam2017reproducibility}{article}{}
       \name{author}{4}{}{%
         {{hash=227ede2745d597df1564e6adddb6ee97}{%
@@ -936,6 +912,45 @@
       \verb{url}
       \verb https://books.google.de/books?id=t_d1QgAACAAJ
       \endverb
+    \endentry
+    \entry{kober2013reinforcement}{article}{}
+      \name{author}{3}{}{%
+        {{hash=c1af96639c1bc5af057c028f303f6322}{%
+           family={Kober},
+           familyi={K\bibinitperiod},
+           given={Jens},
+           giveni={J\bibinitperiod}}}%
+        {{hash=49832523c57a7bf40445f071b2ad2c0a}{%
+           family={Bagnell},
+           familyi={B\bibinitperiod},
+           given={J\bibnamedelima Andrew},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=c2cb77a864f65a21da0f69121b89835b}{%
+           family={Peters},
+           familyi={P\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {SAGE Publications Sage UK: London, England}%
+      }
+      \strng{namehash}{fa9f43625e39c02a7b9375902b832be2}
+      \strng{fullhash}{a13aa86c55be0123b9f5c8c71181c83f}
+      \strng{bibnamehash}{a13aa86c55be0123b9f5c8c71181c83f}
+      \strng{authorbibnamehash}{a13aa86c55be0123b9f5c8c71181c83f}
+      \strng{authornamehash}{fa9f43625e39c02a7b9375902b832be2}
+      \strng{authorfullhash}{a13aa86c55be0123b9f5c8c71181c83f}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The International Journal of Robotics Research}
+      \field{number}{11}
+      \field{title}{Reinforcement learning in robotics: A survey}
+      \field{volume}{32}
+      \field{year}{2013}
+      \field{pages}{1238\bibrangedash 1274}
+      \range{pages}{37}
     \endentry
     \entry{konda1999actor}{article}{}
       \name{author}{2}{}{%
@@ -1278,6 +1293,31 @@
       \field{pages}{2636\bibrangedash 2641}
       \range{pages}{6}
     \endentry
+    \entry{oestreicher2007history}{article}{}
+      \name{author}{1}{}{%
+        {{hash=179fe64f4142743935d629a9f91d5551}{%
+           family={Oestreicher},
+           familyi={O\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor \& Francis}%
+      }
+      \strng{namehash}{179fe64f4142743935d629a9f91d5551}
+      \strng{fullhash}{179fe64f4142743935d629a9f91d5551}
+      \strng{bibnamehash}{179fe64f4142743935d629a9f91d5551}
+      \strng{authorbibnamehash}{179fe64f4142743935d629a9f91d5551}
+      \strng{authornamehash}{179fe64f4142743935d629a9f91d5551}
+      \strng{authorfullhash}{179fe64f4142743935d629a9f91d5551}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Dialogues in clinical neuroscience}
+      \field{title}{A history of chaos theory}
+      \field{year}{2007}
+    \endentry
     \entry{peng2018deepmimic}{article}{}
       \name{author}{4}{}{%
         {{hash=eaf6d025c486d283ccc7c617f05b7214}{%
@@ -1321,6 +1361,34 @@
       \field{year}{2018}
       \field{pages}{1\bibrangedash 14}
       \range{pages}{14}
+    \endentry
+    \entry{puterman1990markov}{article}{}
+      \name{author}{1}{}{%
+        {{hash=b4258b9291d903d97b69d703eebf790a}{%
+           family={Puterman},
+           familyi={P\bibinitperiod},
+           given={Martin\bibnamedelima L},
+           giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{b4258b9291d903d97b69d703eebf790a}
+      \strng{fullhash}{b4258b9291d903d97b69d703eebf790a}
+      \strng{bibnamehash}{b4258b9291d903d97b69d703eebf790a}
+      \strng{authorbibnamehash}{b4258b9291d903d97b69d703eebf790a}
+      \strng{authornamehash}{b4258b9291d903d97b69d703eebf790a}
+      \strng{authorfullhash}{b4258b9291d903d97b69d703eebf790a}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Handbooks in operations research and management science}
+      \field{title}{Markov decision processes}
+      \field{volume}{2}
+      \field{year}{1990}
+      \field{pages}{331\bibrangedash 434}
+      \range{pages}{104}
     \endentry
     \entry{stable-baselines3}{article}{}
       \name{author}{6}{}{%
@@ -1421,6 +1489,31 @@
       \field{year}{2019}
       \field{pages}{e20}
       \range{pages}{-1}
+    \endentry
+    \entry{sastry2013nonlinear}{book}{}
+      \name{author}{1}{}{%
+        {{hash=5c157a074e2c2a026714694e735d6b6a}{%
+           family={Sastry},
+           familyi={S\bibinitperiod},
+           given={Shankar},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Science \& Business Media}%
+      }
+      \strng{namehash}{5c157a074e2c2a026714694e735d6b6a}
+      \strng{fullhash}{5c157a074e2c2a026714694e735d6b6a}
+      \strng{bibnamehash}{5c157a074e2c2a026714694e735d6b6a}
+      \strng{authorbibnamehash}{5c157a074e2c2a026714694e735d6b6a}
+      \strng{authornamehash}{5c157a074e2c2a026714694e735d6b6a}
+      \strng{authorfullhash}{5c157a074e2c2a026714694e735d6b6a}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Nonlinear systems: analysis, stability, and control}
+      \field{volume}{10}
+      \field{year}{2013}
     \endentry
     \entry{schwarting2018planning}{article}{}
       \name{author}{3}{}{%
@@ -1584,6 +1677,30 @@
       \field{year}{2014}
       \field{pages}{1929\bibrangedash 1958}
       \range{pages}{30}
+    \endentry
+    \entry{struble2018nonlinear}{book}{}
+      \name{author}{1}{}{%
+        {{hash=bce1ae928da70e5f31ce970fead85297}{%
+           family={Struble},
+           familyi={S\bibinitperiod},
+           given={Raimond\bibnamedelima A},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Courier Dover Publications}%
+      }
+      \strng{namehash}{bce1ae928da70e5f31ce970fead85297}
+      \strng{fullhash}{bce1ae928da70e5f31ce970fead85297}
+      \strng{bibnamehash}{bce1ae928da70e5f31ce970fead85297}
+      \strng{authorbibnamehash}{bce1ae928da70e5f31ce970fead85297}
+      \strng{authornamehash}{bce1ae928da70e5f31ce970fead85297}
+      \strng{authorfullhash}{bce1ae928da70e5f31ce970fead85297}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Nonlinear differential equations}
+      \field{year}{2018}
     \endentry
     \entry{sutton2018reinforcement}{book}{}
       \name{author}{2}{}{%
