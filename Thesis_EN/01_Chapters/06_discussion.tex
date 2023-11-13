@@ -3,7 +3,7 @@ In this chapter, we delve into the results of experiments conducted in both simu
 
 \section{Discussion}
 \subsection{Interpretation of simulation leaderboard}
-In Table \ref{tab:performance_ideal}, the performance leaderboard results for both the pendubot and acrobot in simulation experiments are presented. Three types of controllers are listed for comparison, namely model-free reinforcement learning(MFRL) based controller, model-based reinforcement learning(MBRL) based controller and trajectory based controller.
+In Table \ref{tab:performance_pendubot} and Table \ref{tab:performance_acrobot}, the performance leaderboard results for both the pendubot and acrobot in simulation experiments are presented. Three types of controllers are listed for comparison, namely model-free reinforcement learning(MFRL) based controller, model-based reinforcement learning(MBRL) based controller and trajectory based controller.
 
 The SAC+LQR controller is our design and is a representative of model-free reinforcement learning method. 
 
@@ -11,26 +11,70 @@ MC-PILCO~\cite{amadio2022model}, which stands for Monte Carlo Probabilistic Infe
 
 tvLQR is an extension of the standard Linear Quadratic Regulator (LQR) control design. It is a trajoctory based control method, tailored for systems with time-dependent state-space matrices or where the optimal control needs to be dynamic. Representing the optimal control method, it was implemented by a separate team from DFKI RIC\cite{2023_ram_wiebe_double_pendulum}.
 
+% \begin{table}[H]
+%   \centering
+%  \begin{tabular}{lcccccc}
+%  \hline
+%  Criteria & \multicolumn{2}{c}{SAC+LQR} & \multicolumn{2}{c}{MC-PILCO} & \multicolumn{2}{c}{tvLQR} \\
+%  & Pendubot & Acrobot & Pendubot & Acrobot & Pendubot & Acrobot \\
+%  \hline
+%  Swingup Success & success & success & success & success & success & success \\
+%  Swingup time [s] & \textbf{0.65} & 2.06 & 1.43 & \textbf{1.1} & 4.2 & 3.98 \\
+%  Energy [J] & 9.4 & 29.24 & 12.67 & \textbf{9.81} & \textbf{9.06} & 10.92 \\
+%  Max. Torque [Nm] & 5.0 & 5.0 & \textbf{2.4} & \textbf{2.82} & 2.82 & 5.0 \\
+%  Integrated Torque [Nm] & \textbf{2.21} & 4.57 & 3.48 & \textbf{1.27} & 2.57 & 2.27 \\
+%  Torque Cost [N²m²] & 8.58 & 12.32 & 7.77 & \textbf{2.27} & \textbf{2.0} & 2.47 \\
+%  Torque Smoothness [Nm] & 0.172 & 0.954 & 0.07 & \textbf{0.057} & \textbf{0.031} & 0.077 \\
+%  Velocity Cost [m²/s²] & \textbf{44.98} & 193.78 & 94.68 & 242.44 & 137.31 & \textbf{100.34} \\
+%  RealAI Score & 0.801 & 0.722 & \textbf{0.891} & \textbf{0.869} & 0.827 & 0.8 \\
+%  \hline
+%  \end{tabular}
+%  \caption{Performance scores of various controllers for pendubot and acrobot experiments.}
+%  \label{tab:performance_ideal}
+% \end{table}
+
+% Table for Pendubot results
 \begin{table}[H]
   \centering
- \begin{tabular}{lcccccc}
+ \begin{tabular}{lccc}
  \hline
- Criteria & \multicolumn{2}{c}{SAC+LQR} & \multicolumn{2}{c}{MC-PILCO} & \multicolumn{2}{c}{tvLQR} \\
- & Pendubot & Acrobot & Pendubot & Acrobot & Pendubot & Acrobot \\
+ Criteria & SAC+LQR & MC-PILCO & tvLQR \\
  \hline
- Swingup Success & success & success & success & success & success & success \\
- Swingup time [s] & \textbf{0.65} & 2.06 & 1.43 & \textbf{1.1} & 4.2 & 3.98 \\
- Energy [J] & 9.4 & 29.24 & 12.67 & \textbf{9.81} & \textbf{9.06} & 10.92 \\
- Max. Torque [Nm] & 5.0 & 5.0 & \textbf{2.4} & \textbf{2.82} & 2.82 & 5.0 \\
- Integrated Torque [Nm] & \textbf{2.21} & 4.57 & 3.48 & \textbf{1.27} & 2.57 & 2.27 \\
- Torque Cost [N²m²] & 8.58 & 12.32 & 7.77 & \textbf{2.27} & \textbf{2.0} & 2.47 \\
- Torque Smoothness [Nm] & 0.172 & 0.954 & 0.07 & \textbf{0.057} & \textbf{0.031} & 0.077 \\
- Velocity Cost [m²/s²] & \textbf{44.98} & 193.78 & 94.68 & 242.44 & 137.31 & \textbf{100.34} \\
- RealAI Score & 0.801 & 0.722 & \textbf{0.891} & \textbf{0.869} & 0.827 & 0.8 \\
+ Swingup Success & success & success & success \\
+ Swingup time [s] & \textbf{0.65} & 1.43 & 4.2 \\
+ Energy [J] & 9.4 & 12.67 & \textbf{9.06} \\
+ Max. Torque [Nm] & 5.0 & \textbf{2.4} & 2.82 \\
+ Integrated Torque [Nm] & \textbf{2.21} & 3.48 & 2.57 \\
+ Torque Cost [N²m²] & 8.58 & 7.77 & \textbf{2.0} \\
+ Torque Smoothness [Nm] & 0.172 & 0.07 & \textbf{0.031} \\
+ Velocity Cost [m²/s²] & \textbf{44.98} & 94.68 & 137.31 \\
+ RealAI Score & 0.801 & \textbf{0.891} & 0.827 \\
  \hline
  \end{tabular}
- \caption{Performance scores of various controllers for pendubot and acrobot experiments.}
- \label{tab:performance_ideal}
+ \caption{Performance scores of various controllers for the Pendubot experiment.}
+ \label{tab:performance_pendubot}
+\end{table}
+
+% Table for Acrobot results
+\begin{table}[H]
+  \centering
+ \begin{tabular}{lccc}
+ \hline
+ Criteria & SAC+LQR & MC-PILCO & tvLQR \\
+ \hline
+ Swingup Success & success & success & success \\
+ Swingup time [s] & 2.06 & \textbf{1.1} & 3.98 \\
+ Energy [J] & 29.24 & \textbf{9.81} & 10.92 \\
+ Max. Torque [Nm] & 5.0 & \textbf{2.82} & 5.0 \\
+ Integrated Torque [Nm] & 4.57 & \textbf{1.27} & 2.27 \\
+ Torque Cost [N²m²] & 12.32 & \textbf{2.27} & 2.47 \\
+ Torque Smoothness [Nm] & 0.954 & \textbf{0.057} & 0.077 \\
+ Velocity Cost [m²/s²] & 193.78 & 242.44 & \textbf{100.34} \\
+ RealAI Score & 0.722 & \textbf{0.869} & 0.8 \\
+ \hline
+ \end{tabular}
+ \caption{Performance scores of various controllers for the Acrobot experiment.}
+ \label{tab:performance_acrobot}
 \end{table}
 
 All three controllers are successful with both the Pendubot and Acrobot setups.

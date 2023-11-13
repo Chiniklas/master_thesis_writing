@@ -2,7 +2,7 @@
 In this chapter, the experiments conducted on the hardware system are discussed. The content is organized into four sections. An overview of the hardware setup for the double pendulum system is provided in the first section. The system identification of the hardware is delved into in the second section. The approach to addressing the sim-to-real gap challenge is detailed in the third section. The outcomes of the hardware experiments are presented in the final section.
 
 \section{Hardware setup}
-To be clear upfront, the hardware design and manufacturing were completed by previous researchers and coworkers at the Underactuated Lab of the German Research Center for Artificial Intelligence GmbH, Robotics Innovation Center branch. My role in this section is to understand the logic of all the involved subsystems and set up the test environment using existing components.
+The hardware design and manufacturing were carried out by previous researchers and coworkers at the Underactuated Lab, part of the Robotics Innovation Center branch at the German Research Center for Artificial Intelligence GmbH. The hardware setup was initially created for the IJCAI 2023 competition RealAIGym\cite{dfki_ric_underactuated_lab_2023}. This competition aims to explore the possibilities of swinging up and stabilizing an underactuated double pendulum in both simulation and the real world. For validation in the real world, strict position and speed restrictions are applied. The purpose of this section is to understand the logic behind all the involved subsystems and to set up the test environment using the existing components.
 
 Mechanically, the double pendulum system is a straightforward 2-R linkage. The first revolute joint attaches to the base, while the second one connects the two links. Quasi-direct drive motors are mounted on each joint to provide torque, and a counterweight is positioned at the end of the second link.
 
@@ -96,7 +96,7 @@ In instances where the emergency stop is activated while the system operates at 
 
 \textbf{Speed and position limit:}
 
-At the software level, speed and position limits have been defined. Due to the potential for vibrations and rotational imbalances that may occur at high speeds, which could lead to structural disassembly, a maximum speed of \(20\) rad/s has been instituted. Should the speed surpass this threshold, an automatic system halt will be initiated, analogous to the actuation of the emergency stop mechanism. Position limits have been established at \(2\pi\) for both joints. Excessive rotations risk the entanglement of CAN and power cables, which could result in interference and possible cable damage. A schematic of the entire wiring system is illustrated in the Figure \ref{fig:wiring diagram}:
+Due to rules for the IJCAI 2023 competition RealAIGym\cite{dfki_ric_underactuated_lab_2023}, speed and position limits have been set at the software level. Due to the risk of vibrations and rotational imbalances at high speeds, which could lead to structural disassembly, a maximum speed limit of 20 rad/s has been implemented. If this speed threshold is exceeded, an automatic halt of the system will be triggered, functioning similarly to an emergency stop mechanism. Position limits have been set at \(2\pi\) radians for both joints to prevent the risk of entanglement of CAN and power cables, which could cause interference and potential cable damage. A schematic of the entire wiring system is shown in Figure \ref{fig:wiring diagram}.
 
 \textbf{Physical enclosure:}
 
@@ -158,7 +158,7 @@ Where:
 \item $y_{\text{predicted}}(\theta)$ is the vector of model predictions based on the current parameter values $\theta$.
 \end{itemize}
 
-The optimization uses the CMA-ES (Covariance Matrix Adaptation Evolution Strategy) algorithm\cite{hansen2001completely}, and the identified model parameters are shown in Table \ref{tab:parameters}. These parameters are based on design C ($l_1 = 0.2m$, $l_2 = 0.3m$), which is used in real-world tests.
+The least square fitting method was used to optimize the objective function, and the identified model parameters are shown in Table \ref{tab:parameters}.  These parameters are based on design C ($l_1 = 0.2m$, $l_2 = 0.3m$), which is used in real-world tests.
 
 \begin{table}[H]
 \centering
@@ -265,7 +265,7 @@ An agent deemed suitable for real-system tests must undergo a process that inclu
 \end{figure}
 
 \subsection{Pendubot results in real world}
-All real hardware experiments are based on design C \( (l_1 = 0.2, l_2 = 0.3) \). For the pendubot setup, obtaining a working agent is relatively straightforward. Slight modifications were made to the training process for the ideal simulation phase by deactivating the scaling mechanism mentioned in Section 4.1 and adding a termination condition that ends the training episode if the shoulder or elbow joint exceeds \( 2\pi \), which means the agents are trained on unnormalized real physical state values with strict constraints on speed and velocity boundaries. Utilizing the parameters listed in Table~\ref{tab:training_parameters_real_world_pendubot}, the training process successfully yielded a working model in the ideal simulation within \( 2 \times 10^7 \) timesteps.
+All real hardware experiments are based on design C \( (l_1 = 0.2, l_2 = 0.3) \). For the pendubot setup, obtaining a working agent is relatively straightforward. Slight modifications were made to the training process for the ideal simulation phase by deactivating the scaling mechanism mentioned in Section 4.1 and adding a termination condition that ends the training episode if the shoulder or elbow joint exceeds \( 2\pi \), which means the agents are trained on unnormalized real physical state values with strict constraints on speed and velocity boundaries. Utilizing the parameters listed in Table~\ref{tab:training_parameters_real_world_pendubot}, the training process successfully yielded a working model in the ideal simulation within 2e7 timesteps.
 
 \begin{table}[H]
   \centering
@@ -284,14 +284,14 @@ All real hardware experiments are based on design C \( (l_1 = 0.2, l_2 = 0.3) \)
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.47\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/hardware_result/train_without_limit_ep_length.png}
         \caption{Mean episode length}
         \label{fig:mean episode length}
     \end{subfigure}
     \hfill % add some horizontal spacing
-    \begin{subfigure}[b]{0.47\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/hardware_result/train_without_limit_ep_reward.png}
         \caption{Mean episode reward}
@@ -340,7 +340,7 @@ Training for the acrobot setup has encountered numerous challenges, which can be
 
 \textbf{Violation of Speed and Position Limit:}
 
-The introduction of new rules, with a speed limit set at 20 rad/s and a position limit set at \(2\pi\), has made it more challenging to train a functional agent in the acrobot setup. Attempts have been made to train agents using unscaled real physical state values with a termination condition aimed at keeping the agent within the position limit; however, this approach did not perform as well as it did with the pendubot setup. Despite the application of 5e7 timesteps (which takes approximately 5 hours), neither the mean episode length nor the mean episode reward exhibited growth. A return to the method of training based on scaled state values without termination conditions eventually yielded a working model in ideal validation, although the \(2\pi\) position limit was violated.
+The introduction of new rules in IJCAI RealAIGym competition\cite{dfki_ric_underactuated_lab_2023}, with a speed limit set at 20 rad/s and a position limit set at \(2\pi\), has made it more challenging to train a functional agent in the acrobot setup. Attempts have been made to train agents using unscaled real physical state values with a termination condition aimed at keeping the agent within the position limit; however, this approach did not perform as well as it did with the pendubot setup. Despite the application of 5e7 timesteps (which takes approximately 5 hours), neither the mean episode length nor the mean episode reward exhibited growth. A return to the method of training based on scaled state values without termination conditions eventually yielded a working model in ideal validation, although the \(2\pi\) position limit was violated.
 
 \textbf{Inconsistency in Training:}
 
@@ -367,14 +367,14 @@ The most favorable outcome in the acrobot setup has been an agent that functions
  \label{tab:training_parameters_real_world_acrobot}
 \end{table}
 
-As shown in Figure \ref{fig:acrobot_training_curve}, the reward for this agent experienced a smooth increase up to 2.5e7 timesteps and then a rapid ascent in the final 5 million timesteps. Because a termination condition was not implemented, the episode length remained consistently at 1000. This outcome was anticipated and led to  a working agent in an ideal environment.
-
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/hardware_result/acrobot_learning_curve_real_world.png}
+    \includegraphics[width=1.1\linewidth]{figures/hardware_result/acrobot_learning_curve_real_world.png}
     \caption{Training curve of best result in acrobot setup}
     \label{fig:acrobot_training_curve}
 \end{figure}
+
+As shown in Figure \ref{fig:acrobot_training_curve}, the reward for this agent experienced a smooth increase up to 2.5e7 timesteps and then a rapid ascent in the final 5 million timesteps. Because a termination condition was not implemented, the episode length remained consistently at 1000. This outcome was anticipated and led to  a working agent in an ideal environment.
 
 The behavior of this agent during ideal validation is shown in Figure \ref{fig:acrobot_ideal}. The swing-up is performed by the SAC controller within 2 seconds. After the LQR controller takes over, the system maintains stability around the highest position for a prolonged period. The ideal validation is considered successful.
 

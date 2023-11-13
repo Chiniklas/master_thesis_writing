@@ -90,7 +90,7 @@ Taking a step back, the general form of a nonlinear system defined by state vect
  \dot{x}(t) = f(x(t), u(t))
 \end{equation}
 
-In certain applications, such as pendubot or acrobot stabilization, it is important to select the appropriate operating point. Due to the tasks to be completed, the operating point is chosen around the upright position, specifically \(x_{op} = [\pi,0,0,0]^T\). Around this point, the system can be linearized, leading to:
+In certain applications, such as pendubot or acrobot stabilization, it is important to select the appropriate operating point. Due to the tasks to be completed, the operating point is chosen around the upright position, specifically \(x_{op} = [\pi,0,0,0]^T\) and \(u_{op} = [0,0]^T\). Around this point, the system can be linearized, leading to:
 
 \begin{equation}
 \dot{\overline{x}}(t) = A \overline{x}(t) + B u(t)
@@ -109,7 +109,7 @@ To derive an optimal control strategy, a quadratic cost function \(J\) is needed
   \label{eq:quadratic_cost}
 \end{equation}
 
-The matrices \(Q\) and \(R\) must be chosen to be symmetric and positive definite, which means \(Q = Q^T\) with all its eigenvalues positive, and similarly, \(R = R^T\) with all positive eigenvalues.
+The matrix \( Q \) must be chosen to be positive-semidefinite and symmetric, meaning \( Q = Q^T \) with all its eigenvalues non-negative, and \( R \) must be chosen to be symmetric and positive definite, meaning \( R = R^T \) with all its eigenvalues positive.
 
 The Hamilton-Jacobi-Bellman equation (HJB) characterizes the optimal value function \(J^*(x)\), representing the minimum cost-to-go from state \(x\) to termination at \(T\). The HJB equation is as follows:
 
@@ -124,10 +124,11 @@ By calculating \(\frac{dJ^*(x)}{dt}\) from Equation \ref{eq:quadratic_cost}, the
  A^T S + SA - SBR^{-1}B^T S + Q = 0
 \end{equation}
 
-Finally, the LQR control law obtained with the above method for this linearized system is:
+Finally, the algebraic Riccati equation must be solved for \(S\) numerically, typically using iterative methods like the Newton-Raphson algorithm. Then the LQR controller can be expressed as shown in Equation \ref{eq:LQR_control_law}.
 
 \begin{equation}
  u(t) = -K\overline{x}(t)
+ \label{eq:LQR_control_law}
 \end{equation}
 
 where \(K = R^{-1}B^T S\).

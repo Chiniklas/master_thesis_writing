@@ -52,9 +52,11 @@ $l_2$(m) & 0.2 & 0.4 & 0.3 & 0.3 \\
 In addition, the trial phase during training introduces a noisy initialization by adding Gaussian noise to the presumed initial state \([0,0,0,0]^T\), thereby increasing exploration. The mean of this Gaussian noise is set to \([0,0,0,0]^T\), and the covariance matrix is diagonal, specified as \(diag(0.01,0.01,0.005,0.005) \). For the evaluation phase, a zero initialization is employed to ensure the exploitation of the learned policy.
 
 \section{Training process in ideal environment}
-During the training of the SAC controller for both the acrobot and pendubot, the primary focus was on tuning several key hyperparameters. These encompassed the learning rate, control frequency, episode length, and learning timestep. Effort was invested in adjusting hyperparameters for the reward function and the LQR controller, given their pivotal roles in the learning process, as detailed in Table \ref{tab:training_parameters}.
+In the training of the SAC controller applied to both the acrobot and pendubot systems, the optimization of key hyperparameters was prioritized to ensure effective learning. The learning rate was carefully set to 0.01, a value chosen to balance between rapid adaptation and stable convergence. Control frequency was another critical hyperparameter, set at 100Hz, which provided the controller with frequent updates, contributing to a heightened responsiveness in the control process.
 
-The learning rate was set at 0.01 to promote effective learning and adaptation. Additionally, the control frequency during training was configured to 100Hz, ensuring frequent updates and heightened responsiveness in the control process. An episode length of 1000 was selected for both the Acrobot and Pendubot, translating to 10-second-long episodes, to provide sufficient exploration and learning opportunities. To harness the full training potential, a total of 2e7 learning time steps were executed for the pendubot and 5e7 for the acrobot, allowing the agent to accumulate vast experience and enhance its performance.
+The length of each episode was standardized to 1000 steps, equivalent to 10-second-long episodes, for both systems. This duration was chosen to afford the agent ample opportunity for exploration and learning within diverse scenarios. To fully capitalize on the training, a significant number of learning timesteps were executed—2e7 for the pendubot and 5e7 for the acrobot. This extensive experience allowed the agent to progressively refine its performance.
+
+Additionally, considerable effort was invested in fine-tuning the hyperparameters specific to the reward function and the LQR controller, both of which play pivotal roles in the agent's learning process. The particulars of these hyperparameter settings are meticulously documented in Table \ref{tab:training_parameters}.
 
 \begin{table}[H]
   \centering
@@ -77,23 +79,25 @@ The learning rate was set at 0.01 to promote effective learning and adaptation. 
  \label{tab:training_parameters}
 \end{table}
 
-Experiments on the pendubot in the ideal simulation phase use Design A, namely, \( l_1 = 0.3 \) m and \( l_2 = 0.2 \) m. One of the successful learning curves, spanning a total of \( 2 \times 10^7 \) timesteps for the pendubot, is illustrated in Figure \ref{fig:pendubot_learning_curve_ideal}. As depicted in the figure, the learning curve experiences a gradual ascent from 0 to 1e7 timesteps. Between 1e7 and 1.2e7 timesteps, the curve surges rapidly, peaking at around one million in reward. After 1.2e7 timesteps, the curve begins to stabilize with occasional fluctuations, and no substantial increase in reward is observed.
+The architecture of the resulting SAC agent is an actor network, which comprises 67,586 parameters. This network is systematically structured into three segments: firstly, a feature extractor that preprocesses input states; secondly, a latent policy network consisting of two fully connected layers, each with 256 neurons, responsible for decision-making; and lastly, two distinct output layers tasked with generating the mean and the standard deviation of the policy's probability distribution, which are essential components for the SAC's stochastic policy.
+
+Experiments on the pendubot in the ideal simulation phase use Design A, namely, \( l_1 = 0.3 \) m and \( l_2 = 0.2 \) m. One of the successful learning curves, spanning a total of 2e7 timesteps for the pendubot, is illustrated in Figure \ref{fig:pendubot_learning_curve_ideal}. As depicted in the figure, the learning curve experiences a gradual ascent from 0 to 1.25e7 timesteps. Between 1.25e7 and 1.6e7 timesteps, the curve surges rapidly, peaking at around 9e6 in reward. After 1.6e7 timesteps, the curve begins to stabilize with occasional fluctuations, and no substantial increase in reward is observed.
 
 \begin{figure}[H]
     \centering
-    \fbox{\includegraphics[width=1.0\textwidth]{figures/learning_curve/pendubot_learning_curve.png}} % First image
+    \includegraphics[width=1.1\textwidth]{figures/learning_curve/pendubot_learning_curve_redraw.png} % First image
     \caption{Pendubot learning curve}
     \label{fig:pendubot_learning_curve_ideal}
 \end{figure}
 
+Experiments on the acrobot during the ideal simulation phase were based on Design C, with \( l_1 \) set to 0.2m and \( l_2 \) to 0.3m. As depicted in Figure \ref{fig:acrobot_learning_curve_ideal}, the acrobot underwent a total of 3e7 timesteps of learning. Initially, the learning curve exhibited relatively steady growth up until 1.9e7 timesteps. Afterwards, the learning curve began to increase drastically after that. By 3e7 timesteps, the learning curve had not yet reached stability. This learning of 3e7 timesteps delivered a working agent, but the behaviour was not stable. Consequently, we extended the learning period to 5e7 timesteps, using a warm start from the agent obtained at 3e7 timesteps, and observed that the learning curve began to stabilize around 4e7 timesteps. The resulting agent has a good result in ideal simulation.
+
 \begin{figure}[H]
     \centering
-    \fbox{\includegraphics[width=1.0\textwidth]{figures/learning_curve/acrobot_learning_curve.png}} % Second image
+    \includegraphics[width=1.1\textwidth]{figures/learning_curve/acrobot_learning_curve_redraw.png} % Second image
     \caption{Acrobot learning curve}
     \label{fig:acrobot_learning_curve_ideal}
 \end{figure}
-
-Experiments on the acrobot in the ideal simulation phase are based on Design C, with \(l_1\) being 0.2m and \(l_2\) being 0.3m. As shown in Figure \ref{fig:acrobot_learning_curve_ideal}, this learning took a total of 3e7 timesteps for the acrobot. Initially, the curve experienced relatively steady growth until 1.8e7 timesteps. After a sudden drop in reward between 1.8e7 and 2e7 timesteps, the learning curve began to increase drastically despite two major setbacks. By 3e7 timesteps, the learning curve had not yet reached its peak. This learning of 3e7 timesteps delivered a working agent, but the behaviour was not stable. Consequently, we extended the learning period to 5e7 timesteps, using a warm start from the agent obtained at 3e7 timesteps, and observed that the learning curve began to stabilize around 4e7 timesteps. The resulting agent has a good result in ideal simulation.
 
 \section{Results in ideal simulation}
 In this section, the ideal simulation results for the acrobot and pendubot are presented separately. Agents trained using the SAC algorithm are generally utilized during the swing-up stage, and the systems transition to the LQR controller when approaching the upright position. The primary criteria for success in both the swing-up and stabilization tasks involve swinging the double pendulum up to the upright position and maintaining stability for a prolonged period. Therefore, a simulation duration of 10 seconds is established. If the double pendulum fails to swing up or maintain stability within this timeframe, the trial is deemed unsuccessful.

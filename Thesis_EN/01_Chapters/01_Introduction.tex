@@ -110,9 +110,9 @@ The concept of underactuated dynamics can be briefly introduced as follows. Acco
 
 In this equation, \( \ddot{q} \) represents acceleration, which is the second derivative of the variable \( q \), typically representing the position of the system. The function \( f(q, \dot{q}, u, t) \) describes how \( \ddot{q} \) depends on various parameters, including the state variables \( q \) and \( \dot{q} \), the control inputs \( u \), and the time \( t \).
 
-The state of the system, denoted as \( s \) and represented as \( [q, \dot{q}]^T \), consists of two vectors: \( q \), which signifies positions, and \( \dot{q} \), which signifies velocities.
+The state of the system, denoted as \( x \) and represented as \( [q, \dot{q}]^T \), consists of two vectors: \( q \), which signifies positions, and \( \dot{q} \), which signifies velocities.
 
-When dealing with control-related tasks, we can express the second-order differential equation in the following manner:
+When dealing with control-affine systems, we can express the second-order differential equation in the following manner:
 
 \begin{align}
     \ddot{q} = f_1(q, \dot{q}, t) + f_2(q, \dot{q}, t)u
