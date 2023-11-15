@@ -1,4 +1,20 @@
-\chapter{Future work}
+\chapter{Conclusion and Future work}
+In this chapter, a conclusion of our work is presented, summarizing the controller design, experiments in simulation and the real world, and the leaderboard results. This is followed by a discussion of the future work that could not be completed during the six-month master's thesis period.
+
+\section{Conclusion}
+Combining an SAC-derived agent with an LQR controller is an effective method for performing swing-up and stabilization tasks for an underactuated double pendulum system in simulation, and it is partially effective in real-world tests.
+
+During the ideal simulation phase, the training of an agent capable of swinging up and entering the Region of Attraction (RoA) of the LQR controller is stabilized using our custom three-stage reward function. The training for the pendubot setup generally requires 2e7 timesteps, and for the acrobot, it varies from 3e7 to 5e7 timesteps in total. Notably, the most significant challenge lies in hyperparameter tuning to ensure stable training that produces a functional agent. While the training for the pendubot and acrobot only takes a few hours, the tuning process can extend for several days for each design variation. The LQR controller exhibits flawless performance in ideal simulations; upon taking control, it quickly guides the system to the desired state and maintains stability until the experiment concludes. In comparison, the acrobot setup presents more challenges than the pendubot due to the longer training requirements and less consistent outcomes.
+
+In real-world tests, which confront real-world complexities and added constraints such as speed and position limits, our SAC+LQR method encounters significant challenges. It delivers only one working solution for the pendubot, achieving a success rate of 40\%. For the acrobot setup, despite the presence of multiple well-performing candidates, each one is ultimately discarded due to exceeding the \(2\pi\) position limit. The sim-to-real gap substantially affects the performance of the SAC+LQR controllers when they are tested exclusively in an ideal simulation. The SAC agents tend to utilize control signals with less smoothness and struggle to determine the precise moment for the LQR controller to assume control amid various disturbances. Moreover, LQR controllers do not always perform perfectly in real-world applications. There are possibilities of failing to maintain stability after taking over.
+
+An attempt to bridge the sim-to-real gap includes the establishment of a noisy simulation for validation and a noisy training process to enhance robustness. This noisy simulation builds upon the ideal simulation, incorporating real-world features such as friction, measurement noise, latency, and torque responsiveness. The noisy training process employs domain randomization techniques, aiming to improve robustness by exposing agents to variable environments. Furthermore, agents that are proven effective in ideal simulations must undergo a selection process (Figure \ref{fig:agent_selection}) before being considered suitable for real-world tests.
+
+In terms of final RealAI scores, the SAC+LQR controller ranks last among the three methods discussed in terms of performance in both simulation and real-world tests. However, the SAC+LQR controller ranks medium in robustness scores.
+
+In conclusion, the SAC+LQR controller performs adequately in simulation environments but exhibits flaws in real-world applications. Our current methods to bridge the sim-to-real gap lack effectiveness and require further improvements.
+
+\section{Future Work}
 Due to the ineffectiveness of our method in real-world tests, several aspects of future work are worth exploring.
 
 \textbf{Modify the Training Process for More Accurate Behavior Guidance:}
@@ -7,7 +23,7 @@ The unsuccessful training of an agent for the acrobot setup within speed and pos
 
 \textbf{Model-Based Reinforcement Learning:}
 
-As indicated in Tables \ref{tab:performance_ideal}, \ref{tab:robustness}, and \ref{tab:performance_real}, the MC-PILCO controller, as a representative of model-based reinforcement learning (MBRL) methods, delivers astonishing results. Although MBRL methods are still in their infancy, the idea of combining transition model information with pure trial-and-error shows high potential for solving complex issues like chaotic system control in real-world applications. This direction holds the most promise for achieving significant improvement in our current control problems with pendubot and acrobot setups.
+As indicated in Tables \ref{tab:performance_pendubot},\ref{tab:performance_acrobot} \ref{tab:robustness}, and \ref{tab:performance_real}, the MC-PILCO controller, as a representative of model-based reinforcement learning (MBRL) methods, delivers astonishing results. Although MBRL methods are still in their infancy, the idea of combining transition model information with pure trial-and-error shows high potential for solving complex issues like chaotic system control in real-world applications. This direction holds the most promise for achieving significant improvement in our current control problems with pendubot and acrobot setups.
 
 \textbf{More Effective Sim-to-Real Methods}
 

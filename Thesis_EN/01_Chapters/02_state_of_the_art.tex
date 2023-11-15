@@ -1,14 +1,14 @@
-\chapter{State of the art}
-In this chapter, we will explore the state of the art. In the first section, we  will first discuss the important variations of double pendulum that is widely used by the research society. Subsequently, we will delve into the basic dynamics of a double pendulum system. In the second section, we will review some of the most renowned works related to learning-based control in the field of robotics.
+\chapter{State of the Art}
+In this chapter, the state of the art will be explored. The first section will discuss the basic dynamics of a double pendulum system, while the second section will review some of the most renowned works related to learning-based control in the field of robotics.
 
 \section{Theory}
-In this section, we will explore the fundamental principles governing the dynamics of a double pendulum.
+In this section, the fundamental principles governing the dynamics of a double pendulum will be explored.
 
 Broadly speaking, a double pendulum system is a mechanical structure consisting of two pendulum arms or masses suspended independently, allowing them to swing freely. These pendulum arms are typically connected in series, with the motion of the second pendulum influenced by the motion of the first.
 
-Double pendulum setups take various forms, including the widely researched double inverted pendulum on a cart (DIPC) [1] and the Furuta pendulum [2][3]. The double pendulum used in this thesis is relatively simple, comprising two links connected in series by revolute joints. Unlike the Furuta pendulum, both links of the double pendulum move in the same plane within three-dimensional space. These links are also connected to the world frame via revolute joints. In contrast to the DIPC setup, the actuation capability is solely limited by the torque that the joints can generate, unrestricted by the length of a prismatic rail. We will discuss the dynamics of the double pendulum system in the following section.
+Double pendulum setups take various forms, including the widely researched double inverted pendulum on a cart (DIPC)\cite{bogdanov2004optimal} and the Furuta pendulum\cite{cazzolato2011dynamics}\cite{furuta1992swing}. The double pendulum used in this thesis is relatively simple, comprising two links connected in series by revolute joints. Unlike the Furuta pendulum, both links of the double pendulum move in the same plane within three-dimensional space. These links are also connected to the world frame via revolute joints. In contrast to the DIPC setup, the actuation capability is solely limited by the torque that the joints can generate, unrestricted by the length of a prismatic rail. The dynamics of the double pendulum system will be discussed in the following section.
 
-As shown in Figure \ref{fig:double pendulum dynamics}, we model the dynamics of the double pendulum with 15 parameters which include 8 link parameters namely masses \((m_1,m_2)\)
+As shown in Figure \ref{fig:double pendulum dynamics}, the dynamics of the double pendulum is modeled with 15 parameters which include 8 link parameters namely masses \((m_1,m_2)\)
 , lengths \((l_1,l_2)\)
 , center of masses \((r_1,r_2)\) 
 , inertias \((I_1,I_2)\)
@@ -24,7 +24,7 @@ As shown in Figure \ref{fig:double pendulum dynamics}, we model the dynamics of 
   \label{fig:double pendulum dynamics}
 \end{figure}
 
-The generalized coordinates \( \mathbf{q} =[q_1,q_2]^T \) are the joint angles measured from the free hanging position. The state vector of the systems contains the position coordinates and their time derivatives: \(\mathbf{x}=[\mathbf{q},\mathbf{\dot{q}}]^T\). The torque applied by the actuators are \(\mathbf{u}=[u_1,u_2]\). The equation of motion for the dynamics of a dynamical system can be derived following the blow steps:
+The generalized coordinates \( \mathbf{q} =[q_1,q_2]^T \) are the joint angles measured from the free hanging position. The state vector of the systems contains the position coordinates and their time derivatives: \(\mathbf{x}=[\mathbf{q},\mathbf{\dot{q}}]^T\). The torque applied by the actuators are \(\mathbf{u}=[u_1,u_2]\). The equation of motion for the dynamics of a dynamical system can be derived following the below steps:
 
 \textbf{Step 1. Define the Lagrangian (\(L\)):}
 
@@ -57,35 +57,17 @@ The generalized coordinates \( \mathbf{q} =[q_1,q_2]^T \) are the joint angles m
    
 \textbf{Step 4. Formulate the Lagrange's Equation:}
 
-  The equations of motion (EoM) for joint coordination \(q\) are derived using Lagrange's equation:
+  The equations of motion (EoM) expressed in joint coordination \(q\) are derived using Lagrange's equation:
 
     \begin{align}
-    \label{eq:lagrange equation}
-    \frac{d}{dt} \left(\frac{\partial L}{\partial \dot{q_i}}\right) - \frac{\partial L}{\partial q_i} = 0
+        \label{eq:lagrange equation}
+        \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q}_i} \right) - \frac{\partial L}{\partial q_i} = 0, \quad \quad i = 1, 2
     \end{align}
+
 
 \textbf{Step 5. Solve the Equations of Motion:}
 
-    The set of second-order differential equations obtained is solved to determine the system's equations of motion. The system dynamics, including friction, are represented as follows:
-   
-   \begin{align}
-        \label{eq:EoM}
-        M(q)\ddot{q} + C(q,\dot{q})\dot{q} &= Du + G(q) - F(\dot{q})
-   \end{align}
-    
-    Expressing the equation of motion in terms of the state vector \(\mathbf{x}=[\mathbf{q},\mathbf{\dot{q}}]^T\), we have:
-    
-    \begin{equation}
-    \begin{split}
-        \dot{x} &= f(x,u) \\
-        &= \begin{bmatrix} 
-            \dot{q} \\ 
-            M^{-1}(Du - C(q,\dot{q})\dot{q} + G(q) - F(\dot{q})) 
-       \end{bmatrix}
-    \end{split}
-    \end{equation}
-
-   Considering the forward kinematics of the double pendulum system, the Cartesian coordinates of the joint between the first and second links are represented as \(P_1=(x_1,y_1)\), while the coordinates of the end effector are represented as \(P_2=(x_2,y_2)\). These Cartesian coordinates can be expressed in terms of the joint coordinates \(q\) as follows:
+    Considering the forward kinematics of the double pendulum system, the Cartesian coordinates of the joint between the first and second links are represented as \(P_1=(x_1,y_1)\), while the coordinates of the end effector are represented as \(P_2=(x_2,y_2)\). These Cartesian coordinates can be expressed in terms of the joint coordinates \(q\) as follows:
 
     \begin{align}
         \label{eq:p1}
@@ -106,6 +88,32 @@ The generalized coordinates \( \mathbf{q} =[q_1,q_2]^T \) are the joint angles m
         \end{aligned}
         \right.
     \end{align}
+
+    The set of second-order differential equations shown in Equation \ref{eq:lagrange equation} is solved to determine the system's equations of motion without friction, as expressed in Equation \ref{eq:EoM_without_friction}.
+    
+    \begin{align}
+        \label{eq:EoM_without_friction}
+        M(q)\ddot{q} + C(q,\dot{q})\dot{q} &= Du + G(q)
+   \end{align}
+   
+    The system dynamics, including friction, are represented in Equation \ref{eq:EoM}:
+   
+   \begin{align}
+        \label{eq:EoM}
+        M(q)\ddot{q} + C(q,\dot{q})\dot{q} &= Du + G(q) - F(\dot{q})
+   \end{align}
+    
+    Expressing the equation of motion in terms of the state vector \(\mathbf{x}=[\mathbf{q},\mathbf{\dot{q}}]^T\), we have:
+    
+    \begin{equation}
+    \begin{split}
+        \dot{x} &= f(x,u) \\
+        &= \begin{bmatrix} 
+            \dot{q} \\ 
+            M^{-1}(Du - C(q,\dot{q})\dot{q} + G(q) - F(\dot{q})) 
+       \end{bmatrix}
+    \end{split}
+    \end{equation}
 
     Substituting Equation \ref{eq:p1} and \ref{eq:p2} into \ref{eq:kinetic energy}, \ref{eq:potential energy}, \ref{eq:lagrange equation}, and \ref{eq:EoM}, we can derive the mass matrix (where \(s_1 = \sin(q_1), c_1 = \cos(q_1), \ldots\)).
     \begin{equation}

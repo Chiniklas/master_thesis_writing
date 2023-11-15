@@ -1,12 +1,12 @@
 \chapter{Introduction}
-Nonlinear systems\cite{sastry2013nonlinear}, as their name suggests, do not exhibit linear relationships between inputs and outputs. This inherent non-linearity means the system's response to changes in input can be complex and often unpredictable. In the real world, nearly all systems display some degree of nonlinearity. This nonlinearity can manifest in a variety of phenomena. For example, in systems with multiple inputs and outputs, the interdependencies between variables can become intricate, leading to coupling issues. Another frequent challenge is chaotic behavior\cite{ditto1995principles}\cite{oestreicher2007history}, where even minor alterations in initial conditions can lead to vastly different outcomes. Addressing these nonlinearities is crucial when managing control tasks, especially in real-world systems.
+Nonlinear systems\cite{sastry2013nonlinear} \cite{iqbal2017nonlinear}, as their name suggests, do not exhibit linear relationships between inputs and outputs. This means their responses can't be simply predicted using linear equations. In the real world, nearly all systems display some degree of nonlinearity, which can manifest in various phenomena. For instance, in systems with multiple inputs and outputs (MIMO), the relationships between input and output variables can become interdependent, leading to coupling issues. A widely-discussed challenge that arises from nonlinearity is chaotic behavior\cite{ditto1995principles}\cite{oestreicher2007history}, where minor changes in initial conditions can lead to vastly different outcomes. 
 
-Achieving precise control over nonlinear systems\cite{iqbal2017nonlinear} has long been a primary focus in the field of control theory. While linear systems, often represented by linear differential equations, can typically be solved quickly and analytically, nonlinear equations representing nonlinear dynamics usually lack closed-form solutions\cite{struble2018nonlinear}. This necessitates the use of approximations and numerical methods. Efficiently and accurately executing these methods presents a central challenge in nonlinear control. Throughout history, control engineers have devised a wide range of strategies to manage these complex systems. The rise of robotics in recent decades has introduced new methods specifically tailored to address the challenges presented by nonlinearities.
+Achieving precise control over nonlinear systems has long been a primary focus in the field of control theory. While linear systems, often represented by linear differential equations, can typically be solved quickly and analytically, nonlinear equations representing nonlinear dynamics usually lack closed-form solutions\cite{struble2018nonlinear}. This necessitates the use of approximations and numerical methods. Executing these methods efficiently and accurately presents a central challenge in nonlinear control. Throughout history, control engineers have devised a wide range of strategies to manage a variety of complex systems. The rise of robotics in recent decades has introduced new methods specifically tailored to address the challenges presented by nonlinearities.
 
 \section{Motivation}
-Robots are purposefully engineered as programmable mechanical structures, enabling them to perform a variety of tasks, either autonomously or under partial human oversight. These tasks include mobility, manipulation, and active interaction with their surroundings.
+Robots are purposefully engineered as programmable mechanical structures, enabling them to perform a variety of tasks, either autonomously or partial under human supervision. Typical tasks include mobility, manipulation, and active interaction with their surroundings.
 
-In the field of modern robotics, the mechanical systems are highly complex and nonlinear, posing significant challenges for precise and effective control. However, with the advancement of modern control methodologies and the increasing power of artificial intelligence, numerous innovative control approaches are emerging each year. Many products in modern robotics have achieved remarkable success, some well-known instances include quadruped robotics\cite{biswal2021development}, autonomous vehicles\cite{schwarting2018planning}, quadcopters\cite{luukkonen2011modelling}, and humanoid robots\cite{saeedvand2019comprehensive}.
+In the field of modern robotics, the mechanical systems are highly complex and nonlinear, posing significant challenges for precise and effective control. However, with the advancement of modern control methodologies and the increasing capabilities of artificial intelligence, numerous innovative control approaches are emerging each year. Many products in modern robotics have achieved remarkable commercial success, some well-known instances include quadruped robotics\cite{biswal2021development}, autonomous vehicles\cite{schwarting2018planning}, quadcopters\cite{luukkonen2011modelling}, and humanoid robots\cite{saeedvand2019comprehensive}.
 
 \begin{figure}[H]
     \centering
@@ -40,36 +40,37 @@ In the field of modern robotics, the mechanical systems are highly complex and n
 \end{figure}
 
 \subsection{Trajectory planning and tracking}
-In the traditional control of complex systems such as robotics, which exhibit significant nonlinearity, it is crucial to employ dependable nonlinear control strategies to enhance motion capabilities. Typically, the procedure for planning intricate movements within these systems adheres to a two-phase method\cite{biagiotti2008trajectory}, encompassing trajectory planning and trajectory tracking. This structured approach ensures precision and stability in robotic system control.
+In the traditional control of complex systems such as robotics, which exhibit significant nonlinearity, it is crucial to employ reliable nonlinear control strategies to guarentee motion capabilities. Typically, the procedure for executing precise motion within these systems subjects to a two-phase method\cite{biagiotti2008trajectory}, encompassing trajectory planning and trajectory tracking. This structured approach ensures precision and stability in robotic system control.
 
-Trajectory planning\cite{gasparetto2015path}\cite{gasparetto2012trajectory} involves calculating a smooth and feasible path for the robot to follow, aiming for a specific target position or operational point. A widely-used method in this stage is trajectory optimization\cite{betts1998survey}, which seeks to minimize a cost function accounting for travel time, energy consumption, and motion smoothness. Techniques such as gradient descent or genetic algorithms are often utilized for optimization, with adherence to constraints like maximum velocities and accelerations being a crucial aspect of the process.
+Trajectory planning\cite{gasparetto2015path}\cite{gasparetto2012trajectory} involves calculating a smooth and feasible path for the robot to follow, aiming for a specific target position or operational point. A widely-used method in this stage, trajectory optimization\cite{betts1998survey}, seeks to minimize a cost function that accounts for metrics like travel time, energy consumption, and motion smoothness. Techniques such as gradient descent or genetic algorithms are often utilized for optimization. These techniques are subject to constraints, with aspects like maximum velocities and accelerations being crucial in the process.
 
-Upon successful trajectory planning, the next step is trajectory tracking, which entails the use of control algorithms to guide the robot along the predetermined path. A feedback control approach is typically employed, continually monitoring the robot's position and adjusting control inputs as necessary. However, in real-world systems, external disturbances, uncertainties, and system limitations may lead to significant deviations from the planned trajectory. Therefore, ensuring accurate state estimation and implementing robust control strategies are imperative in feedback control to address these challenges.
+Upon successful trajectory planning, the next step is trajectory tracking, which requires the use of control algorithms to guide the robot along the predetermined path. A feedback control approach is typically employed, continually monitoring the robot's position and adjusting control inputs as necessary. However, in real-world systems, external disturbances, uncertainties, and system limitations may lead to significant deviations from the planned trajectory. Therefore, ensuring accurate state estimation and implementing robust control strategies are imperative in feedback control to address these challenges.
 
-In industrial robot control\cite{gasparetto2010optimal}, the practice typically involves dividing the control process into distinct phases of offline planning and execution. This segmentation is primarily due to the non-critical requirement for real-time responsiveness in such applications. Take, for instance, the planning phase, where an algorithm such as A* is employed to determine an optimal route based on a predefined task, navigating around obstacles and minimizing travel distance, which results in a set of discrete waypoints\cite{cui2011based}. Following this, cubic interpolation techniques are applied to these waypoints, crafting a smooth and continuous trajectory that the robot can realistically follow, ensuring both fluid motion and compliance with the robot's kinematic constraints\cite{bickley1968piecewise}. The process subsequently moves to the execution phase, where a robust and precise control strategy is implemented. This strategy is crucial as it guarantees the robot's meticulous adherence to the pre-established trajectory, maintaining both accuracy and reliability throughout the operation\cite{lynch2017modern}.
+Below, two examples of trajectory-based control are discussed. In conventional industrial robot control\cite{gasparetto2010optimal}, it is typical for the control process to be divided into distinct phases of offline planning and execution. This segmentation is primarily due to the non-critical need for real-time responsiveness in such applications. Consider the planning phase, for example, where an optimal route is determined by an algorithm such as A*, based on a predefined task. Tasks often include navigating around obstacles and minimizing travel distance, leading to the generation of a set of discrete waypoints\cite{cui2011based}. These waypoints are then subjected to cubic interpolation techniques\cite{bickley1968piecewise}, resulting in the crafting of a smooth and continuous trajectory that can be realistically followed by the robot. This approach ensures not only seamless motion but also compliance with the robot's kinematic constraints. Subsequently, the process transitions to the execution phase, during which a robust and precise control strategy, such as PID, is implemented. This strategy is crucial, as it ensures the robot's adherence to the pre-established trajectory, maintaining accuracy and reliability throughout the operation\cite{lynch2017modern}.
 
-Yet, in dynamic domains like automotive and flight control, the demand for real-time responsiveness takes center stage. For example, Model Predictive Control (MPC)\cite{kouvaritakis2016model} stands as a prime illustration of this critical requirement, seamlessly integrating online trajectory planning and execution into a unified framework. It initiates the process by forecasting a series of future control actions as part of the planning phase. Subsequently, during execution, these control inputs are refined to minimize any discrepancies between the real-time system state and the intended trajectory, ensuring precise alignment. MPC excels in its ability to simultaneously create, optimize, and follow trajectories, all while dynamically adjusting in real-time to accommodate disturbances and uncertainties. This capability is vital for maintaining precise control and adaptability in fast-paced and complex environments.
+Yet, in dynamic domains like automotive and flight control, the demand for real-time responsiveness takes center stage. In such cases, Model Predictive Control (MPC)\cite{kouvaritakis2016model} serves as a key example of integrating online trajectory planning and execution, meeting the critical need for real-time responsiveness. In the planning phase, MPC forecasts a series of future control actions. This is achieved by minimizing discrepancies between the current observed state and the intended trajectory. Once the planning is complete, MPC implements the first set of these predicted control inputs during the execution phase. Immediately following this implementation, the system's new state is observed and fed back into the MPC algorithm. This leads to a re-evaluation and update of the future control actions in what becomes a continuous, iterative process. MPC's strength lies in its ability to simultaneously create, optimize, and follow trajectories, dynamically adjusting in real-time to address any disturbances and uncertainties. Such capability is essential for ensuring precise control and adaptability in complex systems that operate in real-time environments.
 
-The traditional trajectory generation and tracking approach, while effective for numerous systems, has its own set of limitations.
+In conclusion, the traditional trajectory planning and tracking approach, while effective for numerous systems, has its own set of limitations.
+
 \begin{itemize}
-    \item \textbf{Limited Adaptability:}
-    Trajectory planning typically relies on predefined paths or trajectories, limiting adaptability to unforeseen changes or dynamic environments. If the environment changes significantly, the planned trajectory may no longer be optimal or even feasible.
+    \item \textbf{Limited Adaptability:} 
+    Trajectory planning typically relies on predefined paths or trajectories, limiting adaptability to unforeseeable changes or dynamic environments. If the environment changes significantly during execution, the planned trajectory may no longer be optimal or even feasible.
         
-    \item \textbf{Difficulty with Nonlinear Systems:}
+    \item \textbf{Difficulty with Nonlinear Systems:} 
     Trajectory planning struggles with highly nonlinear systems where the dynamics are hard to model accurately. Linearizing the system for planning purposes may lead to suboptimal or infeasible trajectories.
     
-    \item \textbf{High Computational Demands:}
+    \item \textbf{High Computational Demands:} 
     Some trajectory planning algorithms can be computationally intensive, especially for high-dimensional or complex robotic systems. This computational demand becomes a drawback, particularly in real-time or time-critical applications.
 \end{itemize}
 
-Recognizing the limitations inherent in traditional trajectory generation and tracking methodologies is essential for fostering the development of more advanced and efficient strategies in trajectory planning and control. This insight becomes particularly crucial in contexts that require rapid responsiveness and a capacity to skillfully navigate unpredictable changes or dynamic environments.
+% Recognizing the limitations inherent in traditional trajectory planning and tracking methodologies is essential for fostering the development of more advanced and efficient strategies in trajectory planning and control. This insight becomes particularly crucial in contexts that require rapid responsiveness and a capacity to skillfully navigate unpredictable changes or dynamic environments.
 
 \subsection{Reinforcement Learning Based Control}
 Transitioning from a focus on predefined trajectories, reinforcement learning(RL)-based control presents an alternative framework.
 
-Reinforcement learning(RL)\cite{sutton2018reinforcement} is a subset of machine learning centered on agents learning optimal behavior through trial-and-error interactions with their environment. Essentially, the agent makes sequential decisions, observes the outcomes of its actions, and receives feedback in the form of rewards or penalties. This feedback serves as a guiding mechanism, enabling the agent to evaluate the outcomes of its actions and adjust its policy accordingly to maximize cumulative rewards over time.
+Reinforcement learning (RL)\cite{sutton2018reinforcement} is a subset of machine learning that focuses on agents learning optimal behavior through trial-and-error interactions with their environments. Essentially, the trained agent makes sequential decisions, observes the outcomes of its actions, and receives feedback in the form of rewards or penalties. This feedback serves as a guiding mechanism, enabling the agent to evaluate the outcomes of its actions. It then adjusts its policy accordingly to maximize cumulative rewards over time.
 
-The mathematical framework that describes RL is the Markov Decision Process(MDP)\cite{puterman1990markov}, which provides a structured model for the decision-making problem. In an MDP, the agent's current state, available actions, potential next states, and the rewards associated with state-action transitions are all clearly defined. This structure ensures that the future state of the system depends only on the current state and the action taken, fulfilling the Markov property.
+The mathematical framework that describes RL is the Markov Decision Process (MDP)\cite{puterman1990markov}, which provides a structured model for the decision-making problem. In an MDP, the agent's current state, the available actions, the potential next states, and the rewards associated with state-action transitions are all clearly defined. MDPs require the fulfillment of the Markov property, which states that the future state of the system depends only on the current state and the action taken.
 
 \begin{figure}[h]
     \centering
@@ -78,24 +79,25 @@ The mathematical framework that describes RL is the Markov Decision Process(MDP)
     \label{fig:mdp}
 \end{figure}
 
-The ultimate objective in RL is to find an optimal policy, a mapping from states to actions, that dictates the best action to take in each state to achieve maximum long-term rewards. The learning process is driven by the tuple \((s,a,r,s')\), representing the current state, action taken, received reward, and subsequent state. Over time, through exploration of the state-action space and exploitation of acquired knowledge, the agent refines its policy, converging towards optimal behavior.
+The ultimate objective in reinforcement learning (RL) is to discover an optimal policy. This policy is a strategic mapping from states to actions, designed to select the most beneficial action in each state to achieve maximum long-term rewards. The learning process is dependent on the tuple \((s, a, r, s')\), which describes the current state \(s\), the action taken \(a\), the reward received \(r\), and the subsequent state \(s'\). Over time, the agent engages in exploring the state and action space to gather information about the effects of various actions, which is essential for acquiring new knowledge. This exploration is complemented by exploitation, where the agent utilizes its accumulated 
+knowledge to make informed decisions.
 
-A key challenge in RL is balancing exploration and exploitation. Exploration involves trying out different actions to discover their potential outcomes, essential for acquiring new knowledge. Exploitation, on the other hand, entails leveraging existing knowledge to make optimal decisions. Striking the right balance between these two strategies is crucial for the agent to effectively navigate its environment and learn from received rewards.
+Maintaining a balance between exploration and exploitation is a key challenge in RL. It is crucial for the agent to effectively navigate its environment and learn from the rewards it receives. Through this iterative process of exploration and exploitation, the agent continuously refines and updates its policy. Gradually, this leads to the convergence towards optimal behavior, where the policy consistently yields the highest possible rewards within the constraints of the environment.
 
-In the field of robotic control\cite{kober2013reinforcement}, the integration of reinforcement learning has become increasingly popular due to the numerous distinct advantages this combined approach offers:
+In the field of robotics, the integration of reinforcement learning in control tasks\cite{kober2013reinforcement} has become increasingly popular due to the numerous distinct advantages this approach offers:
 
 \begin{itemize}
     \item \textbf{Adaptability and Flexibility:}
-    RL allows systems to adapt and improve in dynamic environments. Its control policy evolves through accumulating new experiences and knowledge from interactions with the environment, making it highly adaptable to varying circumstances.
+    RL allows systems to adapt and improve in dynamic environments; its control policy evolves through accumulating new experiences and knowledge from interactions with the environment, making it highly adaptable to varying circumstances.
 
     \item \textbf{Reduced Dependency on Accurate Models:}
-    In contrast to traditional control methods that depend on exact mathematical models, RL thrives without the necessity of a predetermined model, particularly when learning from real-world data. This feature is immensely beneficial in situations where the system dynamics are either intricate or not well understood, as RL refines its performance through direct interactions with the environment.
+    In contrast to traditional control methods that depend on exact mathematical models, RL works without the necessity of a predetermined model, particularly when learning from real-world data. This feature is immensely beneficial in situations where the system dynamics are either complex or not well understood, as RL refines its performance through direct interactions with the environment.
 
     \item \textbf{Effective Handling of Nonlinearities and High-Dimensional Systems:}
-    RL excels at managing nonlinear systems and complex control tasks using neural network-based function approximation. This enables it to navigate high-dimensional input spaces and control intricate relationships between states and actions in complex scenarios.
+    RL excels at managing nonlinear systems and complex control tasks using neural network-based function approximation. This enables it to navigate high-dimensional input and output spaces and deal with coupling problems in multiple input and output systems.
 \end{itemize}
 
-Reinforcement learning distinguishes itself as a straightforward control method with high adaptability, setting itself apart from traditional trajectory generation and tracking techniques. While conventional methods frequently struggle with challenges such as limited adaptability, nonlinearity in systems, and intensive computational demands, reinforcement learning addresses these issues through direct interactions with the environment. It excels in unpredictable conditions and in managing complex, high-dimensional systems. This is largely attributed to its reduced dependency on accurately predefined dynamic models, ensuring robustness, effectiveness, and versatility across a wide range of applications.
+In conclusion, reinforcement learning is a straightforward control method with high adaptability, setting itself apart from traditional trajectory planning and tracking techniques. While conventional methods frequently struggle with challenges such as limited adaptability, nonlinearity in systems, and intensive computational demands, reinforcement learning addresses these issues through direct interactions with the environment. It excels in unpredictable conditions and in managing complex, high-dimensional systems. This is largely attributed to its reduced dependency on accurate dynamic models, ensuring robustness, effectiveness, and versatility across a wide range of applications.
 
 
 \section{Problem setup}
@@ -159,46 +161,62 @@ A well-discussed example of underactuated control is found in the double pendulu
 
 Despite its simple configuration, the system exhibits highly nonlinear and chaotic behavior\cite{shinbrot1992chaos}. The double pendulum setup presents two classic tasks: swing-up and stabilization around the highest point. Research on swing-up and stabilization of the double pendulum can be traced back to the 1990s\cite{yamakita1995robust}, and it continues to be a crucial testbed for validating the effectiveness of newly designed control algorithms\cite{xin2004new}\cite{zheng2006control}\cite{albahkali2009swing}.
 
-Our project's objective is to develop a reinforcement learning-based control method suitable for underactuated control of the double pendulum system, specifically addressing swing-up and stabilization tasks. To evaluate the efficacy of this control method, we conduct both simulations and real system experiments.
+Our project's objective is to develop a reinforcement learning-based control method suitable for underactuated control of the double pendulum system, specifically addressing swing-up and stabilization tasks. To evaluate the efficacy of this control method, we conduct both simulations and real system experiments. The real system setup is shown in Figure \ref{fig:double_pendulum_real_system}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/double_pendulum_real_system.png}
+    \caption{Double pendulum in real system}
+    \label{fig:double_pendulum_real_system}
+\end{figure}
 
 \section{Contribution}
-In this paper, the main contribution is as follows: An effective control strategy has been developed to achieve two key objectives with the double pendulum. The first task involves swinging the double pendulum from its lowest point to its highest point. The second task is to ensure stability at the highest point for an extended time period.
+In this thesis, the primary contribution is the development of an effective control strategy for a double pendulum to achieve two key objectives. The first objective involves swinging the double pendulum from its lowest point to its highest point. The second objective is to ensure stability at the highest point over an extended period.
 
-To address the swing-up task, a well-known model-free reinforcement learning algorithm called Soft Actor-Critic (SAC) was utilized\cite{haarnoja2018soft}. This algorithm enabled the training of a policy capable of reaching the Region of Attraction (RoA) of a continuous-time linear quadratic regulator (LQR) controller\cite{lehtomaki1981robustness}. Once the RoA is reached by the system, a seamless transition to the LQR controller is made to maintain stability around the highest point.
+For the swing-up task, a well-known model-free reinforcement learning algorithm, Soft Actor-Critic (SAC), was employed\cite{haarnoja2018soft}. This algorithm enabled the training of a policy capable of reaching the Region of Attraction (RoA) of a continuous-time linear quadratic regulator (LQR) controller\cite{lehtomaki1981robustness}. Upon reaching the RoA, the system transitions seamlessly to the LQR controller, maintaining stability around the highest point.
+
+The findings from the simulation and real hardware tests were presented at the IJCAI 2023 conference in Macau, in the RealAIGym competition\cite{dfki_ric_underactuated_lab_2023}. Furthermore, this work has been made available as open source, accessible at:
+
+\url{https://github.com/dfki-ric-underactuated-lab/double_pendulum}.
 
 \section{Content}
-This thesis comprises six chapters, namely: introduction, state of the art, methodology, agent training and experiments in a simulation environment, experiments on real hardware, discussion, and future work. At the end of Chapter One, the content of the following chapters is outlined below.
+This thesis comprises seven chapters, namely: Introduction, State of the Art, Methodology, Agent Training and Experiments in a Simulation Environment, Experiments on Real Hardware, Discussion, and Conclusion and Future Work. At the end of Chapter 1, the content of the following chapters is outlined below.
 
 \begin{itemize}
   \item \textbf{Chapter 2: State of the Art}:
     \begin{itemize}
-      \item This chapter begins by providing an explanation of the fundamental theories related to double pendulum dynamics. It is followed by an overview of recent advancements in the field of robotic control, with a specific focus on learning-based control methods.
+      \item In this chapter, an explanation is provided on the fundamental theories related to double pendulum dynamics, followed by an overview of recent advancements in the field of robotic control, with a particular emphasis on learning-based control methods.
     \end{itemize}
   
   \item \textbf{Chapter 3: Methodology}:
     \begin{itemize}
-      \item This chapter delves into the methodology, covering fundamental aspects of reinforcement learning, with a specific focus on the SAC algorithm. It explains the reward function used for training, the training procedure, and introduces the concept of the LQR controller and the composition of the combined controller.
-
-      \item Additionally, we introduce the evaluation metrics used to assess the performance and robustness of the newly designed control strategies in both simulated environments and real-world experiments.
+      \item The methodology is explored in this chapter, covering fundamental aspects of reinforcement learning, with a specific focus on the SAC algorithm. The reward function used for training, the training procedure, and the concept of the LQR controller and the composition of the combined controller are explained. Furthermore, evaluation metrics used to assess the performance and robustness of the newly designed control strategies in both simulated environments and real-world experiments are introduced.
     \end{itemize}
 
-  
-  \item \textbf{Chapter 4: Agent training and experiments in simulation environment}:
+  \item \textbf{Chapter 4: Agent Training and Experiments in Ideal Simulation Environments}:
     \begin{itemize}
-      \item In this chapter, we present the results obtained from simulations, showcasing the performance and behavior of the designed control strategy.
+      \item The training process of agents based on the SAC algorithm in ideal simulation environments is presented in this chapter. Additionally, results obtained from these simulations are demonstrated to showcase the performance and behavior of the designed control strategy.
     \end{itemize}
   
-  \item \textbf{Chapter 5: Experiments on real hardware}:
+  \item \textbf{Chapter 5: Experiments on Real Hardware}:
     \begin{itemize}
-      \item This chapter reports the outcomes of experiments conducted on the hardware, providing insights into our approach to addressing the sim2real transfer problem.
+      \item The hardware setup, including mechanics, electronics, and safety measures, is explained first in this chapter. Subsequently, system identification is introduced. The approach for bridging the sim-to-real gap is discussed next, encompassing the setting up of noisy simulations for evaluation and a noisy training process based on domain randomization. The process for selecting the suitable agent for real-world tests is also introduced. Finally, the outcomes of experiments conducted on the real hardware are provided, highlighting that the combined controller is functional only on the pendubot.
     \end{itemize}
   
-  \item \textbf{Chapter 6: Discussion and Future Work}:
+  \item \textbf{Chapter 6: Discussion}:
     \begin{itemize}
-      \item The final chapter engages in a discussion about the obtained results and explores potential future research and development directions.
+      \item A discussion on the obtained results is undertaken in this chapter, including a comparison of the performance and robustness leaderboards in simulations and the performance leaderboards in the real world.
+    \end{itemize}
+  
+  \item \textbf{Chapter 7: Conclusion and Future Work}:
+    \begin{itemize}
+      \item The final chapter offers a conclusion of the work and the results obtained. It also discusses future work that was not completed in this thesis.
     \end{itemize}
 \end{itemize}
+
+
+
+
 
 
 \cleardoublepage

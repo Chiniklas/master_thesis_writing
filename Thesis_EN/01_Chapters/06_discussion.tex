@@ -1,15 +1,14 @@
-\chapter{Discussion and Conclusion}
-In this chapter, we delve into the results of experiments conducted in both simulation and on the real system. The chapter is structured as follows: The first section discusses the three facets of leaderboard analysis, namely simulation, robustness, and real hardware, respectively. The second section summarizes our current findings and draws conclusions from the project.
+\chapter{Discussion}
+In this chapter, the results of experiments conducted in both simulation and on the real system are delved into. The chapter is structured as follows: The first section discusses the simulation leaderboard,the second section discusses the robustness leaderboard, and the third section discusses real hardware leaderboard. 
 
-\section{Discussion}
-\subsection{Interpretation of simulation leaderboard}
+\section{Interpretation of simulation leaderboard}
 In Table \ref{tab:performance_pendubot} and Table \ref{tab:performance_acrobot}, the performance leaderboard results for both the pendubot and acrobot in simulation experiments are presented. Three types of controllers are listed for comparison, namely model-free reinforcement learning(MFRL) based controller, model-based reinforcement learning(MBRL) based controller and trajectory based controller.
 
 The SAC+LQR controller is our design and is a representative of model-free reinforcement learning method. 
 
 MC-PILCO~\cite{amadio2022model}, which stands for Monte Carlo Probabilistic Inference for Learning Control, is a model-based reinforcement learning method. It utilizes probabilistic models to predict the system's dynamics and employs Monte Carlo methods to optimize control policies based on these predictions. This method was implemented by a team from the University of Padova~\cite{Libera2023AthleticIO}. 
 
-tvLQR is an extension of the standard Linear Quadratic Regulator (LQR) control design. It is a trajoctory based control method, tailored for systems with time-dependent state-space matrices or where the optimal control needs to be dynamic. Representing the optimal control method, it was implemented by a separate team from DFKI RIC\cite{2023_ram_wiebe_double_pendulum}.
+tvLQR is an extension of the standard Linear Quadratic Regulator (LQR) control design. It is a trajectory based control method, tailored for systems with time-dependent state-space matrices or where the optimal control needs to be dynamic. Representing the optimal control method, it was implemented by a separate team from DFKI RIC\cite{2023_ram_wiebe_double_pendulum}.
 
 % \begin{table}[H]
 %   \centering
@@ -85,8 +84,8 @@ For the Acrobot setup, the SAC+LQR controller loses its edge in both swing-up ti
 
 In general, the SAC+LQR controller demonstrates competitive performance in simpler tasks, such as the pendubot, especially excelling in swing-up time. However, when faced with a more complex challenge like the Acrobot, its performance declines. The MC-PILCO consistently delivers the best overall performance across both setups and is notable for its remarkably low maximum torque input and consistent torque smoothness. Conversely, the tvLQR, a trajectory based method, highlights its effectiveness in both scenarios. While its swing-up time is relatively extended, its energy consumption and torque smoothness are commendably low, leading to a moderate RealAI score.
 
-\subsection{Interpretation of robust leaderboard}
-The results of robustness leaderboard is shown in Table \ref{tab:robustness}. In comparison, the SAC+LQR controller achieves a moderate overall robustness score among the three controllers. It exhibits a higher resistance to model inaccuracy (71.9\% for pendubot and 76.7\% for acrobot) compared to MC-PILCO (45.2\% for pendubot and 40.5\% for acrobot) and tvLQR (75.2\% for pendubot and 59.0\% for acrobot). While the other two controllers demonstrate a noticeable decline when tackling the more complex acrobot task, the performance of the SAC+LQR remains consistent. Additionally, SAC+LQR offers better resistance against velocity measurement noise compared to MC-PILCO, though the top score in this category is held by tvLQR. Apart from MC-PILCO, the other two controllers display consistent and strong robustness regarding torque noise and torque response. When considering time delay, tvLQR outperforms both SAC+LQR and MC-PILCO owing to its nature as a trajectory-based controller, which is less affected by the Markov decision process.
+\section{Interpretation of robust leaderboard}
+The results of robustness leaderboard is shown in Table \ref{tab:robustness}. A visualization is shown in Figure \ref{fig:robustness_visualization}. In comparison, the SAC+LQR controller achieves a moderate overall robustness score among the three controllers. It exhibits a higher resistance to model inaccuracy (71.9\% for pendubot and 76.7\% for acrobot) compared to MC-PILCO (45.2\% for pendubot and 40.5\% for acrobot) and tvLQR (75.2\% for pendubot and 59.0\% for acrobot). While the other two controllers demonstrate a noticeable decline when tackling the more complex acrobot task, the performance of the SAC+LQR remains consistent. Additionally, SAC+LQR offers better resistance against velocity measurement noise compared to MC-PILCO, though the top score in this category is held by tvLQR. Apart from MC-PILCO, the other two controllers display consistent and strong robustness regarding torque noise and torque response. When considering time delay, tvLQR outperforms both SAC+LQR and MC-PILCO owing to its nature as a trajectory-based controller, which is less affected by the Markov decision process.
 
 \begin{table}[H]
   \centering
@@ -107,10 +106,21 @@ The results of robustness leaderboard is shown in Table \ref{tab:robustness}. In
  \label{tab:robustness}
 \end{table}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.47\textwidth]{figures/discussion/pendubot_robustness_bar.png}
+% \hfill % This adds a space between the two figures
+\includegraphics[width=0.47\textwidth]{figures/discussion/acrobot_robustness_bar.png}
+\caption{Visualization of Robustness Scores on Pendubot and Acrobot}
+\label{fig:robustness_visualization}
+\end{figure}
+
 In general, tvLQR achieves the best robustness scores for both pendubot and acrobot setups, followed by SAC+LQR, with MC-PILCO ranking last. While SAC+LQR boasts consistency in robustness across both setups, time delay remains a significant issue, limiting the robustness of RL-based methods.
 
-\subsection{Interpretation of real system leaderboard}
+\section{Interpretation of real system leaderboard}
 The results of real system performance leaderboard is presented in Table \ref{tab:performance_real}. For the pendubot, SAC+LQR achieved a swing-up success rate of 40\%, while MC-PILCO had a perfect score of 100\%, and tvLQR scored 80\%. For the acrobot, SAC+LQR did not achieve success, MC-PILCO again scored 100\%, and tvLQR achieved full success as well. The swing-up time was fastest with SAC+LQR for the pendubot at 0.67 seconds, and for the acrobot, MC-PILCO had the fastest time at 1.55 seconds.
+
+Apart from the swing-up time, MC-PILCO demonstrates superior performance on the pendubot, while tvLQR has the advantage for the acrobot. MC-PILCO's energy consumption on the pendubot is markedly lower, with marginally better maximum torque and a significant lead in integrated torque and torque cost metrics. The velocity cost further showcases MC-PILCO's high efficiency, contributing to its leading average RealAI score of 0.839.
 
 \begin{table}[H]
   \centering
@@ -135,23 +145,8 @@ The results of real system performance leaderboard is presented in Table \ref{ta
  \label{tab:performance_real}
 \end{table}
 
-Apart from the swing-up time, MC-PILCO demonstrates superior performance on the pendubot, while tvLQR has the advantage for the acrobot. MC-PILCO's energy consumption on the pendubot is markedly lower, with marginally better maximum torque and a significant lead in integrated torque and torque cost metrics. The velocity cost further showcases MC-PILCO's high efficiency, contributing to its leading average RealAI score of 0.839.
-
 In the acrobot trials, the scores are close between MC-PILCO and tvLQR. However, tvLQR outperformed MC-PILCO in terms of energy consumption and most torque-related criteria by a substantial margin. Additionally, tvLQR's torque smoothness is notably superior to that of MC-PILCO. tvLQR also achieved the highest average RealAI score of 0.821 for the acrobot.
 
 In summary, while MC-PILCO displayed high efficiency and success rates for the pendubot, tvLQR excelled in torque smoothness and energy efficiency, particularly for the acrobot system. The SAC+LQR approach demonstrated rapid swing-up times for the pendubot but failed to register success for the acrobot.
-
-\section{Conclusion}
-Combining an SAC-derived agent with an LQR controller is an effective method for performing swing-up and stabilization tasks for an underactuated double pendulum system in simulation, and it is partially effective in real-world tests.
-
-During the ideal simulation phase, the training of an agent capable of swinging up and entering the Region of Attraction (RoA) of the LQR controller is stabilized using our custom three-stage reward function. The training for the pendubot setup generally requires 2e7 timesteps, and for the acrobot, it varies from 3e7 to 5e7 timesteps in total. Notably, the most significant challenge lies in hyperparameter tuning to ensure stable training that produces a functional agent. While the training for the pendubot and acrobot only takes a few hours, the tuning process can extend for several days for each design variation. The LQR controller exhibits flawless performance in ideal simulations; upon taking control, it quickly guides the system to the desired state and maintains stability until the experiment concludes. In comparison, the acrobot setup presents more challenges than the pendubot due to the longer training requirements and less consistent outcomes.
-
-In real-world tests, which confront real-world complexities and added constraints such as speed and position limits, our SAC+LQR method encounters significant challenges. It delivers only one working solution for the pendubot, achieving a success rate of 40\%. For the acrobot setup, despite the presence of multiple well-performing candidates, each one is ultimately discarded due to exceeding the \(2\pi\) position limit. The sim-to-real gap substantially affects the performance of the SAC+LQR controllers when they are tested exclusively in an ideal simulation. The SAC agents tend to utilize control signals with less smoothness and struggle to determine the precise moment for the LQR controller to assume control amid various disturbances. Moreover, LQR controllers do not always perform perfectly in real-world applications. There are possibilities of failing to maintain stability after taking over.
-
-An attempt to bridge the sim-to-real gap includes the establishment of a noisy simulation for validation and a noisy training process to enhance robustness. This noisy simulation builds upon the ideal simulation, incorporating real-world features such as friction, measurement noise, latency, and torque responsiveness. The noisy training process employs domain randomization techniques, aiming to improve robustness by exposing agents to variable environments. Furthermore, agents that are proven effective in ideal simulations must undergo a selection process (Figure \ref{fig:agent_selection}) before being considered suitable for real-world tests.
-
-In terms of final RealAI scores, the SAC+LQR controller ranks last among the three methods discussed in terms of performance in both simulation and real-world tests. However, the SAC+LQR controller ranks medium in robustness scores.
-
-In conclusion, the SAC+LQR controller performs adequately in simulation environments but exhibits flaws in real-world applications. Our current methods to bridge the sim-to-real gap lack effectiveness and require further improvements.
 
 \cleardoublepage

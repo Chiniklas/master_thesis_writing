@@ -1,7 +1,7 @@
-\chapter{Agent training and experiments in ideal simulation environment}
+\chapter{Agent Training and Experiments in Ideal Simulation Environments}
 Chapters 4 and 5 focus on the experimental phase of the project. This chapter details the training procedure of SAC agents for the swing-up task and then transitions to a simulation phase in ideal environments to validate results for both the swing-up and stabilization tasks. The chapter is structured into three distinct subsections: training setup, training process, and simulation results.
 
-The first subsection describes the training framework, combining a Stable-Baseline3-based RL algorithm with a customized environment inherited from the OpenAI Gym environment. The second subsection centers on hyperparameter-tuning and highlights the challenges encountered during training. The third subsection displays the results acquired from both the pendubot and acrobot setups in ideal simulations.
+The first section describes the training framework, combining a Stable-Baseline3-based RL algorithm with a customized environment inherited from the OpenAI Gym environment. The second section centers on hyperparameter-tuning and highlights the challenges encountered during training. The third section displays the results acquired from both the pendubot and acrobot setups in ideal simulations.
 
 \section{Training setup in ideal environment}
 Stable Baseline 3(SB3)\cite{stable-baselines3} is an open-source implementation of deep reinforcement learning algorithms based on the Python language. This library includes seven commonly used model-free deep reinforcement learning algorithms including SAC. Prior implementations of deep RL algorithms often encountered a problem wherein small implementation details could greatly affect performance, typically exceeding the differences between algorithms\cite{islam2017reproducibility}. The developers of SB3 have done a commendable job stabilizing the performance of these deep RL algorithms by benchmarking each one on common environments and comparing them to prior implementations. Owing to its user-friendly and reliable nature, we chose Stable Baseline 3 as our RL library, which greatly simplified our research process.
@@ -45,7 +45,7 @@ $l_1$(m) & 0.3 & 0.3 & 0.2 & 0.3 \\
 $l_2$(m) & 0.2 & 0.4 & 0.3 & 0.3 \\
 \hline
 \end{tabular}
-\caption{Combinations of $l_1$ and $l_2$ of different designs}
+\caption{Combinations of $l_1$ and $l_2$ for different designs}
 \label{tab:different_designs}
 \end{table}
 
@@ -75,7 +75,7 @@ Additionally, considerable effort was invested in fine-tuning the hyperparameter
   & \(Q_4\) = 0.2  & \(r_{LQR}=1e4\) & \(Q_4\) = 0.26\\
   & \(R\) = 1e-4  &  & \(R\) = 0.11\\
   \end{tabular}
- \caption{Hyper parameters used for the SAC training and the LQR controller.[may change]}
+ \caption{Hyper parameters used for the SAC training and the LQR controller}
  \label{tab:training_parameters}
 \end{table}
 
@@ -116,6 +116,17 @@ A significant highlight from this successful simulation is the impressively shor
     \label{fig:ideal_simulation_pendubot}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.18\textwidth]{figures/pendubot_ideal_sim_snapshots/1.png}}
+    \fbox{\includegraphics[width=0.18\textwidth]{figures/pendubot_ideal_sim_snapshots/2.png}}
+    \fbox{\includegraphics[width=0.18\textwidth]{figures/pendubot_ideal_sim_snapshots/3.png}}
+    \fbox{\includegraphics[width=0.18\textwidth]{figures/pendubot_ideal_sim_snapshots/4.png}}
+    \fbox{\includegraphics[width=0.18\textwidth]{figures/pendubot_ideal_sim_snapshots/5.png}}
+    \caption{Snapshots of a pendubot ideal simulation test}
+    \label{fig:pendubot_real_snapshot}
+\end{figure}
+
 \subsection{Acrobot simulation in ideal environment}
 
 Just like the pendubot simulation, experiments on the acrobot setup are conducted in an ideal environment. The acrobot begins its swing from the downward position with zero velocity, aiming to stabilize around its highest point.
@@ -127,6 +138,18 @@ Just like the pendubot simulation, experiments on the acrobot setup are conducte
     \label{fig:ideal_simulation_acrobot}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.14\textwidth,keepaspectratio]{figures/acrobot_ideal_sim_snapshots/1.png}}
+    \fbox{\includegraphics[width=0.14\textwidth,keepaspectratio]{figures/acrobot_ideal_sim_snapshots/2.png}}
+    \fbox{\includegraphics[width=0.14\textwidth,keepaspectratio]{figures/acrobot_ideal_sim_snapshots/3.png}}
+    \fbox{\includegraphics[width=0.14\textwidth,keepaspectratio]{figures/acrobot_ideal_sim_snapshots/4.png}}
+    \fbox{\includegraphics[width=0.14\textwidth,keepaspectratio]{figures/acrobot_ideal_sim_snapshots/5.png}}
+    \fbox{\includegraphics[width=0.14\textwidth,keepaspectratio]{figures/acrobot_ideal_sim_snapshots/6.png}}
+    \caption{Snapshots of an acrobot ideal simulation test}
+    \label{fig:pendubot_real_snapshot}
+\end{figure}
+
 The accompanying image (Figure \ref{fig:ideal_simulation_acrobot}) depicts a successful swing-up and stabilization within a 10-second window. The swing-up process takes approximately 2 seconds before the LQR controller effectively takes over, maintaining stability around the target state for a prolonged time period.
 
 In comparison to the pendubot's simulation curves, the swing-up time for the acrobot is longer. This aligns with the notion that controlling the acrobot is a more challenging task than the pendubot. A shared drawback observed in both simulations is the lack of torque smoothness. For the acrobot, the input torque exhibits several significant jumps from one torque limit to the other, which might cause difficulties when translating to real-world hardware control.
@@ -135,9 +158,6 @@ In comparison to the pendubot's simulation curves, the swing-up time for the acr
 An unexpected outcome emerged during the testing of the swing-up and stabilization of the underactuated double pendulum system using only the RL-learned policy. It was observed that some agents not only entered the Region of Attraction (ROA) of the LQR controller as intended but also remained upright for an extended period without LQR assistance. This self-stabilizing behavior was noticeable in both the pendubot and acrobot configurations.
 
 In the pendubot setup, self-stabilization was more frequently observed. With a sufficient number of training timesteps (typically around 2e7), agents tasked with swing-up maneuvers in the pendubot configuration were highly likely to achieve self-stabilization at the upright position. As depicted in Figure \ref{fig:pendubot_self_stabilization}, the stabilization by the RL-learned policy is less smooth compared to that achieved by the LQR-based stabilizer. The torque fluctuations have an amplitude of approximately 1.5 Nm, and there are minor fluctuations in position and velocity.
-
-Self-stabilization behavior has been observed in the acrobot setup as well. However, no consistent pattern has yet been identified as to the specific conditions under which the training yields a self-stabilizing agent. Fortunately, the same agent discussed in Section 4.3.2 exhibited a degree of self-stabilization, which is depicted in Figure \ref{fig:acrobot_self_stabilization}. In the absence of a LQR controller, the RL-based controller was compelled to devise its own stabilization strategy. As illustrated in the graph, a relatively stable period commences at approximately 4 seconds, during which the system state exhibits prolonged fluctuations around the upright position. This occurs as the controller continuously corrects any deviation from the desired state. The stabilization provided by the RL-based controller is also less smooth than that of the LQR-based controller.
-
 \begin{figure}[H]
     \centering
     \fbox{\includegraphics[width=0.9\textwidth]{figures/simulation_result/pendubot_self_stabilization.png}} % First image
@@ -151,5 +171,7 @@ Self-stabilization behavior has been observed in the acrobot setup as well. Howe
     \caption{Self stabilization of acrobot in ideal simulation}
     \label{fig:acrobot_self_stabilization}
 \end{figure}
+
+Self-stabilization behavior has been observed in the acrobot setup as well. However, no consistent pattern has yet been identified as to the specific conditions under which the training yields a self-stabilizing agent. Fortunately, the same agent discussed in Section 4.3.2 exhibited a degree of self-stabilization, which is depicted in Figure \ref{fig:acrobot_self_stabilization}. In the absence of a LQR controller, the RL-based controller was compelled to devise its own stabilization strategy. As illustrated in the graph, a relatively stable period commences at approximately 4 seconds, during which the system state exhibits prolonged fluctuations around the upright position. This occurs as the controller continuously corrects any deviation from the desired state. The stabilization provided by the RL-based controller is also less smooth than that of the LQR-based controller.
 
 \cleardoublepage

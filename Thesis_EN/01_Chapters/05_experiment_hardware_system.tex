@@ -1,4 +1,4 @@
-\chapter{Experiments on real hardware}
+\chapter{Experiments on Real Hardware}
 In this chapter, the experiments conducted on the hardware system are discussed. The content is organized into four sections. An overview of the hardware setup for the double pendulum system is provided in the first section. The system identification of the hardware is delved into in the second section. The approach to addressing the sim-to-real gap challenge is detailed in the third section. The outcomes of the hardware experiments are presented in the final section.
 
 \section{Hardware setup}
@@ -100,7 +100,7 @@ Due to rules for the IJCAI 2023 competition RealAIGym\cite{dfki_ric_underactuate
 
 \textbf{Physical enclosure:}
 
-A custom-designed enclosure(see Figure \ref{fig:overview_experiment_setup}) has been fabricated to serve as a safeguard against unanticipated system failures. Constructed from aluminum profiles and reinforced with thick acrylic boards, the enclosure comprehensively surrounds the double pendulum apparatus, significantly mitigating the potential for accidents.
+A custom-designed enclosure(see Figure \ref{fig:overview_experiment_setup}) has been fabricated to serve as a safeguard against unanticipated system failures. Constructed from aluminum profiles and reinforced with thick acrylic boards, the enclosure comprehensively surrounds the double pendulum setup, significantly mitigating the potential for accidents.
 
 These safety measures have been crucial in reducing the risks associated with testing and operational procedures.
 
@@ -247,13 +247,6 @@ The results of domain randomization in noisy training proved to be highly variab
 \section{Results on real hardware}
 In this section, the results from the real hardware phase are presented. The content is divided into three parts. The first part discusses the procedure for selecting agents suitable for real-world testing. The second part displays the successful outcomes from an agent trained for the pendubot setup. The range of results is restricted to the pendubot setup due to the introduction of speed and position limits, which have significantly narrowed the range of possible policies. The third part discusses an unsuccessful agent in the acrobot setup. It passed ideal and noisy validations but cannot be transferred to real-world tests due to a violation of the \(2\pi\) position limit.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.45\textwidth]{figures/double_pendulum_real_system.png}
-    \caption{Double pendulum in real system}
-    \label{fig:double_pendulum_real_system}
-\end{figure}
-
 \subsection{Agent selection procedure for real world tests}
 An agent deemed suitable for real-system tests must undergo a process that includes training and validation in ideal environment, followed by validation in noisy environment. If the agent proves successful in noisy validation, it can proceed to further testing on the real system. If it does not succeed, we employ the domain randomization method in an attempt to enhance its performance. Should the retrained agent pass the noisy validation, it will then advance to real-system testing. Otherwise, it will be discarded.
 
@@ -312,23 +305,34 @@ The agent is put to the test in an ideal environment for validation. The results
     \label{fig:pendubot_ideal_working}
 \end{figure}
 
+Subsequently, the agent was subjected to noisy validation. In a noisy simulation, the pretrained agent was found to succeed at rate of 40\%, as demonstrated in Figure \ref{fig:pendubot_noisy_working}. In successful trials, the transition time between the SAC controller and the LQR controller occurred around 1 second. The LQR controller was still very effective in maintaining the system's stability. In unsuccessful trials, two scenarios occurred. Most often, the transition did not occur, and the system, remaining under the influence of the SAC controller, was inadequate for maintaining stability. In a few cases, although the transition did occur, the LQR controller failed to maintain the system's relative stable state around the upright position, resulting in experimental failure.
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/hardware_result/pendubot_noisy_simulation_designC.1.png}
+    \includegraphics[width=1.1\linewidth]{figures/hardware_result/pendubot_noisy_simulation_designC.1.png}
     \caption{Pendubot result in the noisy environment}
     \label{fig:pendubot_noisy_working}
 \end{figure}
 
-Subsequently, the agent was subjected to noisy validation. In a noisy simulation, the pretrained agent was found to succeed at rate of 40\%, as demonstrated in Figure \ref{fig:pendubot_noisy_working}. In successful trials, the transition time between the SAC controller and the LQR controller occurred around 1 second. The LQR controller was still very effective in maintaining the system's stability. In unsuccessful trials, two scenarios occurred. Most often, the transition did not occur, and the system, remaining under the influence of the SAC controller, was inadequate for maintaining stability. In a few cases, although the transition did occur, the LQR controller failed to maintain the system's relative stable state around the upright position, resulting in experimental failure.
-
-Though the noisy validation only have 40\% success rate, we consider the above shown agent ready for a real-world test, so we deploy it onto the test bench for the real world evaluation. A control frequency of 400Hz was utilized. The agent's average success rate in the real system was 40\%, aligning with the success rate observed during noisy validation. A depiction of one such successful outcome is presented in Figure \ref{fig:pendubot_real_working}. 
-
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/hardware_result/pendubot_real_system_working.png}
+    \includegraphics[width=1.1\linewidth]{figures/hardware_result/pendubot_real_system_working.png}
     \caption{Result of a successful pendubot experiment on real system}
     \label{fig:pendubot_real_working}
 \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.18\textwidth]{figures/pendubot_real_snapshot/1.png}
+    \includegraphics[width=0.18\textwidth]{figures/pendubot_real_snapshot/2.png}
+    \includegraphics[width=0.18\textwidth]{figures/pendubot_real_snapshot/3.png}
+    \includegraphics[width=0.18\textwidth]{figures/pendubot_real_snapshot/4.png}
+    \includegraphics[width=0.18\textwidth]{figures/pendubot_real_snapshot/5.png}
+    \caption{Snapshots in pendubot real world tests}
+    \label{fig:pendubot_real_snapshot}
+\end{figure}
+
+Though the noisy validation only have 40\% success rate, we consider the above shown agent ready for a real-world test, so we deploy it onto the test bench for the real world evaluation. A control frequency of 400Hz was utilized. The agent's average success rate in the real system was 40\%, aligning with the success rate observed during noisy validation. A depiction of one such successful outcome is presented in Figure \ref{fig:pendubot_real_working}. 
 
 The transition to the LQR controller occurred smoothly at approximately one second. Upon assuming control, the LQR controller succeeded in sustaining the system's upright position, albeit with vibrations, until the completion of the experiment. Contrary to the results in both noisy and ideal simulations, the torque applied by the LQR controller was noticeably less smooth, resulting in greater amplitude of position and velocity vibrations. Given that the feature of self-stabilization had been evident during the ideal validation phase, an attempt was made to omit the LQR controller, allowing the agent to execute the swing-up and stabilize independently; however, this approach proved unsuccessful.
 
@@ -367,6 +371,8 @@ The most favorable outcome in the acrobot setup has been an agent that functions
  \label{tab:training_parameters_real_world_acrobot}
 \end{table}
 
+As shown in Figure \ref{fig:acrobot_training_curve}, the reward for this agent experienced a smooth increase up to 2.5e7 timesteps and then a rapid ascent in the final 5 million timesteps. Because a termination condition was not implemented, the episode length remained consistently at 1000. This outcome was anticipated and led to  a working agent in an ideal environment.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.1\linewidth]{figures/hardware_result/acrobot_learning_curve_real_world.png}
@@ -374,20 +380,16 @@ The most favorable outcome in the acrobot setup has been an agent that functions
     \label{fig:acrobot_training_curve}
 \end{figure}
 
-As shown in Figure \ref{fig:acrobot_training_curve}, the reward for this agent experienced a smooth increase up to 2.5e7 timesteps and then a rapid ascent in the final 5 million timesteps. Because a termination condition was not implemented, the episode length remained consistently at 1000. This outcome was anticipated and led to  a working agent in an ideal environment.
-
 The behavior of this agent during ideal validation is shown in Figure \ref{fig:acrobot_ideal}. The swing-up is performed by the SAC controller within 2 seconds. After the LQR controller takes over, the system maintains stability around the highest position for a prolonged period. The ideal validation is considered successful.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.95\linewidth]{figures/hardware_result/acrobot_ideal_simulation_designC.1.png}
-    \caption{Acrobot result in ideal environment}
-    \label{fig:acrobot_ideal}
-\end{figure}
 
 The agent operates successfully within a noisy simulation after ideal validation, eliminating the need for further noisy training. The success rate is approximately 50\%. Figure \ref{fig:acrobot_noisy} shows one of the successful tests.
 
-In successful trials, the swing-up phase conducted by the SAC controller concludes within 2 seconds. Although the torque applied in ideal environment tests is already quite noisy, the torque in a noisy environment exhibits even greater fluctuations. Once the LQR controller takes effect, the system stabilizes around the goal state until the experiment concludes. In unsuccessful trials, the inability to switch to the LQR controller is the primary issue. But the agent has high recovery ability, the system sometimes misses the first transition oppotunity and making several rotations before it finds itself reaching a point for LQR controller to take over.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/hardware_result/acrobot_ideal_simulation_designC.1.png}
+    \caption{Acrobot result in ideal environment}
+    \label{fig:acrobot_ideal}
+\end{figure}
 
 \begin{figure}[H]
     \centering
@@ -395,6 +397,8 @@ In successful trials, the swing-up phase conducted by the SAC controller conclud
     \caption{Acrobot result in noisy environment}
     \label{fig:acrobot_noisy}
 \end{figure}
+
+In successful trials, the swing-up phase conducted by the SAC controller concludes within 2 seconds. Although the torque applied in ideal environment tests is already quite noisy, the torque in a noisy environment exhibits even greater fluctuations. Once the LQR controller takes effect, the system stabilizes around the goal state until the experiment concludes. In unsuccessful trials, the inability to switch to the LQR controller is the primary issue. But the agent has high recovery ability, the system sometimes misses the first transition oppotunity and making several rotations before it finds itself reaching a point for LQR controller to take over.
 
 Due to the agent's violation of the \(2\pi\) position limit, it has been deemed unsuitable for real-world tests. Consequently, no additional results from real-world tests in the acrobot setup are presented.
 
